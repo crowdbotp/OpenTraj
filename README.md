@@ -17,6 +17,8 @@ Trajectory Prediction Benchmark and State-of-the-art
 
 **2. FDE** _[To, Tp]_
 
+**3. Correspondence to Scene (CS)**
+
 ## State-of-the-arts Trajectory Prediction Algorithms
 #### A. ETH Dataset
 | Method	         | ETH (ADE*/FDE*) |	Hotel (ADE/FDE) |
