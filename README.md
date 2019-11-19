@@ -2,7 +2,7 @@
 Trajectory Prediction Benchmark and State-of-the-art
 
 
-## Table of Datasets
+## Table of Public Available Trajectory Datasets
 
 | Sample	                           | Name |	\#Trajs | Coord | FPS |	Density |	\*\*\*\*\*\*Description\*\*\*\*\*\* |	REF |
 | ---------------------------------- | ---- | -------- | ----- | --- | -------- | ----- | ---- |
@@ -17,7 +17,7 @@ Trajectory Prediction Benchmark and State-of-the-art
 
 **2. FDE** _[To, Tp]_
 
-## State-of-the-arts
+## State-of-the-arts Trajectory Prediction Algorithms
 #### A. ETH Dataset
 | Method	         | ETH (ADE*/FDE*) |	Hotel (ADE/FDE) |
 | ---------------- | --------------- | ---------------- |
