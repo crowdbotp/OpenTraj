@@ -25,7 +25,7 @@ Trajectory Prediction Benchmark and State-of-the-art
 | ---------------- | --------------- | ---------------- |
 | [Social-LSTM]()  | ? | ? |
 | [Social-GAN]()   | ? | ? |
-| [Social-Ways]()  | ? | ? |
+| [Social-Ways](https://github.com/amiryanj/socialways)  | ? | ? |
 | [SoPhie]()       | ? | ? |
 | [CIDNN]()        | ? | ? |
 
@@ -34,7 +34,7 @@ Trajectory Prediction Benchmark and State-of-the-art
 | ---------------- | ---------------- | ---------------- | ------------------ |
 | [Social-LSTM]()  | ? | ? | ? |
 | [Social-GAN]()   | ? | ? | ? |
-| [Social-Ways]()  | ? | ? | ? |
+| [Social-Ways](https://github.com/amiryanj/socialways)  | ? | ? | ? |
 | [SoPhie]()       | ? | ? | ? |
 | [CIDNN]()        | ? | ? | ? |
 
