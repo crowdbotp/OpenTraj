@@ -24,7 +24,7 @@ Trajectory Prediction Benchmark and State-of-the-art
 | Method	         | ETH (ADE*/FDE*) |	Hotel (ADE/FDE) |
 | ---------------- | --------------- | ---------------- |
 | [Social-LSTM]()  | ? | ? |
-| [Social-GAN]()   | ? | ? |
+| [Social-GAN](https://github.com/agrimgupta92/sgan)   | ? | ? |
 | [Social-Ways](https://github.com/amiryanj/socialways)  | ? | ? |
 | [SoPhie]()       | ? | ? |
 | [CIDNN]()        | ? | ? |
@@ -33,7 +33,7 @@ Trajectory Prediction Benchmark and State-of-the-art
 | Method           | ZARA01 (ADE/FDE) | ZARA02 (ADE/FDE) | Students (ADE/FDE) |
 | ---------------- | ---------------- | ---------------- | ------------------ |
 | [Social-LSTM]()  | ? | ? | ? |
-| [Social-GAN]()   | ? | ? | ? |
+| [Social-GAN](https://github.com/agrimgupta92/sgan)   | ? | ? | ? |
 | [Social-Ways](https://github.com/amiryanj/socialways)  | ? | ? | ? |
 | [SoPhie]()       | ? | ? | ? |
 | [CIDNN]()        | ? | ? | ? |
