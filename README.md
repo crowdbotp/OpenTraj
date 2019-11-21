@@ -27,7 +27,7 @@ Trajectory Prediction Benchmark and State-of-the-art
 | [Social-GAN](https://github.com/agrimgupta92/sgan)   | ? | ? |
 | [Social-Ways](https://github.com/amiryanj/socialways)  | ? | ? |
 | [SoPhie]()       | ? | ? |
-| [CIDNN]()        | ? | ? |
+| [CIDNN](https://github.com/svip-lab/CIDNN)        | ? | ? |
 
 #### B. UCY Dataset
 | Method           | ZARA01 (ADE/FDE) | ZARA02 (ADE/FDE) | Students (ADE/FDE) |
@@ -36,7 +36,7 @@ Trajectory Prediction Benchmark and State-of-the-art
 | [Social-GAN](https://github.com/agrimgupta92/sgan)   | ? | ? | ? |
 | [Social-Ways](https://github.com/amiryanj/socialways)  | ? | ? | ? |
 | [SoPhie]()       | ? | ? | ? |
-| [CIDNN]()        | ? | ? | ? |
+| [CIDNN](https://github.com/svip-lab/CIDNN)        | ? | ? | ? |
 
 - ConstVel
 - SS-LSTM
