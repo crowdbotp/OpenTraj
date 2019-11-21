@@ -11,6 +11,11 @@ Trajectory Prediction Benchmark and State-of-the-art
 | ![](SDD/coupa/video3/reference.jpg)| SDD  | x Pedestrian x Bicyclist x Skateboarder	x Cart	x Car	x Bus Total = xxx  | image |     | ?        |       | [website](http://cvgl.stanford.edu/projects/uav_data) [paper](http://svl.stanford.edu/assets/papers/ECCV16social.pdf)|
 | ![](GC/reference.png)              | GC   | 12,684   | image |     | ?        |       | [dropbox](https://www.dropbox.com/s/7y90xsxq0l0yv8d/cvpr2015_pedestrianWalkingPathDataset.rar) [paper](http://openaccess.thecvf.com/content_cvpr_2015/html/Yi_Understanding_Pedestrian_Behaviors_2015_CVPR_paper.html)|
 
+- [Waymo](https://waymo.com/open/)
+- [KITTI](http://www.cvlibs.net/datasets/kitti/)
+- [TRAF](https://gamma.umd.edu/researchdirections/autonomousdriving/trafdataset/)
+- [ZID](https://zen-traffic-data.net/english/outline/dataset.html)
+- [VRU](https://www.th-ab.de/ueber-uns/organisation/labor/kooperative-automatisierte-verkehrssysteme/trajectory-dataset)
 
 ## Metrics
 **1. ADE** _[To, Tp]_
@@ -20,33 +25,49 @@ Trajectory Prediction Benchmark and State-of-the-art
 **3. Correspondence to Scene (CS)**
 
 ## State-of-the-arts Trajectory Prediction Algorithms
-#### A. ETH Dataset
-| Method	         | ETH (ADE*/FDE*) |	Hotel (ADE/FDE) |
-| ---------------- | --------------- | ---------------- |
-| [Social-LSTM]()  | ? | ? |
-| [Social-GAN](https://github.com/agrimgupta92/sgan)   | ? | ? |
-| [Social-Ways](https://github.com/amiryanj/socialways)  | ? | ? |
-| [SoPhie]()       | ? | ? |
-| [CIDNN](https://github.com/svip-lab/CIDNN)        | ? | ? |
+#### 1. ETH Dataset
+| Method	                                                    | Univ (ADE*/FDE*) |	Hotel (ADE/FDE) |
+| ------------------------------------------------------------------------ | -- | -- |
+| [Social-Force]() <sup>[REF]()</sup>                                      | ?  | ?  |
+| [Social-LSTM]() <sup>[REF]()</sup>                                       | ?  | ?  |
+| [Social-GAN](https://github.com/agrimgupta92/sgan) <sup>[REF]()</sup>    | ?  | ?  |
+| [Social-Ways](https://github.com/amiryanj/socialways) <sup>[REF]()</sup> | ?  | ?  |
+| [Social-Attention]() <sup>[REF]()</sup>                                  | ?  | ?  |
+| [SoPhie]() <sup>[REF]()</sup>                                            | ?  | ?  |
+| [CIDNN](https://github.com/svip-lab/CIDNN) <sup>[REF]()</sup>            | ?  | ?  |
 
-#### B. UCY Dataset
-| Method           | ZARA01 (ADE/FDE) | ZARA02 (ADE/FDE) | Students (ADE/FDE) |
-| ---------------- | ---------------- | ---------------- | ------------------ |
-| [Social-LSTM]()  | ? | ? | ? |
-| [Social-GAN](https://github.com/agrimgupta92/sgan)   | ? | ? | ? |
-| [Social-Ways](https://github.com/amiryanj/socialways)  | ? | ? | ? |
-| [SoPhie]()       | ? | ? | ? |
-| [CIDNN](https://github.com/svip-lab/CIDNN)        | ? | ? | ? |
+<!--% Social Force => (https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=5995468) -->
+<!--% Social Attention => (https://www.ri.cmu.edu/wp-content/uploads/2018/08/main.pdf) -->
 
-- ConstVel
-- SS-LSTM
+- [Social-Etiquette](https://infoscience.epfl.ch/record/230262/files/ECCV16social.pdf)
+- [ConstVel(The simpler, the better)](https://arxiv.org/pdf/1903.07933)
+- [Scene-LSTM](https://arxiv.org/pdf/1808.04018)
+- [Peeking Into the Future](http://openaccess.thecvf.com/content_CVPR_2019/papers/Liang_Peeking_Into_the_Future_Predicting_Future_Person_Activities_and_Locations_CVPR_2019_paper.pdf)
+- [SS-LSTM](https://ieeexplore.ieee.org/iel7/8345804/8354104/08354239.pdf)
 
-#### C. Stanford Drone Dataset (SDD)
-1. DESIRE
-2. SoPhie
 
-#### D. Grand Central Station (GC) Dataset
-1. CIDNN
+#### 2. UCY Dataset
+| Method                                              | ZARA01 (ADE/FDE) | ZARA02 (ADE/FDE) | Students (ADE/FDE) |
+| ------------------------------------------------------------------------ | -- | -- | -- |
+| [Social-LSTM]() <sup>[REF]()</sup>                                       | ?  | ?  | ?  |
+| [Social-GAN](https://github.com/agrimgupta92/sgan) <sup>[REF]()</sup>    | ?  | ?  | ?  |
+| [Social-Ways](https://github.com/amiryanj/socialways) <sup>[REF]()</sup> | ?  | ?  | ?  |
+| [SoPhie]() <sup>[REF]()</sup>                                            | ?  | ?  | ?  |
+| [CIDNN](https://github.com/svip-lab/CIDNN) <sup>[REF]()</sup>            | ?  | ?  | ?  |
+
+
+#### 3. Stanford Drone Dataset (SDD)
+- [Social-Etiquette](https://infoscience.epfl.ch/record/230262/files/ECCV16social.pdf)
+- [DESIRE](http://openaccess.thecvf.com/content_cvpr_2017/papers/Lee_DESIRE_Distant_Future_CVPR_2017_paper.pdf)
+- [SoPhie](http://openaccess.thecvf.com/content_CVPR_2019/papers/Sadeghian_SoPhie_An_Attentive_GAN_for_Predicting_Paths_Compliant_to_Social_CVPR_2019_paper.pdf)
+- [MATF (Multi-Agent Tensor Fusion)](http://openaccess.thecvf.com/content_CVPR_2019/papers/Zhao_Multi-Agent_Tensor_Fusion_for_Contextual_Trajectory_Prediction_CVPR_2019_paper.pdf)
+- [Best of Many](http://openaccess.thecvf.com/content_cvpr_2018/papers/Bhattacharyya_Accurate_and_Diverse_CVPR_2018_paper.pdf)
+
+#### 4. Grand Central Station (GC) Dataset
+- [CIDNN](http://openaccess.thecvf.com/content_cvpr_2018/papers/Xu_Encoding_Crowd_Interaction_CVPR_2018_paper.pdf)
+
+#### 5. KITI
+- [R2P2](http://openaccess.thecvf.com/content_ECCV_2018/papers/Nicholas_Rhinehart_R2P2_A_ReparameteRized_ECCV_2018_paper.pdf)
 
 #### REF
 1. MOT Challenge
