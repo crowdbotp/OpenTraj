@@ -6,18 +6,20 @@ Trajectory Prediction Benchmark and State-of-the-art
 
 | Sample	                           | Name |	\#Trajs | Coord | FPS |	Density |	\*\*\*\*\*\*Description\*\*\*\*\*\* |	REF |
 | ---------------------------------- | ---- | -------- | ----- | --- | -------- | ----- | ---- |
-| ![](ETH/seq_eth/reference.png)     | ETH  | 750      | world | 2.5 | ?        |       | [website](http://www.vision.ee.ethz.ch/~stefpell/lta/index.html) [paper](https://ethz.ch/content/dam/ethz/special-interest/baug/igp/photogrammetry-remote-sensing-dam/documents/pdf/pellegrini09iccv.pdf)| 
-| ![](UCY/data_zara01/reference.png) | UCY  | 786      | world | 2.5 | ?        |       | [website](https://graphics.cs.ucy.ac.cy/research/downloads/crowd-data) [paper](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1467-8659.2007.01089.x)| 
-| ![](SDD/coupa/video3/reference.jpg)| SDD  | Bikes=4210 Peds=5232 Skates=292 Carts=174 Cars=316 Buss=76 total=10,300 | image |     | ?        |       | [website](http://cvgl.stanford.edu/projects/uav_data) [paper](http://svl.stanford.edu/assets/papers/ECCV16social.pdf)|
-| ![](GC/reference.png)              | GC   | 12,684   | image |     | ?        |       | [dropbox](https://www.dropbox.com/s/7y90xsxq0l0yv8d/cvpr2015_pedestrianWalkingPathDataset.rar) [paper](http://openaccess.thecvf.com/content_cvpr_2015/html/Yi_Understanding_Pedestrian_Behaviors_2015_CVPR_paper.html)|
-| ![](waymo/reference.png) | Waymo | ? | ? | ? | ? |  | [website](https://waymo.com/open/) [github](https://github.com/waymo-research/waymo-open-dataset)|
-| ![](KITTI/reference.png) | KITTI | ? | ? | 10 | ? |  | [website](http://www.cvlibs.net/datasets/kitti/)|
+| ![](ETH/seq_eth/reference.png)     | ETH  | peds=750      | world | 2.5 | ?        | 2 top view scenes      | [website](http://www.vision.ee.ethz.ch/~stefpell/lta/index.html) [paper](https://ethz.ch/content/dam/ethz/special-interest/baug/igp/photogrammetry-remote-sensing-dam/documents/pdf/pellegrini09iccv.pdf)| 
+| ![](UCY/data_zara01/reference.png) | UCY  | peds=786      | world | 2.5 | ?        |       | [website](https://graphics.cs.ucy.ac.cy/research/downloads/crowd-data) [paper](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1467-8659.2007.01089.x)| 
+| ![](SDD/coupa/video3/reference.jpg)| SDD  | Bikes=4210 Peds=5232 Skates=292 Carts=174 Cars=316 Buss=76 total=10,300 | image | 30 | ?        |       | [website](http://cvgl.stanford.edu/projects/uav_data) [paper](http://svl.stanford.edu/assets/papers/ECCV16social.pdf)|
+| ![](GC/reference.png)              | GC   | peds=12,684   | image | 25   | ?        |       | [dropbox](https://www.dropbox.com/s/7y90xsxq0l0yv8d/cvpr2015_pedestrianWalkingPathDataset.rar) [paper](http://openaccess.thecvf.com/content_cvpr_2015/html/Yi_Understanding_Pedestrian_Behaviors_2015_CVPR_paper.html)|
+| ![](Waymo/reference.jpg)          | Waymo |         |  | ? | ? |  | [website](https://waymo.com/open/) [github](https://github.com/waymo-research/waymo-open-dataset)|
+| ![](KITTI/reference.jpg)          | KITTI |         | image(3d) +Calib | 10 | ? |  | [website](http://www.cvlibs.net/datasets/kitti/)|
+| ![](TRAF/reference.png)          | TRAF |         | image | 10 | ? |  | [website](https://gamma.umd.edu/researchdirections/autonomousdriving/trafdataset/) [gDrive](https://drive.google.com/drive/folders/1zKaeboslkqoLdTJbRMyQ0Y9JL3007LRr)|
+| ![](ZTD/reference.png)          | ZTD | Vehicles= x   | World (Degree) | 10 | ? | ZEN Traffic Dataset: containing vehicle trajectories | [website](https://zen-traffic-data.net/english/outline/dataset.html)|
 
 
 <!-- - [Waymo](https://waymo.com/open/)  -->
 <!-- - [KITTI](http://www.cvlibs.net/datasets/kitti/) -->
-- [TRAF](https://gamma.umd.edu/researchdirections/autonomousdriving/trafdataset/)
-- [ZID](https://zen-traffic-data.net/english/outline/dataset.html)
+<!-- - [TRAF](https://gamma.umd.edu/researchdirections/autonomousdriving/trafdataset/) -->
+<!-- - [ZTD](https://zen-traffic-data.net/english/outline/dataset.html) -->
 - [VRU](https://www.th-ab.de/ueber-uns/organisation/labor/kooperative-automatisierte-verkehrssysteme/trajectory-dataset)
 - [Bottleneck(Seyfried)](https://zenodo.org/record/1054017#.XdZ-d3FKi90)
 - [InD](https://www.highd-dataset.com/)
