@@ -1,5 +1,6 @@
 ![](IntersectionOverview.png)
-Overview of the research intersection with view from wide angle stereo camera images.
+
+_Overview of the research intersection with view from wide angle stereo camera images._
 
 # VRU TRAJECTORY DATASET
 The VRU Trajectory Dataset consists of 1068 pedestrian and 464 cyclist trajectories recorded at an urban intersection using cameras and LiDARs. A detailed description of the intersection can be found in [1]. The pedestrian trajectories were recorded by using a wide angle stereo camera system to track the pedestrians' head position and generating the 3D position by triangulation. The cyclists trajectories were recorded by using LiDARs to track the center of gravity of the cyclists. The cameras operate at 50 Hz, the LiDARs at 12.5 Hz. The dataset partly results from the projects DeCoInt² [2] funded by the "German Reasearch Foundation" (DFG) and AFUSS funded by the "Bundesministerium für Bildung und Forschung" (BMBF). Additionally, our work is supported by "Zentrum Digitalisierung Bayern".
@@ -7,6 +8,7 @@ The VRU Trajectory Dataset consists of 1068 pedestrian and 464 cyclist trajector
 ## Trajectory visualization
 
 ![](reference.png)
+
 _Trajectories of pedestrians (left) and cyclists (right) plotted to map of intersection._
 
 ## DATASET FORMAT
