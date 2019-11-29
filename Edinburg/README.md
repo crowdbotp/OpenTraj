@@ -1,4 +1,4 @@
-#Edinburgh Informatics Forum Pedestrian Database
+# Edinburgh Informatics Forum Pedestrian Database
 
 ## Introduction
 The dataset consists of a set of detected targets of people walking through the Informatics Forum, the main building of the School of Informatics at the University of Edinburgh. The data covers several months of observation which has resulted in about 1000 observed trajectories each working day. By July 4, 2010, there were 27+ million target detections, of which an estimated 7.9 million were real targets, resulting in 92,000+ observed trajectories.
@@ -27,9 +27,12 @@ A typical detected target is:
 ![](images/4.png)
 
 from which this colour histogram is extracted:
-![](images/5-1.jpg)
-![](images/5-2.jpg)
-![](images/5-3.jpg)
+
+<p align='center'>
+<img src="images/5-1.jpg" width='200px'\>
+<img src="images/5-2.jpg" width='200px'\>
+<img src="images/5-3.jpg" width='200px'\>
+</p>
 
 A typical set of blobs for a single target is shown here, where each dot marks the center-of-mass of the detected target:
 ![](images/6.png)
@@ -57,9 +60,9 @@ The control points are stored as: Controlpoints.{Identifier}= [[Controlpoint_x1 
 The data files can be downloaded by clicking on a file and then unzipping them.
 
 
-
-| Detected Target Filename | Size (MB) | Number of Detections | Tracked	Target Filename | Number of Trajectories | Number of detections in tracking | Target Spline in tracking |
 <!--
+| Detected Target Filename | Size (MB) | Number of Detections | Tracked	Target Filename | Number of Trajectories | Number of detections in tracking | Target Spline in tracking |
+
 Aug.24	8	254071	tracks.Aug24	664	76260	spline.Aug24
 Aug.25	2.2	70725	tracks.Aug25	474	41164	spline.Aug25
 Aug.26	10.9	320393	tracks.Aug26	1992	191981	spline.Aug26
