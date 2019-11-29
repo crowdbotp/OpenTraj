@@ -5,9 +5,9 @@ Trajectory Prediction Benchmark and State-of-the-art
 ## Table of Public Available Trajectory Datasets
 
 | Sample	                           | Name |	\#Trajs | Coord | FPS |	Density |	\*\*\*\*\*\*Description\*\*\*\*\*\* |	REF |
-| ---------------------------------- | ---- | -------- | ----- | --- | -------- | ----- | ---- |
-| ![](ETH/seq_eth/reference.png)     | ETH  | peds=750      | world | 2.5 | ?        | 2 top view scenes      | [website](http://www.vision.ee.ethz.ch/en/datasets/) [paper](https://ethz.ch/content/dam/ethz/special-interest/baug/igp/photogrammetry-remote-sensing-dam/documents/pdf/pellegrini09iccv.pdf)| 
-| ![](UCY/data_zara01/reference.png) | UCY  | peds=786      | world | 2.5 | ?        |       | [website](https://graphics.cs.ucy.ac.cy/research/downloads/crowd-data) [paper](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1467-8659.2007.01089.x)| 
+| ---------------------------------- | ---- | -------- | ----- | --- | -------- | ----- | ------- |
+| ![](ETH/seq_eth/reference.png)     | ETH  | peds=750      | world | 2.5 | ?        | 2 top view scenes      | [[website]](http://www.vision.ee.ethz.ch/en/datasets/) [[paper]](https://ethz.ch/content/dam/ethz/special-interest/baug/igp/photogrammetry-remote-sensing-dam/documents/pdf/pellegrini09iccv.pdf)| 
+| ![](UCY/data_zara01/reference.png) | UCY  | peds=786      | world | 2.5 | ?        |   3 scenes (Zara/Arxiepiskopi/University). Zara and University close to top view. Arxiepiskopi more inclined.    | [[website]](https://graphics.cs.ucy.ac.cy/research/downloads/crowd-data) [paper](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1467-8659.2007.01089.x)| 
 | ![](SDD/coupa/video3/reference.jpg)| SDD  | Bikes=4210 Peds=5232 Skates=292 Carts=174 Cars=316 Buss=76 total=10,300 | image | 30 | ?        |       | [website](http://cvgl.stanford.edu/projects/uav_data) [paper](http://svl.stanford.edu/assets/papers/ECCV16social.pdf)|
 | ![](GC/reference.png)              | GC   | peds=12,684   | image | 25   | ?        |       | [dropbox](https://www.dropbox.com/s/7y90xsxq0l0yv8d/cvpr2015_pedestrianWalkingPathDataset.rar) [paper](http://openaccess.thecvf.com/content_cvpr_2015/html/Yi_Understanding_Pedestrian_Behaviors_2015_CVPR_paper.html)|
 | ![](Waymo/reference.jpg)          | Waymo |         |  | ? | ? |  | [website](https://waymo.com/open/) [github](https://github.com/waymo-research/waymo-open-dataset)|
@@ -19,7 +19,7 @@ Trajectory Prediction Benchmark and State-of-the-art
 | ![](L-CAS/reference.png)     | L-CAS  |       |  |  | ?        |      | [website](http://www.vision.ee.ethz.ch/en/datasets/)|
 | ![](VIRAT/reference.png)     | VIRAT  |       |  |  | ?        |      | [website](http://viratdata.org/)|
 | ![](VRU/reference.png) |  VRU | peds=1068 Bikes=464  | World (Meter) | ? | ? | consists of pedestrian and cyclist trajectories, recorded at an urban intersection using cameras and LiDARs | [website](https://www.th-ab.de/ueber-uns/organisation/labor/kooperative-automatisierte-verkehrssysteme/trajectory-dataset) |
-| ![](Edinburgh/reference.jpg)     | Edinburgh  | +92,000 peds    |  |  | ?        |      | [website](http://homepages.inf.ed.ac.uk/rbf/FORUMTRACKING/)|
+| ![](Edinburg/reference.jpg)     | Edinburg  |       |  |  | ?        |      | [website](http://homepages.inf.ed.ac.uk/rbf/FORUMTRACKING/)|
 | ![](Town-Center/reference.jpg)     | Town Center  |      |  |  | ?        |      | [website](https://megapixels.cc/datasets/oxford_town_centre/)|
 | ![](ZTD/reference.png)          | ZTD | Vehicles= x   | World (Degree) | 10 | ? | ZEN Traffic Dataset: containing vehicle trajectories | [website](https://zen-traffic-data.net/english/outline/dataset.html)|
 
