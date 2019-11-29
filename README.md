@@ -13,8 +13,8 @@ Trajectory Prediction Benchmark and State-of-the-art
 | ![](Waymo/reference.jpg)          | Waymo |         |  | ? | ? |  | [website](https://waymo.com/open/) [github](https://github.com/waymo-research/waymo-open-dataset)|
 | ![](KITTI/reference.jpg)          | KITTI |         | image(3d) +Calib | 10 | ? |  | [website](http://www.cvlibs.net/datasets/kitti/)|
 | ![](HERMES/reference.png)  | HERMES  |       |  |  | ?        |      | [website](https://zenodo.org/record/1054017#.XdZ-d3FKi90)|
-| ![](highD/reference.png)     | highD  |       |  |  | ?        |      | [website](https://www.highd-dataset.com/)|
-| ![](inD/reference.png)     | inD  |       |  |  | ?        |      | [website](https://www.highd-dataset.com/)|
+| ![](highD/reference.png)     | highD  | > 110,500 vehicles      |  |  | ?        |      | [website](https://www.highd-dataset.com/)|
+| ![](inD/reference.png)     | inD  |  Vehicles= x Peds=x Bikes=x |  |  | ?        |      | [website](https://www.ind-dataset.com/)|
 | ![](TRAF/reference.png)          | TRAF |         | image | 10 | ? |  | [website](https://gamma.umd.edu/researchdirections/autonomousdriving/trafdataset/) [gDrive](https://drive.google.com/drive/folders/1zKaeboslkqoLdTJbRMyQ0Y9JL3007LRr)|
 | ![](L-CAS/reference.png)     | L-CAS  |       |  |  | ?        |      | [website](http://www.vision.ee.ethz.ch/en/datasets/)|
 | ![](VIRAT/reference.png)     | VIRAT  |       |  |  | ?        |      | [website](http://viratdata.org/)|
