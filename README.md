@@ -20,7 +20,7 @@ Trajectory Prediction Benchmark and State-of-the-art
 | ![](VIRAT/reference.png)     | VIRAT  |       |  |  | ?        |      | [website](http://viratdata.org/)|
 | ![](VRU/reference.png) |  VRU | peds=1068 Bikes=464  | World (Meter) | ? | ? | consists of pedestrian and cyclist trajectories, recorded at an urban intersection using cameras and LiDARs | [website](https://www.th-ab.de/ueber-uns/organisation/labor/kooperative-automatisierte-verkehrssysteme/trajectory-dataset) |
 | ![](Edinburg/reference.jpg)     | Edinburg  |       |  |  | ?        |      | [website](http://homepages.inf.ed.ac.uk/rbf/FORUMTRACKING/)|
-| ![](Town-Center/reference.png)     | Town Center  |      |  |  | ?        |      | [website](https://megapixels.cc/datasets/oxford_town_centre/)|
+| ![](Town-Center/reference.jpg)     | Town Center  |      |  |  | ?        |      | [website](https://megapixels.cc/datasets/oxford_town_centre/)|
 | ![](ZTD/reference.png)          | ZTD | Vehicles= x   | World (Degree) | 10 | ? | ZEN Traffic Dataset: containing vehicle trajectories | [website](https://zen-traffic-data.net/english/outline/dataset.html)|
 
 <!-- - [Waymo](https://waymo.com/open/)  -->
