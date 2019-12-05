@@ -1,9 +1,9 @@
-#The Highway Drone Dataset
+# The Highway Drone Dataset
 Naturalistic Trajectories of 110 500 Vehicles Recorded at German Highways
 
 ![](reference.png)
 
-##About the Dataset
+## About the Dataset
 
 The highD dataset is a new dataset of naturalistic vehicle trajectories recorded on German highways. Using a drone, typical limitations of established traffic data collection methods such as occlusions are overcome by the aerial perspective. Traffic was recorded at six different locations and includes more than 110 500 vehicles. Each vehicle's trajectory, including vehicle type, size and manoeuvres, is automatically extracted. Using state-of-the-art computer vision algorithms, the positioning error is typically less than ten centimeters. Although the dataset was created for the safety validation of highly automated vehicles, it is also suitable for many other tasks such as the analysis of traffic patterns or the parameterization of driver models. Click [here](https://www.highd-dataset.com/details) for details.
 
