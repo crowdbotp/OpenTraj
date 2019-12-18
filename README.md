@@ -49,15 +49,21 @@ Trajectory Prediction Benchmark and State-of-the-art
 
 
 ## Metrics
-**1. ADE** _[To, Tp]_
+**1. ADE** (T<sub>obs</sub>, T<sub>pred</sub>):
+Average Displacement Error (ADE), also called Mean Euclidean Distance (MED), measures the averages Euclidean distances between points of the predicted trajectory and the ground truth that have the same temporal distance from their respective start points. The function arguemnts are:
+- T<sub>obs</sub> : observation period
+- T<sub>pred</sub> : prediction period
 
-**2. FDE** _[To, Tp]_
+**2. FDE** (T<sub>obs</sub>, T<sub>pred</sub>):
+Final Displacement Error (FDE) measures the distance between final predicted position and the ground truth position at the corresponding time point. The function arguemnts are:
+- T<sub>obs</sub> : observation period
+- T<sub>pred</sub> : prediction period
 
 
 
 ## State-of-the-arts Trajectory Prediction Algorithms
 #### 1. ETH Dataset
-| Method	                                                    | Univ (ADE/FDE*) |	Hotel (ADE/FDE) |
+| Method	                                                    | Univ (ADE/FDE)* |	Hotel (ADE/FDE)* |
 | ------------------------------------------------------------------------ | -- | -- |
 | [Social-Force]() <sup>[1](#references)</sup>                                      | ?  | ?  |
 | [Social-LSTM]() <sup>[2](#references)</sup>                                       | ?  | ?  |
@@ -67,6 +73,7 @@ Trajectory Prediction Benchmark and State-of-the-art
 | [SoPhie]() <sup>[REF]()</sup>                                            | ?  | ?  |
 | [CIDNN](github.com/svip-lab/CIDNN) <sup>[REF]()</sup>            | ?  | ?  |
 
+&ast; The values are in meter, calculated with ADE(T<sub>obs</sub>=3.2<sub>s</sub>, T<sub>pred</sub>=4.8<sub>s</sub>)
 <!--% Social Force => (https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=5995468) -->
 <!--% Social Attention => (https://www.ri.cmu.edu/wp-content/uploads/2018/08/main.pdf) -->
 
