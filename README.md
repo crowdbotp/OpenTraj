@@ -53,15 +53,15 @@ Trajectory Prediction Benchmark and State-of-the-art
 
 **2. FDE** _[To, Tp]_
 
-**3. Correspondence to Scene (CS)**
+
 
 ## State-of-the-arts Trajectory Prediction Algorithms
 #### 1. ETH Dataset
-| Method	                                                    | Univ (ADE*/FDE*) |	Hotel (ADE/FDE) |
+| Method	                                                    | Univ (ADE/FDE*) |	Hotel (ADE/FDE) |
 | ------------------------------------------------------------------------ | -- | -- |
 | [Social-Force]() <sup>[1](#references)</sup>                                      | ?  | ?  |
 | [Social-LSTM]() <sup>[2](#references)</sup>                                       | ?  | ?  |
-| [Social-GAN](github.com/agrimgupta92/sgan) <sup>[3](#references)</sup>    | ?  | ?  |
+| [Social-GAN](github.com/agrimgupta92/sgan) <sup>[REF](#references)</sup>    | ?  | ?  |
 | [Social-Ways](github.com/amiryanj/socialways) <sup>[REF](#references)</sup> | ?  | ?  |
 | [Social-Attention]() <sup>[REF](#references)</sup>                                  | ?  | ?  |
 | [SoPhie]() <sup>[REF]()</sup>                                            | ?  | ?  |
@@ -109,9 +109,11 @@ Trajectory Prediction Benchmark and State-of-the-art
 4. Social Ways: Social Ways: Learning Multi-Modal Distributions of Pedestrian Trajectories with GANs, CVPR 2019. [Precognition Workshop], [paper], [code]
 
 ### Surveys
-- Human Motion Trajectory Prediction: A Survey, 2019 [paper]
-- A literature review on the prediction of pedestrian behavior in urban scenarios, ITSC 2018. [paper]
-- Survey on Vision-Based Path Prediction. [paper]
-- Autonomous vehicles that interact with pedestrians: A survey of theory and practice. [paper]
-- Trajectory data mining: an overview. [paper]
-- A survey on motion prediction and risk assessment for intelligent vehicles. [paper]
+1. A Survey on Path Prediction Techniques for Vulnerable Road Users: From Traditional to Deep-Learning Approaches, ITSC 2019. [paper](https://ieeexplore.ieee.org/abstract/document/8917053)
+2. Human Motion Trajectory Prediction: A Survey, IJRR 2019 [arxiv](https://arxiv.org/abs/1905.06113)
+3. Autonomous vehicles that interact with pedestrians: A survey of theory and practice, ITS 2019. [arxiv](https://arxiv.org/abs/1805.11773)
+4. A literature review on the prediction of pedestrian behavior in urban scenarios, ITSC 2018. [paper](https://ieeexplore.ieee.org/abstract/document/8569415)
+5. Survey on Vision-Based Path Prediction, DAPI 2018. [arxiv](https://arxiv.org/abs/1811.00233)
+6. Trajectory data mining: an overview, TIST 2015. [paper](https://www.microsoft.com/en-us/research/wp-content/uploads/2015/09/TrajectoryDataMining-tist-yuzheng.pdf)
+7. A survey on motion prediction and risk assessment for intelligent vehicles, ROBOMECH 2014. [paper](https://core.ac.uk/download/pdf/81530180.pdf)
+
