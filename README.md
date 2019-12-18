@@ -65,10 +65,10 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 #### 1. ETH Dataset
 | Method	                                                    | Univ (ADE/FDE)* |	Hotel (ADE/FDE)* |
 | ------------------------------------------------------------------------ | -- | -- |
-| [Social-Force]() <sup>[1](#references)</sup>                                      | ?  | ?  |
-| [Social-LSTM]() <sup>[2](#references)</sup>                                       | ?  | ?  |
-| [Social-GAN](github.com/agrimgupta92/sgan) <sup>[REF](#references)</sup>    | ?  | ?  |
-| [Social-Ways](github.com/amiryanj/socialways) <sup>[REF](#references)</sup> | ?  | ?  |
+| [Social-Force]() <sup>[1](#references)</sup>                                      | 0.67 / 1.52  | 0.52 / 1.03  |
+| [Social-LSTM]() <sup>[2](#references)</sup>                                       | 1.09 / 2.35  | 0.79 / 1.76  |
+| [Social-GAN](github.com/agrimgupta92/sgan) <sup>[REF](#references)</sup>    | 0.77 / 1.38 | 0.70 / 1.43  |
+| [Social-Ways](github.com/amiryanj/socialways) <sup>[REF](#references)</sup> | 0.39 / 0.64  | 0.39 / 0.66  |
 | [Social-Attention]() <sup>[REF](#references)</sup>                                  | ?  | ?  |
 | [SoPhie]() <sup>[REF]()</sup>                                            | ?  | ?  |
 | [CIDNN](github.com/svip-lab/CIDNN) <sup>[REF]()</sup>            | ?  | ?  |
@@ -82,7 +82,7 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 | [SR-LSTM]() <sup>[REF]()</sup>            | ?  | ?  |
 
 
-&ast; The values are in meter, calculated with ADE(T<sub>obs</sub>=3.2<sub>s</sub>, T<sub>pred</sub>=4.8<sub>s</sub>)
+&ast; The values are in meter, calculated with ADE(T<sub>obs</sub>=3.2<sub>s</sub>, T<sub>pred</sub>=4.8<sub>s</sub>) and FDE(T<sub>obs</sub>=3.2<sub>s</sub>, T<sub>pred</sub>=4.8<sub>s</sub>).
 <!--% Social Force => (https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=5995468) -->
 <!--% Social Attention => (https://www.ri.cmu.edu/wp-content/uploads/2018/08/main.pdf) -->
 
@@ -99,22 +99,21 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 
 #### 2. UCY Dataset
 | Method                                              | ZARA01 (ADE/FDE) | ZARA02 (ADE/FDE) | Students (ADE/FDE) |
-| ------------------------------------------------------------------------ | -- | -- | -- |
-| [Social-Force]() <sup>[1](#references)</sup>                                      | ?  | ?  | ? |
-| [Social-LSTM]() <sup>[2](#references)</sup>                                       | ?  | ?  | ? |
-| [Social-GAN](github.com/agrimgupta92/sgan) <sup>[REF](#references)</sup>    | ?  | ?  | ? |
-| [Social-Ways](github.com/amiryanj/socialways) <sup>[REF](#references)</sup> | ?  | ?  | ? |
-| [Social-Attention]() <sup>[REF](#references)</sup>                                  | ?  | ?  | ? |
-| [SoPhie]() <sup>[REF]()</sup>                                            | ?  | ?  | ? |
-| [CIDNN](github.com/svip-lab/CIDNN) <sup>[REF]()</sup>            | ?  | ?  | ? |
-| [Social-Etiquette]() <sup>[REF]()</sup>            | ?  | ?  | ? |
-| [ConstVel]() <sup>[REF]()</sup>            | ?  | ?  | ? |
-| [Scene-LSTM]() <sup>[REF]()</sup>            | ?  | ?  | ? |
-| [Peeking Into the Future]() <sup>[REF]()</sup>            |  ? | ?  | ?  |
-| [SS-LSTM]() <sup>[REF]()</sup>            | ?  | ?  | ? |
-| [MX-LSTM]() <sup>[REF]()</sup>            | ?  | ?  | ? |
-| [Social-BiGAT]() <sup>[REF]()</sup>            | ?  | ?  |  ? |
-| [SR-LSTM]() <sup>[REF]()</sup>            | ?  | ?  |  ? |
+| ------------------------------------------------------------------------------ | -- | -- | -- |
+| [Social-Force]() <sup>[1](#references)</sup>                                   | ?  | ?  | ?  |
+| [Social-Etiquette]() <sup>[REF]()</sup>                                        | ?  | ?  | ?  |
+| [Social-LSTM]() <sup>[2](#references)</sup>                                    | ?  | ?  | ?  |
+| [Social-GAN](github.com/agrimgupta92/sgan) <sup>[REF](#references)</sup>       | ?  | ?  | ?  |
+| [CIDNN](github.com/svip-lab/CIDNN) <sup>[REF]()</sup>                          | ?  | ?  | ?  |
+| [Social-Attention]() <sup>[REF](#references)</sup>                             | ?  | ?  | ?  |
+| [Scene-LSTM]() <sup>[REF]()</sup>                                              | ?  | ?  | ?  |
+| [ConstVel]() <sup>[REF]()</sup>                                                | ?  | ?  | ?  |
+| [SoPhie]() <sup>[REF]()</sup>                                                  | ?  | ?  | ?  |
+| [Social-Ways](github.com/amiryanj/socialways) <sup>[REF](#references)</sup>    | ?  | ?  | ?  |
+| [Peeking Into the Future]() <sup>[REF]()</sup>                                 |  ? | ?  | ?  |
+| [SS-LSTM]() <sup>[REF]()</sup>                                                 | ?  | ?  | ?  |
+| [Social-BiGAT]() <sup>[REF]()</sup>                                            | ?  | ?  | ?  |
+| [SR-LSTM]() <sup>[REF]()</sup>                                                 | ?  | ?  | ?  |
 
 
 #### 3. Stanford Drone Dataset (SDD)
@@ -131,17 +130,27 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 - [R2P2](http://openaccess.thecvf.com/content_ECCV_2018/papers/Nicholas_Rhinehart_R2P2_A_ReparameteRized_ECCV_2018_paper.pdf)
 
 ## References
-1. (Social Force)
-2. Social LSTM: Human trajectory prediction in crowded spaces, CVPR 2016.
-3. Social GAN: 
-4. Social Ways: Social Ways: Learning Multi-Modal Distributions of Pedestrian Trajectories with GANs, CVPR 2019. [Precognition Workshop], [paper], [code]
+&ast; ordered by time
 
-### Surveys
-1. A Survey on Path Prediction Techniques for Vulnerable Road Users: From Traditional to Deep-Learning Approaches, ITSC 2019. [paper](https://ieeexplore.ieee.org/abstract/document/8917053)
-2. Human Motion Trajectory Prediction: A Survey, IJRR 2019 [arxiv](https://arxiv.org/abs/1905.06113)
-3. Autonomous vehicles that interact with pedestrians: A survey of theory and practice, ITS 2019. [arxiv](https://arxiv.org/abs/1805.11773)
+1. Who are you with and Where are you going? (Social Force), Yamaguchi et al. CVPR 2011. [paper]()
+2. Social LSTM: Human trajectory prediction in crowded spaces, Alahi et al. CVPR 2016. [paepr]()
+5. Learning social etiquette: Human trajectory understanding in crowded scenes, Robicquet et al. ECCV 2016. [paper](https://infoscience.epfl.ch/record/230262/files/ECCV16social.pdf) 
+- Desire: Distant future prediction in dynamic scenes with interacting agents, Lee et al. CVPR 2017. [paper](http://openaccess.thecvf.com/content_cvpr_2017/papers/Lee_DESIRE_Distant_Future_CVPR_2017_paper.pdf)
+3. Social GAN: Socially Acceptable Trajectories with Generative Adversarial Networks, Gupta et al. CVPR 2018. [paper]()
+4. Social Ways: Learning Multi-Modal Distributions of Pedestrian Trajectories with GANs, Amirian et al. CVPR 2019. [paper](), [code]()
+
+
+- Sophie: An attentive gan for predicting paths compliant to social and physical constraints, Sadeghian et al. CVPR 2019. [paper](https://arxiv.org/pdf/1806.01482.pdf)
+
+- [MATF (Multi-Agent Tensor Fusion)](http://openaccess.thecvf.com/content_CVPR_2019/papers/Zhao_Multi-Agent_Tensor_Fusion_for_Contextual_Trajectory_Prediction_CVPR_2019_paper.pdf)
+- [Best of Many](http://openaccess.thecvf.com/content_cvpr_2018/papers/Bhattacharyya_Accurate_and_Diverse_CVPR_2018_paper.pdf)
+
+
+#### Surveys
+1. A survey on motion prediction and risk assessment for intelligent vehicles, ROBOMECH 2014. [paper](https://core.ac.uk/download/pdf/81530180.pdf)
+2. Trajectory data mining: an overview, TIST 2015. [paper](https://www.microsoft.com/en-us/research/wp-content/uploads/2015/09/TrajectoryDataMining-tist-yuzheng.pdf)
+3. Survey on Vision-Based Path Prediction, DAPI 2018. [arxiv](https://arxiv.org/abs/1811.00233)
 4. A literature review on the prediction of pedestrian behavior in urban scenarios, ITSC 2018. [paper](https://ieeexplore.ieee.org/abstract/document/8569415)
-5. Survey on Vision-Based Path Prediction, DAPI 2018. [arxiv](https://arxiv.org/abs/1811.00233)
-6. Trajectory data mining: an overview, TIST 2015. [paper](https://www.microsoft.com/en-us/research/wp-content/uploads/2015/09/TrajectoryDataMining-tist-yuzheng.pdf)
-7. A survey on motion prediction and risk assessment for intelligent vehicles, ROBOMECH 2014. [paper](https://core.ac.uk/download/pdf/81530180.pdf)
-
+5. Autonomous vehicles that interact with pedestrians: A survey of theory and practice, ITS 2019. [arxiv](https://arxiv.org/abs/1805.11773)
+6. Human Motion Trajectory Prediction: A Survey, IJRR 2019 [arxiv](https://arxiv.org/abs/1905.06113)
+7. A Survey on Path Prediction Techniques for Vulnerable Road Users: From Traditional to Deep-Learning Approaches, ITSC 2019. [paper](https://ieeexplore.ieee.org/abstract/document/8917053)
