@@ -43,6 +43,10 @@ Trajectory Prediction Benchmark and State-of-the-art
 - [ATC](No Link)
 - [Cyclist](No Link)
 
+### Benchmarks
+- [Trajnet](http://trajnet.stanford.edu/): Trajectory Forecasting Challenge
+- [MOT-Challenge](https://motchallenge.net): Multiple Object Tracking Benchmark
+
 
 ## Metrics
 **1. ADE** _[To, Tp]_
@@ -55,13 +59,13 @@ Trajectory Prediction Benchmark and State-of-the-art
 #### 1. ETH Dataset
 | Method	                                                    | Univ (ADE*/FDE*) |	Hotel (ADE/FDE) |
 | ------------------------------------------------------------------------ | -- | -- |
-| [Social-Force]() <sup>[REF]()</sup>                                      | ?  | ?  |
-| [Social-LSTM]() <sup>[REF]()</sup>                                       | ?  | ?  |
-| [Social-GAN](https://github.com/agrimgupta92/sgan) <sup>[REF]()</sup>    | ?  | ?  |
-| [Social-Ways](https://github.com/amiryanj/socialways) <sup>[REF]()</sup> | ?  | ?  |
-| [Social-Attention]() <sup>[REF]()</sup>                                  | ?  | ?  |
+| [Social-Force]() <sup>[1](#references)</sup>                                      | ?  | ?  |
+| [Social-LSTM]() <sup>[2](#references)</sup>                                       | ?  | ?  |
+| [Social-GAN](github.com/agrimgupta92/sgan) <sup>[3](#references)</sup>    | ?  | ?  |
+| [Social-Ways](github.com/amiryanj/socialways) <sup>[REF](#references)</sup> | ?  | ?  |
+| [Social-Attention]() <sup>[REF](#references)</sup>                                  | ?  | ?  |
 | [SoPhie]() <sup>[REF]()</sup>                                            | ?  | ?  |
-| [CIDNN](https://github.com/svip-lab/CIDNN) <sup>[REF]()</sup>            | ?  | ?  |
+| [CIDNN](github.com/svip-lab/CIDNN) <sup>[REF]()</sup>            | ?  | ?  |
 
 <!--% Social Force => (https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=5995468) -->
 <!--% Social Attention => (https://www.ri.cmu.edu/wp-content/uploads/2018/08/main.pdf) -->
@@ -78,7 +82,7 @@ Trajectory Prediction Benchmark and State-of-the-art
 #### 2. UCY Dataset
 | Method                                              | ZARA01 (ADE/FDE) | ZARA02 (ADE/FDE) | Students (ADE/FDE) |
 | ------------------------------------------------------------------------ | -- | -- | -- |
-| [Social-LSTM]() <sup>[REF]()</sup>                                       | ?  | ?  | ?  |
+| [Social-LSTM]() <sup>[REF](#social-lstm)</sup>                                       | ?  | ?  | ?  |
 | [Social-GAN](https://github.com/agrimgupta92/sgan) <sup>[REF]()</sup>    | ?  | ?  | ?  |
 | [Social-Ways](https://github.com/amiryanj/socialways) <sup>[REF]()</sup> | ?  | ?  | ?  |
 | [SoPhie]() <sup>[REF]()</sup>                                            | ?  | ?  | ?  |
@@ -99,7 +103,15 @@ Trajectory Prediction Benchmark and State-of-the-art
 - [R2P2](http://openaccess.thecvf.com/content_ECCV_2018/papers/Nicholas_Rhinehart_R2P2_A_ReparameteRized_ECCV_2018_paper.pdf)
 
 ## References
-1. MOT Challenge
-2. Trajnet
+1. (Social Force)
+2. Social LSTM: Human trajectory prediction in crowded spaces, CVPR 2016.
+3. Social GAN: 
+4. Social Ways: Social Ways: Learning Multi-Modal Distributions of Pedestrian Trajectories with GANs, CVPR 2019. [Precognition Workshop], [paper], [code]
 
-
+### Surveys
+- Human Motion Trajectory Prediction: A Survey, 2019 [paper]
+- A literature review on the prediction of pedestrian behavior in urban scenarios, ITSC 2018. [paper]
+- Survey on Vision-Based Path Prediction. [paper]
+- Autonomous vehicles that interact with pedestrians: A survey of theory and practice. [paper]
+- Trajectory data mining: an overview. [paper]
+- A survey on motion prediction and risk assessment for intelligent vehicles. [paper]
