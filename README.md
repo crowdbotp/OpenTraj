@@ -72,11 +72,21 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 | [Social-Attention]() <sup>[REF](#references)</sup>                                  | ?  | ?  |
 | [SoPhie]() <sup>[REF]()</sup>                                            | ?  | ?  |
 | [CIDNN](github.com/svip-lab/CIDNN) <sup>[REF]()</sup>            | ?  | ?  |
+| [Social-Etiquette]() <sup>[REF]()</sup>            | ?  | ?  |
+| [ConstVel]() <sup>[REF]()</sup>            | ?  | ?  |
+| [Scene-LSTM]() <sup>[REF]()</sup>            | ?  | ?  |
+| [Peeking Into the Future]() <sup>[REF]()</sup>            | ?  | ?  |
+| [SS-LSTM]() <sup>[REF]()</sup>            | ?  | ?  |
+| [MX-LSTM]() <sup>[REF]()</sup>            | ?  | ?  |
+| [Social-BiGAT]() <sup>[REF]()</sup>            | ?  | ?  |
+| [SR-LSTM]() <sup>[REF]()</sup>            | ?  | ?  |
+
 
 &ast; The values are in meter, calculated with ADE(T<sub>obs</sub>=3.2<sub>s</sub>, T<sub>pred</sub>=4.8<sub>s</sub>)
 <!--% Social Force => (https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=5995468) -->
 <!--% Social Attention => (https://www.ri.cmu.edu/wp-content/uploads/2018/08/main.pdf) -->
 
+<!--
 - [Social-Etiquette](https://infoscience.epfl.ch/record/230262/files/ECCV16social.pdf)
 - [ConstVel(The simpler, the better)](https://arxiv.org/pdf/1903.07933)
 - [Scene-LSTM](https://arxiv.org/pdf/1808.04018)
@@ -85,15 +95,26 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 - [MX-LSTM](http://openaccess.thecvf.com/content_cvpr_2018/papers/Hasan_MX-LSTM_Mixing_Tracklets_CVPR_2018_paper.pdf)
 - [Social-BiGAT](http://papers.nips.cc/paper/8308-social-bigat-multimodal-trajectory-forecasting-using-bicycle-gan-and-graph-attention-networks.pdf)
 - [SR-LSTM](http://openaccess.thecvf.com/content_CVPR_2019/papers/Zhang_SR-LSTM_State_Refinement_for_LSTM_Towards_Pedestrian_Trajectory_Prediction_CVPR_2019_paper.pdf)
+-->
 
 #### 2. UCY Dataset
 | Method                                              | ZARA01 (ADE/FDE) | ZARA02 (ADE/FDE) | Students (ADE/FDE) |
 | ------------------------------------------------------------------------ | -- | -- | -- |
-| [Social-LSTM]() <sup>[REF](#social-lstm)</sup>                                       | ?  | ?  | ?  |
-| [Social-GAN](https://github.com/agrimgupta92/sgan) <sup>[REF]()</sup>    | ?  | ?  | ?  |
-| [Social-Ways](https://github.com/amiryanj/socialways) <sup>[REF]()</sup> | ?  | ?  | ?  |
-| [SoPhie]() <sup>[REF]()</sup>                                            | ?  | ?  | ?  |
-| [CIDNN](https://github.com/svip-lab/CIDNN) <sup>[REF]()</sup>            | ?  | ?  | ?  |
+| [Social-Force]() <sup>[1](#references)</sup>                                      | ?  | ?  | ? |
+| [Social-LSTM]() <sup>[2](#references)</sup>                                       | ?  | ?  | ? |
+| [Social-GAN](github.com/agrimgupta92/sgan) <sup>[REF](#references)</sup>    | ?  | ?  | ? |
+| [Social-Ways](github.com/amiryanj/socialways) <sup>[REF](#references)</sup> | ?  | ?  | ? |
+| [Social-Attention]() <sup>[REF](#references)</sup>                                  | ?  | ?  | ? |
+| [SoPhie]() <sup>[REF]()</sup>                                            | ?  | ?  | ? |
+| [CIDNN](github.com/svip-lab/CIDNN) <sup>[REF]()</sup>            | ?  | ?  | ? |
+| [Social-Etiquette]() <sup>[REF]()</sup>            | ?  | ?  | ? |
+| [ConstVel]() <sup>[REF]()</sup>            | ?  | ?  | ? |
+| [Scene-LSTM]() <sup>[REF]()</sup>            | ?  | ?  | ? |
+| [Peeking Into the Future]() <sup>[REF]()</sup>            |  ? | ?  | ?  |
+| [SS-LSTM]() <sup>[REF]()</sup>            | ?  | ?  | ? |
+| [MX-LSTM]() <sup>[REF]()</sup>            | ?  | ?  | ? |
+| [Social-BiGAT]() <sup>[REF]()</sup>            | ?  | ?  |  ? |
+| [SR-LSTM]() <sup>[REF]()</sup>            | ?  | ?  |  ? |
 
 
 #### 3. Stanford Drone Dataset (SDD)
