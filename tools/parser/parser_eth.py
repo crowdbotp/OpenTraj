@@ -9,7 +9,7 @@ class ParserETH:
         self.id_p_dict = dict()
         self.id_v_dict = dict()
         self.id_t_dict = dict()
-        self.time_dict = dict()
+        self.t_p_dict = dict()
         self.min_t = int(sys.maxsize)
         self.max_t = -1
         self.interval = -1
@@ -58,9 +58,9 @@ class ParserETH:
                     self.id_p_dict[id].append([px, py])
                     self.id_v_dict[id].append([vx, vy])
                     self.id_t_dict[id].append(ts)
-                    if ts not in self.time_dict:
-                        self.time_dict[ts] = []
-                    self.time_dict[ts].append((id, [px, py]))
+                    if ts not in self.t_p_dict:
+                        self.t_p_dict[ts] = []
+                    self.t_p_dict[ts].append([px, py])
 
         for id_ in self.id_p_dict:
             self.id_p_dict[id_] = np.array(self.id_p_dict[id_])
@@ -75,7 +75,20 @@ class ParserETH:
                     self.interval = interval
                     break
 
-#
+    def get_all_trajs(self):
+        all_trajs = []
+        for key, val in sorted(self.id_p_dict.items()):
+            all_trajs.append(val)
+        return all_trajs
+
+    def get_all_points(self):
+        all_points = []
+        for key, val in sorted(self.id_p_dict.items()):
+            all_points.extend(val)
+        return all_points
+
+
+
 # def create_dataset(p_data, t_data, t_range, n_past=8, n_next=12):
 #     dataset_t0 = []
 #     dataset_x = []
