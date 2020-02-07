@@ -5,7 +5,7 @@ import cv2
 
 from parser.parser_eth import ParserETH
 from parser.parser_sdd import ParserSDD
-
+from parser.parser_gc  import ParserGC
 
 def to_image_frame(Hinv, loc):
     """
@@ -47,27 +47,32 @@ else:
 parser.load(traj_file)
 keys = sorted(parser.time_dict.keys())
 
+if os.path.exists(ref_im_file):
+    if not '.mp4' in ref_im_file:
+        cap = cv2.VideoCapture(ref_im_file)
+    else:
+        ref_im = cv2.imread(ref_im_file)
 
-if 'mp4' in ref_im_file:
-    pass  # TODO: play with video
-elif os.path.exists(ref_im_file):
-    ref_im = cv2.imread(ref_im_file)
+for frame_id in keys:
+    print(frame_id)
+    id_ps = parser.time_dict[frame_id]
+    if '.mp4' in ref_im_file:
+        ret, ref_im = cap.read()
+        pass  # TODO: play with video
+    ref_im_copy = np.copy(ref_im)
+    for id_xy_pair in id_ps:
+        id = id_xy_pair[0]
+        cur_xy = np.array(id_xy_pair[1])
+        cur_UV = to_image_frame(Hinv, cur_xy)
 
-    for frame_id in keys:
-        print(frame_id)
-        id_ps = parser.time_dict[frame_id]
-        ref_im_copy = np.copy(ref_im)
-        for id_xy_pair in id_ps:
-            id = id_xy_pair[0]
-            cur_xy = np.array(id_xy_pair[1])
-            cur_UV = to_image_frame(Hinv, cur_xy)
+        # fetch entire trajectory
+        p_id = parser.id_p_dict[id]
+        P_id = to_image_frame(Hinv, p_id)
+        line_cv(ref_im_copy, P_id, (255, 255, 0), 2)
+        cv2.circle(ref_im_copy, (cur_UV[1], cur_UV[0]), 5, (0, 0, 255), 2)
 
-            # fetch entire trajectory
-            p_id = parser.id_p_dict[id]
-            P_id = to_image_frame(Hinv, p_id)
-            line_cv(ref_im_copy, P_id, (255, 255, 0), 2)
-            cv2.circle(ref_im_copy, (cur_UV[1], cur_UV[0]), 5, (0, 0, 255), 2)
-
-        cv2.imshow('OpenTraj', ref_im_copy)
-        cv2.waitKey(50)
+    cv2.imshow('OpenTraj', ref_im_copy)
+    key = cv2.waitKey(50) & 0xFF
+    if key == 27:
+        break
 
