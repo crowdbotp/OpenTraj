@@ -7,16 +7,22 @@ import os
 
 
 class ParserGC:
-    def __init__(self):
+    def __init__(self, filename=''):
         self.id_p_dict = dict()
         self.id_v_dict = dict()
         self.id_t_dict = dict()
+        self.id_label_dict = dict()  # FIXME
+        self.t_id_dict = dict()
         self.t_p_dict = dict()
-        self.min_t = 0  # fixed
         self.max_t = 0
+        self.min_t = 0  # fixed
         self.interval = 1  # fixed
-        self.GC_IMAGE_WIDTH = 1920
-        self.GC_IMAGE_HEIGHT = 1080
+        self.min_x = 0
+        self.min_y = 0
+        self.max_x = 1920
+        self.max_y = 1080
+        if filename:
+            self.load(filename)
 
     def load(self, filename):
         if '.npz' in filename:
@@ -52,19 +58,27 @@ class ParserGC:
             with open(person_trajectory_txt_path, 'r') as f:
                 trajectory_list = f.read().split()
                 for i in range(len(trajectory_list) // 3):
-                    px = int(trajectory_list[3 * i]) / self.GC_IMAGE_WIDTH
-                    py = int(trajectory_list[3 * i + 1]) / self.GC_IMAGE_HEIGHT
+                    px = int(trajectory_list[3 * i])     / 40  # / self.GC_IMAGE_WIDTH
+                    py = int(trajectory_list[3 * i + 1]) / 40  # / self.GC_IMAGE_HEIGHT
                     ts = int(trajectory_list[3 * i + 2]) // 20
+
                     self.max_t = max(self.max_t, ts)
+                    if px < self.min_x: self.min_x = px
+                    if px > self.max_x: self.max_x = px
+                    if py < self.min_y: self.min_y = py
+                    if py > self.max_y: self.max_y = py
+
                     self.id_p_dict[pid].append([px, py])
                     # self.id_v_dict[pid].append([vx, vy])
                     self.id_t_dict[pid].append(ts)
                     if ts not in self.t_p_dict:
                         self.t_p_dict[ts] = []
+                        self.t_id_dict[ts] = []
                     self.t_p_dict[ts].append([px, py])
+                    self.t_id_dict[ts].append(pid)
 
         for pid in self.id_p_dict:
-            print(pid)
+            # print(pid)
             self.id_p_dict[pid] = np.array(self.id_p_dict[pid])
             self.id_t_dict[pid] = np.array(self.id_t_dict[pid])
             self.id_v_dict[pid] = self.id_p_dict[pid][1:] - self.id_p_dict[pid][:-1]
@@ -74,7 +88,7 @@ class ParserGC:
                 self.id_v_dict[pid] = np.append(self.id_v_dict[pid], self.id_v_dict[pid][-1].reshape(1,2), axis=0)
 
         # show some message
-        print('pedestrian_data_list size: ', len(self.id_p_dict))
+        print('dataset loaded successfully. %d pedestrian_data_list size: ' % len(self.id_p_dict))
 
         # with open(meta_data_path, 'w') as f:
         #     json.dump({'frame_data_list': f_data_list, 'pedestrian_data_list': p_data_list}, f)

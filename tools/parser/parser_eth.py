@@ -5,14 +5,22 @@ from builtins import ValueError
 
 
 class ParserETH:
-    def __init__(self):
+    def __init__(self, filename=''):
         self.id_p_dict = dict()
         self.id_v_dict = dict()
         self.id_t_dict = dict()
+        self.id_label_dict = dict()  # FIXME
+        self.t_id_dict = dict()
         self.t_p_dict = dict()
         self.min_t = int(sys.maxsize)
         self.max_t = -1
         self.interval = -1
+        self.min_x = 1000
+        self.min_y = 1000
+        self.max_x = 0
+        self.max_y = 0
+        if filename:
+            self.load(filename)
 
     def load(self, filename, down_sample=1, delimit=' '):
 
@@ -43,13 +51,18 @@ class ParserETH:
                     id = round(float(row[1]))
                     if ts % down_sample != 0:
                         continue
-                    if ts < self.min_t: self.min_t = ts
-                    if ts > self.max_t: self.max_t = ts
 
                     px = float(row[2])
                     py = float(row[4])
                     vx = float(row[5])
                     vy = float(row[7])
+
+                    if ts < self.min_t: self.min_t = ts
+                    if ts > self.max_t: self.max_t = ts
+                    if px < self.min_x: self.min_x = px
+                    if px > self.max_x: self.max_x = px
+                    if py < self.min_y: self.min_y = py
+                    if py > self.max_y: self.max_y = py
 
                     if id not in self.id_p_dict:
                         self.id_p_dict[id] = list()
@@ -60,15 +73,17 @@ class ParserETH:
                     self.id_t_dict[id].append(ts)
                     if ts not in self.t_p_dict:
                         self.t_p_dict[ts] = []
+                        self.t_id_dict[ts] = []
                     self.t_p_dict[ts].append([px, py])
+                    self.t_id_dict[ts].append(id)
 
-        for id_ in self.id_p_dict:
-            self.id_p_dict[id_] = np.array(self.id_p_dict[id_])
-            self.id_v_dict[id_] = np.array(self.id_v_dict[id_])
-            self.id_t_dict[id_] = np.array(self.id_t_dict[id_])
+        for pid in self.id_p_dict:
+            self.id_p_dict[pid] = np.array(self.id_p_dict[pid])
+            self.id_v_dict[pid] = np.array(self.id_v_dict[pid])
+            self.id_t_dict[pid] = np.array(self.id_t_dict[pid])
 
         #  Find the time interval
-        for id_, T in self.id_t_dict.items():
+        for pid, T in self.id_t_dict.items():
             if len(T) > 1:
                 interval = int(round(T[1] - T[0]))
                 if interval > 0:

@@ -5,21 +5,29 @@ from builtins import ValueError
 
 
 class ParserSDD:
-    def __init__(self):
+    def __init__(self, filename=''):
         self.actual_fps = 2.5
         self.id_p_dict = dict()
+        self.id_v_dict = dict()
         self.id_t_dict = dict()
         self.id_label_dict = dict()
-        self.time_dict = dict()
+        self.t_id_dict = dict()
+        self.t_p_dict = dict()
         self.min_t = int(sys.maxsize)
         self.max_t = -1
         self.interval = 1
+        self.min_x = 0
+        self.min_y = 0
+        self.max_x = 1920
+        self.max_y = 1080
+        if filename:
+            self.load(filename)
 
     def load(self, filename, down_sample=1):
         self.id_p_dict = dict()
         self.id_t_dict = dict()
         self.id_label_dict = dict()
-        self.time_dict = dict()
+        self.t_p_dict = dict()
 
         # to search for files in a folder?
         file_names = list()
@@ -45,17 +53,21 @@ class ParserSDD:
                     ts = float(row[5])
                     if ts % down_sample != 0: continue
 
-                    xmin = round(float(row[1]))
-                    ymin = round(float(row[2]))
-                    xmax = round(float(row[3]))
-                    ymax = round(float(row[4]))
-                    px = (xmin + xmax) / 2
-                    py = (ymin + ymax) / 2
+                    xl = round(float(row[1]))
+                    yt = round(float(row[2]))
+                    xr = round(float(row[3]))
+                    yb = round(float(row[4]))
+                    px = (xl + xr) / 2
+                    py = (yt + yb) / 2
 
                     label = row[9].replace("\"", "").replace("\n", "")
 
                     if ts < self.min_t: self.min_t = ts
                     if ts > self.max_t: self.max_t = ts
+                    if px < self.min_x: self.min_x = px
+                    if px > self.max_x: self.max_x = px
+                    if py < self.min_y: self.min_y = py
+                    if py > self.max_y: self.max_y = py
 
                     if id not in self.id_p_dict:
                         self.id_p_dict[id] = list()
@@ -63,13 +75,20 @@ class ParserSDD:
                     self.id_p_dict[id].append([px, py])
                     self.id_t_dict[id].append(ts)
                     self.id_label_dict[id] = label
-                    if ts not in self.time_dict:
-                        self.time_dict[ts] = []
-                    self.time_dict[ts].append((id, [px, py]))
+                    if ts not in self.t_p_dict:
+                        self.t_p_dict[ts] = []
+                        self.t_id_dict[ts] = []
+                    self.t_p_dict[ts].append([px, py])
+                    self.t_id_dict[ts].append(id)
 
-        for id_ in self.id_p_dict:
-            self.id_p_dict[id_] = np.array(self.id_p_dict[id_])
-            self.id_t_dict[id_] = np.array(self.id_t_dict[id_])
+        for pid in self.id_p_dict:
+            self.id_p_dict[pid] = np.array(self.id_p_dict[pid])
+            self.id_t_dict[pid] = np.array(self.id_t_dict[pid])
+            self.id_v_dict[pid] = self.id_p_dict[pid][1:] - self.id_p_dict[pid][:-1]
+            if len(self.id_p_dict[pid]) == 1:
+                self.id_v_dict[pid] = np.zeros((1, 2), dtype=np.float64)
+            else:
+                self.id_v_dict[pid] = np.append(self.id_v_dict[pid], self.id_v_dict[pid][-1].reshape(1, 2), axis=0)
 
 
 def count_objects(path):
