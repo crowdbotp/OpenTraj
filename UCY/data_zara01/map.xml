@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Trial xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <obstacles>
+    <obstacle>
+      <TrialObstacle>
+        <Lines>
+	  <Line x1="7.761" y1="17.651" x2="0.260" y2="17.487" thickness="1" />
+	  <Line x1="0.156" y1="17.482" x2="0.026" y2="15.484" thickness="1" />
+	  <Line x1="0.026" y1="15.484" x2="1.531" y2="15.417" thickness="1" />
+	  <Line x1="1.480" y1="14.938" x2="1.428" y2="5.317" thickness="1" /> 
+
+	  <Line x1="-6.827" y1="11.620" x2="-4.802" y2="11.619" thickness="1" />
+	  <Line x1="-4.802" y1="11.619" x2="-4.932" y2="6.587" thickness="1" />
+	  <Line x1="-4.932" y1="6.587" x2="-7.034" y2="6.412" thickness="1" /> 
+        </Lines>
+        <Points />
+      </TrialObstacle>
+    </obstacle>
+  </obstacles>
+</Trial>
+
