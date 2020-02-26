@@ -8,6 +8,10 @@ from parser.parser_sdd import ParserSDD
 from parser.parser_gc  import ParserGC
 
 
+def is_a_video(filename):
+    return '.mp4' in media_file or '.avi' in media_file
+
+
 def to_image_frame(Hinv, loc):
     """
     Given H^-1 and world coordinates, returns (u, v) in image coordinates.
@@ -34,23 +38,25 @@ def play(parser, Hinv, media_file):
     keys = sorted(parser.t_p_dict.keys())
 
     if os.path.exists(media_file):
-        if '.mp4' in media_file:
+        if is_a_video(media_file):
             cap = cv2.VideoCapture(media_file)
         else:
             ref_im = cv2.imread(media_file)
 
-    for frame_id in keys:
+    for frame_id in range(keys[0], keys[-1]):
         print(frame_id)
-        xys_t = parser.t_p_dict[frame_id]
-        ids_t = parser.t_id_dict[frame_id]
-        if '.mp4' in media_file:
+        if is_a_video(media_file):
             ret, ref_im = cap.read()
             pass  # TODO: play with video
+        # print(xys_t)
         ref_im_copy = np.copy(ref_im)
+        if frame_id in keys:
+            xys_t = parser.t_p_dict[frame_id]
+            ids_t = parser.t_id_dict[frame_id]
         for ii, id in enumerate(ids_t):
             cur_xy = np.array(xys_t[ii])
             cur_UV = to_image_frame(Hinv, cur_xy)
-
+            # cur_UV[1] = 720 + cur_UV[1]
             # fetch entire trajectory
             traj_id = parser.id_p_dict[id]
             TRAJ_id = to_image_frame(Hinv, traj_id)
@@ -69,9 +75,19 @@ if __name__ == '__main__':
     # media_file = '/home/cyrus/workspace2/OpenTraj/ETH/seq_eth/reference.png'
     # homog_file = '/home/cyrus/workspace2/OpenTraj/ETH/seq_eth/H.txt'
 
-    annot_file = '/home/cyrus/workspace2/OpenTraj/ETH/seq_hotel/obsmat.txt'
-    media_file = '/home/cyrus/workspace2/OpenTraj/ETH/seq_hotel/reference.png'
-    homog_file = '/home/cyrus/workspace2/OpenTraj/ETH/seq_hotel/H.txt'
+    # annot_file = '/home/cyrus/workspace2/OpenTraj/ETH/seq_hotel/obsmat.txt'
+    # homog_file = '/home/cyrus/workspace2/OpenTraj/ETH/seq_hotel/H.txt'
+    # media_file = '/home/cyrus/workspace2/OpenTraj/ETH/seq_hotel/reference.png'
+    # media_file = '/home/cyrus/workspace2/OpenTraj/ETH/seq_hotel/video.avi'
+
+    annot_file = '/home/cyrus/workspace2/OpenTraj/UCY/data_zara02/obsmat.txt'
+    homog_file = '/home/cyrus/workspace2/OpenTraj/UCY/data_zara02/H.txt'
+    media_file = '/home/cyrus/workspace2/OpenTraj/UCY/data_zara02/reference.png'
+    media_file = '/home/cyrus/workspace2/OpenTraj/UCY/data_zara02/video.avi'
+
+    # annot_file = '/home/cyrus/workspace2/OpenTraj/UCY/st3_dataset/obsmat_px.txt'
+    # media_file = '/home/cyrus/workspace2/OpenTraj/UCY/st3_dataset/reference.png'
+    # homog_file = '/home/cyrus/workspace2/OpenTraj/UCY/st3_dataset/H_iw.txt'
 
     # parser = ParserSDD()
     # annot_file = '/home/cyrus/workspace2/OpenTraj/SDD/bookstore/video0/annotations.txt'
