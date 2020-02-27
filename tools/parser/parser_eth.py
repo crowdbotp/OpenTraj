@@ -5,6 +5,25 @@ from builtins import ValueError
 
 
 class ParserETH:
+    """
+        Parser class for ETH dataset and UCY dataset
+        -------
+        You can either use the class constructor or call 'load' method,
+        by passing the annotation file: e.g. "OpenTraj/ETH/seq_eth/obsmat.txt"
+
+        Attributes:
+            id_p_dict: map from pedestrian id to her trajectory (positions)
+            id_v_dict: map from pedestrian id to her velocity data
+            id_t_dict: map from pedestrian id to timestamps she appears
+            t_id_dict: map from dataset timestamps to pedestrian ids
+            t_p_dict : map from dataset timestamps to location of all pedestrians
+            min_t    : first timestamp
+            max_t    : last timestamp
+            interval : interval between timestamps
+            [min_x, max_x], [min_y, max_y] : spacial extents of all the trajectories
+
+    """
+
     def __init__(self, filename=''):
         self.id_p_dict = dict()
         self.id_v_dict = dict()
@@ -23,8 +42,6 @@ class ParserETH:
             self.load(filename)
 
     def load(self, filename, down_sample=1, delimit=' '):
-
-        # if 'zara' in filename: self.delimit = '\t'
 
         # to search for files in a folder?
         file_names = list()

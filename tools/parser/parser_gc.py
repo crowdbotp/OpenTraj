@@ -7,6 +7,25 @@ import os
 
 
 class ParserGC:
+    """
+        Parser class for GC dataset
+        -------
+        You can either use the class constructor or call 'load' method,
+        by passing the annotation folder: e.g. "OpenTraj/GC/Annotation"
+
+        Attributes:
+            id_p_dict: map from pedestrian id to her trajectory (positions)
+            id_v_dict: map from pedestrian id to her velocity data
+            id_t_dict: map from pedestrian id to timestamps she appears
+            t_id_dict: map from dataset timestamps to pedestrian ids
+            t_p_dict : map from dataset timestamps to location of all pedestrians
+            min_t    : first timestamp
+            max_t    : last timestamp
+            interval : interval between timestamps
+            [min_x, max_x], [min_y, max_y] : spacial extents of all the trajectories
+
+    """
+
     def __init__(self, filename=''):
         self.id_p_dict = dict()
         self.id_v_dict = dict()
@@ -16,7 +35,7 @@ class ParserGC:
         self.t_p_dict = dict()
         self.max_t = 0
         self.min_t = 0  # fixed
-        self.interval = 1  # fixed
+        self.interval = 20  # fixed
         self.min_x = 0
         self.min_y = 0
         self.max_x = 1920
@@ -30,6 +49,7 @@ class ParserGC:
         else:
             self.load_raw_data(filename)
 
+    # FIXME
     def load_npz_file(self, filename):
         pass
 
@@ -60,7 +80,7 @@ class ParserGC:
                 for i in range(len(trajectory_list) // 3):
                     px = int(trajectory_list[3 * i])     / 40  # / self.GC_IMAGE_WIDTH
                     py = int(trajectory_list[3 * i + 1]) / 40  # / self.GC_IMAGE_HEIGHT
-                    ts = int(trajectory_list[3 * i + 2]) // 20
+                    ts = int(trajectory_list[3 * i + 2]) // self.interval
 
                     self.max_t = max(self.max_t, ts)
                     if px < self.min_x: self.min_x = px

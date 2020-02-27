@@ -5,6 +5,27 @@ from builtins import ValueError
 
 
 class ParserSDD:
+    """
+        Parser class for SDD (Stanford Drone Dataset)
+        -------
+        You can either use the class constructor or call 'load' method,
+        by passing the annotation file: e.g. "OpenTraj/SDD/bookstore/video0/annotations.txt"
+
+        Attributes:
+            id_p_dict: map from pedestrian id to her trajectory (positions)
+            id_v_dict: map from pedestrian id to her velocity data
+            id_t_dict: map from pedestrian id to timestamps she appears
+            t_id_dict: map from dataset timestamps to pedestrian ids
+            t_p_dict : map from dataset timestamps to location of all pedestrians
+            id_label_dict : map from object id to its label
+                from {"Pedestrian", "Biker", "Skater", "Cart", "Car", "Bus"}
+            min_t    : first timestamp
+            max_t    : last timestamp
+            interval : interval between timestamps
+            [min_x, max_x], [min_y, max_y] : spacial extents of all the trajectories
+
+    """
+
     def __init__(self, filename=''):
         self.actual_fps = 2.5
         self.id_p_dict = dict()
