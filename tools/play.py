@@ -1,7 +1,6 @@
-import os
 import numpy as np
-import matplotlib.pyplot as plt
 import cv2
+import os
 
 from parser.parser_eth import ParserETH
 from parser.parser_sdd import ParserSDD
@@ -9,7 +8,7 @@ from parser.parser_gc  import ParserGC
 
 
 def is_a_video(filename):
-    return '.mp4' in media_file or '.avi' in media_file
+    return '.mp4' in filename or '.avi' in filename
 
 
 def to_image_frame(Hinv, loc):
@@ -35,7 +34,7 @@ def line_cv(im, ll, value, width):
 
 
 def play(parser, Hinv, media_file):
-    keys = sorted(parser.t_p_dict.keys())
+    timestamps = sorted(parser.t_p_dict.keys())
 
     if os.path.exists(media_file):
         if is_a_video(media_file):
@@ -43,66 +42,81 @@ def play(parser, Hinv, media_file):
         else:
             ref_im = cv2.imread(media_file)
 
-    for frame_id in range(keys[0], keys[-1]):
-        print(frame_id)
+    pause = False
+    for t in range(timestamps[0], timestamps[-1]):
         if is_a_video(media_file):
             ret, ref_im = cap.read()
-            pass  # TODO: play with video
-        # print(xys_t)
+
         ref_im_copy = np.copy(ref_im)
-        if frame_id in keys:
-            xys_t = parser.t_p_dict[frame_id]
-            ids_t = parser.t_id_dict[frame_id]
-        for ii, id in enumerate(ids_t):
-            cur_xy = np.array(xys_t[ii])
-            cur_UV = to_image_frame(Hinv, cur_xy)
-            # cur_UV[1] = 720 + cur_UV[1]
+        if t in timestamps:
+            xys_t = parser.t_p_dict[t]
+            ids_t = parser.t_id_dict[t]
+
+        for i, id in enumerate(ids_t):
+            xy_i = np.array(xys_t[i])
+            UV_i = to_image_frame(Hinv, xy_i)
+
             # fetch entire trajectory
-            traj_id = parser.id_p_dict[id]
-            TRAJ_id = to_image_frame(Hinv, traj_id)
-            line_cv(ref_im_copy, TRAJ_id, (255, 255, 0), 2)
-            cv2.circle(ref_im_copy, (cur_UV[1], cur_UV[0]), 5, (0, 0, 255), 2)
+            traj_i = parser.id_p_dict[id]
+            TRAJ_i = to_image_frame(Hinv, traj_i)
+            line_cv(ref_im_copy, TRAJ_i, (255, 255, 0), 2)
+            cv2.circle(ref_im_copy, (UV_i[1], UV_i[0]), 5, (0, 0, 255), 2)
+            cv2.putText(ref_im_copy, '%d' % t, (30, 80), cv2.FONT_HERSHEY_SIMPLEX, 2, (0,0,255), 3)
 
         cv2.imshow('OpenTraj', ref_im_copy)
-        key = cv2.waitKey(100) & 0xFF
-        if key == 27:
+        delay_ms = 100
+        key = cv2.waitKey(delay_ms * (1-pause)) & 0xFF
+        if key == 27:     # press ESCAPE to quit
             break
+        elif key == 32:   # press SPACE to pause/play
+            pause = not pause
 
 
 if __name__ == '__main__':
+    opentraj_path = '/home/cyrus/workspace2/OpenTraj'  # FIXME
+    # #============================ ETH =================================
     parser = ParserETH()
-    # annot_file = '/home/cyrus/workspace2/OpenTraj/ETH/seq_eth/obsmat.txt'
-    # media_file = '/home/cyrus/workspace2/OpenTraj/ETH/seq_eth/reference.png'
-    # homog_file = '/home/cyrus/workspace2/OpenTraj/ETH/seq_eth/H.txt'
 
-    # annot_file = '/home/cyrus/workspace2/OpenTraj/ETH/seq_hotel/obsmat.txt'
-    # homog_file = '/home/cyrus/workspace2/OpenTraj/ETH/seq_hotel/H.txt'
-    # media_file = '/home/cyrus/workspace2/OpenTraj/ETH/seq_hotel/reference.png'
-    # media_file = '/home/cyrus/workspace2/OpenTraj/ETH/seq_hotel/video.avi'
+    # annot_file = os.path.join(opentraj_path, 'ETH/seq_eth/obsmat.txt')
+    # homog_file = os.path.join(opentraj_path, 'ETH/seq_eth/H.txt')
+    # media_file = os.path.join(opentraj_path, 'ETH/seq_eth/reference.png')
+    # # media_file = os.path.join(opentraj_path, 'ETH/seq_eth/video.avi')
 
-    annot_file = '/home/cyrus/workspace2/OpenTraj/UCY/data_zara02/obsmat.txt'
-    homog_file = '/home/cyrus/workspace2/OpenTraj/UCY/data_zara02/H.txt'
-    media_file = '/home/cyrus/workspace2/OpenTraj/UCY/data_zara02/reference.png'
-    media_file = '/home/cyrus/workspace2/OpenTraj/UCY/data_zara02/video.avi'
+    annot_file = os.path.join(opentraj_path, 'ETH/seq_hotel/obsmat.txt')
+    homog_file = os.path.join(opentraj_path, 'ETH/seq_hotel/H.txt')
+    media_file = os.path.join(opentraj_path, 'ETH/seq_hotel/reference.png')
+    media_file = os.path.join(opentraj_path, 'ETH/seq_hotel/video.avi')
 
-    # annot_file = '/home/cyrus/workspace2/OpenTraj/UCY/st3_dataset/obsmat_px.txt'
-    # media_file = '/home/cyrus/workspace2/OpenTraj/UCY/st3_dataset/reference.png'
-    # homog_file = '/home/cyrus/workspace2/OpenTraj/UCY/st3_dataset/H_iw.txt'
+    # #============================ UCY =================================
+    # parser = ParserETH()
 
+    # annot_file = os.path.join(opentraj_path, 'UCY/data_zara01/obsmat.txt')
+    # homog_file = os.path.join(opentraj_path, 'UCY/data_zara01/H.txt')
+    # # media_file = os.path.join(opentraj_path, 'UCY/data_zara01/reference.png')
+    # media_file = os.path.join(opentraj_path, 'UCY/data_zara01/video.avi')
+
+    # annot_file = os.path.join(opentraj_path, 'UCY/data_zara02/obsmat.txt')
+    # homog_file = os.path.join(opentraj_path, 'UCY/data_zara02/H.txt')
+    # media_file = os.path.join(opentraj_path, 'UCY/data_zara02/reference.png')
+    # media_file = os.path.join(opentraj_path, 'UCY/data_zara02/video.avi')
+
+    # annot_file = os.path.join(opentraj_path, 'UCY/st3_dataset/obsmat_px.txt')
+    # media_file = os.path.join(opentraj_path, 'UCY/st3_dataset/reference.png')
+    # homog_file = os.path.join(opentraj_path, 'UCY/st3_dataset/H_iw.txt')
+
+    # #============================ SDD =================================
     # parser = ParserSDD()
-    # annot_file = '/home/cyrus/workspace2/OpenTraj/SDD/bookstore/video0/annotations.txt'
-    # media_file = '/home/cyrus/workspace2/OpenTraj/SDD/bookstore/video0/reference.jpg'
+    # annot_file = os.path.join(opentraj_path, 'SDD/bookstore/video0/annotations.txt')
+    # media_file = os.path.join(opentraj_path, 'SDD/bookstore/video0/reference.jpg')
     # homog_file = ''
 
+    # #============================ GC ==================================
     # parser = ParserGC()
-    # annot_file = '/home/cyrus/workspace2/OpenTraj/GC/Annotation'
-    # media_file = '/home/cyrus/workspace2/OpenTraj/GC/reference.jpg'
+    # annot_file = os.path.join(opentraj_path, 'GC/Annotation')
+    # media_file = os.path.join(opentraj_path, 'GC/reference.jpg')
     # homog_file = ''
-
-    if os.path.exists(homog_file):
-        Hinv = np.linalg.inv(np.loadtxt(homog_file))
-    else:
-        Hinv = np.eye(3, 3)
 
     parser.load(annot_file)
+    Hinv = np.linalg.inv(np.loadtxt(homog_file)) if os.path.exists(homog_file) else np.eye(3)
+
     play(parser, Hinv, media_file)
