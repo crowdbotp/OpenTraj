@@ -119,8 +119,6 @@ class ParserETH:
             all_points.extend(val)
         return all_points
 
-
-
 # def create_dataset(p_data, t_data, t_range, n_past=8, n_next=12):
 #     dataset_t0 = []
 #     dataset_x = []
@@ -174,3 +172,7 @@ class ParserETH:
 #
 #     return dataset_x, dataset_y, dataset_t0, sub_batches
 #
+
+
+if __name__ == '__main__':
+    ParserETH('')   # TODO
