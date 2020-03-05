@@ -7,7 +7,9 @@ Experiments are carried out with 150 participants for bottleneck widths w=0.7, 0
 
 See http://ped.fz-juelich.de/experiments/2009.05.12_Duesseldorf_Messe_Hermes/docu/VersuchsdokumentationHERMES.pdf page 20 and 28 for details. Column names of the file are: ID FRAME X Y Z. ID is the pedestrian ID. FRAME is the frame number (frame rate is 1/16s). X Y and Z pedestrian position in 3D. The data are part of the online database http://ped.fz-juelich.de/database.
 
-Column names of the file are: ID FRAME X Y Z. 
-ID is the pedestrian ID. 
-FRAME is the frame number (frame rate is 1/16s). 
-X Y and Z pedestrian position in 3D. 
+# Column names of the file are: 
+ID FRAME X Y Z. 
+
+- ID is the pedestrian ID. 
+- FRAME is the frame number (frame rate is 1/16s). 
+- X Y and Z pedestrian position in 3D. 

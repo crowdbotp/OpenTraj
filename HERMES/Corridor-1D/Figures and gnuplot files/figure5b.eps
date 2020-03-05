@@ -1,0 +1,1733 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%Title: ./C_velocity_density1.eps
+%%Creator: gnuplot 4.2 patchlevel 6 
+%%CreationDate: Tue Aug 17 17:42:18 2010
+%%DocumentFonts: (atend)
+%%BoundingBox: 107 50 360 302
+%%EndComments
+%%BeginProlog
+/gnudict 256 dict def
+gnudict begin
+%
+% The following 6 true/false flags may be edited by hand if required
+% The unit line width may also be changed
+%
+/Color true def
+/Blacktext false def
+/Solid true def
+/Dashlength 1 def
+/Landscape false def
+/Level1 false def
+/Rounded false def
+/TransparentPatterns false def
+/gnulinewidth 5.000 def
+/userlinewidth gnulinewidth def
+%
+/vshift -66 def
+/dl1 {
+  10.0 Dashlength mul mul
+  Rounded { currentlinewidth 0.75 mul sub dup 0 le { pop 0.01 } if } if
+} def
+/dl2 {
+  10.0 Dashlength mul mul
+  Rounded { currentlinewidth 0.75 mul add } if
+} def
+/hpt_ 31.5 def
+/vpt_ 31.5 def
+/hpt hpt_ def
+/vpt vpt_ def
+Level1 {} {
+/SDict 10 dict def
+systemdict /pdfmark known not {
+  userdict /pdfmark systemdict /cleartomark get put
+} if
+SDict begin [
+  /Title (./C_velocity_density1.eps)
+  /Subject (gnuplot plot)
+  /Creator (gnuplot 4.2 patchlevel 6 )
+  /Author (ZhangJun)
+%  /Producer (gnuplot)
+%  /Keywords ()
+  /CreationDate (Tue Aug 17 17:42:18 2010)
+  /DOCINFO pdfmark
+end
+} ifelse
+%
+% Gnuplot Prolog Version 4.2 (August 2006)
+%
+/M {moveto} bind def
+/L {lineto} bind def
+/R {rmoveto} bind def
+/V {rlineto} bind def
+/N {newpath moveto} bind def
+/Z {closepath} bind def
+/C {setrgbcolor} bind def
+/f {rlineto fill} bind def
+/vpt2 vpt 2 mul def
+/hpt2 hpt 2 mul def
+/Lshow {currentpoint stroke M 0 vshift R 
+	Blacktext {gsave 0 setgray show grestore} {show} ifelse} def
+/Rshow {currentpoint stroke M dup stringwidth pop neg vshift R
+	Blacktext {gsave 0 setgray show grestore} {show} ifelse} def
+/Cshow {currentpoint stroke M dup stringwidth pop -2 div vshift R 
+	Blacktext {gsave 0 setgray show grestore} {show} ifelse} def
+/UP {dup vpt_ mul /vpt exch def hpt_ mul /hpt exch def
+  /hpt2 hpt 2 mul def /vpt2 vpt 2 mul def} def
+/DL {Color {setrgbcolor Solid {pop []} if 0 setdash}
+ {pop pop pop 0 setgray Solid {pop []} if 0 setdash} ifelse} def
+/BL {stroke userlinewidth 2 mul setlinewidth
+	Rounded {1 setlinejoin 1 setlinecap} if} def
+/AL {stroke userlinewidth 2 div setlinewidth
+	Rounded {1 setlinejoin 1 setlinecap} if} def
+/UL {dup gnulinewidth mul /userlinewidth exch def
+	dup 1 lt {pop 1} if 10 mul /udl exch def} def
+/PL {stroke userlinewidth setlinewidth
+	Rounded {1 setlinejoin 1 setlinecap} if} def
+% Default Line colors
+/LCw {1 1 1} def
+/LCb {0 0 0} def
+/LCa {0 0 0} def
+/LC0 {1 0 0} def
+/LC1 {0 1 0} def
+/LC2 {0 0 1} def
+/LC3 {1 0 1} def
+/LC4 {0 1 1} def
+/LC5 {1 1 0} def
+/LC6 {0 0 0} def
+/LC7 {1 0.3 0} def
+/LC8 {0.5 0.5 0.5} def
+% Default Line Types
+/LTw {PL [] 1 setgray} def
+/LTb {BL [] LCb DL} def
+/LTa {AL [1 udl mul 2 udl mul] 0 setdash LCa setrgbcolor} def
+/LT0 {PL [] LC0 DL} def
+/LT1 {PL [4 dl1 2 dl2] LC1 DL} def
+/LT2 {PL [2 dl1 3 dl2] LC2 DL} def
+/LT3 {PL [1 dl1 1.5 dl2] LC3 DL} def
+/LT4 {PL [6 dl1 2 dl2 1 dl1 2 dl2] LC4 DL} def
+/LT5 {PL [3 dl1 3 dl2 1 dl1 3 dl2] LC5 DL} def
+/LT6 {PL [2 dl1 2 dl2 2 dl1 6 dl2] LC6 DL} def
+/LT7 {PL [1 dl1 2 dl2 6 dl1 2 dl2 1 dl1 2 dl2] LC7 DL} def
+/LT8 {PL [2 dl1 2 dl2 2 dl1 2 dl2 2 dl1 2 dl2 2 dl1 4 dl2] LC8 DL} def
+/Pnt {stroke [] 0 setdash gsave 1 setlinecap M 0 0 V stroke grestore} def
+/Dia {stroke [] 0 setdash 2 copy vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath stroke
+  Pnt} def
+/Pls {stroke [] 0 setdash vpt sub M 0 vpt2 V
+  currentpoint stroke M
+  hpt neg vpt neg R hpt2 0 V stroke
+ } def
+/Box {stroke [] 0 setdash 2 copy exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V closepath stroke
+  Pnt} def
+/Crs {stroke [] 0 setdash exch hpt sub exch vpt add M
+  hpt2 vpt2 neg V currentpoint stroke M
+  hpt2 neg 0 R hpt2 vpt2 V stroke} def
+/TriU {stroke [] 0 setdash 2 copy vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath stroke
+  Pnt} def
+/Star {2 copy Pls Crs} def
+/BoxF {stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V closepath fill} def
+/TriUF {stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath fill} def
+/TriD {stroke [] 0 setdash 2 copy vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath stroke
+  Pnt} def
+/TriDF {stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath fill} def
+/DiaF {stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath fill} def
+/Pent {stroke [] 0 setdash 2 copy gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath stroke grestore Pnt} def
+/PentF {stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath fill grestore} def
+/Circle {stroke [] 0 setdash 2 copy
+  hpt 0 360 arc stroke Pnt} def
+/CircleF {stroke [] 0 setdash hpt 0 360 arc fill} def
+/C0 {BL [] 0 setdash 2 copy moveto vpt 90 450 arc} bind def
+/C1 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 90 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C2 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 90 180 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C3 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 180 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C4 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 180 270 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C5 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 90 arc
+	2 copy moveto
+	2 copy vpt 180 270 arc closepath fill
+	vpt 0 360 arc} bind def
+/C6 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 90 270 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C7 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 270 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C8 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 270 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C9 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 270 450 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C10 {BL [] 0 setdash 2 copy 2 copy moveto vpt 270 360 arc closepath fill
+	2 copy moveto
+	2 copy vpt 90 180 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C11 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 180 arc closepath fill
+	2 copy moveto
+	2 copy vpt 270 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C12 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 180 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C13 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 90 arc closepath fill
+	2 copy moveto
+	2 copy vpt 180 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C14 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 90 360 arc closepath fill
+	vpt 0 360 arc} bind def
+/C15 {BL [] 0 setdash 2 copy vpt 0 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/Rec {newpath 4 2 roll moveto 1 index 0 rlineto 0 exch rlineto
+	neg 0 rlineto closepath} bind def
+/Square {dup Rec} bind def
+/Bsquare {vpt sub exch vpt sub exch vpt2 Square} bind def
+/S0 {BL [] 0 setdash 2 copy moveto 0 vpt rlineto BL Bsquare} bind def
+/S1 {BL [] 0 setdash 2 copy vpt Square fill Bsquare} bind def
+/S2 {BL [] 0 setdash 2 copy exch vpt sub exch vpt Square fill Bsquare} bind def
+/S3 {BL [] 0 setdash 2 copy exch vpt sub exch vpt2 vpt Rec fill Bsquare} bind def
+/S4 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt Square fill Bsquare} bind def
+/S5 {BL [] 0 setdash 2 copy 2 copy vpt Square fill
+	exch vpt sub exch vpt sub vpt Square fill Bsquare} bind def
+/S6 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt vpt2 Rec fill Bsquare} bind def
+/S7 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt vpt2 Rec fill
+	2 copy vpt Square fill Bsquare} bind def
+/S8 {BL [] 0 setdash 2 copy vpt sub vpt Square fill Bsquare} bind def
+/S9 {BL [] 0 setdash 2 copy vpt sub vpt vpt2 Rec fill Bsquare} bind def
+/S10 {BL [] 0 setdash 2 copy vpt sub vpt Square fill 2 copy exch vpt sub exch vpt Square fill
+	Bsquare} bind def
+/S11 {BL [] 0 setdash 2 copy vpt sub vpt Square fill 2 copy exch vpt sub exch vpt2 vpt Rec fill
+	Bsquare} bind def
+/S12 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill Bsquare} bind def
+/S13 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill
+	2 copy vpt Square fill Bsquare} bind def
+/S14 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill
+	2 copy exch vpt sub exch vpt Square fill Bsquare} bind def
+/S15 {BL [] 0 setdash 2 copy Bsquare fill Bsquare} bind def
+/D0 {gsave translate 45 rotate 0 0 S0 stroke grestore} bind def
+/D1 {gsave translate 45 rotate 0 0 S1 stroke grestore} bind def
+/D2 {gsave translate 45 rotate 0 0 S2 stroke grestore} bind def
+/D3 {gsave translate 45 rotate 0 0 S3 stroke grestore} bind def
+/D4 {gsave translate 45 rotate 0 0 S4 stroke grestore} bind def
+/D5 {gsave translate 45 rotate 0 0 S5 stroke grestore} bind def
+/D6 {gsave translate 45 rotate 0 0 S6 stroke grestore} bind def
+/D7 {gsave translate 45 rotate 0 0 S7 stroke grestore} bind def
+/D8 {gsave translate 45 rotate 0 0 S8 stroke grestore} bind def
+/D9 {gsave translate 45 rotate 0 0 S9 stroke grestore} bind def
+/D10 {gsave translate 45 rotate 0 0 S10 stroke grestore} bind def
+/D11 {gsave translate 45 rotate 0 0 S11 stroke grestore} bind def
+/D12 {gsave translate 45 rotate 0 0 S12 stroke grestore} bind def
+/D13 {gsave translate 45 rotate 0 0 S13 stroke grestore} bind def
+/D14 {gsave translate 45 rotate 0 0 S14 stroke grestore} bind def
+/D15 {gsave translate 45 rotate 0 0 S15 stroke grestore} bind def
+/DiaE {stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath stroke} def
+/BoxE {stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V closepath stroke} def
+/TriUE {stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath stroke} def
+/TriDE {stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath stroke} def
+/PentE {stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath stroke grestore} def
+/CircE {stroke [] 0 setdash 
+  hpt 0 360 arc stroke} def
+/Opaque {gsave closepath 1 setgray fill grestore 0 setgray closepath} def
+/DiaW {stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V Opaque stroke} def
+/BoxW {stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V Opaque stroke} def
+/TriUW {stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V Opaque stroke} def
+/TriDW {stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V Opaque stroke} def
+/PentW {stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  Opaque stroke grestore} def
+/CircW {stroke [] 0 setdash 
+  hpt 0 360 arc Opaque stroke} def
+/BoxFill {gsave Rec 1 setgray fill grestore} def
+/Density {
+  /Fillden exch def
+  currentrgbcolor
+  /ColB exch def /ColG exch def /ColR exch def
+  /ColR ColR Fillden mul Fillden sub 1 add def
+  /ColG ColG Fillden mul Fillden sub 1 add def
+  /ColB ColB Fillden mul Fillden sub 1 add def
+  ColR ColG ColB setrgbcolor} def
+/BoxColFill {gsave Rec PolyFill} def
+/PolyFill {gsave Density fill grestore grestore} def
+/h {rlineto rlineto rlineto gsave closepath fill grestore} bind def
+%
+% PostScript Level 1 Pattern Fill routine for rectangles
+% Usage: x y w h s a XX PatternFill
+%	x,y = lower left corner of box to be filled
+%	w,h = width and height of box
+%	  a = angle in degrees between lines and x-axis
+%	 XX = 0/1 for no/yes cross-hatch
+%
+/PatternFill {gsave /PFa [ 9 2 roll ] def
+  PFa 0 get PFa 2 get 2 div add PFa 1 get PFa 3 get 2 div add translate
+  PFa 2 get -2 div PFa 3 get -2 div PFa 2 get PFa 3 get Rec
+  gsave 1 setgray fill grestore clip
+  currentlinewidth 0.5 mul setlinewidth
+  /PFs PFa 2 get dup mul PFa 3 get dup mul add sqrt def
+  0 0 M PFa 5 get rotate PFs -2 div dup translate
+  0 1 PFs PFa 4 get div 1 add floor cvi
+	{PFa 4 get mul 0 M 0 PFs V} for
+  0 PFa 6 get ne {
+	0 1 PFs PFa 4 get div 1 add floor cvi
+	{PFa 4 get mul 0 2 1 roll M PFs 0 V} for
+ } if
+  stroke grestore} def
+%
+/languagelevel where
+ {pop languagelevel} {1} ifelse
+ 2 lt
+	{/InterpretLevel1 true def}
+	{/InterpretLevel1 Level1 def}
+ ifelse
+%
+% PostScript level 2 pattern fill definitions
+%
+/Level2PatternFill {
+/Tile8x8 {/PaintType 2 /PatternType 1 /TilingType 1 /BBox [0 0 8 8] /XStep 8 /YStep 8}
+	bind def
+/KeepColor {currentrgbcolor [/Pattern /DeviceRGB] setcolorspace} bind def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 0 M 8 8 L 0 8 M 8 0 L stroke} 
+>> matrix makepattern
+/Pat1 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 0 M 8 8 L 0 8 M 8 0 L stroke
+	0 4 M 4 8 L 8 4 L 4 0 L 0 4 L stroke}
+>> matrix makepattern
+/Pat2 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 0 M 0 8 L
+	8 8 L 8 0 L 0 0 L fill}
+>> matrix makepattern
+/Pat3 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -4 8 M 8 -4 L
+	0 12 M 12 0 L stroke}
+>> matrix makepattern
+/Pat4 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -4 0 M 8 12 L
+	0 -4 M 12 8 L stroke}
+>> matrix makepattern
+/Pat5 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -2 8 M 4 -4 L
+	0 12 M 8 -4 L 4 12 M 10 0 L stroke}
+>> matrix makepattern
+/Pat6 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -2 0 M 4 12 L
+	0 -4 M 8 12 L 4 -4 M 10 8 L stroke}
+>> matrix makepattern
+/Pat7 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 8 -2 M -4 4 L
+	12 0 M -4 8 L 12 4 M 0 10 L stroke}
+>> matrix makepattern
+/Pat8 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 -2 M 12 4 L
+	-4 0 M 12 8 L -4 4 M 8 10 L stroke}
+>> matrix makepattern
+/Pat9 exch def
+/Pattern1 {PatternBgnd KeepColor Pat1 setpattern} bind def
+/Pattern2 {PatternBgnd KeepColor Pat2 setpattern} bind def
+/Pattern3 {PatternBgnd KeepColor Pat3 setpattern} bind def
+/Pattern4 {PatternBgnd KeepColor Landscape {Pat5} {Pat4} ifelse setpattern} bind def
+/Pattern5 {PatternBgnd KeepColor Landscape {Pat4} {Pat5} ifelse setpattern} bind def
+/Pattern6 {PatternBgnd KeepColor Landscape {Pat9} {Pat6} ifelse setpattern} bind def
+/Pattern7 {PatternBgnd KeepColor Landscape {Pat8} {Pat7} ifelse setpattern} bind def
+} def
+%
+%
+%End of PostScript Level 2 code
+%
+/PatternBgnd {
+  TransparentPatterns {} {gsave 1 setgray fill grestore} ifelse
+} def
+%
+% Substitute for Level 2 pattern fill codes with
+% grayscale if Level 2 support is not selected.
+%
+/Level1PatternFill {
+/Pattern1 {0.250 Density} bind def
+/Pattern2 {0.500 Density} bind def
+/Pattern3 {0.750 Density} bind def
+/Pattern4 {0.125 Density} bind def
+/Pattern5 {0.375 Density} bind def
+/Pattern6 {0.625 Density} bind def
+/Pattern7 {0.875 Density} bind def
+} def
+%
+% Now test for support of Level 2 code
+%
+Level1 {Level1PatternFill} {Level2PatternFill} ifelse
+%
+/Symbol-Oblique /Symbol findfont [1 0 .167 1 0 0] makefont
+dup length dict begin {1 index /FID eq {pop pop} {def} ifelse} forall
+currentdict end definefont pop
+/MFshow {
+   { dup 5 get 3 ge
+     { 5 get 3 eq {gsave} {grestore} ifelse }
+     {dup dup 0 get findfont exch 1 get scalefont setfont
+     [ currentpoint ] exch dup 2 get 0 exch R dup 5 get 2 ne {dup dup 6
+     get exch 4 get {show} {stringwidth pop 0 R} ifelse }if dup 5 get 0 eq
+     {dup 3 get {2 get neg 0 exch R pop} {pop aload pop M} ifelse} {dup 5
+     get 1 eq {dup 2 get exch dup 3 get exch 6 get stringwidth pop -2 div
+     dup 0 R} {dup 6 get stringwidth pop -2 div 0 R 6 get
+     show 2 index {aload pop M neg 3 -1 roll neg R pop pop} {pop pop pop
+     pop aload pop M} ifelse }ifelse }ifelse }
+     ifelse }
+   forall} bind def
+/MFwidth {0 exch { dup 5 get 3 ge { 5 get 3 eq { 0 } { pop } ifelse }
+ {dup 3 get{dup dup 0 get findfont exch 1 get scalefont setfont
+     6 get stringwidth pop add} {pop} ifelse} ifelse} forall} bind def
+/MLshow { currentpoint stroke M
+  0 exch R
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/MRshow { currentpoint stroke M
+  exch dup MFwidth neg 3 -1 roll R
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/MCshow { currentpoint stroke M
+  exch dup MFwidth -2 div 3 -1 roll R
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/XYsave    { [( ) 1 2 true false 3 ()] } bind def
+/XYrestore { [( ) 1 2 true false 4 ()] } bind def
+end
+%%EndProlog
+gnudict begin
+gsave
+50 50 translate
+0.050 0.050 scale
+0 setgray
+newpath
+(Helvetica) findfont 200 scalefont setfont
+1.000 UL
+LTb
+2260 840 M
+63 0 V
+3537 0 R
+-63 0 V
+stroke
+2140 840 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 0)]
+] -66.7 MRshow
+1.000 UL
+LTb
+2260 1560 M
+63 0 V
+3537 0 R
+-63 0 V
+stroke
+2140 1560 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 0.5)]
+] -66.7 MRshow
+1.000 UL
+LTb
+2260 2280 M
+63 0 V
+3537 0 R
+-63 0 V
+stroke
+2140 2280 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 1)]
+] -66.7 MRshow
+1.000 UL
+LTb
+2260 3000 M
+63 0 V
+3537 0 R
+-63 0 V
+stroke
+2140 3000 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 1.5)]
+] -66.7 MRshow
+1.000 UL
+LTb
+2260 3720 M
+63 0 V
+3537 0 R
+-63 0 V
+stroke
+2140 3720 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 2)]
+] -66.7 MRshow
+1.000 UL
+LTb
+2260 4440 M
+63 0 V
+3537 0 R
+-63 0 V
+stroke
+2140 4440 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 2.5)]
+] -66.7 MRshow
+1.000 UL
+LTb
+2260 840 M
+0 63 V
+0 3537 R
+0 -63 V
+stroke
+2260 640 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 0)]
+] -66.7 MCshow
+1.000 UL
+LTb
+2710 840 M
+0 63 V
+0 3537 R
+0 -63 V
+stroke
+2710 640 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 0.5)]
+] -66.7 MCshow
+1.000 UL
+LTb
+3160 840 M
+0 63 V
+0 3537 R
+0 -63 V
+stroke
+3160 640 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 1)]
+] -66.7 MCshow
+1.000 UL
+LTb
+3610 840 M
+0 63 V
+0 3537 R
+0 -63 V
+stroke
+3610 640 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 1.5)]
+] -66.7 MCshow
+1.000 UL
+LTb
+4060 840 M
+0 63 V
+0 3537 R
+0 -63 V
+stroke
+4060 640 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 2)]
+] -66.7 MCshow
+1.000 UL
+LTb
+4510 840 M
+0 63 V
+0 3537 R
+0 -63 V
+stroke
+4510 640 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 2.5)]
+] -66.7 MCshow
+1.000 UL
+LTb
+4960 840 M
+0 63 V
+0 3537 R
+0 -63 V
+stroke
+4960 640 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 3)]
+] -66.7 MCshow
+1.000 UL
+LTb
+5410 840 M
+0 63 V
+0 3537 R
+0 -63 V
+stroke
+5410 640 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 3.5)]
+] -66.7 MCshow
+1.000 UL
+LTb
+5860 840 M
+0 63 V
+0 3537 R
+0 -63 V
+stroke
+5860 640 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 4)]
+] -66.7 MCshow
+1.000 UL
+LTb
+1.000 UL
+LTb
+2260 4440 N
+0 -3600 V
+3600 0 V
+0 3600 V
+-3600 0 V
+Z stroke
+LCb setrgbcolor
+1440 2640 M
+currentpoint gsave translate 90 rotate 0 0 moveto
+[ [(Helvetica) 200.0 0.0 true true 0 (<v)]
+[(Helvetica) 160.0 -60.0 true true 0 (i)]
+[(Helvetica) 200.0 0.0 true true 0 (>)]
+[(Helvetica) 200.0 0.0 true true 0 ( [m/s])]
+] -46.7 MCshow
+grestore
+LTb
+LCb setrgbcolor
+4060 340 M
+[ [(Helvetica) 200.0 0.0 true true 0 (<)]
+[(Symbol) 200.0 0.0 true true 0 (r)]
+[(Helvetica) 160.0 -60.0 true true 0 (i)]
+[(Helvetica) 200.0 0.0 true true 0 (>)]
+[(Helvetica) 200.0 0.0 true true 0 ( [1/m)]
+[(Helvetica) 160.0 100.0 true true 0 (2)]
+[(Helvetica) 200.0 0.0 true true 0 (] )]
+] -66.7 MCshow
+LTb
+4060 4740 M
+[ [(Symbol) 200.0 0.0 true true 0 (D)]
+[(Helvetica) 200.0 0.0 true true 0 (x=[-2, 0]m, b)]
+[(Helvetica) 160.0 -60.0 true true 0 (cor)]
+[(Helvetica) 200.0 0.0 true true 0 (=1.8m)]
+] -46.7 MCshow
+1.000 UP
+1.000 UL
+LTb
+1.000 UP
+1.000 UL
+LT0
+2550 2683 Pls
+2976 2429 Pls
+2912 2843 Pls
+3000 2612 Pls
+2906 2760 Pls
+2874 2935 Pls
+2885 2760 Pls
+2796 3034 Pls
+2706 2843 Pls
+2723 3144 Pls
+2703 2935 Pls
+2746 3400 Pls
+2864 2760 Pls
+2895 2612 Pls
+3060 2683 Pls
+2867 3034 Pls
+3062 2760 Pls
+3093 3400 Pls
+2899 3400 Pls
+2640 2683 Pls
+2770 2683 Pls
+2904 2612 Pls
+2948 3144 Pls
+2794 2935 Pls
+2677 2547 Pls
+2697 2760 Pls
+2908 2280 Pls
+3019 2486 Pls
+3110 2683 Pls
+3079 2429 Pls
+2933 2612 Pls
+2875 2612 Pls
+2895 2612 Pls
+2722 2612 Pls
+2669 2935 Pls
+2790 2683 Pls
+2958 2760 Pls
+3060 3144 Pls
+3044 2935 Pls
+2760 2935 Pls
+2793 2843 Pls
+2892 3265 Pls
+2998 3034 Pls
+2944 3265 Pls
+2857 3400 Pls
+1.000 UP
+1.000 UL
+LT1
+2612 2935 Crs
+2747 3265 Crs
+2895 2612 Crs
+2747 3265 Crs
+2831 3034 Crs
+2912 2843 Crs
+2862 2935 Crs
+2998 3034 Crs
+2972 2612 Crs
+3020 2760 Crs
+3035 3144 Crs
+2939 3034 Crs
+2673 3144 Crs
+2826 3265 Crs
+2803 2843 Crs
+2891 3034 Crs
+2941 3400 Crs
+2760 3265 Crs
+2736 3034 Crs
+2695 2843 Crs
+2880 2683 Crs
+2825 2843 Crs
+2854 2760 Crs
+2839 3265 Crs
+2829 3400 Crs
+2823 2760 Crs
+2784 3034 Crs
+2690 2683 Crs
+2665 3034 Crs
+2560 2683 Crs
+2689 3034 Crs
+2735 2376 Crs
+2760 2843 Crs
+3001 2429 Crs
+3000 2683 Crs
+3000 2612 Crs
+2858 2486 Crs
+3020 2612 Crs
+2843 2760 Crs
+3027 2429 Crs
+3121 2547 Crs
+3130 2683 Crs
+3083 2760 Crs
+2855 2429 Crs
+2814 2843 Crs
+2760 3144 Crs
+1.000 UP
+1.000 UL
+LT2
+3177 2547 Star
+3040 2683 Star
+3206 2843 Star
+3010 2760 Star
+2981 2612 Star
+2890 2843 Star
+3010 2843 Star
+2843 2760 Star
+2684 2843 Star
+2814 2843 Star
+2903 3034 Star
+3044 2935 Star
+3044 2935 Star
+2951 3551 Star
+3033 2935 Star
+2991 2612 Star
+3010 2843 Star
+3173 2843 Star
+3200 3034 Star
+3100 2683 Star
+2988 2843 Star
+3155 3265 Star
+2901 2843 Star
+2948 3144 Star
+3067 2935 Star
+2986 3034 Star
+3073 3144 Star
+2658 2935 Star
+3053 2843 Star
+2962 3034 Star
+3155 3265 Star
+3101 2935 Star
+2860 2683 Star
+2930 2935 Star
+2831 3034 Star
+2927 2760 Star
+2689 3034 Star
+2828 2935 Star
+2717 2843 Star
+2831 3034 Star
+2708 2760 Star
+2760 3265 Star
+2840 2486 Star
+3000 2612 Star
+3048 2612 Star
+2973 2547 Star
+2964 2547 Star
+3038 2547 Star
+3039 2612 Star
+2962 2612 Star
+3020 2612 Star
+2977 2843 Star
+3145 2085 Star
+3166 2760 Star
+3035 3144 Star
+3249 2843 Star
+3034 3034 Star
+3195 2547 Star
+3020 2760 Star
+3000 2760 Star
+2750 2683 Star
+2835 3144 Star
+2718 2760 Star
+2760 2843 Star
+2780 2683 Star
+2954 2547 Star
+2927 2760 Star
+3032 2843 Star
+2802 2760 Star
+2930 2935 Star
+2950 2429 Star
+3038 2547 Star
+3038 2547 Star
+2810 2683 Star
+2729 2760 Star
+3204 2547 Star
+3224 2486 Star
+3210 2376 Star
+3305 2486 Star
+3308 2612 Star
+3190 2683 Star
+3241 2612 Star
+3271 2843 Star
+3022 3034 Star
+2670 2683 Star
+2760 3144 Star
+2820 3034 Star
+2987 2935 Star
+2977 2843 Star
+2897 3144 Star
+2796 3034 Star
+1.000 UP
+1.000 UL
+LT3
+3124 2935 Box
+3322 2760 Box
+3149 3400 Box
+2939 3034 Box
+3062 2760 Box
+3025 3551 Box
+3166 2760 Box
+3249 2935 Box
+3380 2843 Box
+3442 2935 Box
+3419 2935 Box
+3282 2843 Box
+3380 2843 Box
+3187 2760 Box
+3398 3144 Box
+3239 2760 Box
+3281 2760 Box
+3510 2683 Box
+3564 2843 Box
+3458 2760 Box
+3552 2760 Box
+3270 2683 Box
+3390 2683 Box
+3270 2612 Box
+3206 2486 Box
+3110 2683 Box
+2927 2760 Box
+3597 2612 Box
+3550 2683 Box
+2967 2843 Box
+3550 2683 Box
+3635 2612 Box
+3610 2683 Box
+3566 2547 Box
+3421 2486 Box
+3208 2429 Box
+3373 2326 Box
+3171 2486 Box
+3135 2935 Box
+3560 2157 Box
+3281 2760 Box
+3510 2760 Box
+3599 2486 Box
+3518 2376 Box
+3588 2429 Box
+3510 2547 Box
+3318 2612 Box
+3371 2547 Box
+3340 2683 Box
+3390 2547 Box
+3303 2429 Box
+3231 2612 Box
+3222 2612 Box
+3160 2376 Box
+3106 2612 Box
+3106 2612 Box
+3158 2547 Box
+3200 3034 Box
+3212 2612 Box
+3340 2683 Box
+3405 2326 Box
+3437 2760 Box
+3381 2429 Box
+3355 2429 Box
+3298 2612 Box
+3320 2429 Box
+3390 2547 Box
+3337 2612 Box
+3421 2486 Box
+3415 2429 Box
+3421 2326 Box
+3349 2326 Box
+3421 2326 Box
+3353 2547 Box
+3404 2236 Box
+3607 2326 Box
+3380 2547 Box
+3538 2120 Box
+3621 2547 Box
+3619 2022 Box
+3689 2486 Box
+3362 2280 Box
+3182 2280 Box
+3401 2280 Box
+3377 2280 Box
+3613 2429 Box
+3602 2376 Box
+3607 2326 Box
+3586 2236 Box
+3536 2429 Box
+3435 2376 Box
+3647 2326 Box
+3464 2547 Box
+3298 2612 Box
+3528 2486 Box
+3140 2683 Box
+3217 2429 Box
+3294 2429 Box
+3260 2612 Box
+3334 2547 Box
+3327 2376 Box
+1.000 UP
+1.000 UL
+LT4
+3173 2843 BoxF
+3270 2760 BoxF
+3192 2935 BoxF
+3183 2612 BoxF
+3021 2843 BoxF
+3527 2429 BoxF
+3445 2843 BoxF
+3232 2547 BoxF
+3399 2547 BoxF
+3544 2429 BoxF
+3552 2760 BoxF
+3519 2547 BoxF
+3535 2376 BoxF
+3528 2486 BoxF
+3520 2683 BoxF
+3519 2429 BoxF
+3625 2612 BoxF
+3558 2612 BoxF
+3531 2760 BoxF
+3621 2547 BoxF
+3492 2486 BoxF
+3570 2683 BoxF
+3539 2612 BoxF
+3488 2843 BoxF
+3406 2760 BoxF
+3370 2683 BoxF
+3220 2683 BoxF
+3500 2612 BoxF
+3066 2547 BoxF
+3501 2547 BoxF
+3294 2429 BoxF
+3314 2486 BoxF
+3325 2326 BoxF
+3458 2429 BoxF
+3710 2376 BoxF
+3424 2429 BoxF
+3840 2486 BoxF
+3726 2429 BoxF
+3871 2547 BoxF
+3800 2326 BoxF
+3798 2236 BoxF
+3752 2326 BoxF
+3833 2326 BoxF
+3537 2486 BoxF
+3590 2486 BoxF
+3536 2429 BoxF
+3510 2429 BoxF
+3586 2236 BoxF
+3735 2376 BoxF
+3493 2376 BoxF
+3705 2280 BoxF
+3531 2760 BoxF
+3751 2429 BoxF
+3691 2429 BoxF
+3747 2053 BoxF
+3704 2547 BoxF
+3969 2085 BoxF
+3934 2236 BoxF
+4039 2195 BoxF
+4098 2195 BoxF
+4099 2326 BoxF
+4128 2120 BoxF
+3816 2547 BoxF
+4098 2195 BoxF
+4135 2120 BoxF
+4142 2120 BoxF
+4024 2157 BoxF
+3965 2236 BoxF
+3902 2376 BoxF
+4010 2120 BoxF
+3929 2085 BoxF
+3870 2195 BoxF
+3914 2195 BoxF
+3868 2376 BoxF
+3951 2195 BoxF
+3970 2326 BoxF
+3896 2157 BoxF
+3927 2236 BoxF
+3889 2236 BoxF
+3921 2326 BoxF
+3776 2326 BoxF
+3927 2236 BoxF
+3752 2280 BoxF
+3603 2157 BoxF
+3704 2326 BoxF
+3652 2376 BoxF
+3775 2236 BoxF
+3686 2085 BoxF
+3671 2326 BoxF
+3581 2157 BoxF
+3432 2280 BoxF
+3552 2376 BoxF
+3591 2326 BoxF
+3378 2195 BoxF
+3970 2326 BoxF
+3287 2486 BoxF
+3854 2280 BoxF
+3995 2236 BoxF
+3546 1937 BoxF
+3993 2376 BoxF
+3817 2157 BoxF
+3942 2236 BoxF
+3990 2053 BoxF
+3811 2195 BoxF
+4018 2280 BoxF
+3878 2120 BoxF
+3918 2053 BoxF
+3949 1964 BoxF
+4017 2120 BoxF
+3822 2120 BoxF
+3800 2326 BoxF
+3967 1964 BoxF
+3942 2236 BoxF
+3922 2085 BoxF
+4017 2085 BoxF
+3896 2157 BoxF
+3920 2022 BoxF
+4010 2120 BoxF
+3951 2053 BoxF
+3875 2022 BoxF
+3892 2053 BoxF
+3949 1964 BoxF
+3998 1992 BoxF
+3948 1992 BoxF
+4004 1964 BoxF
+3997 2022 BoxF
+3897 1992 BoxF
+4004 1937 BoxF
+3712 1937 BoxF
+3991 1992 BoxF
+3774 2120 BoxF
+3478 2022 BoxF
+3504 1887 BoxF
+3681 2053 BoxF
+3871 2120 BoxF
+3424 2157 BoxF
+3905 2053 BoxF
+3541 1992 BoxF
+4010 2022 BoxF
+4004 1992 BoxF
+4091 1992 BoxF
+4091 2195 BoxF
+4091 2195 BoxF
+3721 2053 BoxF
+4075 1937 BoxF
+4093 2120 BoxF
+4064 1937 BoxF
+4089 2053 BoxF
+4030 2053 BoxF
+4010 1992 BoxF
+4061 2022 BoxF
+3969 2085 BoxF
+1.000 UP
+1.000 UL
+LT5
+0.63 0.13 0.94 C 3108 2843 Circle
+3570 3034 Circle
+3487 2935 Circle
+3520 2683 Circle
+3437 2760 Circle
+3340 2683 Circle
+3125 2612 Circle
+3192 2935 Circle
+3183 2612 Circle
+3021 2843 Circle
+3575 2547 Circle
+3385 2612 Circle
+3451 2195 Circle
+3560 2683 Circle
+2997 3265 Circle
+3631 2326 Circle
+3645 2760 Circle
+3613 2429 Circle
+3599 2486 Circle
+3606 2612 Circle
+3593 2376 Circle
+3493 2376 Circle
+3458 2429 Circle
+3399 2547 Circle
+3454 2547 Circle
+3534 2326 Circle
+3454 2547 Circle
+3510 2429 Circle
+3814 2486 Circle
+3645 2612 Circle
+3814 2486 Circle
+3777 2429 Circle
+3807 2280 Circle
+3760 2376 Circle
+3808 2326 Circle
+3768 2280 Circle
+3760 2236 Circle
+3800 2683 Circle
+3769 2429 Circle
+3773 2053 Circle
+3783 2280 Circle
+3784 2326 Circle
+3792 2326 Circle
+3820 2429 Circle
+3792 2326 Circle
+3822 2280 Circle
+3955 2280 Circle
+3885 2280 Circle
+3838 2280 Circle
+3954 2326 Circle
+3967 2429 Circle
+3921 2326 Circle
+3901 2280 Circle
+3760 2326 Circle
+3868 2376 Circle
+3760 2376 Circle
+3968 2376 Circle
+3881 2236 Circle
+3783 2236 Circle
+3892 2120 Circle
+3807 2280 Circle
+3768 2376 Circle
+3889 2157 Circle
+3905 2326 Circle
+3912 2486 Circle
+3913 2326 Circle
+3591 2326 Circle
+3697 2280 Circle
+3610 2376 Circle
+3706 2085 Circle
+3603 2547 Circle
+3767 2195 Circle
+3807 2280 Circle
+3776 2326 Circle
+3588 2280 Circle
+3697 2280 Circle
+3775 2236 Circle
+3691 2120 Circle
+3613 2195 Circle
+3712 2326 Circle
+3704 2120 Circle
+3601 2236 Circle
+3743 2429 Circle
+3704 2326 Circle
+3720 2326 Circle
+3682 2280 Circle
+3677 2376 Circle
+3671 2326 Circle
+3822 2280 Circle
+3816 2326 Circle
+3718 2376 Circle
+3942 2085 Circle
+3924 2280 Circle
+3937 2326 Circle
+3821 2236 Circle
+3908 2280 Circle
+3905 2326 Circle
+3896 2236 Circle
+3885 2195 Circle
+3885 2376 Circle
+3858 2236 Circle
+3927 2376 Circle
+3937 2326 Circle
+3892 2195 Circle
+3858 2236 Circle
+3942 2085 Circle
+3875 2085 Circle
+3846 2280 Circle
+3977 2376 Circle
+3864 2120 Circle
+3972 2236 Circle
+3927 2376 Circle
+3593 2376 Circle
+4001 2429 Circle
+3768 2326 Circle
+3874 2236 Circle
+3389 2429 Circle
+3421 2326 Circle
+3421 2326 Circle
+3389 2429 Circle
+3407 2195 Circle
+3731 2195 Circle
+3389 2326 Circle
+3677 2376 Circle
+3802 2120 Circle
+3817 2157 Circle
+3807 2280 Circle
+3635 2280 Circle
+3454 2326 Circle
+3753 2157 Circle
+3752 2236 Circle
+3776 2326 Circle
+3726 2085 Circle
+3744 2280 Circle
+3746 2085 Circle
+3766 2022 Circle
+3775 2236 Circle
+3795 2120 Circle
+3754 2022 Circle
+3610 2157 Circle
+3753 2195 Circle
+3739 2120 Circle
+3622 2053 Circle
+3635 2053 Circle
+3624 2157 Circle
+3895 2085 Circle
+4024 2085 Circle
+4016 1992 Circle
+3788 2120 Circle
+3870 1964 Circle
+4077 1964 Circle
+4074 2022 Circle
+4073 2120 Circle
+3975 2120 Circle
+4023 2053 Circle
+4017 2120 Circle
+4016 1937 Circle
+4124 2157 Circle
+4010 1964 Circle
+4109 2053 Circle
+4121 2120 Circle
+3976 2085 Circle
+4087 2022 Circle
+4048 2022 Circle
+4029 2022 Circle
+3948 2120 Circle
+4022 1964 Circle
+3929 2195 Circle
+4113 2022 Circle
+4061 2022 Circle
+4187 1964 Circle
+4247 2053 Circle
+4214 2053 Circle
+4253 2085 Circle
+4233 2085 Circle
+4132 2022 Circle
+4098 2195 Circle
+3920 2120 Circle
+3939 2022 Circle
+3937 1964 Circle
+3997 2022 Circle
+3961 2120 Circle
+3942 2085 Circle
+3967 2157 Circle
+3819 2053 Circle
+3935 1992 Circle
+3900 2195 Circle
+4079 2120 Circle
+3834 2085 Circle
+3650 1912 Circle
+3719 2085 Circle
+3638 2022 Circle
+3691 2120 Circle
+3696 2157 Circle
+3699 2085 Circle
+3777 2376 Circle
+3717 1964 Circle
+1.000 UP
+1.000 UL
+LT6
+3578 2935 CircleF
+3572 3144 CircleF
+3198 3144 CircleF
+3544 2935 CircleF
+3620 2683 CircleF
+3578 2935 CircleF
+3833 2760 CircleF
+3474 3034 CircleF
+3770 2683 CircleF
+3750 2683 CircleF
+3847 2843 CircleF
+3751 2547 CircleF
+3555 2486 CircleF
+3577 2376 CircleF
+3658 2547 CircleF
+3760 2760 CircleF
+3749 2843 CircleF
+3568 2612 CircleF
+3658 2547 CircleF
+3760 2429 CircleF
+3665 2429 CircleF
+3815 2280 CircleF
+3778 2486 CircleF
+3810 2376 CircleF
+3834 2195 CircleF
+3836 2236 CircleF
+3810 2376 CircleF
+3843 2376 CircleF
+3796 2486 CircleF
+3856 2195 CircleF
+3904 2236 CircleF
+3972 2236 CircleF
+3915 2429 CircleF
+3896 2236 CircleF
+3994 2326 CircleF
+3979 2280 CircleF
+3768 2280 CircleF
+3885 2195 CircleF
+3798 2236 CircleF
+4023 2022 CircleF
+3934 2236 CircleF
+4093 2120 CircleF
+4045 2120 CircleF
+4156 2120 CircleF
+4053 1964 CircleF
+4048 2022 CircleF
+4132 2022 CircleF
+4047 1992 CircleF
+4156 2120 CircleF
+3916 1864 CircleF
+3916 1864 CircleF
+3914 2022 CircleF
+3888 1964 CircleF
+4179 1912 CircleF
+4171 1864 CircleF
+4155 1912 CircleF
+4020 1800 CircleF
+3999 1842 CircleF
+4192 1800 CircleF
+4190 1912 CircleF
+4195 1762 CircleF
+4141 1887 CircleF
+4194 1780 CircleF
+4073 1800 CircleF
+4120 1964 CircleF
+4128 1678 CircleF
+4110 1864 CircleF
+4311 1780 CircleF
+4127 1780 CircleF
+4283 1678 CircleF
+4135 1726 CircleF
+4270 1762 CircleF
+4302 1800 CircleF
+4320 1937 CircleF
+4291 1780 CircleF
+4312 1709 CircleF
+4317 1887 CircleF
+4281 1621 CircleF
+4284 1571 CircleF
+4314 1744 CircleF
+4284 1709 CircleF
+4288 1693 CircleF
+4308 1648 CircleF
+4264 1648 CircleF
+4286 1780 CircleF
+4155 1648 CircleF
+4169 1726 CircleF
+4162 1663 CircleF
+4142 1648 CircleF
+4130 1762 CircleF
+4083 1678 CircleF
+4323 1800 CircleF
+4099 1864 CircleF
+4135 1726 CircleF
+4041 1648 CircleF
+4077 1726 CircleF
+4028 1663 CircleF
+4273 1634 CircleF
+4342 1634 CircleF
+4370 1621 CircleF
+4178 1726 CircleF
+4121 1693 CircleF
+4427 1608 CircleF
+4405 1560 CircleF
+4342 1560 CircleF
+4305 1538 CircleF
+4170 1595 CircleF
+4123 1583 CircleF
+4201 1621 CircleF
+4302 1693 CircleF
+4381 1608 CircleF
+4229 1648 CircleF
+4181 1608 CircleF
+4175 1583 CircleF
+4124 1621 CircleF
+4196 1678 CircleF
+4211 1663 CircleF
+4229 1648 CircleF
+4192 1621 CircleF
+4170 1709 CircleF
+4126 1693 CircleF
+4160 1678 CircleF
+4251 1663 CircleF
+4152 1634 CircleF
+4290 1621 CircleF
+4423 1726 CircleF
+4158 1780 CircleF
+4372 1634 CircleF
+4478 1571 CircleF
+4526 1560 CircleF
+4506 1663 CircleF
+4539 1608 CircleF
+4425 1663 CircleF
+4446 1538 CircleF
+4537 1678 CircleF
+4412 1508 CircleF
+4459 1560 CircleF
+4379 1621 CircleF
+4395 1549 CircleF
+4389 1583 CircleF
+4501 1648 CircleF
+4490 1583 CircleF
+4398 1608 CircleF
+3935 1608 CircleF
+4141 1528 CircleF
+4152 1709 CircleF
+4419 1678 CircleF
+4113 1634 CircleF
+3725 1648 CircleF
+1.000 UP
+1.000 UL
+LT7
+3482 2547 TriU
+3510 2683 TriU
+3610 2376 TriU
+3491 2612 TriU
+3603 2547 TriU
+3677 2547 TriU
+3500 2683 TriU
+3728 2326 TriU
+3658 2547 TriU
+3751 2486 TriU
+3740 2683 TriU
+3677 2547 TriU
+3635 2612 TriU
+3502 2326 TriU
+3575 2326 TriU
+3464 2547 TriU
+3502 2236 TriU
+3629 1937 TriU
+3389 2429 TriU
+3798 2022 TriU
+3771 1887 TriU
+3565 2280 TriU
+3794 2085 TriU
+3668 1780 TriU
+3627 1820 TriU
+3841 2195 TriU
+4097 1726 TriU
+3657 1842 TriU
+3944 1780 TriU
+4375 1571 TriU
+4346 1595 TriU
+4157 1744 TriU
+4062 1800 TriU
+4287 1663 TriU
+4323 1726 TriU
+4370 1538 TriU
+4356 1518 TriU
+4385 1538 TriU
+4382 1480 TriU
+4354 1480 TriU
+4383 1648 TriU
+4383 1423 TriU
+4378 1446 TriU
+4332 1471 TriU
+4350 1409 TriU
+4426 1341 TriU
+4396 1305 TriU
+4344 1395 TriU
+4554 1376 TriU
+4526 1325 TriU
+4467 1330 TriU
+4505 1315 TriU
+4466 1382 TriU
+4532 1352 TriU
+4499 1364 TriU
+4459 1364 TriU
+4520 1315 TriU
+4407 1454 TriU
+4387 1409 TriU
+4410 1454 TriU
+4415 1402 TriU
+4553 1498 TriU
+4414 1409 TriU
+4491 1549 TriU
+4631 1498 TriU
+4510 1454 TriU
+4662 1463 TriU
+4669 1538 TriU
+4629 1352 TriU
+4658 1489 TriU
+4666 1480 TriU
+4556 1402 TriU
+4651 1489 TriU
+4483 1463 TriU
+4553 1454 TriU
+4532 1416 TriU
+4589 1446 TriU
+4434 1446 TriU
+4429 1416 TriU
+4443 1376 TriU
+4434 1423 TriU
+4401 1431 TriU
+4365 1446 TriU
+4370 1438 TriU
+4460 1416 TriU
+4383 1508 TriU
+4345 1423 TriU
+4257 1454 TriU
+4276 1446 TriU
+4418 1471 TriU
+4291 1409 TriU
+4264 1508 TriU
+4457 1454 TriU
+4411 1446 TriU
+4279 1416 TriU
+4635 1402 TriU
+4354 1480 TriU
+4656 1423 TriU
+4642 1498 TriU
+4751 1409 TriU
+4256 1489 TriU
+4786 1370 TriU
+4790 1395 TriU
+4827 1402 TriU
+4801 1423 TriU
+4809 1376 TriU
+4789 1498 TriU
+4513 1454 TriU
+4918 1446 TriU
+4980 1402 TriU
+4967 1370 TriU
+4770 1446 TriU
+4854 1364 TriU
+4882 1431 TriU
+4981 1438 TriU
+5035 1352 TriU
+4928 1364 TriU
+5032 1287 TriU
+5025 1402 TriU
+5036 1382 TriU
+4978 1330 TriU
+5051 1423 TriU
+4930 1364 TriU
+5000 1454 TriU
+4839 1402 TriU
+4915 1402 TriU
+4581 1382 TriU
+4613 1370 TriU
+4974 1395 TriU
+4875 1370 TriU
+4539 1325 TriU
+4461 1370 TriU
+4935 1438 TriU
+4551 1376 TriU
+4384 1358 TriU
+4565 1402 TriU
+1.000 UP
+1.000 UL
+LT8
+3910 2683 TriUF
+3833 2760 TriUF
+3597 2843 TriUF
+3838 2429 TriUF
+3904 2612 TriUF
+3875 2612 TriUF
+3805 2486 TriUF
+3822 2760 TriUF
+3838 2429 TriUF
+3439 3034 TriUF
+3797 2547 TriUF
+3847 2612 TriUF
+3249 2843 TriUF
+3827 2376 TriUF
+3847 2612 TriUF
+3840 2486 TriUF
+3843 2547 TriUF
+3810 2376 TriUF
+3873 2326 TriUF
+3831 2486 TriUF
+3900 2195 TriUF
+3873 2326 TriUF
+3804 2195 TriUF
+3874 2236 TriUF
+3825 2326 TriUF
+3900 2195 TriUF
+3832 2053 TriUF
+3835 1992 TriUF
+3966 1864 TriUF
+4210 1762 TriUF
+4282 1864 TriUF
+4607 1583 TriUF
+4066 1992 TriUF
+3837 2022 TriUF
+4618 1608 TriUF
+4738 1864 TriUF
+4861 1726 TriUF
+4849 1583 TriUF
+5006 1508 TriUF
+4556 1608 TriUF
+5056 1446 TriUF
+4855 1463 TriUF
+5047 1454 TriUF
+5067 1463 TriUF
+5002 1320 TriUF
+5072 1549 TriUF
+5019 1402 TriUF
+5026 1416 TriUF
+4994 1335 TriUF
+5007 1376 TriUF
+4983 1287 TriUF
+5004 1389 TriUF
+5041 1248 TriUF
+5024 1221 TriUF
+5063 1231 TriUF
+5064 1212 TriUF
+5025 1310 TriUF
+5088 1227 TriUF
+5060 1184 TriUF
+5065 1263 TriUF
+5111 1263 TriUF
+5049 1197 TriUF
+5089 1234 TriUF
+4993 1184 TriUF
+4982 1305 TriUF
+4947 1215 TriUF
+4922 1279 TriUF
+4916 1296 TriUF
+4936 1346 TriUF
+4974 1346 TriUF
+4932 1335 TriUF
+4976 1315 TriUF
+4940 1259 TriUF
+4986 1283 TriUF
+4926 1271 TriUF
+4871 1248 TriUF
+4869 1305 TriUF
+4753 1271 TriUF
+4935 1287 TriUF
+4973 1241 TriUF
+4712 1224 TriUF
+4682 1237 TriUF
+4867 1320 TriUF
+4700 1267 TriUF
+4692 1259 TriUF
+4723 1263 TriUF
+4758 1241 TriUF
+4854 1224 TriUF
+4848 1279 TriUF
+4842 1248 TriUF
+4965 1251 TriUF
+5030 1244 TriUF
+4967 1234 TriUF
+4981 1248 TriUF
+4990 1212 TriUF
+5054 1271 TriUF
+5046 1259 TriUF
+5063 1244 TriUF
+5103 1301 TriUF
+5067 1241 TriUF
+5050 1248 TriUF
+5082 1283 TriUF
+5221 1292 TriUF
+5052 1251 TriUF
+5079 1267 TriUF
+5204 1251 TriUF
+5226 1315 TriUF
+5352 1310 TriUF
+5085 1301 TriUF
+5146 1271 TriUF
+5309 1271 TriUF
+5329 1346 TriUF
+5343 1352 TriUF
+5283 1301 TriUF
+4735 1292 TriUF
+5177 1292 TriUF
+5010 1335 TriUF
+5304 1292 TriUF
+5146 1395 TriUF
+4758 1287 TriUF
+4920 1315 TriUF
+5005 1301 TriUF
+4610 1271 TriUF
+4646 1296 TriUF
+4673 1301 TriUF
+4804 1292 TriUF
+1.000 UL
+LTb
+2260 4440 N
+0 -3600 V
+3600 0 V
+0 3600 V
+-3600 0 V
+Z stroke
+1.000 UP
+1.000 UL
+LTb
+stroke
+grestore
+end
+showpage
