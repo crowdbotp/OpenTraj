@@ -5,7 +5,7 @@ import os
 from parser.parser_eth import ParserETH
 from parser.parser_sdd import ParserSDD
 from parser.parser_gc  import ParserGC
-
+from parser.parser_hermes import ParserHermes
 
 def is_a_video(filename):
     return '.mp4' in filename or '.avi' in filename
@@ -43,10 +43,12 @@ def play(parser, Hinv, media_file):
             ref_im = cv2.imread(media_file)
 
     pause = False
-    for t in range(timestamps[0], timestamps[-1]):
+    # for t in range(timestamps[0], timestamps[-1]):
+    for t in range(0, timestamps[-1]):
         if is_a_video(media_file):
             ret, ref_im = cap.read()
 
+        ids_t = []
         ref_im_copy = np.copy(ref_im)
         if t in timestamps:
             xys_t = parser.t_p_dict[t]
@@ -61,9 +63,9 @@ def play(parser, Hinv, media_file):
             TRAJ_i = to_image_frame(Hinv, traj_i)
             line_cv(ref_im_copy, TRAJ_i, (255, 255, 0), 2)
             cv2.circle(ref_im_copy, (UV_i[1], UV_i[0]), 5, (0, 0, 255), 2)
-            cv2.putText(ref_im_copy, '%d' % t, (30, 80), cv2.FONT_HERSHEY_SIMPLEX, 2, (0,0,255), 3)
 
-        cv2.imshow('OpenTraj', ref_im_copy)
+        cv2.putText(ref_im_copy, '%d' % t, (30, 80), cv2.FONT_HERSHEY_SIMPLEX, 2, (0,0,255), 3)
+        cv2.imshow('OpenTraj (Press ESC for exit)', ref_im_copy)
         delay_ms = 100
         key = cv2.waitKey(delay_ms * (1-pause)) & 0xFF
         if key == 27:     # press ESCAPE to quit
@@ -82,10 +84,10 @@ if __name__ == '__main__':
     # media_file = os.path.join(opentraj_path, 'ETH/seq_eth/reference.png')
     # # media_file = os.path.join(opentraj_path, 'ETH/seq_eth/video.avi')
 
-    annot_file = os.path.join(opentraj_path, 'ETH/seq_hotel/obsmat.txt')
-    homog_file = os.path.join(opentraj_path, 'ETH/seq_hotel/H.txt')
-    media_file = os.path.join(opentraj_path, 'ETH/seq_hotel/reference.png')
-    media_file = os.path.join(opentraj_path, 'ETH/seq_hotel/video.avi')
+    # annot_file = os.path.join(opentraj_path, 'ETH/seq_hotel/obsmat.txt')
+    # homog_file = os.path.join(opentraj_path, 'ETH/seq_hotel/H.txt')
+    # media_file = os.path.join(opentraj_path, 'ETH/seq_hotel/reference.png')
+    # media_file = os.path.join(opentraj_path, 'ETH/seq_hotel/video.avi')
 
     # #============================ UCY =================================
     # parser = ParserETH()
@@ -116,7 +118,13 @@ if __name__ == '__main__':
     # media_file = os.path.join(opentraj_path, 'GC/reference.jpg')
     # homog_file = ''
 
-    parser.load(annot_file)
-    Hinv = np.linalg.inv(np.loadtxt(homog_file)) if os.path.exists(homog_file) else np.eye(3)
+    # ========================== HERMES =================================
+    parser = ParserHermes()
+    annot_file = os.path.join(opentraj_path, 'HERMES/Corridor-1D/uo-070-180-180/uo-070-180-180_combined_MB.txt')
+    media_file = os.path.join(opentraj_path, 'HERMES/cor-180.jpg')
+    homog_file = os.path.join(opentraj_path, 'HERMES/H.txt')
 
+    parser.load(annot_file)
+    Hinv = (np.loadtxt(homog_file)) if os.path.exists(homog_file) else np.eye(3)
+    # Hinv = np.linalg.inv(Hinv)
     play(parser, Hinv, media_file)
