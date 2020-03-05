@@ -34,10 +34,10 @@ class ParserHermes:
         self.max_t = 0
         self.min_t = 0  # fixed
         self.interval = 20  # fixed
-        self.min_x = 0
-        self.min_y = 0
-        self.max_x = 1920
-        self.max_y = 1080
+        self.min_x = +1000
+        self.min_y = +1000
+        self.max_x = -1
+        self.max_y = -1
         if filename:
             self.load(filename)
 
@@ -66,8 +66,8 @@ class ParserHermes:
                     if ts % down_sample != 0:
                         continue
 
-                    px = float(row[2])/100.
-                    py = float(row[4])/100.
+                    px = -float(row[3])/100.
+                    py = float(row[2])/100.
 
                     if ts < self.min_t: self.min_t = ts
                     if ts > self.max_t: self.max_t = ts
