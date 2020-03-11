@@ -7,6 +7,7 @@ from parser.parser_sdd import ParserSDD
 from parser.parser_gc  import ParserGC
 from parser.parser_hermes import ParserHermes
 
+
 def is_a_video(filename):
     return '.mp4' in filename or '.avi' in filename
 
@@ -43,12 +44,12 @@ def play(parser, Hinv, media_file):
             ref_im = cv2.imread(media_file)
 
     pause = False
+    ids_t = []
     # for t in range(timestamps[0], timestamps[-1]):
     for t in range(0, timestamps[-1]):
         if is_a_video(media_file):
             ret, ref_im = cap.read()
 
-        ids_t = []
         ref_im_copy = np.copy(ref_im)
         if t in timestamps:
             xys_t = parser.t_p_dict[t]
@@ -77,20 +78,20 @@ def play(parser, Hinv, media_file):
 if __name__ == '__main__':
     opentraj_path = '/home/cyrus/workspace2/OpenTraj'  # FIXME
     # #============================ ETH =================================
-    parser = ParserETH()
+    # parser = ParserETH()
 
     # annot_file = os.path.join(opentraj_path, 'ETH/seq_eth/obsmat.txt')
     # homog_file = os.path.join(opentraj_path, 'ETH/seq_eth/H.txt')
-    # media_file = os.path.join(opentraj_path, 'ETH/seq_eth/reference.png')
-    # # media_file = os.path.join(opentraj_path, 'ETH/seq_eth/video.avi')
+    # # media_file = os.path.join(opentraj_path, 'ETH/seq_eth/reference.png')
+    # media_file = os.path.join(opentraj_path, 'ETH/seq_eth/video.avi')
 
     # annot_file = os.path.join(opentraj_path, 'ETH/seq_hotel/obsmat.txt')
     # homog_file = os.path.join(opentraj_path, 'ETH/seq_hotel/H.txt')
-    # media_file = os.path.join(opentraj_path, 'ETH/seq_hotel/reference.png')
+    # # media_file = os.path.join(opentraj_path, 'ETH/seq_hotel/reference.png')
     # media_file = os.path.join(opentraj_path, 'ETH/seq_hotel/video.avi')
 
     # #============================ UCY =================================
-    # parser = ParserETH()
+    parser = ParserETH()
 
     # annot_file = os.path.join(opentraj_path, 'UCY/data_zara01/obsmat.txt')
     # homog_file = os.path.join(opentraj_path, 'UCY/data_zara01/H.txt')
@@ -105,6 +106,12 @@ if __name__ == '__main__':
     # annot_file = os.path.join(opentraj_path, 'UCY/st3_dataset/obsmat_px.txt')
     # media_file = os.path.join(opentraj_path, 'UCY/st3_dataset/reference.png')
     # homog_file = os.path.join(opentraj_path, 'UCY/st3_dataset/H_iw.txt')
+    # # homog_file = ''
+
+    annot_file = os.path.join(opentraj_path, 'UCY/st3_dataset/obsmat.txt')
+    homog_file = os.path.join(opentraj_path, 'UCY/st3_dataset/H.txt')
+    # media_file = os.path.join(opentraj_path, 'UCY/st3_dataset/reference.png')
+    media_file = os.path.join(opentraj_path, 'UCY/st3_dataset/video.avi')
 
     # #============================ SDD =================================
     # parser = ParserSDD()
@@ -119,12 +126,13 @@ if __name__ == '__main__':
     # homog_file = ''
 
     # ========================== HERMES =================================
-    parser = ParserHermes()
-    annot_file = os.path.join(opentraj_path, 'HERMES/Corridor-1D/uo-070-180-180/uo-070-180-180_combined_MB.txt')
-    media_file = os.path.join(opentraj_path, 'HERMES/cor-180.jpg')
-    homog_file = os.path.join(opentraj_path, 'HERMES/H.txt')
+    # parser = ParserHermes()
+    # annot_file = os.path.join(opentraj_path, 'HERMES/Corridor-1D/uo-070-180-180/uo-070-180-180_combined_MB.txt')
+    # media_file = os.path.join(opentraj_path, 'HERMES/cor-180.jpg')
+    # homog_file = os.path.join(opentraj_path, 'HERMES/H.txt')
 
     parser.load(annot_file)
-    Hinv = (np.loadtxt(homog_file)) if os.path.exists(homog_file) else np.eye(3)
-    # Hinv = np.linalg.inv(Hinv)
+    n_peds = len(parser.id_p_dict.keys())
+    Homog = (np.loadtxt(homog_file)) if os.path.exists(homog_file) else np.eye(3)
+    Hinv = np.linalg.inv(Homog)
     play(parser, Hinv, media_file)
