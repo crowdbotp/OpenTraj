@@ -26,7 +26,7 @@ class ParserGC:
 
     """
 
-    def __init__(self, filename=''):
+    def __init__(self, filename='', world_coord=False):
         self.id_p_dict = dict()
         self.id_v_dict = dict()
         self.id_t_dict = dict()
@@ -36,10 +36,14 @@ class ParserGC:
         self.max_t = 0
         self.min_t = 0  # fixed
         self.interval = 20  # fixed
-        self.min_x = 0
-        self.min_y = 0
-        self.max_x = 1920
-        self.max_y = 1080
+        self.min_x = 10000
+        self.min_y = 10000
+        self.max_x = 0
+        self.max_y = 0
+        self.world_coord = world_coord
+        self.Homog = [[4.97412897e-02, -4.24730883e-02, 7.25543911e+01],
+                      [1.45017874e-01, -3.35678711e-03, 7.97920970e+00],
+                      [1.36068797e-03, -4.98339188e-05, 1.00000000e+00]]
         if filename:
             self.load(filename)
 
@@ -52,6 +56,12 @@ class ParserGC:
     # FIXME
     def load_npz_file(self, filename):
         pass
+
+    def image_to_world(self, p):
+        pp = np.stack((p[:,0], p[:,1], np.ones(len(p))), axis=1)
+        PP = np.matmul(self.Homog, pp.T).T
+        P_normal = PP / np.repeat(PP[:, 2].reshape((-1, 1)), 3, axis=1)
+        return P_normal[:, :2]
 
     def load_raw_data(self, raw_data_path):
         """
@@ -78,8 +88,8 @@ class ParserGC:
             with open(person_trajectory_txt_path, 'r') as f:
                 trajectory_list = f.read().split()
                 for i in range(len(trajectory_list) // 3):
-                    px = int(trajectory_list[3 * i])     / 40  # / self.GC_IMAGE_WIDTH
-                    py = int(trajectory_list[3 * i + 1]) / 40  # / self.GC_IMAGE_HEIGHT
+                    py = float(trajectory_list[3 * i])
+                    px = float(trajectory_list[3 * i + 1])
                     ts = int(trajectory_list[3 * i + 2]) // self.interval
 
                     self.max_t = max(self.max_t, ts)
@@ -100,6 +110,8 @@ class ParserGC:
         for pid in self.id_p_dict:
             # print(pid)
             self.id_p_dict[pid] = np.array(self.id_p_dict[pid])
+            if self.world_coord:
+                self.id_p_dict[pid] = self.image_to_world(self.id_p_dict[pid])
             self.id_t_dict[pid] = np.array(self.id_t_dict[pid])
             self.id_v_dict[pid] = self.id_p_dict[pid][1:] - self.id_p_dict[pid][:-1]
             if len(self.id_p_dict[pid]) == 1:
@@ -107,6 +119,10 @@ class ParserGC:
             else:
                 self.id_v_dict[pid] = np.append(self.id_v_dict[pid], self.id_v_dict[pid][-1].reshape(1,2), axis=0)
 
+        if self.world_coord:
+            for tt in self.t_p_dict.keys():
+                self.t_p_dict[tt] = np.array(self.t_p_dict[tt])
+                self.t_p_dict[tt] = self.image_to_world(self.t_p_dict[tt])
         # show some message
         print('dataset loaded successfully. %d pedestrian_data_list size: ' % len(self.id_p_dict))
 
@@ -134,4 +150,15 @@ class ParserGC:
 
 if __name__ == '__main__':
     parser = ParserGC()
-    parser.create_dataset('/home/cyrus/workspace2/OpenTraj/GC/Annotation')
+    parser.create_dataset('/home/cyrus/workspace2/OpenTraj/GC/Annotation_world')
+    pnts = parser.get_all_points()
+    trjs = parser.get_all_trajs()
+    n_pnts = len(pnts)
+    n_trjs = len(parser.id_p_dict.items())
+    print('Found %d trajectories and totally %d points' % (n_trjs, n_pnts))
+    import matplotlib.pyplot as plt
+    for ii, tr in enumerate(trjs):
+        plt.plot(tr[:, 0], tr[:, 1])
+        if ii > 100: break
+    plt.show()
+

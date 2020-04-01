@@ -1,7 +1,6 @@
 import os
 import sys
 import numpy as np
-from builtins import ValueError
 
 
 class ParserETH:

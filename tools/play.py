@@ -66,6 +66,7 @@ def play(parser, Hinv, media_file):
             cv2.circle(ref_im_copy, (UV_i[1], UV_i[0]), 5, (0, 0, 255), 2)
 
         cv2.putText(ref_im_copy, '%d' % t, (30, 80), cv2.FONT_HERSHEY_SIMPLEX, 2, (0,0,255), 3)
+        cv2.namedWindow('OpenTraj (Press ESC for exit)', cv2.WINDOW_NORMAL)
         cv2.imshow('OpenTraj (Press ESC for exit)', ref_im_copy)
         delay_ms = 100
         key = cv2.waitKey(delay_ms * (1-pause)) & 0xFF
@@ -79,7 +80,7 @@ if __name__ == '__main__':
     opentraj_path = '/home/cyrus/workspace2/OpenTraj'  # FIXME
     # #============================ ETH =================================
     # parser = ParserETH()
-
+    #
     # annot_file = os.path.join(opentraj_path, 'ETH/seq_eth/obsmat.txt')
     # homog_file = os.path.join(opentraj_path, 'ETH/seq_eth/H.txt')
     # # media_file = os.path.join(opentraj_path, 'ETH/seq_eth/reference.png')
@@ -91,7 +92,7 @@ if __name__ == '__main__':
     # media_file = os.path.join(opentraj_path, 'ETH/seq_hotel/video.avi')
 
     # #============================ UCY =================================
-    parser = ParserETH()
+    # parser = ParserETH()
 
     # annot_file = os.path.join(opentraj_path, 'UCY/data_zara01/obsmat.txt')
     # homog_file = os.path.join(opentraj_path, 'UCY/data_zara01/H.txt')
@@ -108,10 +109,10 @@ if __name__ == '__main__':
     # homog_file = os.path.join(opentraj_path, 'UCY/st3_dataset/H_iw.txt')
     # # homog_file = ''
 
-    annot_file = os.path.join(opentraj_path, 'UCY/st3_dataset/obsmat.txt')
-    homog_file = os.path.join(opentraj_path, 'UCY/st3_dataset/H.txt')
-    # media_file = os.path.join(opentraj_path, 'UCY/st3_dataset/reference.png')
-    media_file = os.path.join(opentraj_path, 'UCY/st3_dataset/video.avi')
+    # annot_file = os.path.join(opentraj_path, 'UCY/st3_dataset/obsmat.txt')
+    # homog_file = os.path.join(opentraj_path, 'UCY/st3_dataset/H.txt')
+    # # media_file = os.path.join(opentraj_path, 'UCY/st3_dataset/reference.png')
+    # media_file = os.path.join(opentraj_path, 'UCY/st3_dataset/video.avi')
 
     # #============================ SDD =================================
     # parser = ParserSDD()
@@ -120,10 +121,16 @@ if __name__ == '__main__':
     # homog_file = ''
 
     # #============================ GC ==================================
-    # parser = ParserGC()
-    # annot_file = os.path.join(opentraj_path, 'GC/Annotation')
-    # media_file = os.path.join(opentraj_path, 'GC/reference.jpg')
-    # homog_file = ''
+    gc_world_coord = True
+    parser = ParserGC(world_coord=gc_world_coord)
+    annot_file = os.path.join(opentraj_path, 'GC/Annotation')  # image coordinate
+    if gc_world_coord:
+        homog_file = os.path.join(opentraj_path, 'GC/H-world.txt')
+        media_file = os.path.join(opentraj_path, 'GC/plan.png')
+    else:
+        homog_file = os.path.join(opentraj_path, 'GC/H-image.txt')
+        media_file = os.path.join(opentraj_path, 'GC/reference.jpg')
+
 
     # ========================== HERMES =================================
     # parser = ParserHermes()
