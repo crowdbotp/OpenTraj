@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Trial xmlns="https://github.com/amiryanj/OpenTraj">
+  <obstacles>
+    <obstacle>
+      <TrialObstacle>
+        <Lines>
+        </Lines>
+        <Points>
+        </Points>
+      </TrialObstacle>
+    </obstacle>
+  </obstacles>
+</Trial>

@@ -70,7 +70,7 @@ class ParserSDD:
                     if len(row) < 10: continue
 
                     id = round(float(row[0]))
-                    ts = float(row[5])
+                    ts = int(float(row[5]))
                     if ts % down_sample != 0: continue
 
                     xl = round(float(row[1]))
