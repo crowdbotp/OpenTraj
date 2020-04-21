@@ -17,7 +17,7 @@ ID FRAME X Y Z.
 # Experiments
 ## 1. Uni-directional Flow
 <!--- table generated using tablesgenerator.com/ --->
-![](figs_and_plots/uo.png)
+![](Corridor-1D/figs_and_plots/uo.png)
 
 | Name           	| b<sub>entrance</sub>(m) | b<sub>corridor</sub>(m) | b<sub>exit</sub>(m)	| N<sub>ped</sub> 	|
 |----------------	|------------	|------------	|--------	|-------	|
