@@ -47,11 +47,15 @@ Trajectory Prediction Benchmark and State-of-the-art
 - [MOT-Challenge](https://motchallenge.net): Multiple Object Tracking Benchmark
 
 ## Tools
-OpenTraj provids a set of tools to load / visualize and analyze the datasets. So far few datasets are supported.
+OpenTraj provids a set of tools to load, visualize and analyze the trajectory datasets. (So far few datasets are supported).
 #### 1. Parser
-Using python file in [parser](tools/parser) dir, you can load a dataset into a dataset object. This object then can be used to retrieve the trajectories, with different queries (by id, timestamp, ...).
+Using python files in [parser](tools/parser) dir, you can load a dataset into a dataset object. This object then can be used to retrieve the trajectories, with different queries (by id, timestamp, ...).
 #### 2. play.py
 Using [play.py](tools/play.py) script you can visualize a specific dataset, in a basic graphical interface.
+
+<p align='center'>
+  <img src='tools/doc/OpenTraj-ETH-play-example.png' width='400px'\>
+</p>
 
 ## Metrics
 **1. ADE** (T<sub>obs</sub>, T<sub>pred</sub>):
@@ -63,7 +67,6 @@ Average Displacement Error (ADE), also called Mean Euclidean Distance (MED), mea
 Final Displacement Error (FDE) measures the distance between final predicted position and the ground truth position at the corresponding time point. The function arguemnts are:
 - T<sub>obs</sub> : observation period
 - T<sub>pred</sub> : prediction period
-
 
 
 ## State-of-the-arts Trajectory Prediction Algorithms
