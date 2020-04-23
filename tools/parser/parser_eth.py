@@ -23,13 +23,16 @@ class ParserETH:
 
     """
 
-    def __init__(self, filename=''):
+    def __init__(self, filename='', groups_filename=''):
         self.id_p_dict = dict()
         self.id_v_dict = dict()
         self.id_t_dict = dict()
         self.id_label_dict = dict()  # FIXME
         self.t_id_dict = dict()
         self.t_p_dict = dict()
+        self.t_v_dict = dict()
+        self.groupmates = dict()
+        self.dataset_name = ''
         self.min_t = int(sys.maxsize)
         self.max_t = -1
         self.interval = -1
@@ -38,10 +41,10 @@ class ParserETH:
         self.max_x = 0
         self.max_y = 0
         if filename:
-            self.load(filename)
+            self.load(filename, groups_filename=groups_filename)
 
-    def load(self, filename, down_sample=1, delimit=' '):
-
+    def load(self, filename, down_sample=1, delimit=' ', groups_filename=''):
+        self.dataset_name = filename
         # to search for files in a folder?
         file_names = list()
         if '*' in filename:
@@ -89,14 +92,28 @@ class ParserETH:
                     self.id_t_dict[id].append(ts)
                     if ts not in self.t_p_dict:
                         self.t_p_dict[ts] = []
+                        self.t_v_dict[ts] = []
                         self.t_id_dict[ts] = []
                     self.t_p_dict[ts].append([px, py])
+                    self.t_v_dict[ts].append([vx, vy])
                     self.t_id_dict[ts].append(id)
 
         for pid in self.id_p_dict:
             self.id_p_dict[pid] = np.array(self.id_p_dict[pid])
             self.id_v_dict[pid] = np.array(self.id_v_dict[pid])
             self.id_t_dict[pid] = np.array(self.id_t_dict[pid])
+            self.groupmates[pid] = []
+
+        if groups_filename:
+            with open(groups_filename, 'r') as group_file:
+                content = group_file.read().splitlines()
+                for row in content:
+                    row = list(filter(None, row.split(' ')))
+                    ids = [int(id) for id in row]
+                    for id in ids:
+                        self.groupmates[id] = ids.copy()
+                        self.groupmates[id].remove(id)
+
 
         #  Find the time interval
         for pid, T in self.id_t_dict.items():
