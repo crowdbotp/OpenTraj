@@ -31,13 +31,17 @@ class ParserHermes:
         self.id_label_dict = dict()  # FIXME
         self.t_id_dict = dict()
         self.t_p_dict = dict()
+        self.t_v_dict = dict()
+        self.groupmates = dict()
+        self.dataset_name = ''
         self.max_t = 0
-        self.min_t = 0  # fixed
-        self.interval = 20  # fixed
+        self.min_t = 0
+        self.interval = 1  # fixed
+        self.fps = 16  # fixed
         self.min_x = +1000
         self.min_y = +1000
-        self.max_x = -1
-        self.max_y = -1
+        self.max_x = -1000
+        self.max_y = -1000
         if filename:
             self.load(filename)
 
@@ -92,7 +96,8 @@ class ParserHermes:
             for pid in self.id_p_dict:
                 self.id_p_dict[pid] = np.array(self.id_p_dict[pid])
                 self.id_t_dict[pid] = np.array(self.id_t_dict[pid])
-                self.id_v_dict[pid] = self.id_p_dict[pid][1:] - self.id_p_dict[pid][:-1]
+                self.id_v_dict[pid] = (self.id_p_dict[pid][1:] - self.id_p_dict[pid][:-1]) * self.fps
+                self.groupmates[pid] = []
                 if len(self.id_p_dict[pid]) == 1:
                     self.id_v_dict[pid] = np.zeros((1, 2), dtype=np.float64)
                 else:
@@ -112,9 +117,15 @@ class ParserHermes:
 
 
 if __name__ == '__main__':
-    parser = ParserHermes("../../HERMES/Bottleneck_Data/uo-180-070.txt")
+    import matplotlib.pyplot as plt
+    # parser = ParserHermes("../../HERMES/Corridor-1D/uo-300-300-200.txt")
+    parser = ParserHermes("../../HERMES/Corridor-2D/boa-300-050-070.txt")
     n_ped = len(parser.id_p_dict.items())
-    if n_ped:
-        print("HermesParser successfully loaded file and found %d pedestrians" % n_ped)
-    else:
+    if not n_ped:
         print("HermesParser failed loading file(s)")
+        exit(1)
+    print("HermesParser successfully loaded file and found %d pedestrians" % n_ped)
+
+    for key, traj in parser.id_p_dict.items():
+        plt.plot(traj[:, 0], traj[:, 1])
+    plt.show()
