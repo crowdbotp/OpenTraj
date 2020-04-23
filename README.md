@@ -1,7 +1,6 @@
 # OpenTraj
 Trajectory Prediction Benchmark and State-of-the-art
 
-
 ## Table of Public Available Trajectory Datasets
 
 | Sample	                           | Name |	\#Trajs | Coord | FPS |	Density |	\*\*\*\*\*\*Description\*\*\*\*\*\* |	REF |
@@ -47,6 +46,12 @@ Trajectory Prediction Benchmark and State-of-the-art
 - [Trajnet](http://trajnet.stanford.edu/): Trajectory Forecasting Challenge
 - [MOT-Challenge](https://motchallenge.net): Multiple Object Tracking Benchmark
 
+## Tools
+OpenTraj provids a set of tools to load / visualize and analyze the datasets. So far few datasets are supported.
+#### 1. Parser
+Using python file in [parser](tools/parser) dir, you can load a dataset into a dataset object. This object then can be used to retrieve the trajectories, with different queries (by id, timestamp, ...).
+#### 2. play.py
+Using [play.py](tools/play.py) script you can visualize a specific dataset, in a basic graphical interface.
 
 ## Metrics
 **1. ADE** (T<sub>obs</sub>, T<sub>pred</sub>):
@@ -69,6 +74,8 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 | [Social-LSTM]() <sup>[2](#references)</sup>                                       | 1.09 / 2.35  | 0.79 / 1.76  |
 | [Social-GAN](github.com/agrimgupta92/sgan) <sup>[REF](#references)</sup>    | 0.77 / 1.38 | 0.70 / 1.43  |
 | [Social-Ways](github.com/amiryanj/socialways) <sup>[REF](#references)</sup> | 0.39 / 0.64  | 0.39 / 0.66  |
+`TBC`
+<!-- 
 | [Social-Attention]() <sup>[REF](#references)</sup>                                  | ?  | ?  |
 | [SoPhie]() <sup>[REF]()</sup>                                            | ?  | ?  |
 | [CIDNN](github.com/svip-lab/CIDNN) <sup>[REF]()</sup>            | ?  | ?  |
@@ -80,7 +87,7 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 | [MX-LSTM]() <sup>[REF]()</sup>            | ?  | ?  |
 | [Social-BiGAT]() <sup>[REF]()</sup>            | ?  | ?  |
 | [SR-LSTM]() <sup>[REF]()</sup>            | ?  | ?  |
-
+-->
 
 &ast; The values are in meter, calculated with ADE(T<sub>obs</sub>=3.2<sub>s</sub>, T<sub>pred</sub>=4.8<sub>s</sub>) and FDE(T<sub>obs</sub>=3.2<sub>s</sub>, T<sub>pred</sub>=4.8<sub>s</sub>).
 <!--% Social Force => (https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=5995468) -->
@@ -98,6 +105,8 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 -->
 
 #### 2. UCY Dataset
+`TBC`
+<!-- 
 | Method                                              | ZARA01 (ADE/FDE) | ZARA02 (ADE/FDE) | Students (ADE/FDE) |
 | ------------------------------------------------------------------------------ | -- | -- | -- |
 | [Social-Force]() <sup>[1](#references)</sup>                                   | ?  | ?  | ?  |
@@ -110,47 +119,54 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 | [ConstVel]() <sup>[REF]()</sup>                                                | ?  | ?  | ?  |
 | [SoPhie]() <sup>[REF]()</sup>                                                  | ?  | ?  | ?  |
 | [Social-Ways](github.com/amiryanj/socialways) <sup>[REF](#references)</sup>    | ?  | ?  | ?  |
-| [Peeking Into the Future]() <sup>[REF]()</sup>                                 |  ? | ?  | ?  |
+| [Peeking Into the Future]() <sup>[REF]()</sup>                                 | ?  | ?  | ?  |
 | [SS-LSTM]() <sup>[REF]()</sup>                                                 | ?  | ?  | ?  |
 | [Social-BiGAT]() <sup>[REF]()</sup>                                            | ?  | ?  | ?  |
 | [SR-LSTM]() <sup>[REF]()</sup>                                                 | ?  | ?  | ?  |
+-->
 
+#### 3. Other Datasets
+- Stanford Drone Dataset (SDD)
 
-#### 3. Stanford Drone Dataset (SDD)
-- [Social-Etiquette](https://infoscience.epfl.ch/record/230262/files/ECCV16social.pdf)
-- [DESIRE](http://openaccess.thecvf.com/content_cvpr_2017/papers/Lee_DESIRE_Distant_Future_CVPR_2017_paper.pdf)
-- [SoPhie](http://openaccess.thecvf.com/content_CVPR_2019/papers/Sadeghian_SoPhie_An_Attentive_GAN_for_Predicting_Paths_Compliant_to_Social_CVPR_2019_paper.pdf)
-- [MATF (Multi-Agent Tensor Fusion)](http://openaccess.thecvf.com/content_CVPR_2019/papers/Zhao_Multi-Agent_Tensor_Fusion_for_Contextual_Trajectory_Prediction_CVPR_2019_paper.pdf)
-- [Best of Many](http://openaccess.thecvf.com/content_cvpr_2018/papers/Bhattacharyya_Accurate_and_Diverse_CVPR_2018_paper.pdf)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :small_blue_diamond: [Social-Etiquette](https://infoscience.epfl.ch/record/230262/files/ECCV16social.pdf)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :small_blue_diamond: [DESIRE](http://openaccess.thecvf.com/content_cvpr_2017/papers/Lee_DESIRE_Distant_Future_CVPR_2017_paper.pdf)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :small_blue_diamond: [SoPhie](http://openaccess.thecvf.com/content_CVPR_2019/papers/Sadeghian_SoPhie_An_Attentive_GAN_for_Predicting_Paths_Compliant_to_Social_CVPR_2019_paper.pdf)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :small_blue_diamond: [MATF](http://openaccess.thecvf.com/content_CVPR_2019/papers/Zhao_Multi-Agent_Tensor_Fusion_for_Contextual_Trajectory_Prediction_CVPR_2019_paper.pdf)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :small_blue_diamond: [Best of Many](http://openaccess.thecvf.com/content_cvpr_2018/papers/Bhattacharyya_Accurate_and_Diverse_CVPR_2018_paper.pdf)
 
-#### 4. Grand Central Station (GC) Dataset
-- [CIDNN](http://openaccess.thecvf.com/content_cvpr_2018/papers/Xu_Encoding_Crowd_Interaction_CVPR_2018_paper.pdf)
+- Grand Central Station (GC):
 
-#### 5. KITI
-- [R2P2](http://openaccess.thecvf.com/content_ECCV_2018/papers/Nicholas_Rhinehart_R2P2_A_ReparameteRized_ECCV_2018_paper.pdf)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :small_blue_diamond: [CIDNN](http://openaccess.thecvf.com/content_cvpr_2018/papers/Xu_Encoding_Crowd_Interaction_CVPR_2018_paper.pdf)
+
+- KITI
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :small_blue_diamond: [R2P2](http://openaccess.thecvf.com/content_ECCV_2018/papers/Nicholas_Rhinehart_R2P2_A_ReparameteRized_ECCV_2018_paper.pdf)
+
+## Collaboration
+Are you interested in collaboration on OpenTraj? Send an email to [me](mailto:amiryan.j@gmail.com?subject=OpenTraj) titled *OpenTraj*.
 
 ## References
-&ast; ordered by time
-
+#### (A) Main References:
 1. Who are you with and Where are you going? (Social Force), Yamaguchi et al. CVPR 2011. [paper]()
 2. Social LSTM: Human trajectory prediction in crowded spaces, Alahi et al. CVPR 2016. [paepr]()
 5. Learning social etiquette: Human trajectory understanding in crowded scenes, Robicquet et al. ECCV 2016. [paper](https://infoscience.epfl.ch/record/230262/files/ECCV16social.pdf) 
-- Desire: Distant future prediction in dynamic scenes with interacting agents, Lee et al. CVPR 2017. [paper](http://openaccess.thecvf.com/content_cvpr_2017/papers/Lee_DESIRE_Distant_Future_CVPR_2017_paper.pdf)
 3. Social GAN: Socially Acceptable Trajectories with Generative Adversarial Networks, Gupta et al. CVPR 2018. [paper]()
 4. Social Ways: Learning Multi-Modal Distributions of Pedestrian Trajectories with GANs, Amirian et al. CVPR 2019. [paper](), [code]()
 
-
+#### [Complete List]() `TBA`
+<!--
+- Desire: Distant future prediction in dynamic scenes with interacting agents, Lee et al. CVPR 2017. [paper](http://openaccess.thecvf.com/content_cvpr_2017/papers/Lee_DESIRE_Distant_Future_CVPR_2017_paper.pdf)
 - Sophie: An attentive gan for predicting paths compliant to social and physical constraints, Sadeghian et al. CVPR 2019. [paper](https://arxiv.org/pdf/1806.01482.pdf)
-
 - [MATF (Multi-Agent Tensor Fusion)](http://openaccess.thecvf.com/content_CVPR_2019/papers/Zhao_Multi-Agent_Tensor_Fusion_for_Contextual_Trajectory_Prediction_CVPR_2019_paper.pdf)
 - [Best of Many](http://openaccess.thecvf.com/content_cvpr_2018/papers/Bhattacharyya_Accurate_and_Diverse_CVPR_2018_paper.pdf)
+-->
 
-
-#### Surveys
-1. A survey on motion prediction and risk assessment for intelligent vehicles, ROBOMECH 2014. [paper](https://core.ac.uk/download/pdf/81530180.pdf)
-2. Trajectory data mining: an overview, TIST 2015. [paper](https://www.microsoft.com/en-us/research/wp-content/uploads/2015/09/TrajectoryDataMining-tist-yuzheng.pdf)
-3. Survey on Vision-Based Path Prediction, DAPI 2018. [arxiv](https://arxiv.org/abs/1811.00233)
-4. A literature review on the prediction of pedestrian behavior in urban scenarios, ITSC 2018. [paper](https://ieeexplore.ieee.org/abstract/document/8569415)
-5. Autonomous vehicles that interact with pedestrians: A survey of theory and practice, ITS 2019. [arxiv](https://arxiv.org/abs/1805.11773)
-6. Human Motion Trajectory Prediction: A Survey, IJRR 2019 [arxiv](https://arxiv.org/abs/1905.06113)
-7. A Survey on Path Prediction Techniques for Vulnerable Road Users: From Traditional to Deep-Learning Approaches, ITSC 2019. [paper](https://ieeexplore.ieee.org/abstract/document/8917053)
+#### (B) Surveys:
+&ast; ordered by time
+- A Survey on Path Prediction Techniques for Vulnerable Road Users: From Traditional to Deep-Learning Approaches, ITSC 2019. [paper](https://ieeexplore.ieee.org/abstract/document/8917053)
+- Human Motion Trajectory Prediction: A Survey, IJRR 2019 [arxiv](https://arxiv.org/abs/1905.06113)
+- Autonomous vehicles that interact with pedestrians: A survey of theory and practice, ITS 2019. [arxiv](https://arxiv.org/abs/1805.11773)
+- A literature review on the prediction of pedestrian behavior in urban scenarios, ITSC 2018. [paper](https://ieeexplore.ieee.org/abstract/document/8569415)
+- Survey on Vision-Based Path Prediction, DAPI 2018. [arxiv](https://arxiv.org/abs/1811.00233)
+- Trajectory data mining: an overview, TIST 2015. [paper](https://www.microsoft.com/en-us/research/wp-content/uploads/2015/09/TrajectoryDataMining-tist-yuzheng.pdf)
+- A survey on motion prediction and risk assessment for intelligent vehicles, ROBOMECH 2014. [paper](https://core.ac.uk/download/pdf/81530180.pdf)
