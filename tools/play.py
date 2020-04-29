@@ -79,12 +79,12 @@ def play(parser, Hinv, media_file):
 if __name__ == '__main__':
     opentraj_path = '/home/cyrus/workspace2/OpenTraj'  # FIXME
     # #============================ ETH =================================
-    # parser = ParserETH()
-    #
-    # annot_file = os.path.join(opentraj_path, 'ETH/seq_eth/obsmat.txt')
-    # homog_file = os.path.join(opentraj_path, 'ETH/seq_eth/H.txt')
-    # # media_file = os.path.join(opentraj_path, 'ETH/seq_eth/reference.png')
-    # media_file = os.path.join(opentraj_path, 'ETH/seq_eth/video.avi')
+    parser = ParserETH()
+
+    annot_file = os.path.join(opentraj_path, 'ETH/seq_eth/obsmat.txt')
+    homog_file = os.path.join(opentraj_path, 'ETH/seq_eth/H.txt')
+    # media_file = os.path.join(opentraj_path, 'ETH/seq_eth/reference.png')
+    media_file = os.path.join(opentraj_path, 'ETH/seq_eth/video.avi')
 
     # annot_file = os.path.join(opentraj_path, 'ETH/seq_hotel/obsmat.txt')
     # homog_file = os.path.join(opentraj_path, 'ETH/seq_hotel/H.txt')
@@ -121,20 +121,20 @@ if __name__ == '__main__':
     # homog_file = ''
 
     # #============================ GC ==================================
-    gc_world_coord = True
-    parser = ParserGC(world_coord=gc_world_coord)
-    annot_file = os.path.join(opentraj_path, 'GC/Annotation')  # image coordinate
-    if gc_world_coord:
-        homog_file = os.path.join(opentraj_path, 'GC/H-world.txt')
-        media_file = os.path.join(opentraj_path, 'GC/plan.png')
-    else:
-        homog_file = os.path.join(opentraj_path, 'GC/H-image.txt')
-        media_file = os.path.join(opentraj_path, 'GC/reference.jpg')
-
+    # gc_world_coord = True
+    # parser = ParserGC(world_coord=gc_world_coord)
+    # annot_file = os.path.join(opentraj_path, 'GC/Annotation')  # image coordinate
+    # if gc_world_coord:
+    #     homog_file = os.path.join(opentraj_path, 'GC/H-world.txt')
+    #     media_file = os.path.join(opentraj_path, 'GC/plan.png')
+    # else:
+    #     homog_file = os.path.join(opentraj_path, 'GC/H-image.txt')
+    #     media_file = os.path.join(opentraj_path, 'GC/reference.jpg')
 
     # ========================== HERMES =================================
     # parser = ParserHermes()
-    # annot_file = os.path.join(opentraj_path, 'HERMES/Corridor-1D/uo-070-180-180/uo-070-180-180_combined_MB.txt')
+    # annot_file = os.path.join(opentraj_path, 'HERMES/Corridor-1D/uo-070-180-180.txt')
+    # annot_file = os.path.join(opentraj_path, 'HERMES/Corridor-2D/boa-300-050-070.txt')
     # media_file = os.path.join(opentraj_path, 'HERMES/cor-180.jpg')
     # homog_file = os.path.join(opentraj_path, 'HERMES/H.txt')
 
