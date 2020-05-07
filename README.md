@@ -3,8 +3,6 @@ Trajectory Prediction Benchmark and State-of-the-art
 
 ## Public Available Trajectory Datasets
 
-
-
 <!--begin(table_main)-->
 <table>
   <tr>
@@ -114,25 +112,6 @@ Trajectory Prediction Benchmark and State-of-the-art
 <!--end(table_main)-->
 
 
-
-
-
-
-
-<!-- - [Waymo](https://waymo.com/open/)  -->
-<!-- - [KITTI](http://www.cvlibs.net/datasets/kitti/) -->
-<!-- - [TRAF](https://gamma.umd.edu/researchdirections/autonomousdriving/trafdataset/) -->
-<!-- - [ZTD](https://zen-traffic-data.net/english/outline/dataset.html) -->
-<!-- - [VRU](https://www.th-ab.de/ueber-uns/organisation/labor/kooperative-automatisierte-verkehrssysteme/trajectory-dataset) -->
-<!-- - [L-CAS](https://lcas.lincoln.ac.uk/wp/research/data-sets-software/l-cas-3d-point-cloud-people-dataset/) -->
-<!-- - [highD](https://www.highd-dataset.com/) -->
-<!-- - [InD](https://www.highd-dataset.com/) -->
-
-<!-- - [HERMES(Seyfried)](https://zenodo.org/record/1054017#.XdZ-d3FKi90)  -->
-<!-- - [VIRAT](http://viratdata.org/)  -->
-<!-- - [Edinburg](http://homepages.inf.ed.ac.uk/rbf/FORUMTRACKING/)  -->
-<!-- - [Town Center](https://megapixels.cc/datasets/oxford_town_centre/) -->
-
 #### Other Datasets
 - [NGSim](https://catalog.data.gov/dataset/next-generation-simulation-ngsim-vehicle-trajectories)
 - [Daimler](http://www.gavrila.net/Datasets/Daimler_Pedestrian_Benchmark_D/daimler_pedestrian_benchmark_d.html)
@@ -169,12 +148,11 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 
 
 ## State-of-the-art Trajectory Prediction Algorithms
+\* The numbers are derived from papers.
+- [ ] setup benchmarking 
+- [ ] update top 20 papers
+
 #### 1. ETH Dataset
-
-
-
-
-
 
 
 <!--begin(table_ETH)-->
@@ -186,11 +164,6 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 | [Social-Ways](github.com/amiryanj/socialways) <sup>[REF](#references)</sup> | 0.39 / 0.64 | 0.39 / 0.66 |   | 
 
 <!--end(table_ETH)-->
-
-
-
-
-
 
 `TBC`
 
