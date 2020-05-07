@@ -18,7 +18,7 @@ Trajectory Prediction Benchmark and State-of-the-art
     <td><a href='http://www.vision.ee.ethz.ch/en/datasets/'>[website]</a> <a href='https://ethz.ch/content/dam/ethz/special-interest/baug/igp/photogrammetry-remote-sensing-dam/documents/pdf/pellegrini09iccv.pdf'>[paper]</a> </td>
   </tr>
   <tr>
-    <td><img src='UCY/data_zara01/reference.png' width='350px'\></td>
+    <td><img src='UCY/zara01/reference.png' width='350px'\></td>
     <td>UCY</td>
     <td>3 scenes (Zara/Arxiepiskopi/University). Zara and University close to top view. Arxiepiskopi more inclined. <code>#Traj:[Peds=786]</code> <code>Coord=world</code> <code>FPS=2.5</code> <code>Density=?</code></td>
     <td><a href='https://graphics.cs.ucy.ac.cy/research/downloads/crowd-data'>[website]</a> <a href='https://onlinelibrary.wiley.com/doi/full/10.1111/j.1467-8659.2007.01089.x'>[paper]</a> </td>
@@ -130,7 +130,7 @@ Using python files in [parser](tools/parser) dir, you can load a dataset into a 
 Using [play.py](tools/play.py) script you can visualize a specific dataset, in a basic graphical interface.
 
 <p align='center'>
-  <img src='tools/doc/OpenTraj-ETH-play-example.png' width='400px'\>
+  <img src='doc/fig-opentraj-ui.gif' width='400px'\>
 </p>
 
 ## Metrics
