@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#pyqt
+build-*/
+*.user
+
 # Excel
 .~*xls
 
