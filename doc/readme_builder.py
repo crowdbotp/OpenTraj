@@ -85,7 +85,7 @@ def build_readme():
     widths = [350, 100, 500, 200]
 
     # FIXME: Build Table 1
-    excel_file_table_main = os.path.join(opentraj_root, "tools/doc/public-datasets.xls")
+    excel_file_table_main = os.path.join(opentraj_root, "doc/public-datasets.xls")
     df_main = pd.read_excel(excel_file_table_main, header=[0])
 
     # df_main.Description
@@ -141,9 +141,9 @@ def build_readme():
     cursor = end_ind_table_main
 
     # ETH Dataset
-    excel_file_table_benchmarks = os.path.join(opentraj_root, "tools/doc/opentraj-benchmarks.xls")
+    excel_file_table_benchmarks = os.path.join(opentraj_root, "doc/opentraj-benchmarks.xls")
     # Todo: one option is to upload the doc into dropbox and download it each time
-    # wget -P opentraj_root/tools/doc/ -N https://www.dropbox.com/s/fwkyrqv1bcnwye8/OpenTraj-Benchmark-Datasets.xlsx
+    # wget -P opentraj_root/doc/ -N https://www.dropbox.com/s/fwkyrqv1bcnwye8/OpenTraj-Benchmark-Datasets.xlsx
 
     df_ETH = pd.read_excel(excel_file_table_benchmarks, header=[0], sheet_name='ETH')
 
