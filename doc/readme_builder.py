@@ -110,7 +110,7 @@ def build_readme():
         if str(fps) != 'nan':
             items_table_main[ii][2] += " <code>FPS=%s</code>" % str(fps)
 
-        if str(density) != 'nan':
+        if str(density) != 'nan' and not '?' in str(density):
             items_table_main[ii][2] += " <code>Density=%s</code>" % str(density)
 
         refs = items_table_main[ii][3]

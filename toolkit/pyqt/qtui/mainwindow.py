@@ -2,11 +2,13 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.5.1
+# Created by: PyQt5 UI code generator 5.14.2
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -129,7 +131,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "OpenTraj"))
         self.gBoxModeSelector.setTitle(_translate("MainWindow", "Mode"))
         self.butVisualize.setToolTip(_translate("MainWindow", "Visualize tooltip"))
         self.butVisualize.setText(_translate("MainWindow", "Visualize"))
@@ -139,4 +141,3 @@ class Ui_MainWindow(object):
         self.butAnalysis.setText(_translate("MainWindow", "Analysis"))
         self.butPlay.setText(_translate("MainWindow", "Play | Pause"))
         self.labelTimestamp.setText(_translate("MainWindow", "0"))
-
