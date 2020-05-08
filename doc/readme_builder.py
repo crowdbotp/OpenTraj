@@ -74,12 +74,10 @@ def build_readme():
     # output_str = ''
 
     # Todo: find beginning and end of table 1
-    begin_str_table_main = '<!--begin(table_main)-->'
-    end_str_table_main = '<!--end(table_main)-->'
+    begin_str_table_main = '\n<!--begin(table_main)-->'
+    end_str_table_main = '<!--end(table_main)-->\n'
     begin_ind_table_main = input_str.rfind(begin_str_table_main)
     end_ind_table_main = input_str.rfind(end_str_table_main) + len(end_str_table_main)
-
-    widths = [350, 100, 500, 200]
 
     # FIXME: Build Table 1
     df_main = pd.read_excel(excel_file_table_datasets, header=[0])
@@ -92,8 +90,9 @@ def build_readme():
         img_str_begin = items_table_main[ii][0].rfind('(') + 1
         img_str_end = items_table_main[ii][0].rfind(')')
         if table_html_format:
+            cols_width = [350, 100, 500, 200]
             items_table_main[ii][0] = '<img src=\'%s\' width=\'%dpx\'\>' \
-                                      %(str(items_table_main[ii][0][img_str_begin:img_str_end]), widths[0])
+                                      %(str(items_table_main[ii][0][img_str_begin:img_str_end]), cols_width[0])
 
         if str(items_table_main[ii][2]) == 'nan':
             items_table_main[ii][2] = ''
@@ -129,13 +128,13 @@ def build_readme():
     skip_columns = []
 
 
-    print_to_readme(input_str[:begin_ind_table_main])
+    print_to_readme(input_str[:begin_ind_table_main], with_newline=False)
     print_to_readme(begin_str_table_main)
     if table_html_format:
         print_to_readme(build_table_html(headers_table_main, items_table_main))
     else:
         print_to_readme(build_table(headers_table_main, items_table_main))
-    print_to_readme(end_str_table_main)
+    print_to_readme(end_str_table_main, with_newline=False)
 
     cursor = end_ind_table_main
 
@@ -151,16 +150,16 @@ def build_readme():
     end_ind_table_ETH = input_str.rfind(end_str_table_ETH) + len(end_str_table_ETH)
 
     # Add texts before table - ETH
-    print_to_readme(input_str[cursor:begin_ind_table_ETH])
+    print_to_readme(input_str[cursor:begin_ind_table_ETH], with_newline=False)
     # return
     print_to_readme(begin_str_table_ETH)
     print_to_readme(build_table(headers_table_ETH, items_table_ETH))
-    print_to_readme(end_str_table_ETH)
+    print_to_readme(end_str_table_ETH, with_newline=False)
     cursor = end_ind_table_ETH
 
 
     # Append rest of the text
-    print_to_readme(input_str[cursor:])
+    print_to_readme(input_str[cursor:], with_newline=False)
 
 
 if __name__ == "__main__":

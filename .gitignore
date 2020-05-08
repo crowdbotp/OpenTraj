@@ -6,10 +6,13 @@ __pycache__/
 #pyqt
 build-*/
 *.user
+
+# readme
+.~*xls
+*.xlsx
 *__temp*
 
-# Excel
-.~*xls
+
 
 # C extensions
 *.so
