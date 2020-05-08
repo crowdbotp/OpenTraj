@@ -125,12 +125,12 @@ Trajectory Prediction Benchmark and State-of-the-art
 ## Tools
 OpenTraj provids a set of tools to load, visualize and analyze the trajectory datasets. (So far few datasets are supported).
 #### 1. Parser
-Using python files in [parser](tools/parser) dir, you can load a dataset into a dataset object. This object then can be used to retrieve the trajectories, with different queries (by id, timestamp, ...).
+Using python files in [parser](toolkit/parser) dir, you can load a dataset into a dataset object. This object then can be used to retrieve the trajectories, with different queries (by id, timestamp, ...).
 #### 2. play.py
-Using [play.py](tools/play.py) script you can visualize a specific dataset, in a basic graphical interface.
+Using [play.py](toolkit/play.py) script you can visualize a specific dataset, in a basic graphical interface.
 
 <p align='center'>
-  <img src='doc/fig-opentraj-ui.gif' width='400px'\>
+  <img src='doc/figs/fig-opentraj-ui.gif' width='400px'\>
 </p>
 
 ## Metrics
@@ -240,13 +240,13 @@ Are you interested in collaboration on OpenTraj? Send an email to [me](mailto:am
 
 ## References
 #### (A) Main References:
-1. Who are you with and Where are you going? (Social Force), Yamaguchi et al. CVPR 2011. [paper]()
-2. Social LSTM: Human trajectory prediction in crowded spaces, Alahi et al. CVPR 2016. [paepr]()
-5. Learning social etiquette: Human trajectory understanding in crowded scenes, Robicquet et al. ECCV 2016. [paper](https://infoscience.epfl.ch/record/230262/files/ECCV16social.pdf) 
-3. Social GAN: Socially Acceptable Trajectories with Generative Adversarial Networks, Gupta et al. CVPR 2018. [paper]()
-4. Social Ways: Learning Multi-Modal Distributions of Pedestrian Trajectories with GANs, Amirian et al. CVPR 2019. [paper](), [code]()
+- Who are you with and Where are you going? (Social Force), Yamaguchi et al. CVPR 2011. [paper]()
+- Social LSTM: Human trajectory prediction in crowded spaces, Alahi et al. CVPR 2016. [paepr]()
+- Learning social etiquette: Human trajectory understanding in crowded scenes, Robicquet et al. ECCV 2016. [paper](https://infoscience.epfl.ch/record/230262/files/ECCV16social.pdf) 
+- Social GAN: Socially Acceptable Trajectories with Generative Adversarial Networks, Gupta et al. CVPR 2018. [paper]()
+- Social Ways: Learning Multi-Modal Distributions of Pedestrian Trajectories with GANs, Amirian et al. CVPR 2019. [paper](), [code]()
 
-#### [Complete List]() `TBA`
+** A more complete list of references can be found [here](https://github.com/jiachenli94/Awesome-Interaction-aware-Trajectory-Prediction)
 <!--
 - Desire: Distant future prediction in dynamic scenes with interacting agents, Lee et al. CVPR 2017. [paper](http://openaccess.thecvf.com/content_cvpr_2017/papers/Lee_DESIRE_Distant_Future_CVPR_2017_paper.pdf)
 - Sophie: An attentive gan for predicting paths compliant to social and physical constraints, Sadeghian et al. CVPR 2019. [paper](https://arxiv.org/pdf/1806.01482.pdf)
