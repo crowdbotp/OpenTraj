@@ -16,8 +16,8 @@ pip install xlrd numpy pandas re2
 ```
 
 **Warning [3]**: The tables (`.xls` documents) are used **only** for building the readme. Any changes to those files will be overwritten by running the builder.
-You should modify the table files **only** from here (on dropbox.com):
+You should modify the table files **only** from here (on ethercalc.org):
 
-- [opentraj-public-datasets.xls](https://www.dropbox.com/scl/fi/ecv8x9xx6se5fr0kucrkb/opentraj-public-datasets.xls?dl=0&rlkey=cktzhxhmh5n3wfz4tey7gh5js)
-- [opentraj-benchmarks.xls](https://www.dropbox.com/scl/fi/94p19av3ar8zpq7v6xi34/opentraj-benchmarks.xls?dl=0&rlkey=onmjwfsjt5ry3p5liz5fd1o2t)
+- [opentraj-public-datasets.xls](https://ethercalc.org/5xdmtogai5l8)
+- [opentraj-benchmarks.xls](https://ethercalc.org/bzn1f11s4w2b)
 
