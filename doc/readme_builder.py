@@ -84,6 +84,11 @@ def build_readme():
 
     # df_main.Description
     headers_table_main = df_main.axes[1].values[:4].tolist()
+    description_header = ''.join(['&nbsp;' for i in range(30)]) +\
+                         'Description' +\
+                         ''.join(['&nbsp;' for i in range(30)])
+    headers_table_main[2] = description_header
+
     items_table_main = np.array(df_main.values[:, :4].tolist())
 
     for ii, row_i in enumerate(items_table_main):
@@ -113,14 +118,15 @@ def build_readme():
         if str(density) != 'nan' and not '?' in str(density):
             items_table_main[ii][2] += " <code>Density=%s</code>" % str(density)
 
-        refs = items_table_main[ii][3]
-        items_table_main[ii][3] = ''
-        occurs_name = [occ.group() for occ in re.finditer('\[(.+?)\]', refs)]
-        occurs_link = [occ.group() for occ in re.finditer('\((.+?)\)', refs)]
+        if table_html_format:
+            refs = items_table_main[ii][3]
+            items_table_main[ii][3] = ''
+            ref_name = [occ.group() for occ in re.finditer('\[(.+?)\]', refs)]
+            ref_link = [occ.group() for occ in re.finditer('\((.+?)\)', refs)]
+            for kk in range(len(ref_link)):
+                items_table_main[ii][3] += '<a href=\'%s\'>%s</a> ' % (ref_link[kk][1:-1], ref_name[kk][:])
 
-        for kk in range(len(occurs_link)):
-            items_table_main[ii][3] += '<a href=\'%s\'>%s</a> ' % (occurs_link[kk][1:-1], occurs_name[kk][:])
-        print(items_table_main[ii][3])
+        # print(items_table_main[ii][3])
 
     # selected_header_inds = [0, 1, 6, 7, 8]  # ['Sample', 'Name', 'Description', 'REF']
     # skip_columns = list(range(len(headers_table_main)))
