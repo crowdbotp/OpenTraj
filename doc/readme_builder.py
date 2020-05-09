@@ -57,7 +57,7 @@ def build_table(headers, items, skip_columns=[]):
         for jj in header_inds:
             # FIXME: remove it from here
             item_ij = str(items[ii][jj]) if str(items[ii][jj]) != 'nan' else ' '
-            item_ij = item_ij.replace('|', '')  # `|` characters cause mess!
+            item_ij = item_ij.replace('|', '').replace('\n', '')  # `|` characters cause mess!
             content_str += item_ij + ' | '
         content_str += '\n'
 
