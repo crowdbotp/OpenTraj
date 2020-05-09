@@ -84,9 +84,9 @@ def build_readme():
 
     # df_main.Description
     headers_table_main = df_main.axes[1].values[:4].tolist()
-    description_header = ''.join(['&nbsp;' for i in range(30)]) +\
+    description_header = ''.join(['&nbsp;' for i in range(50)]) +\
                          'Description' +\
-                         ''.join(['&nbsp;' for i in range(30)])
+                         ''.join(['&nbsp;' for i in range(50)])
     headers_table_main[2] = description_header
 
     items_table_main = np.array(df_main.values[:, :4].tolist())
