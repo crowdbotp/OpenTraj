@@ -1,9 +1,9 @@
 ## `readme_builder.py`
-This script is created to make the process of generating the table markdowns in main README.md automatic. In fact both the main table (public datasets) and benchmark tables are stored on a server in the following address:
+This script is created to automatize the process of generating the markdown tables in main `README.md`. In fact both main table (public datasets) and the benchmark tables are stored on a web spreadsheet, in the following address:
 - [opentraj-public-datasets.xls](https://ethercalc.org/5xdmtogai5l8)
 - [opentraj-benchmarks.xls](https://ethercalc.org/bzn1f11s4w2b)
 
-Then one can go change these tables (everyone with link has read/write permission). And then run the script to update the README file.
+One can modify these tables (everyone with those link has read/write permission). And then run the script to update the README file.
 
 #### Setup
 Before running the builder, make sure that you havethe following packages installed:
