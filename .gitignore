@@ -9,7 +9,7 @@ build-*/
 
 # readme
 .~*xls
-*.xlsx
+#*.xlsx
 *__temp*
 
 
