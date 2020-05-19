@@ -93,11 +93,12 @@ class ParserHermes:
                     self.t_p_dict[ts].append([px, py])
                     self.t_id_dict[ts].append(id)
 
+            # FIXME: this is already done in parser.__post_load__()
             for pid in self.id_p_dict:
                 self.id_p_dict[pid] = np.array(self.id_p_dict[pid])
                 self.id_t_dict[pid] = np.array(self.id_t_dict[pid])
-                self.id_v_dict[pid] = (self.id_p_dict[pid][1:] - self.id_p_dict[pid][:-1]) * self.fps
                 self.groupmates[pid] = []
+                self.id_v_dict[pid] = (self.id_p_dict[pid][1:] - self.id_p_dict[pid][:-1]) * self.fps
                 if len(self.id_p_dict[pid]) == 1:
                     self.id_v_dict[pid] = np.zeros((1, 2), dtype=np.float64)
                 else:

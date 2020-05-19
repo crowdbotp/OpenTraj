@@ -72,7 +72,7 @@ class Play:
             cv2.circle(self.bg_im, (pos[1], pos[0]), radius, color, width)
 
     def play(self, parser, Hinv, media_file):
-        timestamps = sorted(parser.t_p_dict.keys())
+        timestamps = sorted(parser.__t_p_dict__.keys())
 
         if os.path.exists(media_file):
             if self.is_a_video(media_file):
@@ -92,15 +92,15 @@ class Play:
             ref_im_copy = np.copy(ref_im)
             self.set_background_im(ref_im, t)
             if t in timestamps:
-                xys_t = parser.t_p_dict[t]
-                ids_t = parser.t_id_dict[t]
+                xys_t = parser.__t_p_dict__[t]
+                ids_t = parser.__t_id_dict__[t]
 
             for i, id in enumerate(ids_t):
                 xy_i = np.array(xys_t[i])
                 UV_i = self.to_image_frame(Hinv, xy_i)
 
                 # fetch entire trajectory
-                traj_i = parser.id_p_dict[id]
+                traj_i = parser.__id_p_dict__[id]
                 TRAJ_i = self.to_image_frame(Hinv, traj_i)
 
                 self.draw_trajectory(id, TRAJ_i, (255, 255, 0), 2)
