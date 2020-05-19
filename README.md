@@ -46,8 +46,9 @@ Trajectory Prediction Benchmark and State-of-the-art
 - [Trajnet](http://trajnet.stanford.edu/): Trajectory Forecasting Challenge
 - [MOT-Challenge](https://motchallenge.net): Multiple Object Tracking Benchmark
 
-## Tools
-OpenTraj provids a set of tools to load, visualize and analyze the trajectory datasets. (So far few datasets are supported).
+## Toolkit
+OpenTraj provids a set of tools to load, visualize and analyze the trajectory datasets. (So far multiple datasets are supported). To only download the toolkit click [here](https://downgit.github.io/#/home?url=https://github.com/amiryanj/OpenTraj/tree/master/toolkit))
+
 #### 1. Parser
 Using python files in [parser](toolkit/parser) dir, you can load a dataset into a dataset object. This object then can be used to retrieve the trajectories, with different queries (by id, timestamp, ...).
 #### 2. play.py
