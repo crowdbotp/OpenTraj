@@ -26,11 +26,11 @@ class ParserTrajnet(TrajectoryDataset):
             raise ValueError("No such file or directory: [%s]" % dataroot)
         elif not os.path.isdir(dataroot):
             annotation_files.append(dataroot)
-            self.dataset_name = os.path.splitext(os.path.basename(dataroot))[0]
+            self.__title__ = os.path.splitext(os.path.basename(dataroot))[0]
 
         # TODO: check with regular expression, e.g.: `ETH | Zara01`
         else:  # a directory
-            self.dataset_name = 'trajnet'
+            self.__title__ = 'trajnet'
             for root, dirs, files in os.walk(dataroot):
                 for file in files:
                     if file.endswith(".txt"):

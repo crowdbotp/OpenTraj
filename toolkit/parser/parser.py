@@ -40,7 +40,7 @@ class TrajectoryDataset:
         self.__id_g_dict__ = dict()  # list of group-mates
         self.__id_l_dict__ = dict()  # label of agent
         self.__id_fps_dict__ = dict()  # fps value, this trajectory is annotated with
-        self.__dataset_name__ = ''
+        self.__title__ = ''
         self.__ndim__ = 0
         # self.__interval__ = # deprecated => use (__id_t_dict__[pid][1] - __id_t_dict__[pid][0])
         self.__fps__ = 25   # default value => FIXME: should be updated by parser

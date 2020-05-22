@@ -21,18 +21,18 @@ class ParserETH(TrajectoryDataset):
             self.__load__(dataroot)
 
     def __load__(self, dataroot, down_sample=1, delimit=' ', groups_filename=''):
-        self.dataset_name = dataroot
+        self.__title__ = dataroot
         # to search for files in a folder?
         annotation_files = list()
         if not os.path.exists(dataroot):
             raise ValueError("No such file or directory: [%s]" % dataroot)
         elif not os.path.isdir(dataroot):
             annotation_files.append(dataroot)
-            self.dataset_name = os.path.splitext(os.path.basename(dataroot.replace('/obsmat.txt','')))[0]
+            self.__title__ = os.path.splitext(os.path.basename(dataroot.replace('/obsmat.txt', '')))[0]
 
         # TODO: check with regular expression, e.g.: `ETH | Zara01`
         else:  # a directory
-            self.dataset_name = 'ETH-UCY'
+            self.__title__ = 'ETH-UCY'
             for root, dirs, files in os.walk(dataroot):
                 for file in files:
                     if file.endswith(".txt"):

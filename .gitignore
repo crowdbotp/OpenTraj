@@ -1,3 +1,5 @@
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -11,7 +13,6 @@ build-*/
 .~*xls
 #*.xlsx
 *__temp*
-
 
 
 # C extensions
