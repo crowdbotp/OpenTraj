@@ -39,7 +39,7 @@ def build_table_html(headers, items, widths=[]):
     return out_str
 
 
-def build_table(headers, items, skip_columns=[]):
+def build_table_md(headers, items, skip_columns=[]):
     header_inds = [i for i in range(len(headers)) if i not in skip_columns]
     num_cols = len(header_inds)
     num_rows = len(items)
@@ -139,30 +139,31 @@ def build_readme():
     if table_html_format:
         print_to_readme(build_table_html(headers_table_main, items_table_main))
     else:
-        print_to_readme(build_table(headers_table_main, items_table_main))
+        print_to_readme(build_table_md(headers_table_main, items_table_main))
     print_to_readme(end_str_table_main, with_newline=False)
 
     cursor = end_ind_table_main
 
-    # ETH Dataset
-    df_ETH = pd.read_excel(excel_file_table_benchmark_eth, header=[0])
+    # Predicttion Benchmark Table:  ETH
+    # ==========================================
+    # df_ETH = pd.read_excel(excel_file_table_benchmark_eth, header=[0])
 
-    headers_table_ETH = df_ETH.axes[1].values.tolist()
-    items_table_ETH = df_ETH.values.tolist()
+    # headers_table_ETH = df_ETH.axes[1].values.tolist()
+    # items_table_ETH = df_ETH.values.tolist()
 
-    begin_str_table_ETH = '<!--begin(table_ETH)-->'
-    end_str_table_ETH = '<!--end(table_ETH)-->'
-    begin_ind_table_ETH = input_str.rfind(begin_str_table_ETH)
-    end_ind_table_ETH = input_str.rfind(end_str_table_ETH) + len(end_str_table_ETH)
-
-    # Add texts before table - ETH
-    print_to_readme(input_str[cursor:begin_ind_table_ETH], with_newline=False)
-    # return
-    print_to_readme(begin_str_table_ETH)
-    print_to_readme(build_table(headers_table_ETH, items_table_ETH))
-    print_to_readme(end_str_table_ETH, with_newline=False)
-    cursor = end_ind_table_ETH
-
+    # begin_str_table_ETH = '<!--begin(table_ETH)-->'
+    # end_str_table_ETH = '<!--end(table_ETH)-->'
+    # begin_ind_table_ETH = input_str.rfind(begin_str_table_ETH)
+    # end_ind_table_ETH = input_str.rfind(end_str_table_ETH) + len(end_str_table_ETH)
+    #
+    # # Add texts before table - ETH
+    # print_to_readme(input_str[cursor:begin_ind_table_ETH], with_newline=False)
+    #
+    # print_to_readme(begin_str_table_ETH)
+    # print_to_readme(build_table(headers_table_ETH, items_table_ETH))
+    # print_to_readme(end_str_table_ETH, with_newline=False)
+    # cursor = end_ind_table_ETH
+    # ========================================
 
     # Append rest of the text
     print_to_readme(input_str[cursor:], with_newline=False)
