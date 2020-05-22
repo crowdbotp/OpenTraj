@@ -1,7 +1,8 @@
 # OpenTraj
-Trajectory Prediction Benchmark and State-of-the-art
+### Human Trajectory Prediction Dataset Benchmark
+We introduce existing datasets for Human Trajectory Prediction (HTP) task, and also provide tools to load, visualize and analyze datasets. So far multiple datasets are supported.
 
-## Public Available Trajectory Datasets
+### Public Available Datasets
 
 <!--begin(table_main)-->
 | Sample | Name | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Ref | 
@@ -49,12 +50,13 @@ Trajectory Prediction Benchmark and State-of-the-art
 - [JackRabbot](https://jrdb.stanford.edu/): Detection And Tracking Dataset and Benchmark
 
 ## Toolkit
-OpenTraj provids a set of tools to load, visualize and analyze the trajectory datasets. (So far multiple datasets are supported). To only download the toolkit click [here](https://downgit.github.io/#/home?url=https://github.com/amiryanj/OpenTraj/tree/master/toolkit))
+To download the toolkit, separately in a zip file click [here](https://downgit.github.io/#/home?url=https://github.com/amiryanj/OpenTraj/tree/master/toolkit))
 
-#### 1. Parser
+#### 1. Parsers
 Using python files in [parser](toolkit/parser) dir, you can load a dataset into a dataset object. This object then can be used to retrieve the trajectories, with different queries (by id, timestamp, ...).
-#### 2. play.py
-Using [play.py](toolkit/play.py) script you can visualize a specific dataset, in a basic graphical interface.
+
+#### 2. Graphical User Interface
+A simple script with a pyqt GUI is developed [play.py](toolkit/play.py), and can be used to visualize a given dataset (the ones whose parsers are available):
 
 <p align='center'>
   <img src='doc/figs/fig-opentraj-ui.gif' width='400px'\>
@@ -83,11 +85,6 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 -->
 
 <!--begin(table_ETH)-->
-| Method | Univ (ADE/FDE)* | Hotel (ADE/FDE)* | REF | 
-|----|----|----|----|
-| [Social-Force]() | 0.67 / 1.52 | 0.52 / 1.03 | 0 | 
-| [Social-LSTM]() | 1.09 / 2.35 | 0.79 / 1.76 | 0 | 
-| [Social-GAN](github.com/agrimgupta92/sgan) | 0.77 / 1.38 | 0.70 / 1.43 | 0 | 
 
 <!--end(table_ETH)-->
 
@@ -126,8 +123,8 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 -->
 <!--
 #### 2. UCY Dataset
--->
 `TBC`
+-->
 <!--begin(table-UCY)-->
 <!-- 
 | Method                                              | ZARA01 (ADE/FDE) | ZARA02 (ADE/FDE) | Students (ADE/FDE) |
