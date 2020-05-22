@@ -1,0 +1,422 @@
+SYNTAX OF THE CAVIAR XML GROUND TRUTH FILES
+VN: Oct 7, 2005
+================================================================
+
+The grammar and meaning of the ground truth files is described below.
+
+First, some details about the video sequences and their labelling.
+
+* There are 78 sequences for a total of about 90K frames, with between 300-2500
+frames each, all hand-labelled.
+
+* The labelling was done by hand using a JAVA-based interactive tool.
+
+* Each sequence is labelled frame-by-frame. What connects the
+sequences is the tracked individuals and groups, which have
+a persistent and unique identifier in each sequence.
+
+* Each video frame has a set of tracked objects visible in that
+frame. The object is tightly surrounded by a bounding box, which
+also has a dominant orientation. Groups also list which individual
+boxes participate in the group.
+
+* Normally, each tracked individual or group will have a single
+context label which is recorded in every frame that the 
+person appears. The context will involve the person in a 
+sequence of situations, which are also labeled in each frame.
+The person will also have labelling about how much s/he is moving
+(inactive, active, walking, running).
+There are some additional labels as listed below.
+
+* Some areas of the sequences were not labelled (reception desk of
+the lobby sequences, minor corridor view of shopping centre 
+sequences) because these were observed with too poor quality or for
+too short of an interval.
+
+* Variability of the ground truth: Since the labeling was done by humans, 
+there is a natural variation in both the parameters and occurrence of the 
+labels, e.g. the positions and sizes of the bounding boxes, or when the box 
+or activity starts. Knowing the range of human variation will help with 
+comparison to automatic calculations of the statistics.
+To help assess this question, one of the datasets has three labelings by
+different individuals. For an analysis of these labelings , see:
+T. List, J. Bins, J. Vazquez, R. B. Fisher, "Performance Evaluating the 
+Evaluator", Proc. 2nd Joint IEEE Int. Workshop on Visual Surveillance and
+Performance Evaluation of Tracking and Surveillance,
+(VS-PETS), pp ***-***, Beijing, Oct 2005. 
+
+* We have taken the position of an omniscient labeler, so all contexts are
+labeled as they actually are, although the system may not be able to
+correctly label the context until many frames in the future.
+The main labeling difficulty is one of timing - when does one situation
+or context change into another.
+We have assumed that differences in this will be the sort of natural
+variation assessed as described above.
+The labeling of the roles/situations/contexts was problematic.
+It was often unclear how each of the labels was to be used.
+We attempted to maintain at least consistent labeling by coordinating
+and reviewing of labels by one person.
+Therefore, the symbolic labeling is based on a best-guess representation
+of the final activity model.
+
+* We have attempted to define a group as a set of individuals that are
+reacting to each other. This means that individuals may pass each other, 
+e.g. one behind the other, without interacting and thus not forming a group.
+The human labelers can usually make this judgment, but it is less
+likely that an automatic labeler will be able to distinguish
+all instances of interaction. Thus, there are probably going to be a lot 
+of false alarms on group box detection (i.e. individuals who are really 
+not interacting, but just passing closely).
+Similarly, we grouped individuals that were interacting independently of the
+distance between the individuals, starting from the frame in which they 
+first seemed to react to each other. For example, if two people wave while
+still quite distant and then turn to approach each other, the group box and
+labeling starts in the frame where the two noticed each other and initiated
+the waving.
+
+* Multiple versus unique labels: Should an individual (or a group) have more 
+than one role label and participate in more than one situation and context 
+at the same time? In labeling, we have decided only single classifications 
+apply in each frame.
+
+* In the lobby sequences, there are about 100 frames of a person 
+hand-signalling  the topic of the sequence at the start. These were 
+intended to be removed  but later we decided that they were useful data, too.
+
+* Because of JPEG compression, there are various compression artifacts 
+in the uncompressed image data. While this is an annoyance, it is typical
+of current stored image sequences, so we decided to work with the
+slightly degraded sequences.
+
+* Some tracked targets in 17 of the sequences have had additional information 
+about their head, gaze direction, hand, feet and shoulder positions added. 
+(Not all because we have no more time and money at the moment.)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  XML Description
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The hierarchy:
+
+<dataset name=FILENAME>
+  <frame number=FRAME_NUMBER>
+    <objectlist>
+
+      <object id=OBJECTNUMBER>
+        <orientation>ORIENTATION</orientation>
+        <box x=XCENTER y=YCENTER w=WIDTH h=HEIGHT/>
+	<body>
+	  <head evaluation=EVAL gaze=DIR occluded=OCCL size=RAD xc=XCENTER yc=YCENTER/>
+	  <shoulders>
+	      <right evaluation=EVAL occluded=OCCL xc=XCENTER yc=YCENTER/>
+	      <left evaluation=EVAL occluded=OCCL xc=XCENTER yc=YCENTER/>
+	  </shoulders>
+	  <hands>
+	      <right evaluation=EVAL occluded=OCCL size=RAD xc=XCENTER yc=YCENTER/>
+	      <left evaluation=EVAL occluded=OCCL size=RAD xc=XCENTER yc=YCENTER/>
+	  </hands>
+	  <feet>
+	      <right evaluation=EVAL occluded=OCCL size=RAD xc=XCENTER yc=YCENTER/>
+	      <left evaluation=EVAL occluded=OCCL size=RAD xc=XCENTER yc=YCENTER/>
+	  </feet>
+	</body>
+        <appearance>APPEARANCE_FIELD</appearance>      
+        <hypothesislist>
+
+          <hypothesis id=HYP_ID prev=PREV_ID evaluation=EVAL_ID>
+            <movement evaluation=MOV_EVAL>  MOVEMENT_FIELD </movement>
+            <role evaluation=ROLE_EVAL >    ROLE_FIELD     </role>
+            <situation evaluation=SIT_EVAL> SIT_FIELD      </situation>
+            <context evaluation=CONT_EVAL>  CONTEXT_FIELD  </context>
+          </hypothesis>
+
+          .........        Other hypotheses for this individual object
+          .........
+          .........
+
+        </hypothesislist>
+      </object>
+
+      .........        Other individual objects
+      .........
+      .........
+
+
+    </objectlist>
+
+    <grouplist>
+
+      <group id=GROUPNUMBER>
+        <orientation>ORIENTATION</orientation>
+        <box x=XCENTER y=YCENTER w=WIDTH h=HEIGHT/>
+        <appearance>GAPPEARANCE_FIELD</appearance>      
+        <members>MEMBER_LIST</members>
+        <hypothesislist>
+
+          <hypothesis id=HYP_ID prev=PREV_ID evaluation=EVAL_ID>
+            <movement evaluation=MOV_EVAL>  GMOVEMENT_FIELD </movement>
+            <role evaluation=ROLE_EVAL >    GROLE_FIELD     </role>
+            <situation evaluation=SIT_EVAL> GSIT_FIELD      </situation>
+            <context evaluation=CONT_EVAL>  GCONTEXT_FIELD  </context>
+          </hypothesis>
+
+          .........        Other hypotheses for this individual object
+          .........
+          .........
+
+        </hypothesislist>
+
+      </group>
+      .........        Other group objects
+      .........
+      .........
+    </grouplist>
+  </frame>
+</dataset>
+
+The fields in upper case above are numbers or specific text strings, and
+are defined below.
+
+The file contains two kinds of objects <object> and <group>. The first one 
+defines an individual person in the scene, while the second one defines a 
+group of persons in the scene. Objects are contained in an <objectlist> 
+while groups are contained in a <grouplist>
+
+The fields in an individual object are the same as the ones that appear 
+in the group object. The only additional field in the group object lists the
+group's individual box members (by individual Id).
+
+ The fields defined in <object> and <group> are
+ 
+   orientation: field that contains the main orientation of a person/s in 
+     degrees from 0..180
+   box: the center position and the dimensions of the bounding box that 
+     contains the person/s as pixel positions
+   body: a description of the person's head, hand, feet and shoulder positions
+   appearance: show the current visibility status of a person/s
+   hypothesislist: field that wraps up all of the probable hypotheses that 
+      describe the current situation.
+   hypothesis: a particular hypothesis.  
+
+An <object> or <group> could have more than one hypothesis. For the case of 
+the ground truth labelling there is only one hypothesis, and it's defined as:
+
+ 		<hypothesis id="1" prev="1" evaluation="1.0">
+
+For the first apperarence of a object/group the prev attribute is omitted. 
+The valid attributes are:
+
+         -id: a number that identifies the hypothesis.
+         -prev: the hypothesis id for the previous frame for this target
+         -evaluation: a floating point number that specifies the degree of 
+             confidence on that hypotheses.
+     
+Besides the attributes a hypothesis contain the following tags:
+
+	-context: the overall explanation of what is happening with respect 
+                   to the individual.
+	-situation: what the person is currently doing.
+	-role: what role the person has in the current situation (ie if 
+       		 there are more than one participant in the given situation, 
+       		 as a fight, meeting, etc.
+ 
+In the case of the ground truth labelling the evaluation of each tag is 
+always 1.0 for any object or group.
+ 
+	<movement evaluation="1.0">	MOVEMENT_FIELD </movement>
+	<role evaluation="1.0">		ROLE_FIELD     </role>
+	<situation evaluation="1.0">SIT_FIELD      </situation>
+	<context evaluation="1.0">	CONTEXT_FIELD  </context>
+
+Object Tags:
+
+The box tag:
+
+     <box x=XCENTER y=YCENTER w=WIDTH h=HEIGHT/>
+
+describes the current position of the object in the image with center at
+(XCENTER,YCENTER) and with box width WIDTH and height HEIGHT.
+
+The body component tags:
+
+	<body>
+	  <head evaluation=EVAL gaze=DIR occluded=OCCL size=RAD xc=XCENTER yc=YCENTER/>
+	  <shoulders>
+	      <right evaluation=EVAL occluded=OCCL xc=XCENTER yc=YCENTER/>
+	      <left evaluation=EVAL occluded=OCCL xc=XCENTER yc=YCENTER/>
+	  </shoulders>
+	  <hands>
+	      <right evaluation=EVAL occluded=OCCL size=RAD xc=XCENTER yc=YCENTER/>
+	      <left evaluation=EVAL occluded=OCCL size=RAD xc=XCENTER yc=YCENTER/>
+	  </hands>
+	  <feet>
+	      <right evaluation=EVAL occluded=OCCL size=RAD xc=XCENTER yc=YCENTER/>
+	      <left evaluation=EVAL occluded=OCCL size=RAD xc=XCENTER yc=YCENTER/>
+	  </feet>
+	</body>
+
+describe the position of various body features. The head, hand and feet features are modeled
+as circles, with center at (XCENTER,YCENTER) and with radius RAD. The left/right tags refer
+to the appropriate hand/foot/shoulder according to the tag nesting. The OCCL value is yes/no
+according to whether the feature is actually visible, of just inferred from the body position.
+The EVAL value is a floating point degree of confidence in the interval [0.0...1.0]. For the
+ground truth, it should always be 1. The shoulder feature is a line running through the
+vertices at (XCENTER,YCENTER) for the left and right shoulders. This should approximately
+be the projection of the 3D line through the balls of the target's shoulders.
+The 3D gaze direction vector is projected onto the image plane and lies at angle DIR with
+respect to the vertical.
+
+The appearance tag summarises the current visibility of a person in the 
+current frame:
+     
+     <appearance>APPEARANCE_FIELD</appearance>	
+     
+     APPEARANCE_FIELD:
+       APPEAR		The person has appeared for the first time 
+                        in this frame
+       DISAPPEAR	The last frame that the person is visible
+       OCCLUDED		The person is temporarily occluded 
+       VISIBLE 		The person does not meet one of the previous cases
+     
+The movement tag is:
+     
+     <movement evaluation=MOV_EVAL>  MOVEMENT_FIELD  </movement>
+     
+     MOVEMENT_FIELD:
+       INACTIVE	visible but not moving
+       ACTIVE	visible, moving but not translating across the image
+       WALKING	visible, moving, translating across the image slowly
+       RUNNING	visible, moving, translating across the image quickly
+
+     MOV_EVAL:
+       a floating point degree of confidence in the interval [0.0...1.0]
+     
+The role tag is:
+     
+     <role evaluation=ROLE_EVAL >    ROLE_FIELD     </role>
+     
+     ROLE_FIELD:
+       FIGHTER		fighter role
+       BROWSER		browser role
+       LEFT_VICTIM	left victim role
+       LEAVING_GROUP	leaving group role
+       WALKER		walker role
+       LEFT_OBJECT	left object role
+     
+     ROLE_EVAL:
+       a floating point degree of confidence in the interval [0.0...1.0]
+     
+The situation tag is:
+     
+     <situation evaluation=SIT_EVAL> SIT_FIELD      </situation>
+
+     SIT_FIELD:
+       MOVING		person moving around
+       INACTIVE		person in the same position
+       BROWSING		person browsing 
+       SHOP_ENTER		person going inside a store
+       SHOP_EXIT		person going out of a store
+     
+     SIT_EVAL:
+       a floating point degree of confidence in the interval [0.0...1.0]
+
+The context tag is:
+     
+     <context evaluation=CONT_EVAL>  CONTEXT_FIELD     </movement>
+
+     CONTEXT_FIELD:
+       BROWSING		person in a browsing context
+       INMOBILE		person in an immobile context
+       LEFT_OBJECT	object that has been left behind
+       WALKING		person in a walking context
+       DROP_DOWN	person in a drop down context
+       WINDOW_SHOP	person in a window shop context
+       SHOP_ENTER	person in a shop enter context
+       SHOP_EXIT	person in a shop exit context
+       SHOP_REENTER	person in a shop reenter context
+
+     CONT_EVAL:
+       a floating point degree of confidence in the interval [0.0...1.0]
+
+Group Tags:
+
+The box tag:
+
+     <box x=XCENTER y=YCENTER w=WIDTH h=HEIGHT/>
+
+Describes the current position of the object in the image with center at
+(XCENTER,YCENTER) and with width WIDTH and height HEIGHT.
+
+The appearance tag reflects the current visibility of a person in the 
+current frame:
+     
+     <appearance>APPEARANCE_FIELD</appearance>	
+     
+     APPEARANCE_FIELD:
+       APPEAR		The group has appeared for the first time in this frame
+       DISAPPEAR	The last frame that the group is visible
+     
+     
+The movement tag:
+     
+     <movement evaluation=MOV_EVAL>  GMOVEMENT_FIELD  </movement>
+
+     GMOVEMENT_FIELD:
+       INACTIVE	visible but not moving
+       ACTIVE	visible, moving but not translating across the image
+       MOVING	visible, moving, translating across the image
+     
+     MOV_EVAL:
+       a floating point degree of confidence in the interval [0.0...1.0]
+
+The role tag:
+     
+     <role evaluation=ROLE_EVAL >    GROLE_FIELD     </role>
+     
+     GROLE_FIELD:
+       FIGHTER		fighter role
+       BROWSER		browser role
+       LEFT_VICTIM	left victim role
+       LEAVING_OBJECT	leaving group role
+       WALKER		walker role
+       MEET		meet role
+
+     ROLE_EVAL:
+       a floating point degree of confidence in the interval [0.0...1.0]
+
+The situation tag:
+     
+     <situation evaluation=SIT_EVAL> GSITUATION_FIELD      </situation>
+     
+     GSITUATION_FIELD:
+       SPLIT      	group splits
+       FIGHT		group members are fighting 
+       JOIN		people meet and form a group
+       INTERACT		group members are interacting
+       LEFT_VICTIM	a victim is left behind
+       MOVE		group is moving around
+       INACTIVE		group is not active
+       LEFT_OBJECT	group split and one object was left behind
+       SHOP_ENTER	group going inside a store
+       SHOP_EXIT	group going out of a store
+       BROWSING		group is browsing
+
+     SIT_EVAL:
+       a floating point degree of confidence in the interval [0.0...1.0]
+     
+The context tag:
+     
+     <context evaluation=CONT_EVAL>  CONTEXT_FIELD     </context>
+
+     CONTEXT_FIELD:
+       WINDOW_SHOPPING	group moving around, browsing  and looking at windows
+       SHOP_ENTER	group going inside a store
+       SHOP_EXIT	group going out of a store
+       SHOP_RENTER	group leaving a store and going inside again
+       WALKING		group moving
+       LEFT_OBJECT	group split and one object was left behind
+       FIGHT		group members are fighting 
+       MEET		people meet and form a group
+
+     CONT_EVAL:
+       a floating point degree of confidence in the interval [0.0...1.0]
