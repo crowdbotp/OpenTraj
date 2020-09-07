@@ -6,7 +6,7 @@ import pathlib
 import numpy as np
 import pandas as pd
 
-from crowdscan.crowd.trajdataset import TrajDataset
+from toolkit.core.trajdataset import TrajDataset
 
 
 def load_ind(path, **kwargs):

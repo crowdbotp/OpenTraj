@@ -6,9 +6,9 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from crowdscan.crowd.trajdataset import TrajDataset
-from crowdscan.metrics.individual.path_length import path_efficiency
-from opentraj_benchmark.utils.histogram_sampler import normalize_samples_with_histogram
+from toolkit.core.trajdataset import TrajDataset
+from toolkit.benchmarking.metrics.individual.path_length import path_efficiency
+from toolkit.benchmarking.utils.histogram_sampler import normalize_samples_with_histogram
 
 
 def path_efficiency_index(trajlets_np: np.ndarray):
@@ -26,7 +26,7 @@ def path_efficiency_index(trajlets_np: np.ndarray):
 
 if __name__ == "__main__":
     import os, sys
-    from opentraj_benchmark.all_datasets import get_datasets, all_dataset_names, get_trajlets
+    from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names, get_trajlets
 
     opentraj_root = sys.argv[1]  # e.g. os.path.expanduser("~") + '/workspace2/OpenTraj'
     output_dir = sys.argv[2]  # e.g. os.path.expanduser("~") + '/Dropbox/OpenTraj-paper/exp/ver-0.2'

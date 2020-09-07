@@ -2,7 +2,7 @@
 # Email: amiryan.j@gmail.com
 
 
-from crowdscan.loader.utils.kalman_smoother import KalmanModel
+from toolkit.loaders.utils.kalman_smoother import KalmanModel
 import numpy as np
 import pandas as pd
 pd.options.mode.chained_assignment = None  # default='warn'

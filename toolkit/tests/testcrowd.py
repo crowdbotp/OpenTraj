@@ -1,4 +1,4 @@
-from crowdscan.crowd.trajdataset import TrajDataset
+from toolkit.core.trajdataset import TrajDataset
 from random import random
 
 def run():
@@ -37,9 +37,9 @@ def run():
     # traj = t.get_trajectories()
     # print("Trajectory:\n1:\n",traj)
 
-    t.reset_trajectory()
-    traj = t.get_trajectories()
-    print("\n3: reset \n",traj)
+    # t.reset_trajectory()
+    # traj = t.get_trajectories()
+    # print("\n3: reset \n",traj)
 
 
     print("\n\n-----------------------------\nTest crowd done\n-----------------------------")

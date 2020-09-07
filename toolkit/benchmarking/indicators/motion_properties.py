@@ -4,7 +4,7 @@ import os
 import sys
 import numpy as np
 import pandas as pd
-from opentraj_benchmark.utils.histogram_sampler import histogram_sampler, normalize_samples_with_histogram
+from toolkit.benchmarking.utils.histogram_sampler import histogram_sampler, normalize_samples_with_histogram
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -30,7 +30,7 @@ def acceleration_of_tarjs(trajlets_np: np.ndarray):
 
 
 if __name__ == "__main__":
-    from opentraj_benchmark.all_datasets import get_trajlets, all_dataset_names
+    from toolkit.benchmarking.load_all_datasets import get_trajlets, all_dataset_names
 
     opentraj_root = sys.argv[1]  # e.g. os.path.expanduser("~") + '/workspace2/OpenTraj'
     output_dir = sys.argv[2]  # e.g. os.path.expanduser("~") + '/Dropbox/OpenTraj-paper/exp/ver-0.2'

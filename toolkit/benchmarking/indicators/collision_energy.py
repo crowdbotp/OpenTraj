@@ -13,11 +13,11 @@ import itertools
 import seaborn as sns
 import pandas as pd
 from copy import deepcopy
-from crowdscan.loader.loader_eth import loadETH
-from crowdscan.crowd.trajdataset import TrajDataset
-from opentraj_benchmark.all_datasets import get_datasets, all_dataset_names
-from opentraj_benchmark.utils.histogram_sampler import histogram_sampler
-from opentraj_benchmark.trajlet import split_trajectories
+from toolkit.loaders.loader_eth import loadETH
+from toolkit.core.trajdataset import TrajDataset
+from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names
+from toolkit.benchmarking.utils.histogram_sampler import histogram_sampler
+from toolkit.core.trajlet import split_trajectories
 
 #calculate DCA, TTCA for each agent at time t
 #find min ttc, dca, energy for each agent with respect to all other agent at time t

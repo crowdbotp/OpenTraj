@@ -7,20 +7,20 @@ import yaml
 import numpy as np
 import pandas as pd
 
-from crowdscan.crowd.trajdataset import TrajDataset, merge_datasets
-from crowdscan.loader.loader_Edinburgh import loadEdinburgh
-from crowdscan.loader.loader_eth import loadETH
-from crowdscan.loader.loader_crowds import load_Crowds
-from crowdscan.loader.loader_gc import loadGC
-from crowdscan.loader.loader_hermes import loadHermes
-from crowdscan.loader.loader_ind import load_ind
-from crowdscan.loader.loader_kitti import loadKITTI
-from crowdscan.loader.loader_lcas import loadLCAS
-from crowdscan.loader.loader_pets import loadPETS
-from crowdscan.loader.loader_town import loadTownCenter
-from crowdscan.loader.loader_sdd import loadSDD_single, loadSDD_all
-from crowdscan.loader.loader_wildtrack import loadWildTrack
-from crowdscan.loader.loader_trajnet import loadTrajNet
+from toolkit.core.trajdataset import TrajDataset, merge_datasets
+from toolkit.loaders.loader_Edinburgh import loadEdinburgh
+from toolkit.loaders.loader_eth import loadETH
+from toolkit.loaders.loader_crowds import load_Crowds
+from toolkit.loaders.loader_gc import loadGC
+from toolkit.loaders.loader_hermes import loadHermes
+from toolkit.loaders.loader_ind import load_ind
+from toolkit.loaders.loader_kitti import loadKITTI
+from toolkit.loaders.loader_lcas import loadLCAS
+from toolkit.loaders.loader_pets import loadPETS
+from toolkit.loaders.loader_town import loadTownCenter
+from toolkit.loaders.loader_sdd import loadSDD_single, loadSDD_all
+from toolkit.loaders.loader_wildtrack import loadWildTrack
+from toolkit.loaders.loader_trajnet import loadTrajNet
 
 all_dataset_names = [
     'ETH-Univ',
@@ -65,8 +65,8 @@ all_dataset_names = [
     'BN-1d-w180',
     'BN-2d-w160'
 ]
-from opentraj_benchmark.constvel import const_vel
-from opentraj_benchmark.trajlet import split_trajectories
+from toolkit.baselines.constvel import const_vel
+from toolkit.core.trajlet import split_trajectories
 
 
 trajnet_dataset_names = [

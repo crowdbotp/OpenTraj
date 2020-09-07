@@ -17,9 +17,9 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Ellipse
 import seaborn as sns
 
-from crowdscan.crowd.trajdataset import TrajDataset
-from opentraj_benchmark.trajlet import split_trajectories
-from opentraj_benchmark.all_datasets import get_datasets, all_dataset_names, get_trajlets
+from toolkit.core.trajdataset import TrajDataset
+from toolkit.core.trajlet import split_trajectories
+from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names, get_trajlets
 
 
 def draw_ellipse(position, covariance, ax=None, **kwargs):

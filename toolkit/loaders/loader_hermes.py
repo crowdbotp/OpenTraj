@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import sys
 import os
-from crowdscan.crowd.trajdataset import TrajDataset
+from toolkit.core.trajdataset import TrajDataset
 
 
 def loadHermes(path, **kwargs):

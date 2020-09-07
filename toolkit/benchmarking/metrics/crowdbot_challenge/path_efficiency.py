@@ -1,5 +1,5 @@
-from crowdscan.crowd.trajdataset import TrajDataset
-from crowdscan.metrics.individual import motion
+from toolkit.core.trajdataset import TrajDataset
+from toolkit.benchmarking.metrics.individual import motion
 
 import numpy
 import pandas
@@ -13,7 +13,7 @@ import pandas
 # The metrics is given below: Trtg = Trobot_alone/Tcrowded
 
 # def relative_time_to_goal(reference_trajectory: trajectory, crowded_trajectory: trajectory, main_direction = "pos_x", start_position = -40, end_position = 40):
-def relative_time_to_goal(reference_trajectory: TrajectoryDataset, crowded_trajectory: TrajDataset, robot_id: int):
+def relative_time_to_goal(reference_trajectory: TrajDataset, crowded_trajectory: TrajDataset, robot_id: int):
     # actual_traj = reference_trajectory[numpy.logical_and(reference_trajectory[main_direction]>start_position...
     #     ..., reference_trajectory[main_direction]<end_position)].reset_index()['frame id']
     
@@ -35,7 +35,7 @@ def relative_time_to_goal(reference_trajectory: TrajectoryDataset, crowded_traje
     # Relative path length
     # The relative path length compares the length of the path taken by the robot to reach its goal when a crowd is present or not. 
     # Mathematically it is given by the following formula: Lrp = Lrobot_alone/Lcrowded
-def relative_path_length(reference_trajectory: TrajectoryDataset, crowded_trajectory: TrajectoryDataset, robot_id: int):
+def relative_path_length(reference_trajectory: TrajDataset, crowded_trajectory: TrajDataset, robot_id: int):
     reference_trajectory_path_length = motion.path_length(reference_trajectory, robot_id)
 
     crowded_trajectory_path_length = motion.path_length(crowded_trajectory,robot_id)
@@ -48,5 +48,5 @@ def relative_path_length(reference_trajectory: TrajectoryDataset, crowded_trajec
 # The relative jerk evaluates the smoothness of the path taken by the robot to reach its goal when it is alone compared to when it is in a crowd.
 # It is given below:
 
-def relative_jerk(reference_trajectory: TrajectoryDataset, crowded_trajectory: TrajectoryDataset, robot_id: int):
+def relative_jerk(reference_trajectory: TrajDataset, crowded_trajectory: TrajDataset, robot_id: int):
     pass

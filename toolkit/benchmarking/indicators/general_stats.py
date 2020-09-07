@@ -4,10 +4,10 @@
 import sys
 import numpy as np
 import pandas as pd
-from crowdscan.crowd.trajdataset import TrajDataset
+from toolkit.core.trajdataset import TrajDataset
 import datetime
 
-from opentraj_benchmark.trajlet import split_trajectories
+from toolkit.core.trajlet import split_trajectories
 
 
 def num_scenes(dataset: TrajDataset):
@@ -56,7 +56,7 @@ def num_trajlets(dataset: TrajDataset, length=4.8, overlap=2):
 
 
 if __name__ == "__main__":
-    from opentraj_benchmark.all_datasets import get_datasets, all_dataset_names
+    from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names
     opentraj_root = sys.argv[1]  # e.g. os.path.expanduser("~") + '/workspace2/OpenTraj'
     # output_dir = sys.argv[2]  # e.g. os.path.expanduser("~") + '/Dropbox/OpenTraj-paper/exp/ver-0.2'
 

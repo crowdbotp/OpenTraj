@@ -1,7 +1,7 @@
-from crowdscan.loader import loader
-from crowdscan.metrics.individual import motion
-from crowdscan.metrics.individual import path_length
-from crowdscan.metrics.agent_to_agent import pcf, distance
+from toolkit.loaders.loader_eth import loadETH
+from toolkit.benchmarking.metrics.individual import motion
+from toolkit.benchmarking.metrics.individual import path_length
+from toolkit.benchmarking.metrics.agent_to_agent import pcf, distance
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -10,8 +10,8 @@ def run(module_directory, args):
 
     print("\n\n-----------------------------\nRunning test metrics\n-----------------------------")
 
-    eth_dataset = loader.loadETH(module_directory + '/tests/toy trajectories/ETH/seq_eth/obsmat.txt',
-                                  args.separator)
+    eth_dataset = loadETH(module_directory + '/tests/toy trajectories/ETH/seq_eth/obsmat.txt',
+                          args.separator)
     all_trajs = eth_dataset.get_trajectories()
 
     for traj in all_trajs:

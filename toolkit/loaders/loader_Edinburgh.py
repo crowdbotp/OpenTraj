@@ -9,7 +9,7 @@ import ast
 import sys
 
 import cv2
-from crowdscan.crowd.trajdataset import TrajDataset 
+from toolkit.core.trajdataset import TrajDataset
 
 #tested with date: 01Aug, 01Jul, 01Jan
 

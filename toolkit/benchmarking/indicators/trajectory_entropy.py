@@ -3,14 +3,14 @@ import os
 import argparse
 import math
 import matplotlib.pyplot as plt
-from opentraj_benchmark.trajlet import split_trajectories
-from opentraj_benchmark.all_datasets import get_trajlets
-from opentraj_benchmark.all_datasets import all_dataset_names
+from toolkit.core.trajlet import split_trajectories
+from toolkit.benchmarking.load_all_datasets import get_trajlets
+from toolkit.benchmarking.load_all_datasets import all_dataset_names
 from scipy.stats import multivariate_normal
 import seaborn as sns
 import pandas as pd
 
-from crowdscan.loader.loader_eth import loadETH
+from toolkit.loaders.loader_eth import loadETH
 
 # Parser arguments
 parser = argparse.ArgumentParser(description='Measure multimodality'

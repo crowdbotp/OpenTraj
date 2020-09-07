@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
-# from crowdscan.crowd.trajectorydataset import TrajectoryDataset
-# from crowdscan.crowd.trajdataset import TrajDataset
+# from toolkit.core.trajectorydataset import TrajectoryDataset
+# from toolkit.core.trajdataset import TrajDataset
 
 
 def speed(trajectory: pd.DataFrame):

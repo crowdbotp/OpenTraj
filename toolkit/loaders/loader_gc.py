@@ -8,7 +8,7 @@ import os
 import numpy as np
 import pandas as pd
 from scipy.interpolate import interp1d
-from crowdscan.crowd.trajdataset import TrajDataset
+from toolkit.core.trajdataset import TrajDataset
 
 
 def image_to_world(p, Homog):

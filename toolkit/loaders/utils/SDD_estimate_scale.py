@@ -11,8 +11,8 @@ import os
 import sys
 import numpy as np
 
-from crowdscan.loader.loader_sdd import loadSDD_single
-from crowdscan.loader.loader_trajnet import loadTrajNet
+from toolkit.loaders.loader_sdd import loadSDD_single
+from toolkit.loaders.loader_trajnet import loadTrajNet
 
 # input the opentraj path here
 opentraj_root = sys.argv[1]

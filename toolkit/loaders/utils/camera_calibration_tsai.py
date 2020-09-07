@@ -16,41 +16,41 @@ SQRT3 = 1.732050807568877293527446341505872366943
 
 class CameraParameters:
     def __init__(self):
-        self.Ncx = 0    # /* [sel]     Number of sensor elements in camera's x direction   */
-        self.Nfx = 0    # /* [pix]     Number of pixels in frame grabber's x direction     */
-        self.dx = 0     # /* [mm/sel]  X dimension of camera's sensor element (in mm)      */
-        self.dy = 0     # /* [mm/sel]  Y dimension of camera's sensor element (in mm)      */
-        self.dpx = 0    # /* [mm/pix]  Effective X dimension of pixel in frame grabber     */
-        self.dpy = 0    # /* [mm/pix]  Effective Y dimension of pixel in frame grabber     */
-        self.Cx = 0     # /* [pix]     Z axis intercept of camera coordinate system        */
-        self.Cy = 0     # /* [pix]     Z axis intercept of camera coordinate system        */
-        self.sx = 0     # /* []        Scale factor to compensate for any error in dpx     */
+        self.Ncx = 0  # /* [sel]     Number of sensor elements in camera's x direction   */
+        self.Nfx = 0  # /* [pix]     Number of pixels in frame grabber's x direction     */
+        self.dx = 0  # /* [mm/sel]  X dimension of camera's sensor element (in mm)      */
+        self.dy = 0  # /* [mm/sel]  Y dimension of camera's sensor element (in mm)      */
+        self.dpx = 0  # /* [mm/pix]  Effective X dimension of pixel in frame grabber     */
+        self.dpy = 0  # /* [mm/pix]  Effective Y dimension of pixel in frame grabber     */
+        self.Cx = 0  # /* [pix]     Z axis intercept of camera coordinate system        */
+        self.Cy = 0  # /* [pix]     Z axis intercept of camera coordinate system        */
+        self.sx = 0  # /* []        Scale factor to compensate for any error in dpx     */
 
 
 class CalibrationConstants:
     def __init__(self):
-        self.f = 0          # /* [mm]          */
-        self.kappa1 = 0     # /* [1/mm^2]      */
-        self.p1 = 0         # /* [1/mm]        */
-        self.p2 = 0         # /* [1/mm]        */
+        self.f = 0  # /* [mm]          */
+        self.kappa1 = 0  # /* [1/mm^2]      */
+        self.p1 = 0  # /* [1/mm]        */
+        self.p2 = 0  # /* [1/mm]        */
 
-        self.Tx = 0         # /* [mm]          */
-        self.Ty = 0         # /* [mm]          */
-        self.Tz = 0         # /* [mm]          */
+        self.Tx = 0  # /* [mm]          */
+        self.Ty = 0  # /* [mm]          */
+        self.Tz = 0  # /* [mm]          */
 
-        self.Rx = 0         # /* [rad]	        */
-        self.Ry = 0         # /* [rad]	        */
-        self.Rz = 0         # /* [rad]	        */
+        self.Rx = 0  # /* [rad]	        */
+        self.Ry = 0  # /* [rad]	        */
+        self.Rz = 0  # /* [rad]	        */
 
-        self.r1 = 0         # /* []            */
-        self.r2 = 0         # /* []            */
-        self.r3 = 0         # /* []            */
-        self.r4 = 0         # /* []            */
-        self.r5 = 0         # /* []            */
-        self.r6 = 0         # /* []            */
-        self.r7 = 0         # /* []            */
-        self.r8 = 0         # /* []            */
-        self.r9 = 0         # /* []            */
+        self.r1 = 0  # /* []            */
+        self.r2 = 0  # /* []            */
+        self.r3 = 0  # /* []            */
+        self.r4 = 0  # /* []            */
+        self.r5 = 0  # /* []            */
+        self.r6 = 0  # /* []            */
+        self.r7 = 0  # /* []            */
+        self.r8 = 0  # /* []            */
+        self.r9 = 0  # /* []            */
 
     def calc_rr(self):
         sa, ca = SINCOS(self.Rx)

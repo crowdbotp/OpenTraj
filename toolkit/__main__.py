@@ -1,12 +1,12 @@
 import argparse
-import crowdscan
+import toolkit
 import os
-from crowdscan.tests import testcrowd, testload, testmetrics
+from toolkit.tests import testcrowd, testload, testmetrics
 
 if __name__ == '__main__':
 
     # Parse command line arguments
-    parser = argparse.ArgumentParser(description='CrowdScan - Human Trajectory Analysis Package')
+    parser = argparse.ArgumentParser(description='OpenTraj - Human Trajectory Analysis')
     
     parser.add_argument('--run-tests', '--r',
                            default='none', choices=['none', 'all', 'testload', 'testcrowd','testmetrics'],
@@ -26,14 +26,14 @@ if __name__ == '__main__':
             testcrowd.run()
 
         if args.run_tests == 'testload' or args.run_tests == 'all':
-            module_directory = os.path.dirname(crowdscan.__file__)
+            module_directory = os.path.dirname(toolkit.__file__)
             testload.run(module_directory, args)
 
         if args.run_tests == 'testmetrics' or args.run_tests == 'all':
-            module_directory = os.path.dirname(crowdscan.__file__)
+            module_directory = os.path.dirname(toolkit.__file__)
             testmetrics.run(module_directory, args)
 
     # End of program
 
-    print("\n###############################\n# CrowdScan : jobs done. Bye! #\n###############################\n")
+    print("\n###############################\n# jobs done. Bye! #\n###############################\n")
 

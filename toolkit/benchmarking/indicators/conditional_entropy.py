@@ -1,7 +1,7 @@
 # Author: Javad Amirian
 # Email: amiryan.j@gmail.com
 
-from crowdscan.crowd.trajdataset import TrajDataset
+from toolkit.core.trajdataset import TrajDataset
 import numpy as np
 from numpy.linalg.linalg import norm
 from sklearn.metrics.pairwise import euclidean_distances
@@ -34,8 +34,8 @@ def conditional_entropy(trajlets: list):
 
 
 if __name__ == "__main__":
-    from crowdscan.loader.loader_eth import loadETH
-    from opentraj_benchmark.trajlet import split_trajectories, to_numpy
+    from toolkit.loaders.loader_eth import loadETH
+    from toolkit.core.trajlet import split_trajectories, to_numpy
 
     eth_dataset = loadETH("/home/cyrus/workspace2/OpenTraj/datasets/ETH/seq_eth/obsmat.txt")
     eth_trajs = eth_dataset.get_trajectories("pedestrian")

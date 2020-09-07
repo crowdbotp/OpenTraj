@@ -7,7 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import patches
 # matplotlib.use('PS')
-from crowdscan.crowd.trajdataset import TrajDataset
+from toolkit.core.trajdataset import TrajDataset
 
 
 def deviation_from_linear_pred(trajlets):
@@ -56,8 +56,8 @@ def deviation_from_linear_pred(trajlets):
 
 
 if __name__ == "__main__":
-    from opentraj_benchmark.all_datasets import get_datasets, all_dataset_names, get_trajlets
-    from opentraj_benchmark.trajlet import split_trajectories
+    from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names, get_trajlets
+    from toolkit.core.trajlet import split_trajectories
 
     opentraj_root = sys.argv[1]  # e.g. os.path.expanduser("~") + '/workspace2/OpenTraj'
     output_dir = sys.argv[2]  # e.g. os.path.expanduser("~") + '/Dropbox/OpenTraj-paper/exp/ver-0.2'

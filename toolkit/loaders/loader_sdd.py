@@ -6,7 +6,7 @@ import glob
 from math import ceil
 import yaml
 import pandas as pd
-from crowdscan.crowd.trajdataset import TrajDataset
+from toolkit.core.trajdataset import TrajDataset
 
 
 def loadSDD_single(path, **kwargs):

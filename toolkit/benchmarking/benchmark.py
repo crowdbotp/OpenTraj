@@ -9,14 +9,14 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.metrics.pairwise import euclidean_distances
 
-from crowdscan.loader.loader_gc import loadGC
-from crowdscan.metrics.individual.motion import speed, acceleration
-from crowdscan.metrics.individual.path_length import path_efficiency
-from crowdscan.metrics.agent_to_agent.pcf import pcf
-from crowdscan.metrics.agent_to_agent.distance import social_space
+from toolkit.loaders.loader_gc import loadGC
+from toolkit.benchmarking.metrics.individual.motion import speed #, acceleration
+from toolkit.benchmarking.metrics.individual.path_length import path_efficiency
+from toolkit.benchmarking.metrics.agent_to_agent.pcf import pcf
+from toolkit.benchmarking.metrics.agent_to_agent.distance import social_space
 
-from crowdscan.crowd.trajdataset import TrajDataset
-from opentraj_benchmark.all_datasets import get_datasets
+from toolkit.core.trajdataset import TrajDataset
+from toolkit.benchmarking.load_all_datasets import get_datasets
 
 
 def speed_plot(dataset: TrajDataset):

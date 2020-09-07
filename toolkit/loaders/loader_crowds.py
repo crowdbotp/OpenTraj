@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 import scipy.interpolate
 
-from crowdscan.crowd.trajdataset import TrajDataset
+from toolkit.core.trajdataset import TrajDataset
 
 TrackRow = namedtuple('Row', ['frame', 'pedestrian', 'x', 'y', 'prediction_number', 'scene_id'])
 TrackRow.__new__.__defaults__ = (None, None, None, None, None, None)

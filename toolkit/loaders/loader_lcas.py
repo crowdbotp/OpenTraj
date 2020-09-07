@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import glob
 import ast
-from crowdscan.crowd.trajdataset import TrajDataset
+from toolkit.core.trajdataset import TrajDataset
 
 
 #load LCAS data (two scenes in the rawdata: minerva & strands2, but only minerva is included here as strands2 data has some issues with repeated time)

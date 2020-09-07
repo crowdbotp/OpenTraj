@@ -6,7 +6,7 @@ import json
 import glob
 import numpy as np
 import pandas as pd
-from crowdscan.crowd.trajdataset import TrajDataset
+from toolkit.core.trajdataset import TrajDataset
 
 
 def loadWildTrack(path: str, **kwargs):

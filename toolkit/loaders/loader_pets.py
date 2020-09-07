@@ -6,8 +6,8 @@ import xml.etree.ElementTree as et
 import numpy as np
 import pandas as pd
 
-from crowdscan.crowd.trajdataset import TrajDataset
-from crowdscan.loader.utils.camera_calibration_tsai import *
+from toolkit.core.trajdataset import TrajDataset
+from toolkit.loaders.utils.camera_calibration_tsai import *
 
 
 def loadPETS(path, **kwargs):

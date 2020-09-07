@@ -3,11 +3,19 @@ import cv2
 import os
 import argparse
 import time
-from parser.parser_eth import ParserETH
-from parser.parser_sdd import ParserSDD
-from parser.parser_gc  import ParserGC
-from parser.parser_hermes import ParserHermes
-from pyqt.qtui.opentrajui import OpenTrajUI
+
+# from parser.parser_eth import ParserETH
+# from parser.parser_sdd import ParserSDD
+# from parser.parser_gc  import ParserGC
+# from parser.parser_hermes import ParserHermes
+
+from toolkit.loaders.loader_eth import loadETH
+from toolkit.loaders.loader_crowds import load_Crowds
+from toolkit.loaders.loader_sdd import loadSDD_single, loadSDD_all
+from toolkit.loaders.loader_gc import loadGC
+from toolkit.loaders.loader_hermes import loadHermes
+
+from toolkit.ui.pyqt.qtui.opentrajui import OpenTrajUI
 
 
 def error_msg(msg):
@@ -71,8 +79,8 @@ class Play:
         elif self.gui_mode_opencv:
             cv2.circle(self.bg_im, (pos[1], pos[0]), radius, color, width)
 
-    def play(self, parser, Hinv, media_file):
-        timestamps = sorted(parser.__t_p_dict__.keys())
+    def play(self, traj_dataset, Hinv, media_file):
+        timestamps = sorted(traj_dataset.__t_p_dict__.keys())
 
         if os.path.exists(media_file):
             if self.is_a_video(media_file):
@@ -92,15 +100,15 @@ class Play:
             ref_im_copy = np.copy(ref_im)
             self.set_background_im(ref_im, t)
             if t in timestamps:
-                xys_t = parser.__t_p_dict__[t]
-                ids_t = parser.__t_id_dict__[t]
+                xys_t = traj_dataset.__t_p_dict__[t]
+                ids_t = traj_dataset.__t_id_dict__[t]
 
             for i, id in enumerate(ids_t):
                 xy_i = np.array(xys_t[i])
                 UV_i = self.to_image_frame(Hinv, xy_i)
 
                 # fetch entire trajectory
-                traj_i = parser.__id_p_dict__[id]
+                traj_i = traj_dataset.__id_p_dict__[id]
                 TRAJ_i = self.to_image_frame(Hinv, traj_i)
 
                 self.draw_trajectory(id, TRAJ_i, (255, 255, 0), 2)
@@ -195,12 +203,12 @@ if __name__ == '__main__':
 
     args = argparser.parse_args()
     opentraj_root = args.data_root
-    dataset_parser = None
+    traj_dataset = None
 
     # #============================ ETH =================================
     if args.dataset == 'eth':
-        dataset_parser = ParserETH()
         annot_file = os.path.join(opentraj_root, 'ETH/seq_eth/obsmat.txt')
+        traj_dataset = loadETH(annot_file)
         homog_file = os.path.join(opentraj_root, 'ETH/seq_eth/H.txt')
         if args.background == 'image':
             media_file = os.path.join(opentraj_root, 'ETH/seq_eth/reference.png')
@@ -209,40 +217,40 @@ if __name__ == '__main__':
         else:
             error_msg('background type is invalid')
 
-    elif args.dataset == 'eth':
-        dataset_parser = ParserETH()
+    elif args.dataset == 'hotel':
         annot_file = os.path.join(opentraj_root, 'ETH/seq_hotel/obsmat.txt')
+        traj_dataset = loadETH(annot_file)
         homog_file = os.path.join(opentraj_root, 'ETH/seq_hotel/H.txt')
         # media_file = os.path.join(opentraj_root, 'ETH/seq_hotel/reference.png')
         media_file = os.path.join(opentraj_root, 'ETH/seq_hotel/video.avi')
 
     # #============================ UCY =================================
-    elif args.dataset == 'zara01':
-        dataset_parser = ParserETH()
-        parser = ParserETH()
-        annot_file = os.path.join(opentraj_root, 'UCY/zara01/obsmat.txt')
-        homog_file = os.path.join(opentraj_root, 'UCY/zara01/H.txt')
-        # media_file = os.path.join(opentraj_root, 'UCY/zara01/reference.png')
-        media_file = os.path.join(opentraj_root, 'UCY/zara01/video.avi')
-
-    elif args.dataset == 'zara01':
-        dataset_parser = ParserETH()
-        annot_file = os.path.join(opentraj_root, 'UCY/zara02/obsmat.txt')
-        homog_file = os.path.join(opentraj_root, 'UCY/zara02/H.txt')
-        # media_file = os.path.join(opentraj_root, 'UCY/zara02/reference.png')
-        media_file = os.path.join(opentraj_root, 'UCY/zara02/video.avi')
-
-    elif args.dataset == 'students03':
-        dataset_parser = ParserETH()
-        # annot_file = os.path.join(opentraj_root, 'UCY/st3_dataset/obsmat_px.txt')
-        # media_file = os.path.join(opentraj_root, 'UCY/st3_dataset/reference.png')
-        # homog_file = os.path.join(opentraj_root, 'UCY/st3_dataset/H_iw.txt')
-        # # homog_file = ''
-
-        annot_file = os.path.join(opentraj_root, 'UCY/st3_dataset/obsmat.txt')
-        homog_file = os.path.join(opentraj_root, 'UCY/st3_dataset/H.txt')
-        # media_file = os.path.join(opentraj_root, 'UCY/st3_dataset/reference.png')
-        media_file = os.path.join(opentraj_root, 'UCY/st3_dataset/video.avi')
+    # elif args.dataset == 'zara01':
+    #     traj_dataset = ParserETH()
+    #     parser = ParserETH()
+    #     annot_file = os.path.join(opentraj_root, 'UCY/zara01/obsmat.txt')
+    #     homog_file = os.path.join(opentraj_root, 'UCY/zara01/H.txt')
+    #     # media_file = os.path.join(opentraj_root, 'UCY/zara01/reference.png')
+    #     media_file = os.path.join(opentraj_root, 'UCY/zara01/video.avi')
+    #
+    # elif args.dataset == 'zara01':
+    #     traj_dataset = ParserETH()
+    #     annot_file = os.path.join(opentraj_root, 'UCY/zara02/obsmat.txt')
+    #     homog_file = os.path.join(opentraj_root, 'UCY/zara02/H.txt')
+    #     # media_file = os.path.join(opentraj_root, 'UCY/zara02/reference.png')
+    #     media_file = os.path.join(opentraj_root, 'UCY/zara02/video.avi')
+    #
+    # elif args.dataset == 'students03':
+    #     traj_dataset = ParserETH()
+    #     # annot_file = os.path.join(opentraj_root, 'UCY/st3_dataset/obsmat_px.txt')
+    #     # media_file = os.path.join(opentraj_root, 'UCY/st3_dataset/reference.png')
+    #     # homog_file = os.path.join(opentraj_root, 'UCY/st3_dataset/H_iw.txt')
+    #     # # homog_file = ''
+    #
+    #     annot_file = os.path.join(opentraj_root, 'UCY/st3_dataset/obsmat.txt')
+    #     homog_file = os.path.join(opentraj_root, 'UCY/st3_dataset/H.txt')
+    #     # media_file = os.path.join(opentraj_root, 'UCY/st3_dataset/reference.png')
+    #     media_file = os.path.join(opentraj_root, 'UCY/st3_dataset/video.avi')
 
     # #============================ SDD =================================
     # dataset_parser = ParserSDD()
@@ -251,16 +259,16 @@ if __name__ == '__main__':
     # homog_file = ''
 
     # #============================ GC ==================================
-    elif args.dataset == 'gc':
-        gc_world_coord = True
-        dataset_parser = ParserGC(world_coord=gc_world_coord)
-        annot_file = os.path.join(opentraj_root, 'GC/Annotation')  # image coordinate
-        if gc_world_coord:
-            homog_file = os.path.join(opentraj_root, 'GC/H-world.txt')
-            media_file = os.path.join(opentraj_root, 'GC/plan.png')
-        else:
-            homog_file = os.path.join(opentraj_root, 'GC/H-image.txt')
-            media_file = os.path.join(opentraj_root, 'GC/reference.jpg')
+    # elif args.dataset == 'gc':
+    #     gc_world_coord = True
+    #     traj_dataset = ParserGC(world_coord=gc_world_coord)
+    #     annot_file = os.path.join(opentraj_root, 'GC/Annotation')  # image coordinate
+    #     if gc_world_coord:
+    #         homog_file = os.path.join(opentraj_root, 'GC/H-world.txt')
+    #         media_file = os.path.join(opentraj_root, 'GC/plan.png')
+    #     else:
+    #         homog_file = os.path.join(opentraj_root, 'GC/H-image.txt')
+    #         media_file = os.path.join(opentraj_root, 'GC/reference.jpg')
 
     # ========================== HERMES =================================
     # dataset_parser = ParserHermes()
@@ -269,14 +277,12 @@ if __name__ == '__main__':
     # media_file = os.path.join(opentraj_root, 'HERMES/cor-180.jpg')
     # homog_file = os.path.join(opentraj_root, 'HERMES/H.txt')
 
-    if not dataset_parser:
+    if not traj_dataset:
         error_msg('dataset name is invalid')
 
-    dataset_parser.load(annot_file)
-    n_peds = len(dataset_parser.id_p_dict.keys())
     Homog = (np.loadtxt(homog_file)) if os.path.exists(homog_file) else np.eye(3)
     Hinv = np.linalg.inv(Homog)
 
     play = Play(args.gui_mode)
-    play.play(dataset_parser, Hinv, media_file)
+    play.play(traj_dataset, Hinv, media_file)
     # qtui.app.exec()

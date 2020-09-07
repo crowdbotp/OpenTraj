@@ -1,11 +1,10 @@
-from crowdscan.loader.loader_eth import loadETH
-from crowdscan.loader.loader_gc import loadGC
-from crowdscan.loader.loader_sdd import loadSDD_single, loadSDD_all
-from crowdscan.loader.loader_pets import loadPETS
-from crowdscan.loader.loader_ind import load_ind
-from crowdscan.loader.loader_wildtrack import loadWildTrack
-from crowdscan.loader import loader_ind
-from crowdscan.loader.loader_town import loadTownCenter
+from toolkit.loaders.loader_eth import loadETH
+from toolkit.loaders.loader_gc import loadGC
+from toolkit.loaders.loader_sdd import loadSDD_single, loadSDD_all
+from toolkit.loaders.loader_pets import loadPETS
+from toolkit.loaders.loader_ind import load_ind
+from toolkit.loaders.loader_wildtrack import loadWildTrack
+from toolkit.loaders.loader_town import loadTownCenter
 import sys
 import os
 
@@ -75,7 +74,7 @@ def run(path, args):
     if 'chaos' in path.lower():
         print("\n")
         print("ChAOS Style :")
-        print(loader.loadChAOS(path, args.separator))
+        print(loaders.loadChAOS(path, args.separator))
 
         print("\n\n-----------------------------\nTest load done\n-----------------------------")
 

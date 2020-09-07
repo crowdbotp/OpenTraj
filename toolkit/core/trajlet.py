@@ -93,7 +93,7 @@ def split_trajectories_paired(traj_groups, length=4.8, overlap=2., static_filter
 
 # test
 if __name__ == "__main__":
-    from crowdscan.loader.loader_eth import loadETH
+    from toolkit.loaders.loader_eth import loadETH
     import sys, os
     opentraj_root = sys.argv[1]
     # test_dataset = loadETH(os.path.join(opentraj_root, "datasets/ETH/seq_eth/obsmat.txt"))
