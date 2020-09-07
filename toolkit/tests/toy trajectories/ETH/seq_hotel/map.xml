@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Trial xmlns="https://github.com/amiryanj/OpenTraj">
+  <obstacles>
+    <obstacle>
+      <TrialObstacle>
+        <Lines>
+	  <Line x1="-0.618" y1="-10.065" x2="-0.719" y2="-7.755" thickness="1" />
+	  <Line x1="-0.719" y1="-7.755" x2="-1.306" y2="-7.737" thickness="1" />
+	  <Line x1="-1.306" y1="-7.737" x2="-1.301" y2="-10.015" thickness="1" />
+	  <Line x1="-1.301" y1="-10.015" x2="-0.618" y2="-10.065" thickness="1" />
+        </Lines>
+        <Circles>
+          <Circle x="-0.957" y="-5.126" radius="0.2" />
+          <Circle x="-0.819" y="-1.760" radius="0.2" />
+          <Circle x="-0.857" y="1.917" radius="0.2" />
+	</Circles>
+      </TrialObstacle>
+    </obstacle>
+  </obstacles>
+</Trial>
