@@ -18,7 +18,7 @@ def image_to_world(p, Homog):
     return P_normal[:, :2]
 
 
-def loadGC(path, **kwargs):
+def load_gcs(path, **kwargs):
     traj_dataset = TrajDataset()
     raw_dataset = pd.DataFrame()
 
@@ -117,7 +117,7 @@ if __name__ == "__main__":
     import matplotlib.pyplot as plt
     opentraj_root = sys.argv[1]
     path = os.path.join(opentraj_root, "datasets/GC/Annotation")
-    traj_ds = loadGC(path)
+    traj_ds = load_gcs(path)
     trajs = traj_ds.get_trajectories()
     trajs = [tr for _, tr in trajs]
 

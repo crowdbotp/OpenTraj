@@ -83,7 +83,7 @@ def obtainObjectPoints(pts, rvec, tvec, cameraMatrix, distCoeffs):
     return unprojPts
 
 
-def loadTownCenter(path, **kwargs):
+def load_town_center(path, **kwargs):
     # Construct dataset
     traj_dataset = TrajDataset()
 
@@ -146,11 +146,11 @@ if __name__ == "__main__":
     import sys, os, cv2
     towncenter_root = sys.argv[1]
 
-    traj_ds = loadTownCenter(towncenter_root + '/TownCentre-groundtruth-top.txt',
-                             calib_path=towncenter_root + '/TownCentre-calibration-ci.txt',
-                             # use_kalman=True,
-                             sampling_rate=10
-                             )
+    traj_ds = load_town_center(towncenter_root + '/TownCentre-groundtruth-top.txt',
+                               calib_path=towncenter_root + '/TownCentre-calibration-ci.txt',
+                               # use_kalman=True,
+                               sampling_rate=10
+                               )
 
     video_address = os.path.join(towncenter_root, 'TownCentreXVID.avi')
     cap = cv2.VideoCapture(video_address)

@@ -10,7 +10,7 @@ from toolkit.core.trajdataset import TrajDataset
 
 #load LCAS data (two scenes in the rawdata: minerva & strands2, but only minerva is included here as strands2 data has some issues with repeated time)
 #checked with the data provided by TrajNet++, they actually only used part of the data from minerva. Here I included all data from minerva
-def loadLCAS(path, **kwargs):
+def load_lcas(path, **kwargs):
     traj_dataset = TrajDataset()
     traj_dataset.title = "LCAS"
     minerva_files_list = glob.glob(path + "/minerva/**/data.csv")

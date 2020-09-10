@@ -8,19 +8,19 @@ import numpy as np
 import pandas as pd
 
 from toolkit.core.trajdataset import TrajDataset, merge_datasets
-from toolkit.loaders.loader_Edinburgh import loadEdinburgh
-from toolkit.loaders.loader_eth import loadETH
-from toolkit.loaders.loader_crowds import load_Crowds
-from toolkit.loaders.loader_gc import loadGC
-from toolkit.loaders.loader_hermes import loadHermes
+from toolkit.loaders.loader_edinburgh import load_edinburgh
+from toolkit.loaders.loader_eth import load_eth
+from toolkit.loaders.loader_crowds import load_crowds
+from toolkit.loaders.loader_gcs import load_gcs
+from toolkit.loaders.loader_hermes import load_hermes
 from toolkit.loaders.loader_ind import load_ind
-from toolkit.loaders.loader_kitti import loadKITTI
-from toolkit.loaders.loader_lcas import loadLCAS
-from toolkit.loaders.loader_pets import loadPETS
-from toolkit.loaders.loader_town import loadTownCenter
-from toolkit.loaders.loader_sdd import loadSDD_single, loadSDD_all
-from toolkit.loaders.loader_wildtrack import loadWildTrack
-from toolkit.loaders.loader_trajnet import loadTrajNet
+from toolkit.loaders.loader_kitti import load_kitti
+from toolkit.loaders.loader_lcas import load_lcas
+from toolkit.loaders.loader_pets import load_pets
+from toolkit.loaders.loader_town import load_town_center
+from toolkit.loaders.loader_sdd import load_sdd, load_sdd_dir
+from toolkit.loaders.loader_wildtrack import load_wildtrack
+from toolkit.loaders.loader_trajnet import load_trajnet
 
 all_dataset_names = [
     'ETH-Univ',
@@ -120,12 +120,12 @@ def get_datasets(opentraj_root, dataset_names):
         # ========== ETH ==============
         if 'eth-univ' == dataset_name.lower():
             eth_univ_root = os.path.join(opentraj_root, 'datasets/ETH/seq_eth/obsmat.txt')
-            datasets[dataset_name] = loadETH(eth_univ_root, title=dataset_name, scene_id='Univ',
-                                             use_kalman=True)
+            datasets[dataset_name] = load_eth(eth_univ_root, title=dataset_name, scene_id='Univ',
+                                              use_kalman=True)
 
         elif 'eth-hotel' == dataset_name.lower():
             eth_hotel_root = os.path.join(opentraj_root, 'datasets/ETH/seq_hotel/obsmat.txt')
-            datasets[dataset_name] = loadETH(eth_hotel_root, title=dataset_name, scene_id='Hotel')
+            datasets[dataset_name] = load_eth(eth_hotel_root, title=dataset_name, scene_id='Hotel')
         # ******************************
 
         # ========== UCY ==============
@@ -133,13 +133,13 @@ def get_datasets(opentraj_root, dataset_names):
             zara01_dir = os.path.join(opentraj_root, 'datasets/UCY/zara01')
             zara02_dir = os.path.join(opentraj_root, 'datasets/UCY/zara02')
             zara03_dir = os.path.join(opentraj_root, 'datasets/UCY/zara03')
-            zara_01_ds = load_Crowds(zara01_dir + '/annotation.vsp',
+            zara_01_ds = load_crowds(zara01_dir + '/annotation.vsp',
                                      homog_file=zara01_dir + '/H.txt',
                                      scene_id='1', use_kalman=True)
-            zara_02_ds = load_Crowds(zara02_dir + '/annotation.vsp',
+            zara_02_ds = load_crowds(zara02_dir + '/annotation.vsp',
                                      homog_file=zara02_dir + '/H.txt',
                                      scene_id='2', use_kalman=True)
-            zara_03_ds = load_Crowds(zara03_dir + '/annotation.vsp',
+            zara_03_ds = load_crowds(zara03_dir + '/annotation.vsp',
                                      homog_file=zara03_dir + '/H.txt',
                                      scene_id='3', use_kalman=True)
             datasets[dataset_name] = merge_datasets([zara_01_ds, zara_02_ds, zara_03_ds], dataset_name)
@@ -150,29 +150,29 @@ def get_datasets(opentraj_root, dataset_names):
             uni_ex_dir = os.path.join(opentraj_root, 'datasets/UCY/uni_examples')
             #st001_ds = load_Crowds(st001_dir + '/students001.txt',homog_file=st001_dir + '/H.txt',scene_id='1',use_kalman=True)
 
-            st001_ds = load_Crowds(st001_dir + '/annotation.vsp',
+            st001_ds = load_crowds(st001_dir + '/annotation.vsp',
                                    homog_file=st003_dir + '/H.txt',
                                    scene_id='1', use_kalman=True) 
 
-            st003_ds = load_Crowds(st003_dir + '/annotation.vsp',
+            st003_ds = load_crowds(st003_dir + '/annotation.vsp',
                                    homog_file=st003_dir + '/H.txt',
                                    scene_id='3', use_kalman=True)
-            uni_ex_ds = load_Crowds(uni_ex_dir + '/annotation.vsp',
+            uni_ex_ds = load_crowds(uni_ex_dir + '/annotation.vsp',
                                     homog_file=st003_dir + '/H.txt',
                                     scene_id='ex', use_kalman=True)
             datasets[dataset_name] = merge_datasets([st001_ds, st003_ds, uni_ex_ds], dataset_name)
 
         elif 'ucy-zara1' == dataset_name.lower():
             zara01_root = os.path.join(opentraj_root, 'datasets/UCY/zara01/obsmat.txt')
-            datasets[dataset_name] = loadETH(zara01_root, title=dataset_name)
+            datasets[dataset_name] = load_eth(zara01_root, title=dataset_name)
 
         elif 'ucy-zara2' == dataset_name.lower():
             zara02_root = os.path.join(opentraj_root, 'datasets/UCY/zara02/obsmat.txt')
-            datasets[dataset_name] = loadETH(zara02_root, title=dataset_name)
+            datasets[dataset_name] = load_eth(zara02_root, title=dataset_name)
 
         elif 'ucy-univ3' == dataset_name.lower():
             students03_root = os.path.join(opentraj_root, 'datasets/UCY/students03/obsmat.txt')
-            datasets[dataset_name] = loadETH(students03_root, title=dataset_name)
+            datasets[dataset_name] = load_eth(students03_root, title=dataset_name)
         # ******************************
 
         # ========== HERMES ==============
@@ -185,26 +185,26 @@ def get_datasets(opentraj_root, dataset_names):
             else:
                 "Unknown Bottleneck dataset!"
                 continue
-            datasets[dataset_name] = loadHermes(bottleneck_path, sampling_rate=6,
-                                                use_kalman=True,
-                                                title=dataset_name)
+            datasets[dataset_name] = load_hermes(bottleneck_path, sampling_rate=6,
+                                                 use_kalman=True,
+                                                 title=dataset_name)
         # ******************************
 
         # ========== PETS ==============
         elif 'pets-s2l1' == dataset_name.lower():
             pets_root = os.path.join(opentraj_root, 'datasets/PETS-2009/data')
-            datasets[dataset_name] = loadPETS(os.path.join(pets_root, 'annotations/PETS2009-S2L1.xml'), #Pat:was PETS2009-S2L2
-                                              calib_path=os.path.join(pets_root, 'calibration/View_001.xml'),
-                                              sampling_rate=2,
-                                              title=dataset_name)
+            datasets[dataset_name] = load_pets(os.path.join(pets_root, 'annotations/PETS2009-S2L1.xml'),  #Pat:was PETS2009-S2L2
+                                               calib_path=os.path.join(pets_root, 'calibration/View_001.xml'),
+                                               sampling_rate=2,
+                                               title=dataset_name)
         # ******************************
 
         # ========== GC ==============
         elif 'gc' == dataset_name.lower():
             gc_root = os.path.join(opentraj_root, 'datasets/GC/Annotation')
-            datasets[dataset_name] = loadGC(gc_root, world_coord=True, title=dataset_name,
-                                            use_kalman=True
-                                            )
+            datasets[dataset_name] = load_gcs(gc_root, world_coord=True, title=dataset_name,
+                                              use_kalman=True
+                                              )
         # ******************************
 
         # ========== InD ==============
@@ -260,24 +260,24 @@ def get_datasets(opentraj_root, dataset_names):
         # ========== KITTI ==============
         elif 'kitti' == dataset_name.lower():
             kitti_root = os.path.join(opentraj_root, 'datasets/KITTI/data')
-            datasets[dataset_name] = loadKITTI(kitti_root, title=dataset_name,
-                                               use_kalman=True,
-                                               sampling_rate=1)  # FixMe: apparently original_fps = 2.5
+            datasets[dataset_name] = load_kitti(kitti_root, title=dataset_name,
+                                                use_kalman=True,
+                                                sampling_rate=1)  # FixMe: apparently original_fps = 2.5
         # ******************************
 
         # ========== L-CAS ==============
         elif 'lcas-minerva' == dataset_name.lower():
             lcas_root = os.path.join(opentraj_root, 'datasets/L-CAS/data')
-            datasets[dataset_name] = loadLCAS(lcas_root, title=dataset_name,
-                                              sampling_rate=1)  # FixMe: apparently original_fps = 2.5
+            datasets[dataset_name] = load_lcas(lcas_root, title=dataset_name,
+                                               sampling_rate=1)  # FixMe: apparently original_fps = 2.5
         # ******************************
 
         # ========== Wild-Track ==============
         elif 'wildtrack' == dataset_name.lower():
             wildtrack_root = os.path.join(opentraj_root, 'datasets/Wild-Track/annotations_positions')
-            datasets[dataset_name] = loadWildTrack(wildtrack_root, title=dataset_name,
-                                                   use_kalman=True,
-                                                   sampling_rate=1)  # original_annot_framerate=2
+            datasets[dataset_name] = load_wildtrack(wildtrack_root, title=dataset_name,
+                                                    use_kalman=True,
+                                                    sampling_rate=1)  # original_annot_framerate=2
         # ******************************
 
         # ========== Edinburgh ==============
@@ -290,29 +290,29 @@ def get_datasets(opentraj_root, dataset_names):
                 partial_ds = []
                 for selected_day in Ed_selected_days:
                     edinburgh_path = os.path.join(edinburgh_dir, 'tracks.%s.txt' % selected_day)
-                    partial_ds.append(loadEdinburgh(edinburgh_path, title=dataset_name,
-                                      use_kalman=True, scene_id=selected_day,
-                                      sampling_rate=4)  # original_framerate=9
+                    partial_ds.append(load_edinburgh(edinburgh_path, title=dataset_name,
+                                                     use_kalman=True, scene_id=selected_day,
+                                                     sampling_rate=4)  # original_framerate=9
                                       )
                 merge_datasets(partial_ds)
 
             else:
                 seq_date = dataset_name.split('-')[1]
                 edinburgh_path = os.path.join(edinburgh_dir, 'tracks.%s.txt' %seq_date)
-            datasets[dataset_name] = loadEdinburgh(edinburgh_path, title=dataset_name,
-                                                   use_kalman=True,
-                                                   sampling_rate=4)  # original_framerate=9
+            datasets[dataset_name] = load_edinburgh(edinburgh_path, title=dataset_name,
+                                                    use_kalman=True,
+                                                    sampling_rate=4)  # original_framerate=9
         # ******************************
 
         # ========== Town-Center ==============
         elif 'towncenter' == dataset_name.lower():
             towncenter_root = os.path.join(opentraj_root, 'datasets/Town-Center')
             # FixMe: might need Kalman Smoother
-            datasets[dataset_name] = loadTownCenter(towncenter_root + '/TownCentre-groundtruth-top.txt',
-                                                    calib_path=towncenter_root + '/TownCentre-calibration-ci.txt',
-                                                    title=dataset_name,
-                                                    use_kalman=True,
-                                                    sampling_rate=10)  # original_framerate=25
+            datasets[dataset_name] = load_town_center(towncenter_root + '/TownCentre-groundtruth-top.txt',
+                                                      calib_path=towncenter_root + '/TownCentre-calibration-ci.txt',
+                                                      title=dataset_name,
+                                                      use_kalman=True,
+                                                      sampling_rate=10)  # original_framerate=25
             # ******************************
 
         # ========== SDD ==============
@@ -331,11 +331,11 @@ def get_datasets(opentraj_root, dataset_names):
                 scene_name = filename_parts[-3]
                 scene_video_id = filename_parts[-2]
                 scale = scales_yaml_content[scene_name][scene_video_id]['scale']
-                sdd_dataset_i = loadSDD_single(file_name, scale=scale,
-                                               scene_id=scene_name + scene_video_id.replace('video', ''),
-                                               drop_lost_frames=False,
-                                               use_kalman=True,
-                                               sampling_rate=12)  # original_framerate=30
+                sdd_dataset_i = load_sdd(file_name, scale=scale,
+                                         scene_id=scene_name + scene_video_id.replace('video', ''),
+                                         drop_lost_frames=False,
+                                         use_kalman=True,
+                                         sampling_rate=12)  # original_framerate=30
                 scene_datasets.append(sdd_dataset_i)
             scene_dataset = merge_datasets(scene_datasets, dataset_name)
             datasets[dataset_name] = scene_dataset

@@ -6,7 +6,7 @@ import json
 import pandas as pd
 
 
-def loadForkingPath(path, **kwargs):
+def load_forking_path(path, **kwargs):
     traj_dataset = TrajDataset()
     raw_data = []
     with open(path, 'r') as json_file:
@@ -34,6 +34,6 @@ def loadForkingPath(path, **kwargs):
 if __name__ == '__main__':
     import sys, os
     opentraj_root = sys.argv[1]
-    loadForkingPath(os.path.join(opentraj_root,
+    load_forking_path(os.path.join(opentraj_root,
                                  'datasets/Forking-Paths-Garden/forkingpaths_moments_v1/ethucy_v1.json'))
 

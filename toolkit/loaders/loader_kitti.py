@@ -10,7 +10,7 @@ import math
 from math import cos, sin, tan, pi
 
 
-def loadKITTI(path, **kwargs):
+def load_kitti(path, **kwargs):
     traj_dataset = TrajDataset()
     traj_dataset.title = "KITTI"
     track_files_list = sorted(glob.glob(path+"/label/*.txt"))

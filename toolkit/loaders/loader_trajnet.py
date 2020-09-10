@@ -6,7 +6,7 @@ import pandas as pd
 from toolkit.core.trajdataset import TrajDataset
 
 
-def loadTrajNet(path, **kwargs):
+def load_trajnet(path, **kwargs):
     traj_dataset = TrajDataset()
     traj_dataset.title = kwargs.get('title', "TrajNet")
 

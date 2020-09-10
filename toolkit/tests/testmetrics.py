@@ -1,4 +1,4 @@
-from toolkit.loaders.loader_eth import loadETH
+from toolkit.loaders.loader_eth import load_eth
 from toolkit.benchmarking.metrics.individual import motion
 from toolkit.benchmarking.metrics.individual import path_length
 from toolkit.benchmarking.metrics.agent_to_agent import pcf, distance
@@ -10,8 +10,8 @@ def run(module_directory, args):
 
     print("\n\n-----------------------------\nRunning test metrics\n-----------------------------")
 
-    eth_dataset = loadETH(module_directory + '/tests/toy trajectories/ETH/seq_eth/obsmat.txt',
-                          args.separator)
+    eth_dataset = load_eth(module_directory + '/tests/toy trajectories/ETH/seq_eth/obsmat.txt',
+                           args.separator)
     all_trajs = eth_dataset.get_trajectories()
 
     for traj in all_trajs:

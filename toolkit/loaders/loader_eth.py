@@ -6,7 +6,7 @@ import pandas as pd
 from toolkit.core.trajdataset import TrajDataset
 
 
-def loadETH(path, **kwargs):
+def load_eth(path, **kwargs):
     traj_dataset = TrajDataset()
 
     csv_columns = ["frame_id", "agent_id", "pos_x", "pos_z", "pos_y", "vel_x", "vel_z", "vel_y"]

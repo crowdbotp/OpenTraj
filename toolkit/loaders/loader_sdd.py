@@ -9,7 +9,7 @@ import pandas as pd
 from toolkit.core.trajdataset import TrajDataset
 
 
-def loadSDD_single(path, **kwargs):
+def load_sdd(path, **kwargs):
     sdd_dataset = TrajDataset()
     sdd_dataset.title = "SDD"
 
@@ -46,7 +46,7 @@ def loadSDD_single(path, **kwargs):
     return sdd_dataset
 
 
-def loadSDD_all(path: str, **kwargs):
+def load_sdd_dir(path: str, **kwargs):
     search_filter_str = "**/annotations.txt"
     if not path.endswith("/"):
         search_filter_str = "/" + search_filter_str
@@ -62,8 +62,8 @@ def loadSDD_all(path: str, **kwargs):
         scene_video_id = dir_names[-2]
         scale = scales_yaml_content[scene_name][scene_video_id]['scale']
 
-        partial_dataset = loadSDD_single(file, scale=scale,
-                                         scene_id=scene_name+scene_video_id.replace('video', ''))
+        partial_dataset = load_sdd(file, scale=scale,
+                                   scene_id=scene_name+scene_video_id.replace('video', ''))
         partial_datasets.append(partial_dataset.data)
 
     traj_dataset = TrajDataset()

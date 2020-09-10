@@ -8,7 +8,7 @@ import os
 from toolkit.core.trajdataset import TrajDataset
 
 
-def loadHermes(path, **kwargs):
+def load_hermes(path, **kwargs):
     traj_dataset = TrajDataset()
 
     csv_columns = ["agent_id", "frame_id", "pos_x", "pos_y", "pos_z"]

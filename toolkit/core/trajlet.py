@@ -93,11 +93,11 @@ def split_trajectories_paired(traj_groups, length=4.8, overlap=2., static_filter
 
 # test
 if __name__ == "__main__":
-    from toolkit.loaders.loader_eth import loadETH
+    from toolkit.loaders.loader_eth import load_eth
     import sys, os
     opentraj_root = sys.argv[1]
     # test_dataset = loadETH(os.path.join(opentraj_root, "datasets/ETH/seq_eth/obsmat.txt"))
-    test_dataset = loadETH(os.path.join(opentraj_root, "datasets/ETH/seq_hotel/obsmat.txt"))
+    test_dataset = load_eth(os.path.join(opentraj_root, "datasets/ETH/seq_hotel/obsmat.txt"))
     trajs = test_dataset.get_trajectories()
     trajlets_4_8s = split_trajectories(trajs, length=4.8, to_numpy=True)
     trajlets_8s = split_trajectories(trajs, length=8, to_numpy=True)

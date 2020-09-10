@@ -10,7 +10,7 @@ from toolkit.core.trajdataset import TrajDataset
 from toolkit.loaders.utils.camera_calibration_tsai import *
 
 
-def loadPETS(path, **kwargs):
+def load_pets(path, **kwargs):
     """
     :param path: address of annotation file
     :param kwargs:

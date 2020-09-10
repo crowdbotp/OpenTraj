@@ -32,7 +32,7 @@ def get_homog():
 
 
 # loaded all Edinburgh tracks files together
-def loadEdinburgh(path, **kwargs):
+def load_edinburgh(path, **kwargs):
     traj_dataset = TrajDataset()
     traj_dataset.title = "Edinburgh"
 

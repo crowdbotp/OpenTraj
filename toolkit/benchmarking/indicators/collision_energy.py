@@ -13,7 +13,7 @@ import itertools
 import seaborn as sns
 import pandas as pd
 from copy import deepcopy
-from toolkit.loaders.loader_eth import loadETH
+from toolkit.loaders.loader_eth import load_eth
 from toolkit.core.trajdataset import TrajDataset
 from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names
 from toolkit.benchmarking.utils.histogram_sampler import histogram_sampler

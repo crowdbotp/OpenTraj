@@ -10,7 +10,7 @@ from scipy.stats import multivariate_normal
 import seaborn as sns
 import pandas as pd
 
-from toolkit.loaders.loader_eth import loadETH
+from toolkit.loaders.loader_eth import load_eth
 
 # Parser arguments
 parser = argparse.ArgumentParser(description='Measure multimodality'

@@ -11,8 +11,8 @@ import os
 import sys
 import numpy as np
 
-from toolkit.loaders.loader_sdd import loadSDD_single
-from toolkit.loaders.loader_trajnet import loadTrajNet
+from toolkit.loaders.loader_sdd import load_sdd
+from toolkit.loaders.loader_trajnet import load_trajnet
 
 # input the opentraj path here
 opentraj_root = sys.argv[1]
@@ -87,9 +87,9 @@ for trajnet_file in trajnet_files:
         continue
 
     # read from trajnet
-    trajnet_dataset = loadTrajNet(trajnet_file)
+    trajnet_dataset = load_trajnet(trajnet_file)
     # read from SDD
-    sdd_dataset = loadSDD_single(sdd_file)
+    sdd_dataset = load_sdd(sdd_file)
 
     # plot them for manula debug
     # fig, axes = plt.subplots(nrows=2, ncols=1)

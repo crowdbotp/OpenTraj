@@ -9,7 +9,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.metrics.pairwise import euclidean_distances
 
-from toolkit.loaders.loader_gc import loadGC
+from toolkit.loaders.loader_gcs import load_gcs
 from toolkit.benchmarking.metrics.individual.motion import speed #, acceleration
 from toolkit.benchmarking.metrics.individual.path_length import path_efficiency
 from toolkit.benchmarking.metrics.agent_to_agent.pcf import pcf

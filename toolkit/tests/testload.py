@@ -1,10 +1,10 @@
-from toolkit.loaders.loader_eth import loadETH
-from toolkit.loaders.loader_gc import loadGC
-from toolkit.loaders.loader_sdd import loadSDD_single, loadSDD_all
-from toolkit.loaders.loader_pets import loadPETS
+from toolkit.loaders.loader_eth import load_eth
+from toolkit.loaders.loader_gcs import load_gcs
+from toolkit.loaders.loader_sdd import load_sdd, load_sdd_dir
+from toolkit.loaders.loader_pets import load_pets
 from toolkit.loaders.loader_ind import load_ind
-from toolkit.loaders.loader_wildtrack import loadWildTrack
-from toolkit.loaders.loader_town import loadTownCenter
+from toolkit.loaders.loader_wildtrack import load_wildtrack
+from toolkit.loaders.loader_town import load_town_center
 import sys
 import os
 
@@ -14,15 +14,15 @@ def run(path, args):
     print("\n-----------------------------\nRunning test load\n-----------------------------")
     if 'eth/' in path.lower():
         print("[Javad]: Directly reading ETH Dataset (seq_eth):")
-        traj_dataset = loadETH(path)
+        traj_dataset = load_eth(path)
         all_trajs = traj_dataset.get_trajectories()
         all_frames = traj_dataset.get_frames()
 
     if '/sdd' in path.lower():
         if os.path.isdir(path):
-            traj_dataset = loadSDD_all(path)
+            traj_dataset = load_sdd_dir(path)
         else:
-            traj_dataset = loadSDD_single(path)
+            traj_dataset = load_sdd(path)
         trajs = traj_dataset.get_trajectories()
         print("total number of trajectories = ", len(trajs))
 
@@ -31,7 +31,7 @@ def run(path, args):
         for arg in args:
             if 'homog_file=' in arg:
                 kwargs['homog_file'] = arg.replace("homog_file=", "")
-        gc_dataset = loadGC(path, **kwargs)
+        gc_dataset = load_gcs(path, **kwargs)
         trajs = gc_dataset.get_trajectories()
         print("GC: number of trajs = ", len(trajs))
 
@@ -40,7 +40,7 @@ def run(path, args):
         for arg in args:
             if 'calib_path=' in arg:
                 kwargs['calib_path'] = arg.replace("calib_path=", "")
-        loadPETS(path, **kwargs)
+        load_pets(path, **kwargs)
 
     if 'ind/' in path.lower():
         # Test the InD Dataset
@@ -53,7 +53,7 @@ def run(path, args):
         all_frames = traj_dataset.get_frames()
 
     if 'wild-track/' in path.lower():
-        traj_dataset = loadWildTrack(path)
+        traj_dataset = load_wildtrack(path)
 
     if 'town' in path.lower():
         # Construct arguments dictionary
@@ -63,7 +63,7 @@ def run(path, args):
                 kwargs['calib_path'] = arg.replace("calib_path=", "")
 
         # Test the Town Center Dataset
-        traj_dataset = loadTownCenter(path, **kwargs)
+        traj_dataset = load_town_center(path, **kwargs)
         all_trajs = traj_dataset.get_trajectories()
         print('------------------------')
         print('First trajectory (Town Center)')

@@ -91,7 +91,7 @@ class CrowdLoader:
         return [row for i, p in enumerate(pedestrians) for row in self.crowds_interpolate_person(i, p)]
 
 
-def load_Crowds(path, **kwargs):
+def load_crowds(path, **kwargs):
     """:param path: string, path to folder"""
     # pass the homography matrix as well
 
@@ -133,7 +133,7 @@ if __name__ == "__main__":
 
     zara_01_vsp = os.path.join(opentraj_root, 'datasets/UCY/zara01/crowds_zara01.vsp')
     zara_hmg_file = os.path.join(opentraj_root, 'datasets/UCY/zara01/H.txt')
-    zara_01_ds = load_Crowds(zara_01_vsp, use_kalman=False, homog_file=zara_hmg_file)
+    zara_01_ds = load_crowds(zara_01_vsp, use_kalman=False, homog_file=zara_hmg_file)
     trajs = zara_01_ds.get_trajectories()
     trajs = [g for _, g in trajs]
     samples = zara_01_ds.get_entries()
@@ -141,7 +141,7 @@ if __name__ == "__main__":
     plt.show()
     zara_02_vsp = os.path.join(opentraj_root, 'datasets/UCY/zara02/crowds_zara02.vsp')
     zara_02_video = os.path.join(opentraj_root, 'datasets/UCY/zara02/video.avi')
-    zara_02_ds = load_Crowds(zara_02_vsp, homog_file=zara_hmg_file)
+    zara_02_ds = load_crowds(zara_02_vsp, homog_file=zara_hmg_file)
 
     zara_03_vsp = os.path.join(opentraj_root, 'datasets/UCY/zara03/crowds_zara03.vsp')
-    zara_03_ds = load_Crowds(zara_03_vsp, homog_file=zara_hmg_file)
+    zara_03_ds = load_crowds(zara_03_vsp, homog_file=zara_hmg_file)

@@ -9,7 +9,7 @@ import pandas as pd
 from toolkit.core.trajdataset import TrajDataset
 
 
-def loadWildTrack(path: str, **kwargs):
+def load_wildtrack(path: str, **kwargs):
     """
     :param path: path to annotations dir
     :param kwargs:

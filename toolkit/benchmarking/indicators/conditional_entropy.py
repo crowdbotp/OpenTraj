@@ -34,10 +34,10 @@ def conditional_entropy(trajlets: list):
 
 
 if __name__ == "__main__":
-    from toolkit.loaders.loader_eth import loadETH
+    from toolkit.loaders.loader_eth import load_eth
     from toolkit.core.trajlet import split_trajectories, to_numpy
 
-    eth_dataset = loadETH("/home/cyrus/workspace2/OpenTraj/datasets/ETH/seq_eth/obsmat.txt")
+    eth_dataset = load_eth("/home/cyrus/workspace2/OpenTraj/datasets/ETH/seq_eth/obsmat.txt")
     eth_trajs = eth_dataset.get_trajectories("pedestrian")
     eth_trajlets = split_trajectories(eth_trajs)
     to_numpy(eth_trajlets)
