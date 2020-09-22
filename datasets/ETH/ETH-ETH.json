@@ -1,0 +1,17 @@
+{
+	"name":"ETH",
+	"description":"2 top view scenes containing walking pedestrians",
+	"num_trajs": "360",
+	"website":"https://icu.ee.ethz.ch/research/datsets.html",
+	"paper": "https://ethz.ch/content/dam/ethz/special-interest/baug/igp/photogrammetry-remote-sensing-dam/documents/pdf/pellegrini09iccv.pdf",
+	"download_annotation":"https://ethz.ch/content/dam/ethz/special-interest/itet/cvl/vision-dam/documents/ewap_dataset_light.tgz",
+	"detail_1":"(TGZ,397 KB)",
+	"download_all":"https://data.vision.ee.ethz.ch/cvl/aem/ewap_dataset_full.tgz",
+	"detail_2":"(xxx,xxx KB)",
+
+	"ref_image":"datasets/ETH/seq_eth/reference.png",
+	"video":"datasets/ETH/seq_eth/video.avi",
+	"data_path":"datasets/ETH/seq_eth/obsmat.txt",
+	"calib_path":"datasets/ETH/seq_eth/H.txt",
+	"loader":"loader_eth"
+}

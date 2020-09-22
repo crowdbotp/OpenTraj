@@ -1,0 +1,33 @@
+dataset:
+   name: ETH University
+   description: Walking pedestrians in busy scenarios
+   location: ETH university entrance
+
+recording:
+   platform: Fixed camera
+   angle: bird-eye view
+   multi-camera: False
+   annotation: manual
+
+statistics:
+   num_trajs: 360
+   duration: 0:13:00
+
+download:
+   download_annotation: https://ethz.ch/content/dam/ethz/special-interest/itet/cvl/vision-dam/documents/ewap_dataset_light.tgz
+   detail_1: (TGZ,397 KB)
+   download_all: https://data.vision.ee.ethz.ch/cvl/aem/ewap_dataset_full.tgz
+   detail_2: (xxx,xxx KB)
+
+load:
+   loader: loader_eth
+   data_path: $opentraj_root/datasets/ETH/seq_eth/obsmat.txt
+   calib_path: $opentraj_root/datasets/ETH/seq_eth/H.txt
+   ref_image: $opentraj_root/datasets/ETH/seq_eth/reference.png
+   video: $opentraj_root/datasets/ETH/seq_eth/video.avi
+
+reference:
+   website: https://icu.ee.ethz.ch/research/datsets.html
+   paper: https://ethz.ch/content/dam/ethz/special-interest/baug/igp/photogrammetry-remote-sensing-dam/documents/pdf/pellegrini09iccv.pdf
+
+
