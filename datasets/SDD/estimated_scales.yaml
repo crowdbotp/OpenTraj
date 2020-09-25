@@ -1,25 +1,25 @@
 bookstore:
    video0:
-      scale: 0.038383460051990705
-      certainty: 0.9956977443699386
+      scale: 0.0385
+      certainty: 1.0
    video1:
-      scale: 0.039912003207055215
-      certainty: 0.9935356889156406
+      scale: 0.0399
+      certainty: 1.0
    video2:
-      scale: 0.040626608509961845
-      certainty: 0.9920062259484708
+      scale: 0.0402
+      certainty: 1.0
    video3:
-      scale: 0.039099393987964526
-      certainty: 0.9927555808031054
+      scale: 0.0398
+      certainty: 1.0
    video4:
-      scale: 0.04
-      certainty: 0.0
+      scale: 0.0396
+      certainty: 1.0
    video5:
-      scale: 0.04
-      certainty: 0.0
+      scale: 0.0396
+      certainty: 1.0
    video6:
-      scale: 0.04
-      certainty: 0.0
+      scale: 0.0413
+      certainty: 1.0
 
 coupa:
    video0:
