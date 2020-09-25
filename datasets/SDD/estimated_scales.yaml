@@ -23,44 +23,44 @@ bookstore:
 
 coupa:
    video0:
-      scale: 0.02799461673988603
-      certainty: 0.99751117197551
+      scale: 0.027
+      certainty: 1.0
    video1:
-      scale: 0.02327076243442568
-      certainty: 0.9986678010491877
+      scale: 0.027
+      certainty: 1.0
    video2:
-      scale: 0.024
-      certainty: 0.0
+      scale: 0.027
+      certainty: 1.0
    video3:
-      scale: 0.025525874568318733
-      certainty: 0.9988522526555993
+      scale: 0.027
+      certainty: 1.0
 
 deathCircle:
    video0:
 #      scale: 0.024287210508280047
 #      certainty: 0.994929311255925
       scale: 0.041
-      certainty: 100
+      certainty: 1.0
    video1:
 #      scale: 0.03907886549922642
 #      certainty: 0.9968201285409194
       scale: 0.040
-      certainty: 100
+      certainty: 1.0
    video2:
 #      scale: 0.039485488139124045
 #      certainty: 0.9967202958019923
       scale: 0.041
-      certainty: 100
+      certainty: 1.0
    video3:
 #      scale: 0.028477683270050656
 #      certainty: 0.9998494585581166
       scale: 0.029
-      certainty: 100
+      certainty: 1.0
    video4:
 #      scale: 0.03897926138938954
 #      certainty: 0.9919499864022917
       scale: 0.039
-      certainty: 100
+      certainty: 1.0
 
 gates:
    video0:
