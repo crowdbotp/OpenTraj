@@ -60,7 +60,7 @@ class KalmanModel:
 
 
 # TODO
-def test_kalman(seyfried=False, biwi=False):
+def test_kalman():
     # index = 20
     # loc_measurement = pos_data[index]
     # vel_measurement = vel_data[index]

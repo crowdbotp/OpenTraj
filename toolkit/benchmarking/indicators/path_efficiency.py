@@ -7,8 +7,23 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from toolkit.core.trajdataset import TrajDataset
-from toolkit.benchmarking.metrics.individual.path_length import path_efficiency
 from toolkit.benchmarking.utils.histogram_sampler import normalize_samples_with_histogram
+
+
+def path_length(trajectory: pd.DataFrame):
+    traj_poss = trajectory[['pos_x', 'pos_y']].diff().dropna()
+    travelled_distance = np.linalg.norm(traj_poss, axis=1).sum()
+    return travelled_distance
+
+
+def path_efficiency(trajectory: pd.DataFrame):
+    """
+     ratio of distance between the endpoints of a segment
+     over actual length of the trajectory
+    """
+    actual_length = path_length(trajectory)
+    end2end_dist = np.linalg.norm(np.diff(trajectory[['pos_x', 'pos_y']].iloc[[0, -1]], axis=0))
+    return end2end_dist / actual_length
 
 
 def path_efficiency_index(trajlets_np: np.ndarray):
@@ -23,8 +38,7 @@ def path_efficiency_index(trajlets_np: np.ndarray):
     #         path_eff_samples.append(path_eff_value)
     # return path_eff_samples
 
-
-if __name__ == "__main__":
+def main():
     import os, sys
     from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names, get_trajlets
 
@@ -66,3 +80,7 @@ if __name__ == "__main__":
     plt.savefig(os.path.join(output_dir, 'path_eff.pdf'), dpi=500, bbox_inches='tight')
 
     plt.show()
+
+
+if __name__ == "__main__":
+    main()

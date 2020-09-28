@@ -10,6 +10,9 @@ import seaborn as sns
 
 
 def speed_var_of_trajs(trajlets_np: np.ndarray):
+    """
+    :param trajlets_np: numpy array in form of [N, T, 4] => N is number of trajlets, and T is the number of frames
+    """
     speed_values = np.linalg.norm(trajlets_np[:, :, 2:4], axis=2)
     speed_var_samples = np.max(speed_values[::1], axis=1) - np.min(speed_values[::1], axis=1)
     return speed_var_samples
@@ -29,7 +32,7 @@ def acceleration_of_tarjs(trajlets_np: np.ndarray):
     return np.mean(np.abs(acc_values), axis=1), np.max(np.abs(acc_values), axis=1)
 
 
-if __name__ == "__main__":
+def main():
     from toolkit.benchmarking.load_all_datasets import get_trajlets, all_dataset_names
 
     opentraj_root = sys.argv[1]  # e.g. os.path.expanduser("~") + '/workspace2/OpenTraj'
@@ -121,3 +124,7 @@ if __name__ == "__main__":
     plt.savefig(os.path.join(output_dir, 'motion_metric.pdf'), dpi=500, bbox_inches='tight')
 
     plt.show()
+
+
+if __name__ == "__main__":
+    main()

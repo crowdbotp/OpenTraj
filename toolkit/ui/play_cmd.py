@@ -186,4 +186,3 @@ if __name__ == '__main__':
 
     play = Play()
     play.play(traj_dataset, Hinv, media_file)
-    # qtui.app.exec()

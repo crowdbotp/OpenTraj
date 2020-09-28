@@ -89,7 +89,6 @@ def ttc(all_frames,name,trajlets):
         avg_traj_ttc.append(np.min(trajlet['ttc'].dropna())) #min of min
         avg_traj_dca.append(np.min(trajlet['dca'].dropna())) #min of min
 
-               
     return avg_traj_ttc,avg_traj_dca
     
 
@@ -217,7 +216,6 @@ def main():
     plt.savefig(os.path.join(output_dir, 'collision.pdf'), dpi=500, bbox_inches='tight')
     plt.show()
     
-   
 
 if __name__ == "__main__":
     main()

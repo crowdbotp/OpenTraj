@@ -1,5 +1,5 @@
-# Author: Javad Amirian
-# Email: amiryan.j@gmail.com
+# Author:
+# Email:
 
 from toolkit.core.trajdataset import TrajDataset
 import numpy as np

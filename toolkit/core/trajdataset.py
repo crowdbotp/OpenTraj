@@ -29,9 +29,10 @@ class TrajDataset:
         self.title = ''
 
         # bounding box of trajectories
-        self.bbox = pd.DataFrame({'x': [np.nan, np.nan],
-                                  'y': [np.nan, np.nan]},
-                                 index=['min', 'max'])
+        #  FixME: bbox should be a function of scene_id
+        # self.bbox = pd.DataFrame({'x': [np.nan, np.nan],
+        #                           'y': [np.nan, np.nan]},
+        #                          index=['min', 'max'])
 
         # FixMe ?
         #  self.trajectories_lazy = []
@@ -131,10 +132,10 @@ class TrajDataset:
 
         # compute bounding box
         # Warning: the trajectories should belong to the same (physical) scene
-        self.bbox['x']['min'] = min(self.data["pos_x"])
-        self.bbox['x']['max'] = max(self.data["pos_x"])
-        self.bbox['y']['min'] = min(self.data["pos_y"])
-        self.bbox['y']['max'] = max(self.data["pos_y"])
+        # self.bbox['x']['min'] = min(self.data["pos_x"])
+        # self.bbox['x']['max'] = max(self.data["pos_x"])
+        # self.bbox['y']['min'] = min(self.data["pos_y"])
+        # self.bbox['y']['max'] = max(self.data["pos_y"])
 
     def interpolate_frames(self, inplace=True):
         all_frame_ids = sorted(pd.unique(self.data["frame_id"]))

@@ -13,7 +13,7 @@ from toolkit.loaders.loader_eth import load_eth
 from toolkit.loaders.loader_crowds import load_crowds
 from toolkit.loaders.loader_sdd import load_sdd, load_sdd_dir
 from toolkit.loaders.loader_gcs import load_gcs
-from toolkit.loaders.loader_hermes import load_hermes
+from toolkit.loaders.loader_hermes import load_bottleneck
 
 from toolkit.ui.pyqt.qtui.opentrajui import OpenTrajUI
 

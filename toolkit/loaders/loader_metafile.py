@@ -6,9 +6,9 @@ import json
 import os
 import sys
 
-from loaders.loader_eth import load_eth
-from loaders.loader_crowds import load_crowds
-from loaders.loader_gcs import load_gcs
+from toolkit.loaders.loader_eth import load_eth
+from toolkit.loaders.loader_crowds import load_crowds
+from toolkit.loaders.loader_gcs import load_gcs
 
 
 def load_metafile(opentraj_root, metafile):
@@ -32,6 +32,6 @@ def load_metafile(opentraj_root, metafile):
 if __name__ == "__main__":
     opentraj_root = sys.argv[1]
 
-    traj_dataset = load_metafile(opentraj_root, os.path.join(opentraj_root, "datasets/ETH/ETH.json"))
+    traj_dataset = load_metafile(opentraj_root, os.path.join(opentraj_root, "datasets/ETH/ETH-ETH.json"))
     if traj_dataset:
         print(traj_dataset.get_agent_ids())

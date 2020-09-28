@@ -55,7 +55,8 @@ def deviation_from_linear_pred(trajlets):
     return keypoints_dev_avg, keypoints_dev_std
 
 
-if __name__ == "__main__":
+def main():
+    global ds_name, output_dir
     from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names, get_trajlets
     from toolkit.core.trajlet import split_trajectories
 
@@ -84,7 +85,7 @@ if __name__ == "__main__":
     # plt.errorbar()
     fig = plt.figure(figsize=(12, 4))
 
-    ax1 = fig.add_subplot(311)
+    ax1 = fig.add_subplot(211)
     plt.bar(np.arange(len(dataset_names)), abs(dev_samples[4.8][:, 0]),
            yerr=dev_samples[4.8][:, 1], alpha=0.5,
            error_kw=dict(ecolor='gray', lw=2, capsize=5, capthick=2))
@@ -92,30 +93,31 @@ if __name__ == "__main__":
     plt.yticks([-30, 0, 30])
     plt.ylabel('t=4.8s')
 
-    ax2 = fig.add_subplot(312)
+    ax2 = fig.add_subplot(212)
     plt.bar(np.arange(len(dataset_names)), abs(dev_samples[2.4][:, 0]),
            yerr=dev_samples[2.4][:, 1], alpha=0.5,
            error_kw=dict(ecolor='gray', lw=2, capsize=5, capthick=2))
     plt.xticks([])
     plt.ylabel('t=2.4s')
 
-    ax3 = fig.add_subplot(313)
-    plt.bar(np.arange(len(dataset_names)), abs(dev_samples[1.6][:, 0]),
-           yerr=dev_samples[1.6][:, 1], alpha=0.5,
-           error_kw=dict(ecolor='gray', lw=2, capsize=5, capthick=2))
-    plt.xticks(np.arange(0, 16, 1.0))
-    plt.ylabel('t=1.6s')
+    # ax3 = fig.add_subplot(313)
+    # plt.bar(np.arange(len(dataset_names)), abs(dev_samples[1.6][:, 0]),
+    #        yerr=dev_samples[1.6][:, 1], alpha=0.5,
+    #        error_kw=dict(ecolor='gray', lw=2, capsize=5, capthick=2))
+    # plt.ylabel('t=1.6s')
 
-    ax3.set_xticklabels(dataset_names)
-    ax3.xaxis.set_tick_params(labelsize=8)
+    plt.xticks(np.arange(0, 16, 1.0))
+    ax2.set_xticklabels(dataset_names)
+    ax2.xaxis.set_tick_params(labelsize=8)
     plt.xticks(rotation=-20)
     # ax1.margins(0.05)
 
     plt.subplots_adjust(wspace=0, hspace=.04)
-    plt.savefig(os.path.join(output_dir, 'deviation.pdf'), dpi=500, bbox_inches='tight')
-
+    plt.savefig(os.path.join(output_dir, 'deviation-new.pdf'), dpi=500, bbox_inches='tight')
 
     plt.show()
 
 
+if __name__ == "__main__":
+    main()
 

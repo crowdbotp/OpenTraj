@@ -158,10 +158,16 @@ def track_camToworld(track_rawData,calib_rawData,imu_rawData):
             #Transform from current IMU coordinate to the IMU coordinate in the first frame (world coordinate for this scene)
             Tr_imuToworld,_=convertOxtToPose(raw_IMU,int(j[0]),Tr_0_inv)
             track_pose_world_data.append(np.matmul(Tr_imuToworld,track_pose_imu).tolist()[0][:3])
-           
 
     track_pos_world = pd.DataFrame(data=np.array(track_pose_world_data),columns=['pos_x','pos_y','pos_z'])
     return track_pos_world
 
 
+if __name__ == "__main__":
+    import os, sys
+    opentraj_root = sys.argv[1]
+    kitti_root = os.path.join(opentraj_root, 'datasets/KITTI/data')
+    dataset = load_kitti(kitti_root, title='kitti', use_kalman=True, sampling_rate=1)
+    trajs = dataset.get_trajectories()
+    print(len(trajs))
 

@@ -55,7 +55,7 @@ def num_trajlets(dataset: TrajDataset, length=4.8, overlap=2):
     return len(trajlets), len(non_static_trajlets)
 
 
-if __name__ == "__main__":
+def main():
     from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names
     opentraj_root = sys.argv[1]  # e.g. os.path.expanduser("~") + '/workspace2/OpenTraj'
     # output_dir = sys.argv[2]  # e.g. os.path.expanduser("~") + '/Dropbox/OpenTraj-paper/exp/ver-0.2'
@@ -79,3 +79,5 @@ if __name__ == "__main__":
         print('*******************')
 
 
+if __name__ == "__main__":
+    main()

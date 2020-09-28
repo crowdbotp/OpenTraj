@@ -12,7 +12,7 @@ from toolkit.loaders.loader_edinburgh import load_edinburgh
 from toolkit.loaders.loader_eth import load_eth
 from toolkit.loaders.loader_crowds import load_crowds
 from toolkit.loaders.loader_gcs import load_gcs
-from toolkit.loaders.loader_hermes import load_hermes
+from toolkit.loaders.loader_hermes import load_bottleneck
 from toolkit.loaders.loader_ind import load_ind
 from toolkit.loaders.loader_kitti import load_kitti
 from toolkit.loaders.loader_lcas import load_lcas
@@ -21,6 +21,8 @@ from toolkit.loaders.loader_town import load_town_center
 from toolkit.loaders.loader_sdd import load_sdd, load_sdd_dir
 from toolkit.loaders.loader_wildtrack import load_wildtrack
 from toolkit.loaders.loader_trajnet import load_trajnet
+from toolkit.core.trajlet import split_trajectories
+from toolkit.baselines.constvel import const_vel
 
 all_dataset_names = [
     'ETH-Univ',
@@ -65,9 +67,6 @@ all_dataset_names = [
     'BN-1d-w180',
     'BN-2d-w160'
 ]
-from toolkit.baselines.constvel import const_vel
-from toolkit.core.trajlet import split_trajectories
-
 
 trajnet_dataset_names = [
     'trajnet-mot'
@@ -75,22 +74,23 @@ trajnet_dataset_names = [
 ]
 
 
-def get_trajlets(opentraj_root, dataset_names):
+def get_trajlets(opentraj_root, dataset_names, to_numpy=True):
     trajlets = {}
 
     # Make a temp dir to store and load trajlets (no splitting anymore)
-    trajlet_dir = os.path.join(opentraj_root, 'trajlets')
+    trajlet_dir = os.path.join(opentraj_root, 'trajlets__temp_')
     if not os.path.exists(trajlet_dir): os.makedirs(trajlet_dir)
     for dataset_name in dataset_names:
         trajlet_npy_file = os.path.join(trajlet_dir, dataset_name + '-trl.npy')
-        if os.path.exists(trajlet_npy_file):
+        if to_numpy and os.path.exists(trajlet_npy_file):
             trajlets[dataset_name] = np.load(trajlet_npy_file)
             print("loading trajlets from: ", trajlet_npy_file)
         else:
             ds = get_datasets(opentraj_root, [dataset_name])[dataset_name]
             trajs = ds.get_trajectories(label="pedestrian")
-            trajlets[dataset_name] = split_trajectories(trajs, to_numpy=True)
-            np.save(trajlet_npy_file, trajlets[dataset_name])
+            trajlets[dataset_name] = split_trajectories(trajs, to_numpy=to_numpy)
+            if to_numpy:
+                np.save(trajlet_npy_file, trajlets[dataset_name])
             print("writing trajlets ndarray into: ", trajlet_npy_file)
 
     return trajlets
@@ -103,7 +103,7 @@ def get_datasets(opentraj_root, dataset_names):
     datasets = {}
 
     # Make a temp dir to store and load trajdatasets (no postprocess anymore)
-    trajdataset_dir = os.path.join(opentraj_root, 'trajdatasets')
+    trajdataset_dir = os.path.join(opentraj_root, 'trajdatasets__temp')
     if not os.path.exists(trajdataset_dir): os.makedirs(trajdataset_dir)
 
     for dataset_name in dataset_names:
@@ -185,9 +185,9 @@ def get_datasets(opentraj_root, dataset_names):
             else:
                 "Unknown Bottleneck dataset!"
                 continue
-            datasets[dataset_name] = load_hermes(bottleneck_path, sampling_rate=6,
-                                                 use_kalman=True,
-                                                 title=dataset_name)
+            datasets[dataset_name] = load_bottleneck(bottleneck_path, sampling_rate=6,
+                                                     use_kalman=True,
+                                                     title=dataset_name)
         # ******************************
 
         # ========== PETS ==============
@@ -269,6 +269,7 @@ def get_datasets(opentraj_root, dataset_names):
         elif 'lcas-minerva' == dataset_name.lower():
             lcas_root = os.path.join(opentraj_root, 'datasets/L-CAS/data')
             datasets[dataset_name] = load_lcas(lcas_root, title=dataset_name,
+                                               use_kalman=True,
                                                sampling_rate=1)  # FixMe: apparently original_fps = 2.5
         # ******************************
 
