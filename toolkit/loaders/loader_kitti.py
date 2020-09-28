@@ -8,6 +8,7 @@ import glob
 from toolkit.core.trajdataset import TrajDataset
 import math
 from math import cos, sin, tan, pi
+from copy import deepcopy
 
 
 def load_kitti(path, **kwargs):
