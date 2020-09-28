@@ -7,11 +7,11 @@ import pandas as pd
 import glob
 import ast
 import sys
-
-from toolkit.core.cv_importer import *
+import cv2
 from toolkit.core.trajdataset import TrajDataset
+from copy import deepcopy
 
-#tested with date: 01Aug, 01Jul, 01Jan
+#tested with date: 01Aug, 01Jul, 01Sep
 
 def get_homog():
     image_9points = [[155,86.6],[350,95.4],[539,106],[149,206],[345,215],[537,223],[144,327],[341,334],[533,340]]
@@ -76,34 +76,30 @@ def load_edinburgh(path, **kwargs):
             track_data.extend(one_track)
 
         #clear repeated trajectories
-        
-        track_data = np.array(track_data)
-        clean_track_data = pd.DataFrame(data =track_data, columns=csv_columns)
+        track_data_pd = pd.DataFrame(data =np.array(track_data), columns=csv_columns)
+      
         clean_track = []
-        #clean repeated trajectories
-        grouped = clean_track_data.groupby(['frame','centre_x','centre_y'])
-        for i in grouped:
-            if len(i[1])>1:
-                select = i[1].loc[i[1]['length'] == np.max(i[1]['length'])].values
-                if len(select)>1:
-                    select = [select[0,:]]
-                clean_track.extend(select)
-            else:
-                clean_track.extend(i[1].values)
-
-        clean_track_data = pd.DataFrame(data =np.array(clean_track), columns=csv_columns)
-        clean_track_data = clean_track_data.sort_values(['agent_id','frame'])
-        #clean_track_data.to_excel("edinburgh_output.xlsx")   
-        clean_track = clean_track_data.values
-       
+        for i in track_data_pd.groupby('agent_id'):
+            i[1].drop_duplicates(subset ="frame", keep = 'first', inplace = True)
+            # clean repeated trajectory for the same agent 
+            
+            for j in i[1].groupby(['frame','centre_x','centre_y']):
+                j[1].drop_duplicates(subset ="frame", keep = 'first', inplace = True)
+                clean_track.append(j[1])
+        clean_track = np.concatenate(clean_track)
+        
         
         #re-id
         uid=np.unique(clean_track[:,3])
+        ##added!!
+        copy_id = deepcopy(clean_track[:,3])
+        
         for oneid in uid:
-            oneid_idx = [idx for idx, x in enumerate(clean_track[:,3]) if x == oneid]
+            oneid_idx = [idx for idx, x in enumerate(copy_id) if x == oneid] 
             for j in oneid_idx:
                 clean_track[j,3] = new_id
             new_id +=1
+
         scene.extend([files_list.index(file)]*len(clean_track))
         
         raw_dataset.extend(clean_track.tolist())
