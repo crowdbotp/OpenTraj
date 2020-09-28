@@ -53,9 +53,10 @@ def loadTrack(files):
         data.sort_values(by=['agent_id','frame'], inplace=True)
         
         #re-id
-        uid=np.unique(data["agent_id"])
+        copy_id = deepcopy(data["agent_id"]) #added
+        uid=np.unique(copy_id)
         for oneid in uid:
-            oneid_idx = [idx for idx, x in enumerate(data["agent_id"]) if x == oneid]
+            oneid_idx = [idx for idx, x in enumerate(copy_id) if x == oneid]
             for j in oneid_idx:
                 data.iloc[j,1] = new_id
             new_id +=1
