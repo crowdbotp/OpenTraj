@@ -77,21 +77,15 @@ def global_density(all_frames,area):
     return frame_density_samples 
 
 
-    
-def main():
-    opentraj_root = sys.argv[1]  
-    output_dir = sys.argv[2]  
-    all_names = ['ETH-Univ','ETH-Hotel','UCY-Zara','UCY-Univ','SDD-Coupa','SDD-bookstore','SDD-deathCircle','GC','InD-1','InD-2','KITTI','LCas-Minerva','WildTrack','Edinburgh','BN-1d-w180','BN-2d-w160']
-   
-    datasets = get_datasets(opentraj_root, all_names)
-  
+def run(datasets, output_dir):
+    all_names = list(datasets.keys())
    
     #store all the results in pandas dataframe
     all_global_density=[]
     all_local_density=[]
     # Get trajectories from dataset
-    for name in all_names: 
-        dataset = datasets[name]
+    for ds_name in all_names:
+        dataset = datasets[ds_name]
         
         all_frames = dataset.get_frames()
         all_trajs = dataset.get_trajectories()
@@ -115,12 +109,12 @@ def main():
         #calculate and store global density
         
         global_dens = global_density(all_frames,area)
-        g_density = pd.DataFrame(data=np.zeros((len(global_dens),2)),columns=['name','global_density'])
-        g_density.iloc[:,0] = [name for i in range(len(global_dens))]
+        g_density = pd.DataFrame(data=np.zeros((len(global_dens),2)),columns=['ds_name','global_density'])
+        g_density.iloc[:,0] = [ds_name for i in range(len(global_dens))]
         g_density.iloc[:,1] = global_dens
         
         all_global_density.append(global_dens)
-        outputFile1 = output_dir+"/"+name+'_globalDens.h5'
+        outputFile1 = output_dir+"/"+ds_name+'_globalDens.h5'
         fw = open(outputFile1, 'wb')
         pickle.dump(g_density, fw)
         fw.close()
@@ -128,19 +122,19 @@ def main():
         #calculate and store local density
         
         trajlets = {}
-        local_dens = local_density(all_frames,trajlets,name)
-        l_density = pd.DataFrame(data=[],columns=['name','local_density'])
+        local_dens = local_density(all_frames,trajlets,ds_name)
+        l_density = pd.DataFrame(data=[],columns=['ds_name','local_density'])
         
         l_density.iloc[:,1] = local_dens 
-        l_density.iloc[:,0] = [name for i in range(len(l_density.iloc[:,1]))]
+        l_density.iloc[:,0] = [ds_name for i in range(len(l_density.iloc[:,1]))]
         all_local_density.append(local_dens) 
-        outputFile2 = output_dir+"/"+name+'_localDens.h5'
+        outputFile2 = output_dir+"/"+ds_name+'_localDens.h5'
         fw = open(outputFile2, 'wb')
         pickle.dump(l_density, fw)
         fw.close()
         
         
-        print(name," finish")
+        print(ds_name," finish")
        
        
     # down-sample each group.
@@ -216,11 +210,10 @@ def main():
     plt.savefig(os.path.join(output_dir, 'density.pdf'), dpi=500, bbox_inches='tight')
     plt.show()
     
-    
-
-      
 
 if __name__ == "__main__":
-    main()
-    
-   
+    opentraj_root = sys.argv[1]
+    output_dir = sys.argv[2]
+    datasets = get_datasets(opentraj_root, all_dataset_names)
+
+    run(datasets, output_dir)

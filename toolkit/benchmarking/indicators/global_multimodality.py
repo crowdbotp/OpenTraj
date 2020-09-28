@@ -376,17 +376,8 @@ def analyze_dataset_loop(arguments):
     return (global_values[0, :], global_values[1, :], global_values[2, :])
 
 
-if __name__ == "__main__":
-    # e.g. os.path.expanduser("~") + '/workspace2/OpenTraj'
-    opentraj_root = sys.argv[1]
-    # e.g. os.path.expanduser("~") + '/Dropbox/OpenTraj-paper/exp/ver-0.2'
-    output_dir = sys.argv[2]
-
-    # Get all datasets variable
-    dataset_names = all_dataset_names
-
-    # Get trajectories
-    trajlets = get_trajlets(opentraj_root, dataset_names)
+def run(trajlets, output_dir):
+    dataset_names = list(trajlets.keys())
 
     # Map indices
     arguments = [(ds_name, trajlets[ds_name])
@@ -426,7 +417,7 @@ if __name__ == "__main__":
     plt.xlabel('')
     plt.xticks(rotation=-90)
 
-    plt.savefig("filename.pdf", bbox_inches = 'tight', pad_inches = 0)
+    plt.savefig(os.path.join(output_dir, "filename.pdf"), bbox_inches='tight', pad_inches=0)
     plt.show()
 
     # ---------------------------------------------------------- #
@@ -455,3 +446,14 @@ if __name__ == "__main__":
     # plt.xticks(rotation=-90)
 
     # plt.show()
+
+
+if __name__ == "__main__":
+    opentraj_root = sys.argv[1]
+    output_dir = sys.argv[2]
+
+    dataset_names = all_dataset_names
+
+    # Get trajectories
+    trajlets = get_trajlets(opentraj_root, dataset_names)
+    run(trajlets, output_dir)

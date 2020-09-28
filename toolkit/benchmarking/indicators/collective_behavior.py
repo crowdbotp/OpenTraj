@@ -9,7 +9,7 @@ def grouping(dataset: TrajDataset):
     return
 
 
-def main():
+def run():
     opentraj_root = sys.argv[1]
     output_dir = sys.argv[2]
 
@@ -19,7 +19,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    run()
 
 
 

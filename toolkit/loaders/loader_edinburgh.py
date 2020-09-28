@@ -8,7 +8,7 @@ import glob
 import ast
 import sys
 
-import cv2
+from toolkit.core.cv_importer import *
 from toolkit.core.trajdataset import TrajDataset
 
 #tested with date: 01Aug, 01Jul, 01Jan

@@ -32,19 +32,10 @@ def acceleration_of_tarjs(trajlets_np: np.ndarray):
     return np.mean(np.abs(acc_values), axis=1), np.max(np.abs(acc_values), axis=1)
 
 
-def main():
-    from toolkit.benchmarking.load_all_datasets import get_trajlets, all_dataset_names
-
-    opentraj_root = sys.argv[1]  # e.g. os.path.expanduser("~") + '/workspace2/OpenTraj'
-    output_dir = sys.argv[2]  # e.g. os.path.expanduser("~") + '/Dropbox/OpenTraj-paper/exp/ver-0.2'
-
-    dataset_names = all_dataset_names
-
-    # datasets = get_datasets(opentraj_root, dataset_names)
-    trajlets = get_trajlets(opentraj_root, dataset_names)
-
+def run(trajlets, output_dir):
     print("calculating speed_var indicator ...")
     speed_mean_values, speed_var_values = [], []
+    dataset_names = list(trajlets.keys())
     for ds_name in dataset_names:
         speed_mean_values.append(speed_avg_of_trajs(trajlets[ds_name]))
         speed_var_values.append(speed_var_of_trajs(trajlets[ds_name]))
@@ -67,21 +58,21 @@ def main():
     # put samples in a DataFrame (required for seaborn plots)
     df_speed_mean = pd.concat([pd.DataFrame({'title': dataset_names[ii],
                                             'speed_mean': speed_mean_values[ii],
-                                             }) for ii in range(len(dataset_names))])
+                                             }) for ii in range(len(trajlets))])
 
     df_speed_var = pd.concat([pd.DataFrame({'title': dataset_names[ii],
                                             'speed_var': speed_var_values[ii],
-                                            }) for ii in range(len(dataset_names))])
+                                            }) for ii in range(len(trajlets))])
 
     df_acc_mean = pd.concat([pd.DataFrame({'title': dataset_names[ii],
                                            'acc_mean': acc_mean_values[ii],
-                                           }) for ii in range(len(dataset_names))])
+                                           }) for ii in range(len(trajlets))])
 
     df_acc_max = pd.concat([pd.DataFrame({'title': dataset_names[ii],
                                           'acc_max': acc_max_values[ii],
-                                          }) for ii in range(len(dataset_names))])
+                                          }) for ii in range(len(trajlets))])
 
-    print("making motion plots ...")
+    print("producing motion plots ...")
 
     sns.set(style="whitegrid")
     fig = plt.figure(figsize=(12, 5))
@@ -127,4 +118,12 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    from toolkit.benchmarking.load_all_datasets import get_datasets, get_trajlets, all_dataset_names
+
+    opentraj_root = sys.argv[1]
+    output_dir = sys.argv[2]
+
+    all_datasets = get_datasets(opentraj_root, all_dataset_names)
+    all_trajlets = get_trajlets(opentraj_root, all_dataset_names)
+
+    run(all_trajlets, output_dir)

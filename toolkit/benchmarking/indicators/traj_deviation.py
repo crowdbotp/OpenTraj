@@ -10,7 +10,7 @@ from matplotlib import patches
 from toolkit.core.trajdataset import TrajDataset
 
 
-def deviation_from_linear_pred(trajlets):
+def deviation_from_linear_pred(trajlets, output_dir):
     start_thetas = np.arctan2(trajlets[:, 2, 0] - trajlets[:, 0, 0],
                               trajlets[:, 2, 1] - trajlets[:, 0, 1])
     # start_thetas = np.arctan2(trajlets[:, 0, 2], trajlets[:, 0, 3])  # calculated from first velocity vector
@@ -49,29 +49,19 @@ def deviation_from_linear_pred(trajlets):
     plt.legend(handles=[trajs_plt[0], avg_plt[0]],
                labels=["trajlets", "avg"], loc="lower left")
 
-    plt.savefig(os.path.join(output_dir, 'dev', ds_name + '.pdf'))
+    plt.savefig(os.path.join(output_dir, 'dev' + ds_name + '.pdf'))
     plt.show()
 
     return keypoints_dev_avg, keypoints_dev_std
 
 
-def main():
-    global ds_name, output_dir
-    from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names, get_trajlets
-    from toolkit.core.trajlet import split_trajectories
-
-    opentraj_root = sys.argv[1]  # e.g. os.path.expanduser("~") + '/workspace2/OpenTraj'
-    output_dir = sys.argv[2]  # e.g. os.path.expanduser("~") + '/Dropbox/OpenTraj-paper/exp/ver-0.2'
-
-    dataset_names = all_dataset_names
-    # dataset_names = ['ETH-Univ']
-
-    # datasets = get_datasets(opentraj_root, dataset_names)
-    trajlets = get_trajlets(opentraj_root, dataset_names)
+def run(trajlets, output_dir):
+    global ds_name
+    dataset_names = list(trajlets.keys())
 
     dev_samples = {1.6: [], 2.4:[], 4.8:[]}
     for ds_name in dataset_names:
-        dev_avg, dev_std = deviation_from_linear_pred(trajlets[ds_name])
+        dev_avg, dev_std = deviation_from_linear_pred(trajlets[ds_name], output_dir)
 
         for t in [1.6, 2.4, 4.8]:
             dt = np.diff(trajlets[ds_name][0, :, 4])[0]
@@ -119,5 +109,13 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names, get_trajlets
+
+    opentraj_root = sys.argv[1]
+    output_dir = sys.argv[2]
+
+    # dataset_names = ['ETH-Univ']
+    dataset_names = all_dataset_names
+    trajlets = get_trajlets(opentraj_root, dataset_names)
+    run(trajlets, output_dir)
 

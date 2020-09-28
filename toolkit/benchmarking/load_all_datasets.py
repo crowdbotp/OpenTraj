@@ -46,31 +46,27 @@ all_dataset_names = [
     # 'SDD-nexus',
     # 'SDD-quad',
 
-    'GC',
-
     'InD-1',  # location_id = 1
     'InD-2',  # location_id = 2
     # 'InD-3',  # location_id = 3
     # 'InD-4',  # location_id = 4
 
-    'KITTI',
-    'LCas-Minerva',
-    'WildTrack',
-    # 'TownCenter',
+    # Bottleneck (Hermes)
+    'BN-1d-w180',
+    'BN-2d-w160',
 
     'Edinburgh',
     # 'Edinburgh-01Jul',
     # 'Edinburgh-01Aug',
     # 'Edinburgh-01Sep',
 
-    # Bottleneck (Hermes)
-    'BN-1d-w180',
-    'BN-2d-w160'
-]
+    'GC',
 
-trajnet_dataset_names = [
-    'trajnet-mot'
-    # ...
+    'WildTrack',
+    'KITTI',
+    'LCas-Minerva',
+
+    # 'TownCenter',
 ]
 
 
@@ -350,20 +346,3 @@ def get_datasets(opentraj_root, dataset_names):
         print("saving dataset into pre-processed file: ", dataset_h5_file)
 
     return datasets
-
-# ========== TrajNet ==============
-# traj_dataset = TrajDataset()
-# traj_dataset.data = pd.concat(partial_datasets)
-# traj_dataset.postprocess()
-# ---------------
-# trajnet_train_root = os.path.join(opentraj_root, 'datasets/trajnet/Train')
-# trajnet_files = glob.glob(trajnet_train_root + "/**/*.txt", recursive=True)
-#
-# trajnet_datasets_list = []
-# for trajnet_file in trajnet_files:
-#     name = 'Trajnet - ' + trajnet_file.split('/')[-1][:-4]
-#     datasets_i = loadTrajNet(trajnet_file, title=name)
-#     trajnet_datasets_list.append(datasets_i)
-# trajnet_dataset = merge_datasets(trajnet_datasets_list)
-
-# ******************************

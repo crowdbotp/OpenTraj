@@ -1,7 +1,7 @@
 # Author: Javad Amirian
 # Email: amiryan.j@gmail.com
 
-
+import os
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -38,19 +38,11 @@ def path_efficiency_index(trajlets_np: np.ndarray):
     #         path_eff_samples.append(path_eff_value)
     # return path_eff_samples
 
-def main():
-    import os, sys
-    from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names, get_trajlets
 
-    opentraj_root = sys.argv[1]  # e.g. os.path.expanduser("~") + '/workspace2/OpenTraj'
-    output_dir = sys.argv[2]  # e.g. os.path.expanduser("~") + '/Dropbox/OpenTraj-paper/exp/ver-0.2'
-
-    # dataset_names = ['ETH-Univ', 'ETH-Hotel']
-    dataset_names = all_dataset_names
-    # datasets = get_datasets(opentraj_root, dataset_names)
-    trajlets = get_trajlets(opentraj_root, dataset_names)
-
+def run(trajlets, output_dir):
     path_eff_values = []
+    dataset_names = list(trajlets.keys())
+
     for ds_name, ds in trajlets.items():
         path_eff_ind = path_efficiency_index(ds) * 100
         path_eff_values.append(path_eff_ind)
@@ -83,4 +75,14 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    from toolkit.benchmarking.load_all_datasets import all_dataset_names, get_trajlets
+
+    opentraj_root = sys.argv[1]
+    output_dir = sys.argv[2]
+
+    # dataset_names = ['ETH-Univ', 'ETH-Hotel']
+    dataset_names = all_dataset_names
+    trajlets = get_trajlets(opentraj_root, dataset_names)
+
+    run(trajlets, output_dir)

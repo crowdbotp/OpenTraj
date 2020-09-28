@@ -105,20 +105,14 @@ def energy(avg_ttc,upperbound,lowerbound):
     
     return E
 
-def main():
-    opentraj_root = sys.argv[1] 
-    output_dir = sys.argv[2]  
-   
-    all_names = ['ETH-Univ','ETH-Hotel','UCY-Zara','UCY-Univ','SDD-Coupa','SDD-bookstore','SDD-deathCircle','GC','InD-1','InD-2','KITTI','LCas-Minerva','WildTrack','Edinburgh','BN-1d-w180','BN-2d-w160']
-  
-    datasets = get_datasets(opentraj_root, all_names)
 
-    
+def run(datasets, output_dir):
+
     #interaction range
     upperbound = 3
     thre = 3
     lowerbound = 0.2
-
+    all_names = list(datasets.keys())
 
     datasets_ttc = []
     datasets_dca = []
@@ -218,4 +212,9 @@ def main():
     
 
 if __name__ == "__main__":
-    main()
+    opentraj_root = sys.argv[1]
+    output_dir = sys.argv[2]
+
+    datasets = get_datasets(opentraj_root, all_dataset_names)
+
+    run(datasets, output_dir)

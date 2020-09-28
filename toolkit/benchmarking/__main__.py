@@ -1,5 +1,11 @@
 import os
 import sys
+
+from benchmarking.load_all_datasets import get_datasets, get_trajlets, all_dataset_names
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+sys.path.insert(0, os.path.abspath(os.path.join(dir_path, '../..')))
+
 import toolkit.benchmarking.indicators.general_stats as general_stats
 import toolkit.benchmarking.indicators.motion_properties as motion_properties
 import toolkit.benchmarking.indicators.path_efficiency as path_efficiency
@@ -12,19 +18,22 @@ import toolkit.benchmarking.indicators.global_multimodality as global_multimodal
 
 
 if __name__ == "__main__":
-    # opentraj_root = sys.argv[1]
-    # output_dir = sys.argv[2]
+    opentraj_root = sys.argv[1]
+    output_dir = sys.argv[2]
 
-    general_stats.main()
-    motion_properties.main()
-    path_efficiency.main()
-    traj_deviation.main()
-    crowd_density.main()
-    collision_energy.main()
+    all_datasets = get_datasets(opentraj_root, all_dataset_names)  # map from dataset_name: str -> `TrajDataset` object
+    all_trajlets = get_trajlets(opentraj_root, all_dataset_names)  # map from dataset_name: str -> Trajlets (np array)
+
+    general_stats.run(all_datasets, output_dir)
+    motion_properties.run(all_trajlets, output_dir)
+    path_efficiency.run(all_trajlets, output_dir)
+    traj_deviation.run(all_trajlets, output_dir)
+    crowd_density.run(all_datasets, output_dir)
+    collision_energy.run(all_datasets, output_dir)
 
     # Todo
-    conditional_entropy.main()
-    trajectory_entropy.main()
-    global_multimodality.main()
+    trajectory_entropy.run(all_datasets, output_dir)
+    global_multimodality.run(all_trajlets, output_dir)
+    conditional_entropy.run()
 
 

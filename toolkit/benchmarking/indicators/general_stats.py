@@ -4,9 +4,9 @@
 import sys
 import numpy as np
 import pandas as pd
-from toolkit.core.trajdataset import TrajDataset
 import datetime
 
+from toolkit.core.trajdataset import TrajDataset
 from toolkit.core.trajlet import split_trajectories
 
 
@@ -26,26 +26,10 @@ def num_pedestrians(dataset: TrajDataset):
 
 
 def total_trajectory_duration(dataset: TrajDataset):
-    # total_duration = dataset.data.groupby(["scene_di", "agent_id"]).max() -\
-    #                  dataset.data.groupby(["scene_di", "agent_id"]).min()
-
     timestamps = dataset.data[dataset.data["label"]
                               == "pedestrian"].groupby(["scene_id", "agent_id"])["timestamp"]
     dur = sum(timestamps.max() - timestamps.min())
     return dur
-
-    # scene_ids = pd.unique(dataset.data["scene_id"])
-    # total_duration = 0
-    # for scene_id in scene_ids:
-    #     scene_i_data = dataset.data.loc[dataset.data["scene_id"] == scene_id]
-    #     scene_agent_ids = pd.unique(scene_i_data["agent_id"])
-    #     for agent_id in scene_agent_ids:
-    #         agent_i = scene_i_data.loc[scene_i_data["agent_id"] == agent_id]
-    #
-    #         agent_start_time = agent_i["timestamp"].min()
-    #         agent_end_time = agent_i["timestamp"].max()
-    #         total_duration += (agent_end_time - agent_start_time)
-    # return total_duration
 
 
 def num_trajlets(dataset: TrajDataset, length=4.8, overlap=2):
@@ -55,17 +39,8 @@ def num_trajlets(dataset: TrajDataset, length=4.8, overlap=2):
     return len(trajlets), len(non_static_trajlets)
 
 
-def main():
-    from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names
-    opentraj_root = sys.argv[1]  # e.g. os.path.expanduser("~") + '/workspace2/OpenTraj'
-    # output_dir = sys.argv[2]  # e.g. os.path.expanduser("~") + '/Dropbox/OpenTraj-paper/exp/ver-0.2'
-
-    dataset_names = all_dataset_names
-    # dataset_names = ['ETH-Univ']
-    datasets = get_datasets(opentraj_root, dataset_names)
-    # datasets = get_datasets(opentraj_root, all_dataset_names)
-
-    for ds_name , ds in datasets.items():
+def run(datasets, output_dir):
+    for ds_name, ds in datasets.items():
         # n_scenes = num_scenes(ds)
         n_agents = num_pedestrians(ds)
         dur = dataset_duration(ds)
@@ -75,9 +50,14 @@ def main():
         dur_td = datetime.timedelta(0, int(round(dur)), 0)
         trajs_dur_td = datetime.timedelta(0, int(round(trajs_dur)), 0)
         print(ds_name, ':', n_agents, dur_td, trajs_dur_td)
-        print('# trajlets =', n_trajlets, '% non-static trajlets =', int(n_non_static_trajlets/n_trajlets*100))
+        print('# trajlets =', n_trajlets, '% non-static trajlets =', int(n_non_static_trajlets / n_trajlets * 100))
         print('*******************')
 
 
 if __name__ == "__main__":
-    main()
+    from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names
+
+    opentraj_root = sys.argv[1]
+    dataset_names = all_dataset_names
+    all_datasets = get_datasets(opentraj_root, dataset_names)
+    run(all_datasets, '')
