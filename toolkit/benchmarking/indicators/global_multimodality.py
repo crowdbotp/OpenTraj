@@ -1,5 +1,5 @@
 # Author: Franciscon Valente Castro
-# Email: fco.valente.castro@gmail.com
+# Email: francisco.valente@cimat.mx
 
 import os
 import sys
@@ -54,7 +54,7 @@ def plot_gmm(gmm, X, label=True, ax=None):
     for pos, covar, w in zip(gmm.means_, gmm.covariances_, gmm.weights_):
         draw_ellipse(pos, covar, alpha=w * w_factor)
 
-def Gauss_K(x,y,h):
+def Gauss_K(x, y, h):
     N = len(x)
     return math.exp(-np.linalg.norm(x-y)**2/(2*h**2))/(2*math.pi*h**2)**N
 
@@ -122,38 +122,37 @@ def entropy(Xp, k, h, w, M):
     return num_clusters
 
 
-def detect_separator(trajectories,secs):
+def detect_separator(trajectories, secs):
     traj = trajectories[0]
     for i in range(len(traj)):
-        if traj[i,4]-traj[0,4]>secs:
+        if traj[i, 4] - traj[0, 4] > secs:
             break
-    return i-1
+    return i - 1
 
-def get_entropies(opentraj_root, trajectories, dataset_name, M = 30):
+
+def get_entropies(opentraj_root, trajectories, dataset_name, M=30):
     # Load dataset
     N_t = len(trajectories)
 
-    
-    #Number of frames in observed and predicted trajlets
-    Tobs = detect_separator(trajectories,3.2)
-    Tpred = len(trajectories[0])-Tobs
+    # Number of frames in observed and predicted trajlets
+    Tobs = detect_separator(trajectories, 3.2)
+    Tpred = len(trajectories[0]) - Tobs
 
-    h = 0.5 #Bandwidth for Gaussian Kernel
+    h = 0.5  # Bandwidth for Gaussian Kernel
 
-
-    #Leave just the position information
+    # Leave just the position information
     trajs = []
     for i in range(len(trajectories)):
-        trajs.append(trajectories[i][:,0:2])
-    
-    #Obtain observed and predicted trajlets
-    Xm, Xp = obs_pred_trajectories(trajs,Tobs,Tpred+Tobs)
-    
-    #Estimate the entropy for every trajectory
+        trajs.append(trajectories[i][:, 0:2])
+
+    # Obtain observed and predicted trajlets
+    Xm, Xp = obs_pred_trajectories(trajs, Tobs, Tpred + Tobs)
+
+    # Estimate the entropy for every trajectory
     entropy_values = []
     for k in tqdm(range(N_t), dataset_name):
-        w = weights(Xm,k,h)
-        entropy_values.append(entropy(Xp,k,h,w,M))
+        w = weights(Xm, k, h)
+        entropy_values.append(entropy(Xp, k, h, w, M))
 
     print('Done with the entropies of', dataset_name)
     return entropy_values
@@ -407,21 +406,28 @@ def run(trajlets, output_dir):
     sns.set(style="whitegrid")
     fig = plt.figure(figsize=(12, 5))
 
+    # Number of clusters creation
     fig.add_subplot(211)
     sns.swarmplot(y='num_clusters', x='title', data=df, size=3)
     plt.xlabel('')
     plt.xticks([])
 
-    fig.add_subplot(212)
+    # Entropy plot creation
+    ax2 = fig.add_subplot(212)
     sns.swarmplot(y='entropy', x='title', data=df, size=3)
     plt.xlabel('')
-    plt.xticks(rotation=-90)
+    plt.xticks(rotation=-20)
+    ax2.yaxis.label.set_size(9)
+    ax2.xaxis.set_tick_params(labelsize=8)
 
-    plt.savefig(os.path.join(output_dir, "filename.pdf"), bbox_inches='tight', pad_inches=0)
+    plt.subplots_adjust(wspace=0, hspace=.1)
+
+    plt.savefig("filename.pdf", bbox_inches='tight', pad_inches=0)
     plt.show()
 
     # ---------------------------------------------------------- #
     # Analyze conditional predictions
+
     # cond_clusters = entropies_set(opentraj_root, dataset_names)
 
     # # Construct dataframe cond_clusters
