@@ -7,6 +7,7 @@ import math
 import scipy
 import numpy as np
 import pandas as pd
+import argparse
 from tqdm import tqdm
 import multiprocessing as mp
 from scipy.interpolate import interp1d
@@ -20,6 +21,16 @@ import seaborn as sns
 from toolkit.core.trajdataset import TrajDataset
 from toolkit.core.trajlet import split_trajectories
 from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names, get_trajlets
+
+
+# Parser arguments
+parser = argparse.ArgumentParser(description='Calculate global '
+                                             'multimodality indicators.')
+parser.add_argument('--execution', '--exec',
+                    default='normal',
+                    choices=['normal', 'parallelized'],
+                    help='pick a execution (default: "vae")')
+args = parser.parse_args()
 
 
 def draw_ellipse(position, covariance, ax=None, **kwargs):
@@ -54,48 +65,49 @@ def plot_gmm(gmm, X, label=True, ax=None):
     for pos, covar, w in zip(gmm.means_, gmm.covariances_, gmm.weights_):
         draw_ellipse(pos, covar, alpha=w * w_factor)
 
+
 def Gauss_K(x, y, h):
     N = len(x)
-    return math.exp(-np.linalg.norm(x-y)**2/(2*h**2))/(2*math.pi*h**2)**N
+    return math.exp(-np.linalg.norm(x - y) ** 2 / (2 * h ** 2)) / (2 * math.pi*h**2)**N
 
-#separates every trajectory in its observed and predicted trajlets
-def obs_pred_trajectories(trajectories, separator = 8, f_per_traj = 20):
+# Separates every trajectory in its observed and predicted trajlets
+def obs_pred_trajectories(trajectories, separator=8, f_per_traj=20):
     N_t = len(trajectories)
     Trajm = []
     Trajp = []
     for tr in trajectories:
-        Trajm.append(tr[range(separator),:])
-        Trajp.append(tr[range(separator,f_per_traj),:])
-    return Trajm,Trajp
+        Trajm.append(tr[range(separator), :])
+        Trajp.append(tr[range(separator, f_per_traj), :])
+    return Trajm, Trajp
 
 
-#Weights for the GMM
-def weights(Xm,k,h,Tobs = 8,Tpred = 12):
+# Weights for the GMM
+def weights(Xm, k, h, Tobs=8, Tpred=12):
     N_t = len(Xm)
     aux = 0
-    for l in range(N_t):
-        aux += Gauss_K(Xm[k],Xm[l],h)
+    for idx in range(N_t):
+        aux += Gauss_K(Xm[k], Xm[idx], h)
     w = []
-    for l in range(N_t):
-        var = Gauss_K(Xm[k],Xm[l],h)/aux
+    for idx in range(N_t):
+        var = Gauss_K(Xm[k], Xm[idx], h) / aux
         w.append(var)
 
     return np.array(w)
 
 
-def get_sample(Xp,w,M,h):
-    probabilities = w/np.sum(w)
-    l_sample = np.random.choice(range(len(Xp)),M, p = probabilities)
+def get_sample(Xp, w, M, h):
+    probabilities = w / np.sum(w)
+    l_sample = np.random.choice(range(len(Xp)), M, p=probabilities)
     sample = []
     for i in l_sample:
         sample.append(Xp[i])
-    size = len(Xp[0])*2
-    cov = h*np.identity(size)
-    
+    size = len(Xp[0]) * 2
+    cov = h * np.identity(size)
+
     for i in range(len(sample)):
         s = sample[i].reshape(size)
-        s = multivariate_normal.rvs(s,cov)
-        s = s.reshape(int(size/2),2)
+        s = multivariate_normal.rvs(s, cov)
+        s = s.reshape(int(size / 2), 2)
         sample[i] = s
 
     return sample
@@ -157,23 +169,28 @@ def get_entropies(opentraj_root, trajectories, dataset_name, M=30):
     print('Done with the entropies of', dataset_name)
     return entropy_values
 
-def entropies_set(opentraj_root, datasets_name, M = 30):
+
+def entropies_set(opentraj_root, datasets_name, M=30):
     entropies_dir = os.path.join(opentraj_root, 'entropies')
-    if not os.path.exists(entropies_dir): os.makedirs(entropies_dir)
-    
-    trajectories_set = get_trajlets(opentraj_root,datasets_name)
-    
+    if not os.path.exists(entropies_dir):
+        os.makedirs(entropies_dir)
+
+    trajectories_set = get_trajlets(opentraj_root, datasets_name)
+
     entropy_values_set = {}
     for name in trajectories_set:
-        trajlet_entropy_file = os.path.join(entropies_dir, name + str(M) + '-entropy.npy')
+        trajlet_entropy_file = os.path.join(entropies_dir,
+                                            name + str(M) + '-entropy.npy')
         if os.path.exists(trajlet_entropy_file):
             entropy_values = np.load(trajlet_entropy_file)
             print("loading entropies from: ", trajlet_entropy_file)
         else:
-                entropy_values = get_entropies(opentraj_root, trajectories_set[name],name, M)
-                np.save(trajlet_entropy_file, entropy_values)
-                print("writing entropies ndarray into: ", trajlet_entropy_file)
-        entropy_values_set.update({name : entropy_values})
+            entropy_values = get_entropies(opentraj_root,
+                                           trajectories_set[name],
+                                           name, M)
+            np.save(trajlet_entropy_file, entropy_values)
+            print("writing entropies ndarray into: ", trajlet_entropy_file)
+        entropy_values_set.update({name: entropy_values})
     return entropy_values_set
 
 
@@ -382,13 +399,14 @@ def run(trajlets, output_dir):
     arguments = [(ds_name, trajlets[ds_name])
                  for ds_name in dataset_names]
 
-    # Analyze datasets (parallelized)
-    # pool = mp.Pool(mp.cpu_count() - 2)
-    # results = pool.map(analyze_dataset_loop, arguments)
-    # pool.close()
-
-    # Analyze datasets (normal)
-    results = [analyze_dataset_loop(arg) for arg in arguments]
+    if args.execution == 'normal':
+        # Analyze datasets (normal)
+        results = [analyze_dataset_loop(arg) for arg in arguments]
+    elif args.execution == 'parallelized':
+        # Analyze datasets (parallelized)
+        pool = mp.Pool(mp.cpu_count() - 2)
+        results = pool.map(analyze_dataset_loop, arguments)
+        pool.close()
 
     # Construct dataframe
     df = pd.DataFrame()
