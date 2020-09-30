@@ -17,22 +17,22 @@ import pandas as pd
 from toolkit.loaders.loader_eth import load_eth
 
 # Parser arguments
-parser = argparse.ArgumentParser(description='Measure multimodality'
-                                             'on trajectories.')
-parser.add_argument('--root-path', '--root',
-                    default='C:/verano2020/OpenTraj-master/',
-                    help='path to foldet that contain dataset')
-args = parser.parse_args()
-
-# reference_folders = {'eth-univ': 'datasets/ETH/seq_eth/',
-#                      'eth-hotel': 'datasets/ETH/seq_hotel/',
-#                      'ucy-zara1': 'datasets/UCY/zara01/',
-#                      'ucy-zara2': 'datasets/UCY/zara02/',
-#                      'ucy-univ3': 'datasets/UCY/students03/',
-#                      }
-
-graphics_dir = os.path.join(args.root_path, 'generated_graphics')
-if not os.path.exists(graphics_dir): os.makedirs(graphics_dir)
+# parser = argparse.ArgumentParser(description='Measure multimodality'
+#                                              'on trajectories.')
+# parser.add_argument('--root-path', '--root',
+#                     default='C:/verano2020/OpenTraj-master/',
+#                     help='path to foldet that contain dataset')
+# args = parser.parse_args()
+#
+# # reference_folders = {'eth-univ': 'datasets/ETH/seq_eth/',
+# #                      'eth-hotel': 'datasets/ETH/seq_hotel/',
+# #                      'ucy-zara1': 'datasets/UCY/zara01/',
+# #                      'ucy-zara2': 'datasets/UCY/zara02/',
+# #                      'ucy-univ3': 'datasets/UCY/students03/',
+# #                      }
+#
+# graphics_dir = os.path.join(args.root_path, 'generated_graphics')
+# if not os.path.exists(graphics_dir): os.makedirs(graphics_dir)
 
 
 def Gauss_K(x, y, h):

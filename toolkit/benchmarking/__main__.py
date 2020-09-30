@@ -12,7 +12,7 @@ import toolkit.benchmarking.indicators.path_efficiency as path_efficiency
 import toolkit.benchmarking.indicators.traj_deviation as traj_deviation
 import toolkit.benchmarking.indicators.crowd_density as crowd_density
 import toolkit.benchmarking.indicators.collision_energy as collision_energy
-import toolkit.benchmarking.indicators.conditional_entropy as conditional_entropy
+# import toolkit.benchmarking.indicators.conditional_entropy as conditional_entropy
 import toolkit.benchmarking.indicators.trajectory_entropy as trajectory_entropy
 import toolkit.benchmarking.indicators.global_multimodality as global_multimodality
 

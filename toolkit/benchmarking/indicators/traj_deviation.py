@@ -73,7 +73,7 @@ def run(trajlets, output_dir):
     dev_samples[4.8] = np.array(dev_samples[4.8])
 
     # plt.errorbar()
-    fig = plt.figure(figsize=(12, 4))
+    fig = plt.figure(figsize=(16, 4))
 
     ax1 = fig.add_subplot(211)
     plt.bar(np.arange(len(dataset_names)), abs(dev_samples[4.8][:, 0]),

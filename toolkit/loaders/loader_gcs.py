@@ -52,10 +52,10 @@ def load_gcs(path, **kwargs):
                 raw_data_list.append([frame_id, agent_id_incremental, px, py])
 
     csv_columns = ["frame_id", "agent_id", "pos_x", "pos_y"]
-    raw_data_df = pd.DataFrame(np.stack(raw_data_list), columns=csv_columns)
+    raw_data_frame = pd.DataFrame(np.stack(raw_data_list), columns=csv_columns)
 
-    raw_data_df_groupby = raw_data_df.groupby("agent_id")
-    trajs = [g for _, g in raw_data_df_groupby]
+    raw_df_groupby = raw_data_frame.groupby("agent_id")
+    trajs = [g for _, g in raw_df_groupby]
 
     tr0_ = trajs[0]
     tr1_ = trajs[1]
@@ -100,7 +100,7 @@ def load_gcs(path, **kwargs):
     fps = kwargs.get('fps', 25)
 
     # post-process
-    fps = 30
+    # fps = 30
     sampling_rate = kwargs.get('sampling_rate', 1)
     use_kalman = kwargs.get('use_kalman', False)
     traj_dataset.postprocess(fps=fps, sampling_rate=sampling_rate, use_kalman=use_kalman)
