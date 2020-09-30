@@ -56,7 +56,7 @@ To download the toolkit, separately in a zip file click [here](https://downgit.g
 Using python files in [parser](toolkit/parser) dir, you can load a dataset into a dataset object. This object then can be used to retrieve the trajectories, with different queries (by id, timestamp, ...).
 
 #### 2. Benchmarks
-Using python files in [parser](toolkit/benchmarking/indicators) dir, you can generate the results of the indicators.
+Using python files in [benchmarking/indicators](toolkit/benchmarking/indicators) dir, you can generate the results of each of the indicators presented in the article. For more information about each of the scripts check the information in [toolkit](toolkit).
 
 #### 3. Graphical User Interface
 A simple script with a pyqt GUI is developed [play.py](toolkit/play.py), and can be used to visualize a given dataset (the ones whose parsers are available):
