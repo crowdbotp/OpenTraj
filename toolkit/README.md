@@ -1,11 +1,17 @@
 # OpenTraj Toolkit
+
 The official implementation for the paper:
-**OpenTraj: Assessing Prediction Complexity in Human Trajectories Datasets**
 
-[Javad Amirian](), [Bingqing Zhang](), [Francisco Valente Castro](), [Juan Baldelomar](), [Jean-Bernard Hayet](), [Julien Pettre]()
+**OpenTraj: Assessing Prediction Complexity in Human Trajectories Datasets**  
+*[Javad Amirian](http://people.rennes.inria.fr/Javad.Amirian),
+[Bingqing Zhang](),
+[Francisco Valente Castro](),
+[Juan José Baldelomar](),
+[Jean-Bernard Hayet](),
+[Julien Pettré](http://people.rennes.inria.fr/Julien.Pettre/)*  
+Published at [ACCV2020](http://accv2020.kyoto/): [[paper]()], [[presentation]()]
 
-Published at [ACCV2020](http://accv2020.kyoto/): ([[paper]()], [[[presentation]]()])
-%# TBC
+
 
 ## Dataset Analysis
 
