@@ -15,24 +15,7 @@ import seaborn as sns
 import pandas as pd
 
 from toolkit.loaders.loader_eth import load_eth
-
-# Parser arguments
-# parser = argparse.ArgumentParser(description='Measure multimodality'
-#                                              'on trajectories.')
-# parser.add_argument('--root-path', '--root',
-#                     default='C:/verano2020/OpenTraj-master/',
-#                     help='path to foldet that contain dataset')
-# args = parser.parse_args()
-#
-# # reference_folders = {'eth-univ': 'datasets/ETH/seq_eth/',
-# #                      'eth-hotel': 'datasets/ETH/seq_hotel/',
-# #                      'ucy-zara1': 'datasets/UCY/zara01/',
-# #                      'ucy-zara2': 'datasets/UCY/zara02/',
-# #                      'ucy-univ3': 'datasets/UCY/students03/',
-# #                      }
-#
-# graphics_dir = os.path.join(args.root_path, 'generated_graphics')
-# if not os.path.exists(graphics_dir): os.makedirs(graphics_dir)
+from random import sample
 
 
 def Gauss_K(x, y, h):
@@ -196,9 +179,20 @@ def entropies_set(opentraj_root, datasets_name, M=30, replace=False):
             entropy_values = np.load(trajlet_entropy_file)
             print("loading entropies from: ", trajlet_entropy_file)
         else:
-            entropy_values = get_entropies(opentraj_root, trajectories_set[name], name, M, replace=replace)
+            # entropy_values = get_entropies(opentraj_root, trajectories_set[name], name, M, replace=replace)
+            # np.save(trajlet_entropy_file, entropy_values)
+            # print("writing entropies ndarray into: ", trajlet_entropy_file)
+            if name == 'GC':
+                s = sample(range(len(trajectories_set[name])),10000)
+                s = list(s)
+                auxiliary_trajectories_set = trajectories_set[name][s]
+                entropy_values = get_entropies(opentraj_root, auxiliary_trajectories_set, name, M, replace = replace)
+            else:
+                entropy_values = get_entropies(opentraj_root, trajectories_set[name],name, M, replace = replace)
             np.save(trajlet_entropy_file, entropy_values)
             print("writing entropies ndarray into: ", trajlet_entropy_file)
+
+
         entropy_values_set.update({name: entropy_values})
         # if name in reference_folders:
         #     path = os.path.join(opentraj_root, reference_folders[name])
@@ -207,10 +201,10 @@ def entropies_set(opentraj_root, datasets_name, M=30, replace=False):
 
 
 # --------------------------------Main--------------------------------------------
-def run(datasets, output_dir):
+def run(opentraj_root, output_dir):
     datasets_name = all_dataset_names
     rep = True
-    ntpys = entropies_set(args.root_path, datasets_name, 30, replace=rep)
+    ntpys = entropies_set(opentraj_root, datasets_name, 30, replace=rep)
 
     entropies = np.array([])
     labels = []
@@ -232,16 +226,18 @@ def run(datasets, output_dir):
 
     sns.set(style="whitegrid")
     colors = ["windows blue", "amber", "greyish", "faded green", "dusty purple"]
-    plt.figure(figsize=(12, 6))
-    ax = sns.swarmplot(y='Entropy', x='Dataset', data=data, palette='bright')  # , hue = maximum)
+    plt.figure(figsize=(20, 8))
+    plt.xticks(rotation=330)
+    ax = sns.swarmplot(y='Entropy', x='Dataset', data=data, size = 1)  # , hue = maximum)
     if rep == True:
         titl = 'Entropies with replacement'
         R = 'R'
     else:
         titl = 'Entropies without replacement'
         R = 'NR'
-    img_title = graphics_dir + '/' + 'Entropies-' + R + '.pdf'
-    plt.title(titl)
+    if not os.path.exists(output_dir): os.makedirs(output_dir)
+    img_title = output_dir + '/' + 'Entropies-' + R + '.pdf'
+    # plt.title(titl)
     plt.savefig(img_title, format='pdf')
     plt.clf()
 
@@ -252,6 +248,4 @@ if __name__ == '__main__':
     opentraj_root = sys.argv[1]
     output_dir = sys.argv[2]
 
-    dataset_names = all_dataset_names
-    datasets = get_datasets(opentraj_root, dataset_names)
-    run(datasets, output_dir)
+    run(opentraj_root, output_dir)

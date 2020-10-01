@@ -1,3 +1,4 @@
+
 # Author: Pat Zhang
 # Email: bingqing.zhang.18@ucl.ac.uk
 import sys
@@ -16,7 +17,7 @@ from copy import deepcopy
 from toolkit.loaders.loader_eth import load_eth
 from toolkit.core.trajdataset import TrajDataset
 from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names
-from toolkit.benchmarking.utils.histogram_sampler import histogram_sampler
+from toolkit.benchmarking.utils.histogram_sampler import histogram_sampler,normalize_samples_with_histogram
 from toolkit.core.trajlet import split_trajectories
 
 #calculate DCA, TTCA for each agent at time t
@@ -112,7 +113,8 @@ def run(datasets, output_dir):
     upperbound = 3
     thre = 3
     lowerbound = 0.2
-    all_names = list(datasets.keys())
+    all_names = ['ETH-Univ','ETH-Hotel','UCY-Zara','UCY-Univ','SDD-Coupa','SDD-bookstore','SDD-deathCircle','GC','InD-1','InD-2','KITTI','LCas-Minerva','WildTrack','Edinburgh','BN-1d-w180','BN-2d-w160']
+    #list(datasets.keys())
 
     datasets_ttc = []
     datasets_dca = []
@@ -161,9 +163,9 @@ def run(datasets, output_dir):
     
   
     # down-sample each group.
-    ttc_d = histogram_sampler(datasets_ttc,max_n_samples=500, n_bins=60)
-    dca_d = histogram_sampler(datasets_dca,max_n_samples=500, n_bins=60)
-    E_d = histogram_sampler(datasets_collision_energy, max_n_samples=500, n_bins=60)
+    ttc_d = normalize_samples_with_histogram(datasets_ttc,max_n_samples=500, n_bins=50)
+    dca_d = normalize_samples_with_histogram(datasets_dca,max_n_samples=500, n_bins=50)
+    E_d = normalize_samples_with_histogram(datasets_collision_energy, max_n_samples=500, n_bins=50)
 
        
     # put samples in a DataFrame (required for seaborn plots)
@@ -186,18 +188,19 @@ def run(datasets, output_dir):
 
     sns.swarmplot(y='ttc', x='title', data=df_ttc, size=1,ax=ax1)
     ax1.set_xlabel('')
-    ax1.set_yticks([0,  2.0,  4.0,  6.0])
+    ax1.set_yticks([0,  4.0,  8.0, 12.0])
     ax1.xaxis.set_tick_params(labelsize=8)
     ax1.yaxis.label.set_size(8)
     ax1.yaxis.set_tick_params(labelsize=8)
 
     sns.swarmplot(y='dca', x='title', data=df_dca, size=1,ax=ax2)
     ax2.set_xlabel('')
+    ax2.set_yticks([0, 1.0, 2.0,3.0,4.0,5.0])
     ax2.xaxis.set_tick_params(labelsize=8)
     ax2.yaxis.label.set_size(8)
     ax2.yaxis.set_tick_params(labelsize=8)
-   
-   
+
+
     sns.swarmplot(y='collision_energy', x='title', data=df_E, size=1,ax=ax3)
     ax3.set_xlabel('')
     plt.xticks(rotation=-20)
