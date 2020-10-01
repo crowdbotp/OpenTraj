@@ -46,25 +46,26 @@ all_dataset_names = [
     # 'SDD-nexus',
     # 'SDD-quad',
 
+    'GC',
+
     'InD-1',  # location_id = 1
     'InD-2',  # location_id = 2
     # 'InD-3',  # location_id = 3
     # 'InD-4',  # location_id = 4
 
-    # Bottleneck (Hermes)
-    'BN-1d-w180',
-    'BN-2d-w160',
+    'KITTI',
+    'LCas-Minerva',
+    'WildTrack',
 
     'Edinburgh',
     # 'Edinburgh-01Jul',
     # 'Edinburgh-01Aug',
     # 'Edinburgh-01Sep',
 
-    'GC',
+    # Bottleneck (Hermes)
+    'BN-1d-w180',
+    'BN-2d-w160',
 
-    'WildTrack',
-    'KITTI',
-    'LCas-Minerva',
 
     # 'TownCenter',
 ]

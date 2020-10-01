@@ -12,7 +12,6 @@ import toolkit.benchmarking.indicators.path_efficiency as path_efficiency
 import toolkit.benchmarking.indicators.traj_deviation as traj_deviation
 import toolkit.benchmarking.indicators.crowd_density as crowd_density
 import toolkit.benchmarking.indicators.collision_energy as collision_energy
-# import toolkit.benchmarking.indicators.conditional_entropy as conditional_entropy
 import toolkit.benchmarking.indicators.trajectory_entropy as trajectory_entropy
 import toolkit.benchmarking.indicators.global_multimodality as global_multimodality
 
@@ -30,10 +29,7 @@ if __name__ == "__main__":
     traj_deviation.run(all_trajlets, output_dir)
     crowd_density.run(all_datasets, output_dir)
     collision_energy.run(all_datasets, output_dir)
-
-    # Todo
-    trajectory_entropy.run(all_datasets, output_dir)
     global_multimodality.run(all_trajlets, output_dir)
-    conditional_entropy.run()
+    trajectory_entropy.run(all_datasets, output_dir)
 
 
