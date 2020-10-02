@@ -52,14 +52,14 @@ We introduce existing datasets for Human Trajectory Prediction (HTP) task, and a
 ## Toolkit
 To download the toolkit, separately in a zip file click [here](https://downgit.github.io/#/home?url=https://github.com/amiryanj/OpenTraj/tree/master/toolkit))
 
-#### 1. Parsers
-Using python files in [parser](toolkit/parser) dir, you can load a dataset into a dataset object. This object then can be used to retrieve the trajectories, with different queries (by id, timestamp, ...).
-
-#### 2. Benchmarks
+#### 1. Benchmarks
 Using python files in [benchmarking/indicators](toolkit/benchmarking/indicators) dir, you can generate the results of each of the indicators presented in the article. For more information about each of the scripts check the information in [toolkit](toolkit).
 
-#### 3. Graphical User Interface
-A simple script with a pyqt GUI is developed [play.py](toolkit/play.py), and can be used to visualize a given dataset (the ones whose parsers are available):
+#### 2. Loaders
+Using python files in [loaders](toolkit/loaders) dir, you can load a dataset into a dataset object, which uses Pandas data frames to store the data. It would be super easy to retrieve the trajectories, using different queries (by agent_id, timestamp, ...).
+
+#### 3. Visualization
+A simple script is added [play.py](toolkit/ui/play.py), and can be used to visualize a given dataset:
 
 <p align='center'>
   <img src='doc/figs/fig-opentraj-ui.gif' width='400px'\>
@@ -168,7 +168,7 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :small_blue_diamond: [R2P2](http://openaccess.thecvf.com/content_ECCV_2018/papers/Nicholas_Rhinehart_R2P2_A_ReparameteRized_ECCV_2018_paper.pdf)
 -->
 
-## References
+
 <!--
 #### (A) Main References:
 - Who are you with and Where are you going? (Social Force), Yamaguchi et al. CVPR 2011. [paper]()
@@ -177,8 +177,7 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 - Social GAN: Socially Acceptable Trajectories with Generative Adversarial Networks, Gupta et al. CVPR 2018. [paper]()
 - Social Ways: Learning Multi-Modal Distributions of Pedestrian Trajectories with GANs, Amirian et al. CVPR 2019. [paper](), [code]()
 -->
-
-* An Awesome list of Trajectory Prediction references can be found [here](https://github.com/jiachenli94/Awesome-Interaction-aware-Trajectory-Prediction)
+**References**: an *awsome* list of trajectory prediction references can be found [here](https://github.com/jiachenli94/Awesome-Interaction-aware-Trajectory-Prediction)
 <!--
 - Desire: Distant future prediction in dynamic scenes with interacting agents, Lee et al. CVPR 2017. [paper](http://openaccess.thecvf.com/content_cvpr_2017/papers/Lee_DESIRE_Distant_Future_CVPR_2017_paper.pdf)
 - Sophie: An attentive gan for predicting paths compliant to social and physical constraints, Sadeghian et al. CVPR 2019. [paper](https://arxiv.org/pdf/1806.01482.pdf)
@@ -198,5 +197,4 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 - A survey on motion prediction and risk assessment for intelligent vehicles, ROBOMECH 2014. [paper](https://core.ac.uk/download/pdf/81530180.pdf)
 -->
 
-## Collaboration
-Are you interested in collaboration on OpenTraj? Send an email to [me](mailto:amiryan.j@gmail.com?subject=OpenTraj) titled *OpenTraj*.
+**Collaboration:** Are you interested in collaboration on OpenTraj? Send an email to [me](mailto:amiryan.j@gmail.com?subject=OpenTraj) titled *OpenTraj*.
