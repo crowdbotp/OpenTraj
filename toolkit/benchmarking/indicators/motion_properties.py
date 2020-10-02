@@ -112,7 +112,7 @@ def run(trajlets, output_dir):
     ax4.yaxis.set_tick_params(labelsize=8)
     ax4.xaxis.set_tick_params(labelsize=8)
 
-    plt.savefig(os.path.join(output_dir, 'motion_metric.pdf'), dpi=500, bbox_inches='tight')
+    plt.savefig(os.path.join(output_dir, 'motion_properties.pdf'), dpi=500, bbox_inches='tight')
 
     plt.show()
 

@@ -29,28 +29,28 @@ def deviation_from_linear_pred(trajlets, output_dir):
                                                      trajs_aligned[:, :, 1])), axis=0)
 
     # ======== PLOT ============
-    fig1, ax1 = plt.subplots()
-    trajs_plt = ax1.plot(trajs_aligned[:, :, 1].T, trajs_aligned[:, :, 0].T, alpha=0.3, color='blue')
-    avg_plt = ax1.plot(keypoints[::2, 1], keypoints[::2, 0], 'o', color='red')
-
-    for ii in range(2, len(keypoints), 2):
-        arc_i = patches.Arc([0, 0], zorder=10,
-                            width=keypoints_radius[ii] * 2,
-                            height=keypoints_radius[ii] * 2,
-                            theta1=keypoints_dev_avg[ii] - keypoints_dev_std[ii],
-                            theta2=keypoints_dev_avg[ii] + keypoints_dev_std[ii])
-        ax1.add_patch(arc_i)
-
-    ax1.grid()
-    ax1.set_aspect('equal')
-    plt.title(ds_name)
-    plt.xlim([-1.5, 10])
-    plt.ylim([-4, 4])
-    plt.legend(handles=[trajs_plt[0], avg_plt[0]],
-               labels=["trajlets", "avg"], loc="lower left")
-
-    plt.savefig(os.path.join(output_dir, 'dev' + ds_name + '.pdf'))
-    plt.show()
+    # fig1, ax1 = plt.subplots()
+    # trajs_plt = ax1.plot(trajs_aligned[:, :, 1].T, trajs_aligned[:, :, 0].T, alpha=0.3, color='blue')
+    # avg_plt = ax1.plot(keypoints[::2, 1], keypoints[::2, 0], 'o', color='red')
+    #
+    # for ii in range(2, len(keypoints), 2):
+    #     arc_i = patches.Arc([0, 0], zorder=10,
+    #                         width=keypoints_radius[ii] * 2,
+    #                         height=keypoints_radius[ii] * 2,
+    #                         theta1=keypoints_dev_avg[ii] - keypoints_dev_std[ii],
+    #                         theta2=keypoints_dev_avg[ii] + keypoints_dev_std[ii])
+    #     ax1.add_patch(arc_i)
+    #
+    # ax1.grid()
+    # ax1.set_aspect('equal')
+    # plt.title(ds_name)
+    # plt.xlim([-1.5, 10])
+    # plt.ylim([-4, 4])
+    # plt.legend(handles=[trajs_plt[0], avg_plt[0]],
+    #            labels=["trajlets", "avg"], loc="lower left")
+    #
+    # plt.savefig(os.path.join(output_dir, 'dev' + ds_name + '.pdf'))
+    # plt.show()
 
     return keypoints_dev_avg, keypoints_dev_std
 
@@ -103,7 +103,7 @@ def run(trajlets, output_dir):
     # ax1.margins(0.05)
 
     plt.subplots_adjust(wspace=0, hspace=.04)
-    plt.savefig(os.path.join(output_dir, 'deviation-new.pdf'), dpi=500, bbox_inches='tight')
+    plt.savefig(os.path.join(output_dir, 'traj_deviation.pdf'), dpi=500, bbox_inches='tight')
 
     plt.show()
 
