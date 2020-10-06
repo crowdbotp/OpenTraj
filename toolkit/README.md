@@ -7,9 +7,9 @@ The official implementation for the paper:
 [Bingqing Zhang](),
 [Francisco Valente Castro](),
 [Juan José Baldelomar](),
-[Jean-Bernard Hayet](),
+[Jean-Bernard Hayet](http://aplicaciones.cimat.mx/Personal/jbhayet/home),
 [Julien Pettré](http://people.rennes.inria.fr/Julien.Pettre/)*  
-Published at [ACCV2020](http://accv2020.kyoto/): [[paper]()], [[presentation]()]
+Published at [ACCV2020](http://accv2020.kyoto/): [[paper](https://arxiv.org/abs/2010.00890)], [[presentation]()]
 
 
 
