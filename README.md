@@ -198,3 +198,15 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 -->
 
 **Collaboration:** Are you interested in collaboration on OpenTraj? Send an email to [me](mailto:amiryan.j@gmail.com?subject=OpenTraj) titled *OpenTraj*.
+
+If you find this work useful in your research then please cite:
+```
+@inproceedings{amirian2020opentraj,
+      title={OpenTraj: Assessing Prediction Complexity in Human Trajectories Datasets}, 
+      author={Javad Amirian and Bingqing Zhang and Francisco Valente Castro and Juan Jose Baldelomar and Jean-Bernard Hayet and Julien Pettre},
+      booktitle={Asian Conference on Computer Vision (ACCV)},
+      number={CONF},      
+      year={2020},
+      organization={Springer}
+}
+```
