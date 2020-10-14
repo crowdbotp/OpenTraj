@@ -50,7 +50,8 @@ We introduce existing datasets for Human Trajectory Prediction (HTP) task, and a
 - [JackRabbot](https://jrdb.stanford.edu/): Detection And Tracking Dataset and Benchmark
 
 ## Toolkit
-To download the toolkit, separately in a zip file click [here](https://downgit.github.io/#/home?url=https://github.com/amiryanj/OpenTraj/tree/master/toolkit))
+`To download the toolkit, separately in a zip file click:` [here](https://downgit.github.io/#/home?url=https://github.com/amiryanj/OpenTraj/tree/master/toolkit)
+
 
 #### 1. Benchmarks
 Using python files in [benchmarking/indicators](toolkit/benchmarking/indicators) dir, you can generate the results of each of the indicators presented in the article. For more information about each of the scripts check the information in [toolkit](toolkit).
