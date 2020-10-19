@@ -46,7 +46,7 @@ all_dataset_names = [
     # 'SDD-nexus',
     # 'SDD-quad',
 
-    'GC',
+    # 'GC',
 
     'InD-1',  # location_id = 1
     'InD-2',  # location_id = 2
