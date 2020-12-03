@@ -259,7 +259,7 @@ def get_datasets(opentraj_root, dataset_names):
             kitti_root = os.path.join(opentraj_root, 'datasets/KITTI/data')
             datasets[dataset_name] = load_kitti(kitti_root, title=dataset_name,
                                                 use_kalman=True,
-                                                sampling_rate=1)  # FixMe: apparently original_fps = 2.5
+                                                sampling_rate=4)  # FixMe: apparently original_fps = 2.5
         # ******************************
 
         # ========== L-CAS ==============

@@ -11,9 +11,15 @@ from toolkit.core.trajdataset import TrajDataset
 
 
 def deviation_from_linear_pred(trajlets, output_dir):
-    start_thetas = np.arctan2(trajlets[:, 2, 0] - trajlets[:, 0, 0],
-                              trajlets[:, 2, 1] - trajlets[:, 0, 1])
+    dp_from_t0 = trajlets[:, :, :2] - np.expand_dims(trajlets[:, 0, :2], 1)
+    first_significant_displacement_idx = (np.linalg.norm(dp_from_t0, axis=2) > 0.25).argmax(axis=1)
+    first_significant_displacement = np.stack([dp_from_t0[i, first_significant_displacement_idx[i], :2]
+                                               for i in range(len(trajlets))])
     # start_thetas = np.arctan2(trajlets[:, 0, 2], trajlets[:, 0, 3])  # calculated from first velocity vector
+    # start_thetas = np.arctan2(trajlets[:, 2, 0] - trajlets[:, 0, 0],
+    #                           trajlets[:, 2, 1] - trajlets[:, 0, 1])
+    start_thetas = np.arctan2(first_significant_displacement[:, 0], first_significant_displacement[:, 1])
+
     rot_matrices = np.stack([np.array([[np.cos(theta), -np.sin(theta)],
                                        [np.sin(theta), np.cos(theta)]]) for theta in start_thetas])
     trajs_zero_based = trajlets[:, :, :2] - trajlets[:, 0, :2].reshape((-1, 1, 2))
@@ -77,16 +83,16 @@ def run(trajlets, output_dir):
 
     ax1 = fig.add_subplot(211)
     plt.bar(np.arange(len(dataset_names)), abs(dev_samples[4.8][:, 0]),
-           yerr=dev_samples[4.8][:, 1], alpha=0.5,
-           error_kw=dict(ecolor='gray', lw=2, capsize=5, capthick=2))
+            yerr=dev_samples[4.8][:, 1], alpha=0.5,
+            error_kw=dict(ecolor='gray', lw=2, capsize=5, capthick=2))
     plt.xticks([])
     plt.yticks([-30, 0, 30])
     plt.ylabel('t=4.8s')
 
     ax2 = fig.add_subplot(212)
     plt.bar(np.arange(len(dataset_names)), abs(dev_samples[2.4][:, 0]),
-           yerr=dev_samples[2.4][:, 1], alpha=0.5,
-           error_kw=dict(ecolor='gray', lw=2, capsize=5, capthick=2))
+            yerr=dev_samples[2.4][:, 1], alpha=0.5,
+            error_kw=dict(ecolor='gray', lw=2, capsize=5, capthick=2))
     plt.xticks([])
     plt.ylabel('t=2.4s')
 
@@ -114,7 +120,8 @@ if __name__ == "__main__":
     opentraj_root = sys.argv[1]
     output_dir = sys.argv[2]
 
-    # dataset_names = ['ETH-Univ']
+    # dataset_names = ['KITTI']
+    # dataset_names = ['SDD-coupa']
     dataset_names = all_dataset_names
     trajlets = get_trajlets(opentraj_root, dataset_names)
     run(trajlets, output_dir)

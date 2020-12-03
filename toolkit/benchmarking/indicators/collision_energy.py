@@ -65,7 +65,7 @@ def ttc(all_frames,name,trajlets):
         DCA,TTCA = DCA_MTX(x_4d)
 
         for i in range(len(TTCA)):
-            #find out ttc of one agent 
+            #find out ttc of one agent
             ttc = [TTCA[i][j] for j in range(len(TTCA[i])) if DCA[i][j]<2*Rp and TTCA[i][j]>0] 
             #find out min ttc for one agent
             if len(ttc)>0:
