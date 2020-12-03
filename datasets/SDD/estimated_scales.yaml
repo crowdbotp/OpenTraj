@@ -1,210 +1,197 @@
 bookstore:
    video0:
-      scale: 0.0385
+      scale: 0.038392063
       certainty: 1.0
    video1:
-      scale: 0.0399
+      scale: 0.039892913
       certainty: 1.0
    video2:
-      scale: 0.0402
+      scale: 0.04062433
       certainty: 1.0
    video3:
-      scale: 0.0398
+      scale: 0.039098596
       certainty: 1.0
    video4:
       scale: 0.0396
       certainty: 1.0
    video5:
       scale: 0.0396
-      certainty: 1.0
+      certainty: 0.9
    video6:
       scale: 0.0413
-      certainty: 1.0
+      certainty: 0.9
 
 coupa:
    video0:
-      scale: 0.027
+      scale: 0.027995674
       certainty: 1.0
    video1:
-      scale: 0.027
+      scale: 0.023224545
       certainty: 1.0
    video2:
-      scale: 0.027
+      scale: 0.024
       certainty: 1.0
    video3:
-      scale: 0.027
+      scale: 0.025524906
       certainty: 1.0
 
 deathCircle:
    video0:
-#      scale: 0.024287210508280047
-#      certainty: 0.994929311255925
-      scale: 0.041
+      scale: 0.04064
       certainty: 1.0
    video1:
-#      scale: 0.03907886549922642
-#      certainty: 0.9968201285409194
-      scale: 0.040
+      scale: 0.039076923
       certainty: 1.0
    video2:
-#      scale: 0.039485488139124045
-#      certainty: 0.9967202958019923
-      scale: 0.041
+      scale: 0.03948382
       certainty: 1.0
    video3:
-#      scale: 0.028477683270050656
-#      certainty: 0.9998494585581166
-      scale: 0.029
+      scale: 0.028478209
       certainty: 1.0
    video4:
-#      scale: 0.03897926138938954
-#      certainty: 0.9919499864022917
-      scale: 0.039
+      scale: 0.038980137
       certainty: 1.0
 
 gates:
    video0:
-      scale: 0.03976995323893467
-      certainty: 0.9873022272142209
+      scale: 0.03976968
+      certainty: 1.0
    video1:
-      scale: 0.03770577890982087
-      certainty: 0.991269116643008
+      scale: 0.03770837
+      certainty: 1.0
    video2:
-      scale: 0.03730073381686065
-      certainty: 0.9967579715319639
+      scale: 0.037272793
+      certainty: 1.0
    video3:
-      scale: 0.03451574169700997
-      certainty: 0.9904307767840957
+      scale: 0.034515323
+      certainty: 1.0
    video4:
-      scale: 0.04412295921766168
-      certainty: 0.9957190405278976
+      scale: 0.04412268
+      certainty: 1.0
    video5:
-      scale: 0.034238574325075224
-      certainty: 0.9926942355022095
+      scale: 0.0342392
+      certainty: 1.0
    video6:
-      scale: 0.040
-      certainty: 0.0
+      scale: 0.0342392
+      certainty: 1.0
    video7:
-      scale: 0.04540638436718971
-      certainty: 0.9987494525802016
+      scale: 0.04540353
+      certainty: 1.0
    video8:
-      scale: 0.045189372411701866
-      certainty: 0.9969976675931802
+      scale: 0.045191525
+      certainty: 1.0
 
 
 hyang:
    video0:
-      scale: 0.03475667870786052
-      certainty: 0.9998050521080176
+      scale: 0.034749693
+      certainty: 1.0
    video1:
-      scale: 0.055000000000000014
-      certainty: 0.9999999999999939
+      scale: 0.0453136
+      certainty: 1.0
    video2:
-      scale: 0.045
-      certainty: 0.0
+      scale: 0.054992233
+      certainty: 1.0
    video3:
-      scale: 0.028555693634715197
-      certainty: 0.982039766797979
+      scale: 0.056642
+      certainty: 1.0
    video4:
-      scale: 0.051869653599927956
-      certainty: 0.9833443260559793
+      scale: 0.034265612
+      certainty: 1.0
    video5:
-      scale: 0.02965636176994559
-      certainty: 0.997652363695858
+      scale: 0.029655497
+      certainty: 1.0
    video6:
-      scale: 0.05293750124632589
-      certainty: 0.998815195802876
+      scale: 0.052936449
+      certainty: 1.0
    video7:
-      scale: 0.03540000856831795
-      certainty: 0.9982988818345087
+      scale: 0.03540125
+      certainty: 1.0
    video8:
-      scale: 0.03458721380323992
-      certainty: 0.9962312798798709
-
+      scale: 0.034592381
+      certainty: 1.0
    video9:
-      scale: 0.035
-      certainty: 0.0
+      scale: 0.038031423
+      certainty: 1.0
    video10:
-      scale: 0.035
-      certainty: 0.0
+      scale: 0.054460944
+      certainty: 1.0
    video11:
-      scale: 0.035
-      certainty: 0.0
+      scale: 0.054992233
+      certainty: 1.0
    video12:
-      scale: 0.035
-      certainty: 0.0
+      scale: 0.054104065
+      certainty: 1.0
+
    video13:
-      scale: 0.035
+      scale: 0.0541
       certainty: 0.0
    video14:
-      scale: 0.035
+      scale: 0.0541
       certainty: 0.0
 
 little:
    video0:
-      scale: 0.02893699733189168
-      certainty: 0.9919256027221666
+      scale: 0.028930169
+      certainty: 1.0
    video1:
-      scale: 0.02854431952961772
-      certainty: 0.9981435227271529
+      scale: 0.028543144
+      certainty: 1.0
    video2:
-      scale: 0.028543934838299864
-      certainty: 0.9996498003545992
+      scale: 0.028543144
+      certainty: 1.0
    video3:
-      scale: 0.028635809788081428
-      certainty: 0.9937016397610416
+      scale: 0.028638926
+      certainty: 1.0
 
 nexus:
    video0:
-      scale: 0.029666788926138523
-      certainty: 0.9912677482433772
+      scale: 0.043986494
+      certainty: 1.0
    video1:
-      scale: 0.04331500951469961
-      certainty: 0.9958423523699811
+      scale: 0.043316805
+      certainty: 1.0
    video2:
-      scale: 0.04224798640111509
-      certainty: 0.9875972004534525
-
+      scale: 0.042247434
+      certainty: 1.0
    video3:
-      scale: 0.043
-      certainty: 0.0
+      scale: 0.045883871
+      certainty: 1.0
    video4:
-      scale: 0.043
-      certainty: 0.0
-
+      scale: 0.045883871
+      certainty: 1.0
    video5:
-      scale: 0.04539411245586255
-      certainty: 0.9985373550225684
+      scale: 0.045395745
+      certainty: 1.0
    video6:
-      scale: 0.03792866250595246
-      certainty: 0.9954967787053131
+      scale: 0.037929168
+      certainty: 1.0
    video7:
-      scale: 0.03710305569286845
-      certainty: 0.9890059153153552
+      scale: 0.037106087
+      certainty: 1.0
    video8:
-      scale: 0.0371538461538462
-      certainty: 0.9982692307692224
+      scale: 0.037106087
+      certainty: 1.0
    video9:
-      scale: 0.04491699122050182
-      certainty: 0.9953988547068794
-
+      scale: 0.044917895
+      certainty: 1.0
    video10:
-      scale: 0.044
-      certainty: 0.0
+      scale: 0.043991753
+      certainty: 1.0
    video11:
-      scale: 0.044
-      certainty: 0.0
+      scale: 0.043766154
+      certainty: 1.0
 
 quad:
    video0:
-      scale: 0.0436099984379232
-      certainty: 0.9976407435485608
+      scale: 0.043606807
+      certainty: 1.0
    video1:
-      scale: 0.042537508049418145
-      certainty: 0.999003863720707
+      scale: 0.042530206
+      certainty: 1.0
    video2:
-      scale: 0.04337561414480493
-      certainty: 0.9992000899684846
+      scale: 0.043338169
+      certainty: 1.0
    video3:
-      scale: 0.04436363636363632
-      certainty: 0.9993636363636311
+      scale: 0.044396842
+      certainty: 1.0
