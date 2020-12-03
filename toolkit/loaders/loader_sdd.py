@@ -11,7 +11,7 @@ from toolkit.core.trajdataset import TrajDataset
 
 def load_sdd(path, **kwargs):
     sdd_dataset = TrajDataset()
-    sdd_dataset.title = "SDD"
+    sdd_dataset.title = kwargs.get("title", "SDD")
 
     csv_columns = ["agent_id", "x_min", "y_min", "x_max", "y_max", "frame_id",
                    "lost", "occluded", "generated", "label"]

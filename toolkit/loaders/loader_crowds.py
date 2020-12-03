@@ -92,8 +92,10 @@ class CrowdLoader:
 
 
 def load_crowds(path, **kwargs):
-    """:param path: string, path to folder"""
-    # pass the homography matrix as well
+    """
+        Note: pass the homography matrix as well
+        :param path: string, path to folder
+    """
 
     homog_file = kwargs.get("homog_file", "")
     Homog = (np.loadtxt(homog_file)) if os.path.exists(homog_file) else np.eye(3)

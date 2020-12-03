@@ -1,8 +1,8 @@
 # Author: Javad Amirian
 # Email: amiryan.j@gmail.com
 
-
 from toolkit.loaders.utils.kalman_smoother import KalmanModel
+from tqdm import tqdm
 import numpy as np
 import pandas as pd
 pd.options.mode.chained_assignment = None  # default='warn'
@@ -27,6 +27,7 @@ class TrajDataset:
         # fps is necessary to calc any data related to time (e.g. velocity, acceleration)
 
         self.title = ''
+        self.fps = -1
 
         # bounding box of trajectories
         #  FixME: bbox should be a function of scene_id
@@ -71,6 +72,8 @@ class TrajDataset:
         # fill scene_id
         if "scene_id" not in self.data:
             self.data["scene_id"] = 0
+        self.fps = fps
+
 
         # fill timestamps based on frame_id and video_fps
         if "timestamp" not in self.data:
@@ -116,7 +119,6 @@ class TrajDataset:
         if use_kalman:
             def smooth(group):
                 if len(group) < 2: return group
-                print('Smoothing trajectories %d / %d' % (group["agent_id"].iloc[0], len(data_grouped)))
                 dt = group["timestamp"].diff().iloc[1]
                 kf = KalmanModel(dt, n_dim=2, n_iter=7)
                 smoothed_pos, smoothed_vel = kf.smooth(group[["pos_x", "pos_y"]].to_numpy())
@@ -127,8 +129,10 @@ class TrajDataset:
                 group["vel_y"] = smoothed_vel[:, 1]
                 return group
 
+            tqdm.pandas(desc="Smoothing trajectories")
+            # print('Smoothing trajectories ...')
             data_grouped = self.data.groupby(["scene_id", "agent_id"])
-            self.data = data_grouped.apply(smooth)
+            self.data = data_grouped.progress_apply(smooth)
 
         # compute bounding box
         # Warning: the trajectories should belong to the same (physical) scene
@@ -138,6 +142,11 @@ class TrajDataset:
         # self.bbox['y']['max'] = max(self.data["pos_y"])
 
     def interpolate_frames(self, inplace=True):
+        """
+        Knowing the framerate , the FRAMES that are not annotated will be interpolated.
+        :param inplace: Todo
+        :return: None
+        """
         all_frame_ids = sorted(pd.unique(self.data["frame_id"]))
         if len(all_frame_ids) < 2:
             # FixMe: print warning
@@ -148,7 +157,7 @@ class TrajDataset:
         agent_ids_A = frame_A["agent_id"].to_list()
         interp_data = self.data  # "agent_id", "pos_x", "pos_y", "vel_x", "vel_y"
         # df.append([df_try] * 5, ignore_index=True
-        for frame_id_B in all_frame_ids[1:]:
+        for frame_id_B in tqdm(all_frame_ids[1:], desc="Interpolating frames"):
             frame_B = self.data.loc[self.data["frame_id"] == frame_id_B]
             agent_ids_B = frame_B["agent_id"].to_list()
 
@@ -221,10 +230,10 @@ class TrajDataset:
             output_table = output_table[output_table["frame_id"].isin(frame_ids)]
         return output_table
 
-    def get_frames(self, frame_ids: list = [], scene_ids=""):
-        if not frame_ids:
+    def get_frames(self, frame_ids: list = [], scene_ids=[]):
+        if not len(frame_ids):
             frame_ids = pd.unique(self.data["frame_id"])
-        if not scene_ids:
+        if not len(scene_ids):
             scene_ids = pd.unique(self.data["scene_id"])
 
         frames = []
