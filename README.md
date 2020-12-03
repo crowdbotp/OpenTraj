@@ -50,7 +50,8 @@ We introduce existing datasets for Human Trajectory Prediction (HTP) task, and a
 - [JackRabbot](https://jrdb.stanford.edu/): Detection And Tracking Dataset and Benchmark
 
 ## Toolkit
-To download the toolkit, separately in a zip file click [here](https://downgit.github.io/#/home?url=https://github.com/amiryanj/OpenTraj/tree/master/toolkit))
+`To download the toolkit, separately in a zip file click:` [here](https://downgit.github.io/#/home?url=https://github.com/amiryanj/OpenTraj/tree/master/toolkit)
+
 
 #### 1. Benchmarks
 Using python files in [benchmarking/indicators](toolkit/benchmarking/indicators) dir, you can generate the results of each of the indicators presented in the article. For more information about each of the scripts check the information in [toolkit](toolkit).
@@ -198,3 +199,15 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 -->
 
 **Collaboration:** Are you interested in collaboration on OpenTraj? Send an email to [me](mailto:amiryan.j@gmail.com?subject=OpenTraj) titled *OpenTraj*.
+
+If you find this work useful in your research then please cite:
+```
+@inproceedings{amirian2020opentraj,
+      title={OpenTraj: Assessing Prediction Complexity in Human Trajectories Datasets}, 
+      author={Javad Amirian and Bingqing Zhang and Francisco Valente Castro and Juan Jose Baldelomar and Jean-Bernard Hayet and Julien Pettre},
+      booktitle={Asian Conference on Computer Vision (ACCV)},
+      number={CONF},      
+      year={2020},
+      organization={Springer}
+}
+```

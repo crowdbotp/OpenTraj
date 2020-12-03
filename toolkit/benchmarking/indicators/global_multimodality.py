@@ -23,16 +23,6 @@ from toolkit.core.trajlet import split_trajectories
 from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names, get_trajlets
 
 
-# Parser arguments
-parser = argparse.ArgumentParser(description='Calculate global '
-                                             'multimodality indicators.')
-parser.add_argument('--execution', '--exec',
-                    default='normal',
-                    choices=['normal', 'parallelized'],
-                    help='pick a execution (default: "vae")')
-args = parser.parse_args()
-
-
 def draw_ellipse(position, covariance, ax=None, **kwargs):
     """Draw an ellipse with a given position and covariance"""
     ax = ax or plt.gca()
@@ -366,10 +356,11 @@ def analyze_trajlets(trajlets, ds_name, max_clusters=21,
     return times, num_clusters, entropy
 
 
-def analyze_dataset_loop(arguments):
+def analyze_dataset_loop(arguments, opentraj_root):
     ds_name, trajlets = arguments
 
     # Folder of numpy files
+    print(opentraj_root)
     global_dir = os.path.join(opentraj_root, 'global')
     if not os.path.exists(global_dir):
         os.makedirs(global_dir)
@@ -392,7 +383,7 @@ def analyze_dataset_loop(arguments):
     return (global_values[0, :], global_values[1, :], global_values[2, :])
 
 
-def run(trajlets, output_dir):
+def run(trajlets, opentraj_root, output_dir):
     dataset_names = list(trajlets.keys())
 
     # Map indices
@@ -401,7 +392,8 @@ def run(trajlets, output_dir):
 
     if args.execution == 'normal':
         # Analyze datasets (normal)
-        results = [analyze_dataset_loop(arg) for arg in arguments]
+        results = [analyze_dataset_loop(arg, opentraj_root)
+                   for arg in arguments]
     elif args.execution == 'parallelized':
         # Analyze datasets (parallelized)
         pool = mp.Pool(mp.cpu_count() - 2)
@@ -440,44 +432,26 @@ def run(trajlets, output_dir):
 
     plt.subplots_adjust(wspace=0, hspace=.1)
 
-    plt.savefig("filename.pdf", bbox_inches='tight', pad_inches=0)
+    plt.savefig(os.path.join(output_dir, "filename.pdf"),
+                bbox_inches='tight', pad_inches=0)
     plt.show()
-
-    # ---------------------------------------------------------- #
-    # Analyze conditional predictions
-
-    # cond_clusters = entropies_set(opentraj_root, dataset_names)
-
-    # # Construct dataframe cond_clusters
-    # clusters = np.array([])
-    # labels = []
-    # for dataset in cond_clusters:
-    #     clusters = np.concatenate((clusters, cond_clusters[dataset]))
-    #     for i in range(len(cond_clusters[dataset])):
-    #         labels.append(dataset)
-
-    # data = {'num_clusters': clusters, 'label': labels}
-    # df = pd.DataFrame(data, columns=['num_clusters', 'label'])
-
-    # print("making motion plots ...")
-
-    # sns.set(style="whitegrid")
-    # fig = plt.figure(figsize=(12, 5))
-
-    # fig.add_subplot(111)
-    # sns.swarmplot(y='num_clusters', x='label', data=df, size=3)
-    # plt.xlabel('')
-    # plt.xticks(rotation=-90)
-
-    # plt.show()
 
 
 if __name__ == "__main__":
-    opentraj_root = sys.argv[1]
-    output_dir = sys.argv[2]
+    # Parser arguments
+    parser = argparse.ArgumentParser(description='Calculate global '
+                                                 'multimodality indicators.')
+    parser.add_argument('--opentraj_root', '--root')
+    parser.add_argument('--output_dir', '--output')
+    parser.add_argument('--execution', '--exec',
+                        default='normal',
+                        choices=['normal', 'parallelized'],
+                        help='pick a execution (default: "vae")')
+    args = parser.parse_args()
 
+    # Dataset names
     dataset_names = all_dataset_names
 
     # Get trajectories
-    trajlets = get_trajlets(opentraj_root, dataset_names)
-    run(trajlets, output_dir)
+    trajlets = get_trajlets(args.opentraj_root, dataset_names)
+    run(trajlets, args.opentraj_root, args.output_dir)
