@@ -1,26 +1,31 @@
 # HERMES (Pedestrian Dynamics) Dataset
+This data archive of experiments studying the dynamics of pedestrians is build up by the Institute for Advanced Simulation 7:[Civil Safety Research](http://www.fz-juelich.de/ias/ias-7) of [Forschungszentrum Jülich](http://www.fz-juelich.de/portal/EN/Home/home_node.html).
+The experiments were performed under laboratory conditions to focus on the influence of a single variable.
+
+<p align='center'>
+  <img src='reference.png' width='480px'\>  
+</p>
+
+- The data are part of the online database http://ped.fz-juelich.de/database.
+
+## Detail of Experiments
 * Corridor data are trajectories of pedestrians in a closed corridor of lenght 30m and width 1.8m. 
 * The trajectories are measured on a section of length 6m. 
 * Experiments are carried out with N=15, 30, 60, 85, 95, 110, 140 and 230 participants. 
 * Bottleneck data are trajectories of pedestrian in a bottleneck of lenght 8m and width 1.8m. 
 * Experiments are carried out with 150 participants for bottleneck widths w=0.7, 0.95 1.2 and 1.8m. 
 
-<p align='center'>
-  <img src='reference.png' width='480px'\>  
-</p>
+** Column names of the file are: **
+```python
+ID FRAME X Y Z. 
+- ID: the pedestrian index. 
+- FRAME: the frame number (frame rate is 1/16s). 
+- X Y and Z: pedestrian position in 3d. 
+```
 
 - See http://ped.fz-juelich.de/experiments/2009.05.12_Duesseldorf_Messe_Hermes/docu/VersuchsdokumentationHERMES.pdf page 20 and 28 for details. 
-- The data are part of the online database http://ped.fz-juelich.de/database.
 
-### Column names of the file are: 
-ID FRAME X Y Z. 
-
-- ID: the pedestrian ID. 
-- FRAME: the frame number (frame rate is 1/16s). 
-- X Y and Z: pedestrian position in 3D. 
-
-## Experiments
-## 1. Uni-directional Flow Experiments
+### Uni-directional Flow Experiments
 <!--- table generated using tablesgenerator.com/ --->
 
 <p align='center'>
@@ -58,7 +63,7 @@ ID FRAME X Y Z.
 | uo-300-300-120 	| 3.00       	| 3.00       	| 1.20   	| 348   	|
 | uo-300-300-080 	| 3.00       	| 3.00       	| 0.80   	| 270   	|
 
-## 1. Bi-directional Flow Experiments
+### Bi-directional Flow Experiments
 
 <p align='center'>
   <img src='./figs_and_plots/bo.png' width='640px'\>  
@@ -90,3 +95,22 @@ ID FRAME X Y Z.
 |BOT-360-250-250 | 2,50 | 3,6 | 2,50 | 150/150 | 1:14 | symmetrisch |
 
 
+## Load Dataset with Toolkit
+
+In order to the load the data, we provided the [`loader_hermes.py`](../../toolkit/loaders/loader_hermes.py)
+
+```python
+import os
+from toolkit.loaders.loader_hermes import load_bottleneck
+serie = 'Corridor-2D'
+exp = 'bo-360-160-160'
+# fixme: replace OPENTRAJ_ROOT with the address to root folder of OpenTraj
+annot_file = os.path.join({OPENTRAJ_ROOT}, "datasets/HERMES", serie, exp + '.txt')
+traj_datasets = load_bottleneck(annot_file, sampling_rate=1, use_kalman=False, title='Hermes')
+```
+
+## License
+No information!
+
+## Citation
+Visit https://ped.fz-juelich.de/database/doku.php to get information about citing this dataset.
