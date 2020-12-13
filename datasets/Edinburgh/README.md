@@ -1,10 +1,11 @@
 # Edinburgh Informatics Forum Pedestrian Database
 
-## Introduction
 The dataset consists of a set of detected targets of people walking through the Informatics Forum, the main building of the School of Informatics at the University of Edinburgh. The data covers several months of observation which has resulted in about 1000 observed trajectories each working day. By July 4, 2010, there were 27+ million target detections, of which an estimated 7.9 million were real targets, resulting in 92,000+ observed trajectories.
 
 A view of the scene and image data from which the detected targets are found is:
-![](images/1.jpg)
+<p align='center'>
+  <img src='images/1.jpg' width='480px'\>
+</p>
 
 The main entry/exit points (marked) are at the bottom left (front door), top left (cafe), top center (stairs), top right (elevator and night exit), bottom right (labs). Occasionally, there are events in the Forum which mean that there are many detected targets and tracking is rather difficult. There may be some false detections (noise, shadows, reflections). Normally, only about 30% of the captured frames contain a target and normally there are only a few targets in each frame (1 target in 46% of active frames, 2:25%, 3:14%, 4:8%, 5:4% 6-14:3% of time). There are occasional events in the recorded data, which may result in many 10s or 100s targets detected. Also, sometimes fixed furniture was moved into the field of view which resulted in a constant detection of the furniture in every frame. This accounts for several days (Jul 30, Aug 13) where the file sizes are much larger than usual.
 
@@ -15,44 +16,21 @@ The dataset does not consist of the raw images (although a short set of frames o
 - the description of a bounding box for the target and
 -an RGB histogram that summarises the target pixels.
 
-The histogram has 64 bins, each counting the number of target foreground pixels that lie in a given colour range. Each RGB colour was quantized into 4 ranges (hence the 4*4*4=64 bins). Because the images are a little dark, we adjusted the bin boundaries to use the full histogram better than if we had used equal sized bins. The quantization we finally chose was four bins with ranges 0:[0..19], 1:[20..49], 2:[50..89], 3:[90..255].
-
-To illustrate the image source process, we start with a frame:
-![](images/2.jpg)
-
-Detection uses an absolute difference from a fixed median image plus a weighted first eigenimage, which mainly encodes lighting variations. The binary image of the detected target is:
-![](images/3.jpg)
-
-A typical detected target is:
-![](images/4.png)
-
-from which this colour histogram is extracted:
-
-<p align='center'>
-<img src="images/5-1.jpg" width='200px'\>
-<img src="images/5-2.jpg" width='200px'\>
-<img src="images/5-3.jpg" width='200px'\>
-</p>
-
-A typical set of blobs for a single target is shown here, where each dot marks the center-of-mass of the detected target:
-![](images/6.png)
-
-A view of a few hundred of the trajectories is:
-![](images/7.jpg)
-
-A view of the corresponding tracked trajectories is:
-![](images/8.jpg)
-
-A view of the corresponding spline fits to the trajectories is:
-![](images/9.jpg)
-
-**Source image files:** We did not keep the source image files for the 92K tracks because this would have been about 5-10 Tb. We include here a 1000 frame sample captured at a later date. There are no detections or tracks for this data.
-
-**Detection data files:** Each file contains one or more header lines: BEGIN TTT where TTT is the "number of seconds since (00:00:00 UTC, January 1, 1970)". Then, for each frame thereafter in which a target is detected there is a line F M T where T is the time since the start of this file in 0.1 second units and M is the number of the downloaded frame since the start of the program. Due to occasional detector program crashes, there may be more than one BEGIN statements and even the occasional reset without the BEGIN, which can be seen by the M and T values restarting. For each frame, there are one or more detected blobs. Each blob is encoded on one line in the file in the form: [blob id]: [number of pixels] [x_center] [y_center] [x_top_left] [y_top_left] [width] [height] HISTOGRAM. The blob ids are notional and the same target in the next frame may have a different blob number. The number of pixels is a count of the pixels that are detected as being foreground inside the bounding box. The (x_center,y_center) is the center of mass of the foreground pixels. The bounding box is defined from the pixel (x_top_left, y_top_left) at the top left with the given width and height. The colour histogram bin order is rgb : 000,001,002,003,010,011,012,013,020,...,033,100,...,133,200,...233,300...333, where indices 0,1,2,3 cover the ranges given above. So bin 032 means red range 0, green range 3 and blue range 2. NOTE: these files include spurious targets as well as moving people. This includes: packages, tables, chairs, shadows, highlights and other 'non-targets'. Much of this has been removed before this file was produced, but a lot remains. The "Number of detections in tracking" column below is the number of detections that were allocated to actual tracked moving people. There are a few people that were detected, but not included in the tracked trajectories, usually because their detections were intermittent (ie. were not detected for 3 or more frames).
-
 **Tracked target files:** These files contain sets of detections that have been tracked together into a single target's trajectory. Tracker files start with "% Total number of trajectories in file are [Number]", where Number defines the number of trajectories. Files contain the information in the form of a Matlab structure. The trajectory points and the properties are in two different variables with same identifier.
-Each trajectory has a different identifier like "R1" for trajectory number 1 and "R2" for trajectory number 2 and so on. The first variable is
-Properties.{Identifier}= [ Number_of_Points_in_trajectory, Start_time, End_Time, Average_Size_of_Target,Average_Width, Average_height, Average_Histogram ];. The histogram has the same format as in the detection file. The second variable contains the full trajectory as TRACK.{Identifier}= [[ centre_X(1) Centre_Y(1) Time(1)] ; [ centre_X(2) Centre_Y(2) Time(2)] ........ and so on .......... until ........ [ centre_X(end) Centre_Y(end) Time(end) ]];. The size of tracked files is about 1MB each.
+Each trajectory has a different identifier like "R1" for trajectory number 1 and "R2" for trajectory number 2 and so on. 
+
+The first variable is
+```
+Properties.{Identifier}= [ Number_of_Points_in_trajectory, Start_time, End_Time,
+                           Average_Size_of_Target, Average_Width, Average_height,
+                           Average_Histogram ];
+                           TRACK.{Identifier}= [[ centre_X(1) Centre_Y(1) Time(1)];
+                                                [ centre_X(2) Centre_Y(2) Time(2)]
+                                                .......... and so on 
+                                                .......... until ........ 
+                                                [ centre_X(end) Centre_Y(end) Time(end) ]];
+```
+* The size of tracked files is about 1MB each.
 
 **Tracked spline files:** These files contain sets of 6 point spline descriptions of the tracked trajectory. The spline file contains the average error of the spline fit to the tracked trajectories, and the control points. This is for each trajectory produced by tracker with same identifier as tracker. The first line of spline file is "% Total number of trajectories in file are [Number]", where Number defines the number of trajectories. "X and Y are normalized by dividing 640 and 460 respectively" and "Image size is 640*460". Normalization is done because the spline fit works for variables in the range [0,1], so we transformed the values of the trajectory points to fall into [0,1]. The file contain the information in the form of a Matlab structure. Identifiers of each spline are the same as given in the tracker file for the corresponding trajectory . Deviation and Control points are stored as Deviation.{Identifier}= [ Standard deviation ];. This is the average distance between the tracked point and the closest point on the spline.
 The control points are stored as: Controlpoints.{Identifier}= [[Controlpoint_x1 Controlpoint_y1]; [Controlpoint_x2 Controlpoint_y2]........ and so on until six points ]]; The size of spline files is about 80KB each. The splines were fit based on a temporal parameterisation, so regions with more detections get more control points. This has the side effect that trajectories where people stand still for long periods of time are not represented accurately. People using the data might also consider investigating a spatial parameterisation whereby control points are spaced uniformly along the spatial trajectory.
@@ -200,6 +178,7 @@ Total (before July 19)		28975370		95998	8382100
 
 **N/A - tracking is not available on that particular day, usually because there was some event happening so there were a lot of people standing around rather than walking on a focused trajectory.**
 
+#### Detection and Tracking Tools
 Programs to do the detection, tracking and spline fitting and abnormal behaviour detection can be downloaded from here:
 
 - detection
@@ -208,3 +187,22 @@ Programs to do the detection, tracking and spline fitting and abnormal behaviour
 - [abnormal behaviour detection](http://homepages.inf.ed.ac.uk/rbf/FORUMTRACKING/SINGH/Singh_Code/AbnormalDetection.zip)
 
 This data collection was initiated by Barbara Majecka as part of her MSc project. Please cite this dissertation if you use the data in a publication:s B. Majecka, "Statistical models of pedestrian behaviour in the Forum", MSc Dissertation, School of Informatics, University of Edinburgh, 2009. The spline fitting code was developed by Rowland Sillito. Improvements to the tracking was by Gurkirt Singh as part of a summer internship. This resulted in the Tracks and Splines datasets. You can read a report of his work here.
+
+
+### Load Dataset with Toolkit
+In order to the load the datasets, we provided the [`loader_edinburgh.py`](../../toolkit/loaders/loader_edinburgh.py)
+
+```python
+import os, yaml
+from toolkit.loaders.loader_edinburgh import load_edinburgh
+# fixme: replace OPENTRAJ_ROOT with the address to root folder of OpenTraj
+edinburgh_dir = 
+selected_day = '01Sep'
+edinburgh_path = os.path.join(opentraj_root, 'datasets/Edinburgh/annotations', 'tracks.%s.txt' % selected_day)
+traj_dataset = load_edinburgh(edinburgh_path, title="Edinburgh", 
+                              use_kalman=False, scene_id=selected_day, sampling_rate=4)  # original framerate=9    
+```
+
+## License
+
+## Citation
