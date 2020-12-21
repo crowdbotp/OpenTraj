@@ -40,7 +40,7 @@ We present indicators in 3 categories:
 ## Setup
 To set up the code and to run the benchmarking, run the following script:
 
-```
+```bash
 # create a virtualenv and activate it
 python3 -m venv env
 source env/bin/activate

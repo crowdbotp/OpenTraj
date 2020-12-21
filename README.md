@@ -17,18 +17,18 @@ We introduce existing datasets for Human Trajectory Prediction (HTP) task, and a
 | ![](datasets/KITTI/reference.jpg) | [KITTI](datasets/KITTI) | 6 hours of traffic scenarios. various sensors <code>#Traj:[?]</code> <code>Coord=image-3D + Calib</code> <code>FPS=10</code> |  [website](http://www.cvlibs.net/datasets/kitti/) | 
 | ![](datasets/InD/reference.png) | [inD](datasets/InD) | Naturalistic Trajectories of Vehicles and Vulnerable Road Users Recorded at German Intersections <code>#Traj:[Total=11,500]</code> <code>Coord=world-2D</code> <code>FPS=25</code> | [website](https://www.ind-dataset.com/) [paper](https://arxiv.org/pdf/1911.07602.pdf) | 
 | ![](datasets/L-CAS/reference.png) | [L-CAS](datasets/L-CAS) | Multisensor People Dataset Collected by a Pioneer 3-AT robot <code>#Traj:[?]</code> <code>Coord=0</code> <code>FPS=0</code> | [website](https://lcas.lincoln.ac.uk/wp/research/data-sets-software/l-cas-multisensor-people-dataset/) | 
-| ![](datasets/VIRAT/reference.png) | [VIRAT](datasets/VIRAT) | Natural scenes showing people performing normal actions <code>#Traj:[?]</code> <code>Coord=0</code> <code>FPS=0</code> | [website](http://viratdata.org/) | 
-| ![](datasets/VRU/reference.png) | [VRU](datasets/VRU) | consists of pedestrian and cyclist trajectories, recorded at an urban intersection using cameras and LiDARs <code>#Traj:[peds=1068 Bikes=464]</code> <code>Coord=World (Meter)</code> <code>FPS=25</code> | [website](https://www.th-ab.de/ueber-uns/organisation/labor/kooperative-automatisierte-verkehrssysteme/trajectory-dataset) | 
 | ![](datasets/Edinburgh/reference.jpg) | [Edinburgh](datasets/Edinburgh) | People walking through the Informatics Forum (University of Edinburgh) <code>#Traj:[ped=+92,000]</code> <code>FPS=0</code> | [website](http://homepages.inf.ed.ac.uk/rbf/FORUMTRACKING/) | 
 | ![](datasets/Town-Center/reference.jpg) | [Town Center](datasets/Town-Center) | CCTV video of pedestrians in a busy downtown area in Oxford <code>#Traj:[peds=2,200]</code> <code>Coord=0</code> <code>FPS=0</code> | [website](https://megapixels.cc/datasets/oxford_town_centre/) | 
-| ![](datasets/ATC/reference.png) | [ATC](datasets/ATC) | 92 days of pedestrian trajectories in a shopping center in Osaka, Japan <code>#Traj:[?]</code> <code>Coord=world-2D + Range data</code> | [website](https://irc.atr.jp/crest2010_HRI/ATC_dataset) | 
-| ![](datasets/City-Scapes/reference.png) | [City Scapes](datasets/City-Scapes) | 25,000 annotated images (Semantic/ Instance-wise/ Dense pixel annotations) <code>#Traj:[?]</code> | [website](https://www.cityscapes-dataset.com/dataset-overview/) | 
-| ![](datasets/Forking-Paths-Garden/reference.png) | [Forking Paths Garden](datasets/Forking-Paths-Garden) | **Multi-modal** _Synthetic_ dataset, created in [CARLA](https://carla.org) (3D simulator) based on real world trajectory data, extrapolated by human annotators <code>#Traj:[?]</code> | [website](https://next.cs.cmu.edu/multiverse/index.html) [github](https://github.com/JunweiLiang/Multiverse) [paper](https://arxiv.org/abs/1912.06445) | 
-| ![](datasets/NuScenes/reference.png) | [nuScenes](datasets/NuScenes) | Large-scale Autonomous Driving dataset <code>#Traj:[peds=222,164 vehicles=662,856]</code> <code>Coord=World + 3D Range Data</code> <code>FPS=2</code> | [website](www.nuscences.org) | 
-| ![](datasets/Argoverse/reference.jpg) | [Argoverse](datasets/Argoverse) | 320 hours of Self-driving dataset <code>#Traj:[objects=11,052]</code> <code>Coord=3D</code> <code>FPS=10</code> | [website](https://www.argoverse.org) | 
 | ![](datasets/Wild-Track/reference.jpg) | [Wild Track](datasets/Wild-Track) | surveillance video dataset of students recorded outside the ETH university main building in Zurich. <code>#Traj:[peds=1,200]</code> | [website](https://megapixels.cc/wildtrack/) | 
+| ![](datasets/ATC/reference.png) | [ATC](datasets/ATC) | 92 days of pedestrian trajectories in a shopping center in Osaka, Japan <code>#Traj:[?]</code> <code>Coord=world-2D + Range data</code> | [website](https://irc.atr.jp/crest2010_HRI/ATC_dataset) | 
+| ![](datasets/VIRAT/reference.png) | [VIRAT](datasets/VIRAT) | Natural scenes showing people performing normal actions <code>#Traj:[?]</code> <code>Coord=0</code> <code>FPS=0</code> | [website](http://viratdata.org/) | 
+| ![](datasets/Forking-Paths-Garden/reference.png) | [Forking Paths Garden](datasets/Forking-Paths-Garden) | **Multi-modal** _Synthetic_ dataset, created in [CARLA](https://carla.org) (3D simulator) based on real world trajectory data, extrapolated by human annotators <code>#Traj:[?]</code> | [website](https://next.cs.cmu.edu/multiverse/index.html) [github](https://github.com/JunweiLiang/Multiverse) [paper](https://arxiv.org/abs/1912.06445) | 
 | ![](datasets/DUT/reference.png) | [DUT](datasets/DUT) | Natural Vehicle-Crowd Interactions in crowded university campus <code>#Traj:[Peds=1,739 vehicles=123 Total=1,862]</code> <code>Coord=world-2D</code> <code>FPS=23.98</code> | [github](https://github.com/dongfang-steven-yang/vci-dataset-dut) [paper](https://arxiv.org/pdf/1902.00487.pdf) | 
 | ![](datasets/CITR/reference.png) | [CITR](datasets/CITR) | Fundamental Vehicle-Crowd Interaction scenarios in controlled experiments <code>#Traj:[Peds=340]</code> <code>Coord=world-2D</code> <code>FPS=29.97</code> | [github](https://github.com/dongfang-steven-yang/vci-dataset-dut) [paper](https://arxiv.org/pdf/1902.00487.pdf) | 
+| ![](datasets/NuScenes/reference.png) | [nuScenes](datasets/NuScenes) | Large-scale Autonomous Driving dataset <code>#Traj:[peds=222,164 vehicles=662,856]</code> <code>Coord=World + 3D Range Data</code> <code>FPS=2</code> | [website](www.nuscences.org) | 
+| ![](datasets/VRU/reference.png) | [VRU](datasets/VRU) | consists of pedestrian and cyclist trajectories, recorded at an urban intersection using cameras and LiDARs <code>#Traj:[peds=1068 Bikes=464]</code> <code>Coord=World (Meter)</code> <code>FPS=25</code> | [website](https://www.th-ab.de/ueber-uns/organisation/labor/kooperative-automatisierte-verkehrssysteme/trajectory-dataset) | 
+| ![](datasets/City-Scapes/reference.png) | [City Scapes](datasets/City-Scapes) | 25,000 annotated images (Semantic/ Instance-wise/ Dense pixel annotations) <code>#Traj:[?]</code> | [website](https://www.cityscapes-dataset.com/dataset-overview/) | 
+| ![](datasets/Argoverse/reference.jpg) | [Argoverse](datasets/Argoverse) | 320 hours of Self-driving dataset <code>#Traj:[objects=11,052]</code> <code>Coord=3D</code> <code>FPS=10</code> | [website](https://www.argoverse.org) | 
 | ![](datasets/Ko-PER/reference.png) | [Ko-PER](datasets/Ko-PER) | Trajectories of People and vehicles at Urban Intersections (Laserscanner + Video) <code>#Traj:[peds=350]</code> <code>Coord=world-2D</code> | [paper](https://www.uni-ulm.de/fileadmin/website_uni_ulm/iui.inst.110/Bilder/Forschung/Datensaetze/20141010_DatasetDocumentation.pdf) | 
 | ![](datasets/TRAF/reference.png) | [TRAF](datasets/TRAF) | small dataset of dense and heterogeneous traffic videos in India (22 footages) <code>#Traj:[Cars=33 Bikes=20 Peds=11]</code> <code>Coord=image-2D</code> <code>FPS=10</code> | [website](https://gamma.umd.edu/researchdirections/autonomousdriving/trafdataset/) [gDrive](https://drive.google.com/drive/folders/1zKaeboslkqoLdTJbRMyQ0Y9JL3007LRr) [paper](https://arxiv.org/pdf/1812.04767.pdf) | 
 | ![](datasets/ETH-Person/reference.png) | [ETH-Person](datasets/ETH-Person) | Multi-Person Data Collected from Mobile Platforms | [website](https://data.vision.ee.ethz.ch/cvl/aess/) | 
@@ -44,9 +44,9 @@ We introduce existing datasets for Human Trajectory Prediction (HTP) task, and a
 -->
 
 #### Human Trajectory Prediction Benchmarks
-- [MOT-Challenge](https://motchallenge.net): Multiple Object Tracking Benchmark
 - [Trajnet](http://trajnet.stanford.edu/): Trajectory Forecasting Challenge
 - [Trajnet++](https://www.aicrowd.com/challenges/trajnet-a-trajectory-forecasting-challenge): Trajectory Forecasting Challenge
+- [MOT-Challenge](https://motchallenge.net): Multiple Object Tracking Benchmark
 - [JackRabbot](https://jrdb.stanford.edu/): Detection And Tracking Dataset and Benchmark
 
 ## Toolkit
@@ -94,79 +94,6 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 
 <!--
 `TBC`
--->
-
-<!-- 
-| [Social-Attention]() <sup>[REF](#references)</sup>                                  | ?  | ?  |
-| [SoPhie]() <sup>[REF]()</sup>                                            | ?  | ?  |
-| [CIDNN](github.com/svip-lab/CIDNN) <sup>[REF]()</sup>            | ?  | ?  |
-| [Social-Etiquette]() <sup>[REF]()</sup>            | ?  | ?  |
-| [ConstVel]() <sup>[REF]()</sup>            | ?  | ?  |
-| [Scene-LSTM]() <sup>[REF]()</sup>            | ?  | ?  |
-| [Peeking Into the Future]() <sup>[REF]()</sup>            | ?  | ?  |
-| [SS-LSTM]() <sup>[REF]()</sup>            | ?  | ?  |
-| [MX-LSTM]() <sup>[REF]()</sup>            | ?  | ?  |
-| [Social-BiGAT]() <sup>[REF]()</sup>            | ?  | ?  |
-| [SR-LSTM]() <sup>[REF]()</sup>            | ?  | ?  |
--->
-<!--
-&ast; The values are in meter, calculated with ADE(T<sub>obs</sub>=3.2<sub>s</sub>, T<sub>pred</sub>=4.8<sub>s</sub>) and FDE(T<sub>obs</sub>=3.2<sub>s</sub>, T<sub>pred</sub>=4.8<sub>s</sub>).
--->
-<!--% Social Force => (https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=5995468) -->
-<!--% Social Attention => (https://www.ri.cmu.edu/wp-content/uploads/2018/08/main.pdf) -->
-
-<!--
-- [Social-Etiquette](https://infoscience.epfl.ch/record/230262/files/ECCV16social.pdf)
-- [ConstVel(The simpler, the better)](https://arxiv.org/pdf/1903.07933)
-- [Scene-LSTM](https://arxiv.org/pdf/1808.04018)
-- [Peeking Into the Future](http://openaccess.thecvf.com/content_CVPR_2019/papers/Liang_Peeking_Into_the_Future_Predicting_Future_Person_Activities_and_Locations_CVPR_2019_paper.pdf)
-- [SS-LSTM](https://ieeexplore.ieee.org/iel7/8345804/8354104/08354239.pdf)
-- [MX-LSTM](http://openaccess.thecvf.com/content_cvpr_2018/papers/Hasan_MX-LSTM_Mixing_Tracklets_CVPR_2018_paper.pdf)
-- [Social-BiGAT](http://papers.nips.cc/paper/8308-social-bigat-multimodal-trajectory-forecasting-using-bicycle-gan-and-graph-attention-networks.pdf)
-- [SR-LSTM](http://openaccess.thecvf.com/content_CVPR_2019/papers/Zhang_SR-LSTM_State_Refinement_for_LSTM_Towards_Pedestrian_Trajectory_Prediction_CVPR_2019_paper.pdf)
--->
-<!--
-#### 2. UCY Dataset
-`TBC`
--->
-<!--begin(table-UCY)-->
-<!-- 
-| Method                                              | ZARA01 (ADE/FDE) | ZARA02 (ADE/FDE) | Students (ADE/FDE) |
-| ------------------------------------------------------------------------------ | -- | -- | -- |
-| [Social-Force]() <sup>[1](#references)</sup>                                   | ?  | ?  | ?  |
-| [Social-Etiquette]() <sup>[REF]()</sup>                                        | ?  | ?  | ?  |
-| [Social-LSTM]() <sup>[2](#references)</sup>                                    | ?  | ?  | ?  |
-| [Social-GAN](github.com/agrimgupta92/sgan) <sup>[REF](#references)</sup>       | ?  | ?  | ?  |
-| [CIDNN](github.com/svip-lab/CIDNN) <sup>[REF]()</sup>                          | ?  | ?  | ?  |
-| [Social-Attention]() <sup>[REF](#references)</sup>                             | ?  | ?  | ?  |
-| [Scene-LSTM]() <sup>[REF]()</sup>                                              | ?  | ?  | ?  |
-| [ConstVel]() <sup>[REF]()</sup>                                                | ?  | ?  | ?  |
-| [SoPhie]() <sup>[REF]()</sup>                                                  | ?  | ?  | ?  |
-| [Social-Ways](github.com/amiryanj/socialways) <sup>[REF](#references)</sup>    | ?  | ?  | ?  |
-| [Peeking Into the Future]() <sup>[REF]()</sup>                                 | ?  | ?  | ?  |
-| [SS-LSTM]() <sup>[REF]()</sup>                                                 | ?  | ?  | ?  |
-| [Social-BiGAT]() <sup>[REF]()</sup>                                            | ?  | ?  | ?  |
-| [SR-LSTM]() <sup>[REF]()</sup>                                                 | ?  | ?  | ?  |
--->
-<!--end(table-UCY)-->
-
-<!--
-#### 3. Other Datasets
-- Stanford Drone Dataset (SDD)
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :small_blue_diamond: [Social-Etiquette](https://infoscience.epfl.ch/record/230262/files/ECCV16social.pdf)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :small_blue_diamond: [DESIRE](http://openaccess.thecvf.com/content_cvpr_2017/papers/Lee_DESIRE_Distant_Future_CVPR_2017_paper.pdf)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :small_blue_diamond: [SoPhie](http://openaccess.thecvf.com/content_CVPR_2019/papers/Sadeghian_SoPhie_An_Attentive_GAN_for_Predicting_Paths_Compliant_to_Social_CVPR_2019_paper.pdf)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :small_blue_diamond: [MATF](http://openaccess.thecvf.com/content_CVPR_2019/papers/Zhao_Multi-Agent_Tensor_Fusion_for_Contextual_Trajectory_Prediction_CVPR_2019_paper.pdf)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :small_blue_diamond: [Best of Many](http://openaccess.thecvf.com/content_cvpr_2018/papers/Bhattacharyya_Accurate_and_Diverse_CVPR_2018_paper.pdf)
-<br/>
-- Grand Central Station (GC):
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :small_blue_diamond: [CIDNN](http://openaccess.thecvf.com/content_cvpr_2018/papers/Xu_Encoding_Crowd_Interaction_CVPR_2018_paper.pdf)
-<br/>
-- KITI
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :small_blue_diamond: [R2P2](http://openaccess.thecvf.com/content_ECCV_2018/papers/Nicholas_Rhinehart_R2P2_A_ReparameteRized_ECCV_2018_paper.pdf)
 -->
 
 
