@@ -131,19 +131,50 @@ def load_crowds(path, **kwargs):
 if __name__ == "__main__":
     import os, sys
     import matplotlib.pyplot as plt
-    opentraj_root = sys.argv[1]
+    OPENTRAJ_ROOT = sys.argv[1]
 
-    zara_01_vsp = os.path.join(opentraj_root, 'datasets/UCY/zara01/crowds_zara01.vsp')
-    zara_hmg_file = os.path.join(opentraj_root, 'datasets/UCY/zara01/H.txt')
+    # Zara data
+    # =================================
+    zara_01_vsp = os.path.join(OPENTRAJ_ROOT, 'datasets/UCY/zara01/annotation.vsp')
+    zara_hmg_file = os.path.join(OPENTRAJ_ROOT, 'datasets/UCY/zara01/H.txt')
     zara_01_ds = load_crowds(zara_01_vsp, use_kalman=False, homog_file=zara_hmg_file)
     trajs = zara_01_ds.get_trajectories()
     trajs = [g for _, g in trajs]
     samples = zara_01_ds.get_entries()
     plt.scatter(samples["pos_x"], samples["pos_y"])
     plt.show()
-    zara_02_vsp = os.path.join(opentraj_root, 'datasets/UCY/zara02/crowds_zara02.vsp')
-    zara_02_video = os.path.join(opentraj_root, 'datasets/UCY/zara02/video.avi')
+    zara_02_vsp = os.path.join(OPENTRAJ_ROOT, 'datasets/UCY/zara02/crowds_zara02.vsp')
+    zara_02_video = os.path.join(OPENTRAJ_ROOT, 'datasets/UCY/zara02/video.avi')
     zara_02_ds = load_crowds(zara_02_vsp, homog_file=zara_hmg_file)
 
-    zara_03_vsp = os.path.join(opentraj_root, 'datasets/UCY/zara03/crowds_zara03.vsp')
+    zara_03_vsp = os.path.join(OPENTRAJ_ROOT, 'datasets/UCY/zara03/crowds_zara03.vsp')
     zara_03_ds = load_crowds(zara_03_vsp, homog_file=zara_hmg_file)
+
+    # University data
+    # =================================
+    ucy_hmg_file = os.path.join(OPENTRAJ_ROOT, 'datasets/UCY/students03', 'H.txt')
+    st001_ds = load_crowds(os.path.join(OPENTRAJ_ROOT, 'datasets/UCY/students01', 'annotation.vsp'),
+                           homog_file=ucy_hmg_file, scene_id='st001', use_kalman=False)
+    trajs = st001_ds.get_trajectories()
+    for _, tr in trajs:
+        plt.plot(tr["pos_x"], tr["pos_y"])
+        # plt.scatter(tr["vel_x"], tr["vel_y"])
+    plt.show()
+
+    st003_ds = load_crowds(os.path.join(OPENTRAJ_ROOT, 'datasets/UCY/students03', 'annotation.vsp'),
+                           homog_file=ucy_hmg_file, scene_id='st003', use_kalman=False)
+    plt.figure()
+    trajs = st003_ds.get_trajectories()
+    for _, tr in trajs:
+        plt.plot(tr["pos_x"], tr["pos_y"])
+        # plt.scatter(tr["vel_x"], tr["vel_y"])
+    plt.show()
+    uni_ex_ds = load_crowds(os.path.join(OPENTRAJ_ROOT, 'datasets/UCY/uni_examples', 'annotation.vsp'),
+                            homog_file=ucy_hmg_file, scene_id='uni-ex', use_kalman=False)
+
+    plt.figure()
+    trajs = uni_ex_ds.get_trajectories()
+    for _, tr in trajs:
+        plt.plot(tr["pos_x"], tr["pos_y"])
+        # plt.scatter(tr["vel_x"], tr["vel_y"])
+    plt.show()

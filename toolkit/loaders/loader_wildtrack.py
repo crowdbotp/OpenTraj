@@ -52,3 +52,17 @@ def load_wildtrack(path: str, **kwargs):
     traj_dataset.postprocess(fps=fps, sampling_rate=sampling_rate, use_kalman=use_kalman)
 
     return traj_dataset
+
+
+# test
+if __name__ == "__main__":
+    import os, sys
+    import matplotlib.pyplot as plt
+    opentraj_root = sys.argv[1]
+    wildtrack_root = os.path.join(opentraj_root, 'datasets/Wild-Track/annotations_positions')
+    traj_datasets = load_wildtrack(wildtrack_root, title='WildTrack',
+                                   use_kalman=False, sampling_rate=1)  # original_annot_framerate=2
+    trajs = list(traj_datasets.get_trajectories())
+    for traj in trajs:
+        plt.plot(traj[1]["pos_x"], traj[1]["pos_y"])
+    plt.show()

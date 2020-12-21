@@ -149,14 +149,14 @@ def get_datasets(opentraj_root, dataset_names):
 
             st001_ds = load_crowds(st001_dir + '/annotation.vsp',
                                    homog_file=st003_dir + '/H.txt',
-                                   scene_id='1', use_kalman=True) 
+                                   scene_id='st001', use_kalman=True)
 
             st003_ds = load_crowds(st003_dir + '/annotation.vsp',
                                    homog_file=st003_dir + '/H.txt',
-                                   scene_id='3', use_kalman=True)
+                                   scene_id='st003', use_kalman=True)
             uni_ex_ds = load_crowds(uni_ex_dir + '/annotation.vsp',
                                     homog_file=st003_dir + '/H.txt',
-                                    scene_id='ex', use_kalman=True)
+                                    scene_id='uni-ex', use_kalman=True)
             datasets[dataset_name] = merge_datasets([st001_ds, st003_ds, uni_ex_ds], dataset_name)
 
         elif 'ucy-zara1' == dataset_name.lower():
@@ -219,7 +219,7 @@ def get_datasets(opentraj_root, dataset_names):
 
         elif 'ind-2' == dataset_name.lower():
             ind_root = os.path.join(opentraj_root, 'datasets/InD/inD-dataset-v1.0/data')
-            file_ids = range(18, 29 + 1)  # location_id = 1
+            file_ids = range(18, 29 + 1)  # location_id = 2
             ind_2_datasets = []
             for id in file_ids:
                 dataset_i = load_ind(os.path.join(ind_root, '%02d_tracks.csv' % id),
@@ -231,7 +231,7 @@ def get_datasets(opentraj_root, dataset_names):
 
         elif 'ind-3' == dataset_name.lower():
             ind_root = os.path.join(opentraj_root, 'datasets/InD/inD-dataset-v1.0/data')
-            file_ids = range(30, 32 + 1)  # location_id = 1
+            file_ids = range(30, 32 + 1)  # location_id = 3
             ind_3_datasets = []
             for id in file_ids:
                 dataset_i = load_ind(os.path.join(ind_root, '%02d_tracks.csv' % id),
@@ -243,7 +243,7 @@ def get_datasets(opentraj_root, dataset_names):
 
         elif 'ind-4' == dataset_name.lower():
             ind_root = os.path.join(opentraj_root, 'datasets/InD/inD-dataset-v1.0/data')
-            file_ids = range(0, 6 + 1)  # location_id = 1
+            file_ids = range(0, 6 + 1)  # location_id = 4
             ind_4_datasets = []
             for id in file_ids:
                 dataset_i = load_ind(os.path.join(ind_root, '%02d_tracks.csv' % id),

@@ -34,4 +34,9 @@ def load_bottleneck(path, **kwargs):
     use_kalman = kwargs.get('use_kalman', False)
     traj_dataset.postprocess(fps=fps, sampling_rate=sampling_rate, use_kalman=use_kalman)
 
+    transform = np.array([[0, 1, 0],
+                          [1, 0, 0],
+                          [0, 0, 1]])
+    traj_dataset.apply_transformation(transform, inplace=True)
+
     return traj_dataset

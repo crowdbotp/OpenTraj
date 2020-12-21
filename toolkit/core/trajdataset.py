@@ -129,7 +129,7 @@ class TrajDataset:
                 group["vel_y"] = smoothed_vel[:, 1]
                 return group
 
-            tqdm.pandas(desc="Smoothing trajectories")
+            tqdm.pandas(desc="Smoothing trajectories (%s)" % self.title)
             # print('Smoothing trajectories ...')
             data_grouped = self.data.groupby(["scene_id", "agent_id"])
             self.data = data_grouped.progress_apply(smooth)

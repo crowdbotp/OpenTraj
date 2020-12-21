@@ -1,7 +1,7 @@
 # Author: Pat
 # Email:bingqing.zhang.18@ucl.ac.uk
 import os
-
+from tqdm import tqdm
 import numpy as np
 import pandas as pd
 import glob
@@ -79,7 +79,7 @@ def load_edinburgh(path, **kwargs):
         track_data_pd = pd.DataFrame(data =np.array(track_data), columns=csv_columns)
       
         clean_track = []
-        for i in track_data_pd.groupby('agent_id'):
+        for i in tqdm(track_data_pd.groupby('agent_id')):
             i[1].drop_duplicates(subset ="frame", keep = 'first', inplace = True)
             # clean repeated trajectory for the same agent 
             
@@ -135,3 +135,18 @@ def load_edinburgh(path, **kwargs):
 
 
 
+if __name__ == "__main__":
+    import os, sys
+    import matplotlib.pyplot as plt
+
+    opentraj_root = sys.argv[1]
+    edinburgh_dir = os.path.join(opentraj_root, 'datasets/Edinburgh/annotations')
+    selected_days = ['01Sep', '02Sep', '04Sep', '05Sep', '06Sep', '10Sep']
+    edinburgh_path = os.path.join(edinburgh_dir, 'tracks.%s.txt' % selected_days[0])
+    traj_dataset = load_edinburgh(edinburgh_path, title="Edinburgh",
+                                  use_kalman=False, scene_id=selected_days[0], sampling_rate=4)  # original framerate=9
+    trajs = list(traj_dataset.get_trajectories())
+    for traj in trajs:
+        plt.plot(traj[1]["pos_x"], traj[1]["pos_y"])
+    plt.title("L-CAS dataset")
+    plt.show()

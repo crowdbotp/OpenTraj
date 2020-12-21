@@ -40,3 +40,16 @@ def load_lcas(path, **kwargs):
     traj_dataset.postprocess(fps=fps, sampling_rate=sampling_rate, use_kalman=use_kalman)
     return traj_dataset
 
+
+if __name__ == "__main__":
+    import os, sys
+    import matplotlib.pyplot as plt
+    opentraj_root = sys.argv[1]
+    lcas_root = os.path.join(opentraj_root, 'datasets/L-CAS/data')
+    # FixMe: apparently original_fps = 2.5
+    traj_dataset = load_lcas(lcas_root, title="L-CAS", use_kalman=False, sampling_rate=1)
+    trajs = list(traj_dataset.get_trajectories())
+    for traj in trajs:
+        plt.plot(traj[1]["pos_x"], traj[1]["pos_y"])
+    plt.title("L-CAS dataset")
+    plt.show()
