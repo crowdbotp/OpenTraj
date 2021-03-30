@@ -18,7 +18,16 @@ from setuptools import setup
         "pandas",
         "tqdm",
         "pykalman", 
-        "PyYAML",
-       "pytest",
+        "PyYAML",       
    ],
+   extras_require={
+        'test': [
+            "pylint",
+            "pytest",
+        ],
+        'plot': [
+            "matplotlib",
+            "seaborn",
+        ]
+   }
 )
