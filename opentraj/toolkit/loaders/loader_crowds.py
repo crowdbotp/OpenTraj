@@ -142,17 +142,15 @@ if __name__ == "__main__":
     # trajs = [g for _, g in trajs]
     trajs = zara_01_ds.data.groupby(["scene_id", "agent_id"])
     trajs = [(scene_id, agent_id, tr) for (scene_id, agent_id), tr in trajs]
-    for scene_id, agent_id, traj in trajs:
-        cur_locs.append(traj[traj["timestamp"] <= cur_time].iloc)
 
     samples = zara_01_ds.get_entries()
     plt.scatter(samples["pos_x"], samples["pos_y"])
     plt.show()
-    zara_02_vsp = os.path.join(OPENTRAJ_ROOT, 'datasets/UCY/zara02/crowds_zara02.vsp')
-    zara_02_video = os.path.join(OPENTRAJ_ROOT, 'datasets/UCY/zara02/video.avi')
+    zara_02_vsp = os.path.join(OPENTRAJ_ROOT, 'datasets/UCY/zara02/annotation.vsp')
     zara_02_ds = load_crowds(zara_02_vsp, homog_file=zara_hmg_file)
+    # zara_02_video = os.path.join(OPENTRAJ_ROOT, 'datasets/UCY/zara02/video.avi')
 
-    zara_03_vsp = os.path.join(OPENTRAJ_ROOT, 'datasets/UCY/zara03/crowds_zara03.vsp')
+    zara_03_vsp = os.path.join(OPENTRAJ_ROOT, 'datasets/UCY/zara03/annotation.vsp')
     zara_03_ds = load_crowds(zara_03_vsp, homog_file=zara_hmg_file)
 
     # University data
