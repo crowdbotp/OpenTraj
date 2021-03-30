@@ -127,6 +127,11 @@ Final Displacement Error (FDE) measures the distance between final predicted pos
 
 **Collaboration:** Are you interested in collaboration on OpenTraj? Send an email to [me](mailto:amiryan.j@gmail.com?subject=OpenTraj) titled *OpenTraj*.
 
+**Contributions**
+
+We welcome contributions. If you have an idea, you can fork the project, implement it and ask for a merge. 
+Also feel free to open new issues.
+
 If you find this work useful in your research then please cite:
 ```
 @inproceedings{amirian2020opentraj,
