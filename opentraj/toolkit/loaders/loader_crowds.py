@@ -138,8 +138,13 @@ if __name__ == "__main__":
     zara_01_vsp = os.path.join(OPENTRAJ_ROOT, 'datasets/UCY/zara01/annotation.vsp')
     zara_hmg_file = os.path.join(OPENTRAJ_ROOT, 'datasets/UCY/zara01/H.txt')
     zara_01_ds = load_crowds(zara_01_vsp, use_kalman=False, homog_file=zara_hmg_file)
-    trajs = zara_01_ds.get_trajectories()
-    trajs = [g for _, g in trajs]
+    # trajs = zara_01_ds.get_trajectories()
+    # trajs = [g for _, g in trajs]
+    trajs = zara_01_ds.data.groupby(["scene_id", "agent_id"])
+    trajs = [(scene_id, agent_id, tr) for (scene_id, agent_id), tr in trajs]
+    for scene_id, agent_id, traj in trajs:
+        cur_locs.append(traj[traj["timestamp"] <= cur_time].iloc)
+
     samples = zara_01_ds.get_entries()
     plt.scatter(samples["pos_x"], samples["pos_y"])
     plt.show()

@@ -285,4 +285,4 @@ if __name__ == '__main__':
 
     play = Play(args.gui_mode)
     play.play(traj_dataset, Hinv, media_file)
-    # qtui.app.exec()
+    # qtui.app.exe()

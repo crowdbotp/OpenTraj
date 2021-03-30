@@ -443,7 +443,7 @@ if __name__ == "__main__":
                                                  'multimodality indicators.')
     parser.add_argument('--opentraj_root', '--root')
     parser.add_argument('--output_dir', '--output')
-    parser.add_argument('--execution', '--exec',
+    parser.add_argument('--execution', '--exe',
                         default='normal',
                         choices=['normal', 'parallelized'],
                         help='pick a execution (default: "vae")')

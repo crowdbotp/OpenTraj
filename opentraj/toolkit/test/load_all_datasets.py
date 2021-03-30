@@ -96,7 +96,7 @@ def get_trajlets(opentraj_root, dataset_names, to_numpy=True):
 # ================================================================
 # ===================== Load the datasets ========================
 # ================================================================
-def get_datasets(opentraj_root, dataset_names):
+def get_datasets(opentraj_root, dataset_names, use_kalman='default'):
     datasets = {}
 
     # Make a temp dir to store and load trajdatasets (no postprocess anymore)
