@@ -63,7 +63,7 @@ Using python files in [loaders](toolkit/loaders) dir, you can load a dataset int
 A simple script is added [play.py](toolkit/ui/play.py), and can be used to visualize a given dataset:
 
 <p align='center'>
-  <img src='doc/figs/fig-opentraj-ui.gif' width='400px'\>
+  <img src='docs/figs/fig-opentraj-ui.gif' width='400px'\>
 </p>
 
 
