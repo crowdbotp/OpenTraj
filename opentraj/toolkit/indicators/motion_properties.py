@@ -4,7 +4,7 @@ import os
 import sys
 import numpy as np
 import pandas as pd
-from toolkit.benchmarking.utils.histogram_sampler import histogram_sampler, normalize_samples_with_histogram
+from toolkit.utils.histogram_sampler import normalize_samples_with_histogram
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -118,7 +118,7 @@ def run(trajlets, output_dir):
 
 
 if __name__ == "__main__":
-    from toolkit.benchmarking.load_all_datasets import get_datasets, get_trajlets, all_dataset_names
+    from toolkit.test.load_all import all_dataset_names, get_datasets, get_trajlets
 
     opentraj_root = sys.argv[1]
     output_dir = sys.argv[2]

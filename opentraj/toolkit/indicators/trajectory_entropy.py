@@ -1,21 +1,18 @@
 # Author: Juan Baldelomar
 # Email: juan.baldelomar@cimat.mx
 
-import numpy as np
 import os
 import sys
-import argparse
 import math
-import matplotlib.pyplot as plt
-from toolkit.core.trajlet import split_trajectories
-from toolkit.benchmarking.load_all_datasets import get_trajlets
-from toolkit.benchmarking.load_all_datasets import all_dataset_names
-from scipy.stats import multivariate_normal
-import seaborn as sns
+import argparse
+import numpy as np
 import pandas as pd
-
-from toolkit.loaders.loader_eth import load_eth
+import seaborn as sns
 from random import sample
+import matplotlib.pyplot as plt
+from scipy.stats import multivariate_normal
+from toolkit.core.trajlet import split_trajectories
+from toolkit.test.load_all import all_dataset_names, get_trajlets
 
 
 def Gauss_K(x, y, h):

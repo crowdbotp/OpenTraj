@@ -9,8 +9,8 @@ from sklearn.metrics import euclidean_distances
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-from toolkit.benchmarking.load_all_datasets import all_dataset_names, get_datasets, get_trajlets
-from toolkit.benchmarking.utils.histogram_sampler import histogram_sampler
+from toolkit.test.load_all import all_dataset_names, get_datasets, get_trajlets
+from toolkit.utils.histogram_sampler import histogram_sampler
 
 
 def social_space(dataset: pd.DataFrame):

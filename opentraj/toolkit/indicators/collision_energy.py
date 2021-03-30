@@ -16,8 +16,6 @@ import pandas as pd
 from copy import deepcopy
 from toolkit.loaders.loader_eth import load_eth
 from toolkit.core.trajdataset import TrajDataset
-from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names
-from toolkit.benchmarking.utils.histogram_sampler import histogram_sampler,normalize_samples_with_histogram
 from toolkit.core.trajlet import split_trajectories
 
 #calculate DCA, TTCA for each agent at time t
@@ -215,6 +213,9 @@ def run(datasets, output_dir):
     
 
 if __name__ == "__main__":
+    from toolkit.test.load_all import get_datasets, all_dataset_names
+    from toolkit.utils.histogram_sampler import histogram_sampler, normalize_samples_with_histogram
+
     opentraj_root = sys.argv[1]
     output_dir = sys.argv[2]
 

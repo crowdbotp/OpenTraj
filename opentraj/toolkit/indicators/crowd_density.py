@@ -13,9 +13,9 @@ import matplotlib.pyplot as plt
 from scipy.spatial.distance import pdist,squareform
 from toolkit.loaders.loader_eth import load_eth
 from toolkit.core.trajdataset import TrajDataset
-from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names,get_trajlets
 from toolkit.core.trajlet import split_trajectories
-from toolkit.benchmarking.utils.histogram_sampler import normalize_samples_with_histogram
+from toolkit.test.load_all import get_datasets, all_dataset_names
+from toolkit.utils.histogram_sampler import normalize_samples_with_histogram
 from copy import deepcopy
 
 

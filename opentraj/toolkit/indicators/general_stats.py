@@ -55,7 +55,7 @@ def run(datasets, output_dir):
 
 
 if __name__ == "__main__":
-    from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names
+    from toolkit.test.load_all import get_datasets, all_dataset_names
 
     opentraj_root = sys.argv[1]
     dataset_names = all_dataset_names

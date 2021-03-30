@@ -7,7 +7,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from toolkit.core.trajdataset import TrajDataset
-from toolkit.benchmarking.utils.histogram_sampler import normalize_samples_with_histogram
+from toolkit.utils.histogram_sampler import normalize_samples_with_histogram
 
 
 def path_length(trajectory: pd.DataFrame):
@@ -76,7 +76,7 @@ def run(trajlets, output_dir):
 
 if __name__ == "__main__":
     import sys
-    from toolkit.benchmarking.load_all_datasets import all_dataset_names, get_trajlets
+    from toolkit.test.load_all import all_dataset_names, get_trajlets
 
     opentraj_root = sys.argv[1]
     output_dir = sys.argv[2]

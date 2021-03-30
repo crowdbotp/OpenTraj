@@ -1,7 +1,6 @@
 import sys
 from toolkit.core.trajdataset import TrajDataset
 from toolkit.core.trajlet import split_trajectories
-from toolkit.benchmarking.load_all_datasets import get_datasets, all_dataset_names
 
 
 # TODO: to be added later
@@ -19,6 +18,7 @@ def run():
 
 
 if __name__ == "__main__":
+    from toolkit.test.load_all import get_datasets, all_dataset_names
     run()
 
 
