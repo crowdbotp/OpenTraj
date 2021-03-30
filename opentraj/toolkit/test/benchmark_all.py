@@ -1,19 +1,19 @@
 import os
 import sys
 
-from benchmarking.load_all_datasets import get_datasets, get_trajlets, all_dataset_names
+from opentraj.toolkit.test.load_all import get_datasets, get_trajlets, all_dataset_names
+import opentraj.toolkit.indicators.general_stats as general_stats
+import opentraj.toolkit.indicators.motion_properties as motion_properties
+import opentraj.toolkit.indicators.path_efficiency as path_efficiency
+import opentraj.toolkit.indicators.traj_deviation as traj_deviation
+import opentraj.toolkit.indicators.crowd_density as crowd_density
+import opentraj.toolkit.indicators.collision_energy as collision_energy
+import opentraj.toolkit.indicators.trajectory_entropy as trajectory_entropy
+import opentraj.toolkit.indicators.global_multimodality as global_multimodality
+
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(0, os.path.abspath(os.path.join(dir_path, '../..')))
-
-import toolkit.benchmarking.indicators.general_stats as general_stats
-import toolkit.benchmarking.indicators.motion_properties as motion_properties
-import toolkit.benchmarking.indicators.path_efficiency as path_efficiency
-import toolkit.benchmarking.indicators.traj_deviation as traj_deviation
-import toolkit.benchmarking.indicators.crowd_density as crowd_density
-import toolkit.benchmarking.indicators.collision_energy as collision_energy
-import toolkit.benchmarking.indicators.trajectory_entropy as trajectory_entropy
-import toolkit.benchmarking.indicators.global_multimodality as global_multimodality
 
 
 if __name__ == "__main__":
@@ -31,5 +31,3 @@ if __name__ == "__main__":
     collision_energy.run(all_datasets, output_dir)
     global_multimodality.run(all_trajlets, output_dir)
     trajectory_entropy.run(all_datasets, output_dir)
-
-

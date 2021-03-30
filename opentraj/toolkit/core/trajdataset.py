@@ -1,7 +1,7 @@
 # Author: Javad Amirian
 # Email: amiryan.j@gmail.com
 
-from toolkit.loaders.utils.kalman_smoother import KalmanModel
+from toolkit.utils.kalman_smoother import KalmanModel
 from tqdm import tqdm
 import numpy as np
 import pandas as pd

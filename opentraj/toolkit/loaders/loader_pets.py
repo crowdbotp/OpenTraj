@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 
 from toolkit.core.trajdataset import TrajDataset
-from toolkit.loaders.utils.camera_calibration_tsai import *
+from toolkit.utils.calibration.camera_calibration_tsai import *
 
 
 def load_pets(path, **kwargs):
