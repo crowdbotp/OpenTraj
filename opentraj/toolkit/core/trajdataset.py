@@ -1,10 +1,10 @@
 # Author: Javad Amirian
 # Email: amiryan.j@gmail.com
 
-from toolkit.utils.kalman_smoother import KalmanModel
-from tqdm import tqdm
 import numpy as np
 import pandas as pd
+from tqdm import tqdm
+from toolkit.utils.kalman_smoother import KalmanModel
 pd.options.mode.chained_assignment = None  # default='warn'
 
 
@@ -185,6 +185,35 @@ class TrajDataset:
             agent_ids_A = agent_ids_B
         self.data = self.data.sort_values('frame_id')
 
+    def apply_transformation(self, tf: np.ndarray, inplace=False):
+        """
+        :param tf: np.ndarray
+            Homogeneous Transformation Matrix,
+            3x3 for 2D data
+        :param inplace: bool, default False
+            If True, do operation inplace
+        :return: transformed data table
+        """
+        if inplace:
+            target_data = self.data
+        else:
+            target_data = self.data.copy()
+
+        # data is 2D
+        assert tf.shape == (3, 3)
+        tf = tf[:2, :]  # remove the last row
+        poss = target_data[["pos_x", "pos_y"]].to_numpy(dtype=np.float)
+        poss = np.concatenate([poss, np.ones((len(poss), 1))], axis=1)
+        target_data[["pos_x", "pos_y"]] = np.matmul(tf, poss.T).T
+
+        # apply on velocities
+        tf[:, -1] = 0  # do not apply the translation element on velocities!
+        vels = target_data[["vel_x", "vel_y"]].to_numpy(dtype=np.float)
+        vels = np.concatenate([vels, np.ones((len(vels), 1))], axis=1)
+        target_data[["vel_x", "vel_y"]] = np.matmul(tf, vels.T).T
+
+        return target_data
+
     # FixMe: rename to add_row()/add_entry()
     def add_agent(self, agent_id, frame_id, pos_x, pos_y):
         """Add one single data at a specific frame to dataset"""
@@ -198,21 +227,6 @@ class TrajDataset:
     def get_agent_ids(self):
         """:return all agent_id in data table"""
         return pd.unique(self.data["agent_id"])
-
-    def get_trajectories(self, label=""):
-        """
-        Returns a list of trajectories
-        :param label: select agents from a specific class (e.g. pedestrian), ignore if empty
-        :return list of trajectories
-        """
-
-        trajectories = []
-        df = self.data
-        if label:
-            label_filtered = self.data.groupby("label")
-            df = label_filtered.get_group(label.lower())
-
-        return df.groupby(["scene_id", "agent_id"])
 
     # TODO:
     def get_entries(self, agent_ids=[], frame_ids=[], label=""):
@@ -245,34 +259,80 @@ class TrajDataset:
                 frames.append(frame_df)
         return frames
 
-    def apply_transformation(self, tf: np.ndarray, inplace=False):
+    def get_trajectories(self, label=""):
         """
-        :param tf: np.ndarray
-            Homogeneous Transformation Matrix,
-            3x3 for 2D data
-        :param inplace: bool, default False
-            If True, do operation inplace
-        :return: transformed data table
+        Returns a list of trajectories
+        :param label: select agents from a specific class (e.g. pedestrian), ignore if empty
+        :return list of trajectories
         """
-        if inplace:
-            target_data = self.data
-        else:
-            target_data = self.data.copy()
 
-        # data is 2D
-        assert tf.shape == (3, 3)
-        tf = tf[:2, :]  # remove the last row
-        poss = target_data[["pos_x", "pos_y"]].to_numpy(dtype=np.float)
-        poss = np.concatenate([poss, np.ones((len(poss), 1))], axis=1)
-        target_data[["pos_x", "pos_y"]] = np.matmul(tf, poss.T).T
+        trajectories = []
+        df = self.data
+        if label:
+            label_filtered = self.data.groupby("label")
+            df = label_filtered.get_group(label.lower())
 
-        # apply on velocities
-        tf[:, -1] = 0  # do not apply the translation element on velocities!
-        vels = target_data[["vel_x", "vel_y"]].to_numpy(dtype=np.float)
-        vels = np.concatenate([vels, np.ones((len(vels), 1))], axis=1)
-        target_data[["vel_x", "vel_y"]] = np.matmul(tf, vels.T).T
+        return df.groupby(["scene_id", "agent_id"])
 
-        return target_data
+    def get_trajlets(self, length=4.8, overlap=2., filter_min_displacement=1., to_numpy=False):
+        """
+            :param length:      min duration for trajlets
+            :param overlap:     min overlap duration between consequent trajlets
+            :param filter_min_displacement:  if a trajlet is shorter than this thrshold, then it is stationary
+                                             and would be filtered
+            :param to_numpy: (bool) if True the result will be np.ndarray
+            :return: list of Pandas DataFrames (all columns)
+                     or Numpy ndarray(NxTx5): ["pos_x", "pos_y", "vel_x", "vel_y", "timestamp"]
+        """
+
+        trajs = self.get_trajectories()
+        trajlets = []
+
+        EPS = 1E-2
+        dt = trajs["timestamp"].diff().dropna().iloc[0]
+        f_per_traj = int(np.ceil((length - EPS) / dt))
+        f_step = int(np.ceil((length - overlap - EPS) / dt))
+
+        for _, tr in trajs:
+            if len(tr) < 2: continue
+
+            n_frames = len(tr)
+            for start_f in range(0, n_frames - f_per_traj, f_step):
+                if filter_min_displacement < EPS or \
+                        np.linalg.norm(tr[["pos_x", "pos_y"]].iloc[start_f + f_per_traj].to_numpy() -
+                                       tr[["pos_x", "pos_y"]].iloc[start_f].to_numpy()) > filter_min_displacement:
+                    trajlets.append(tr.iloc[start_f:start_f + f_per_traj])
+
+        if to_numpy:
+            trl_np_list = []
+            for trl in trajlets:
+                trl_np = trl[["pos_x", "pos_y", "vel_x", "vel_y", "timestamp"]].to_numpy()
+                trl_np_list.append(trl_np)
+            trajlets = np.stack(trl_np_list)
+
+        return trajlets
+
+    # Todo: add 'to_numpy' arguement
+    def get_simultaneous_trajlets(self, length=8.0, overlap=4.0):
+        ts = self.data["timestamp"].min()
+        te = self.data["timestamp"].max()
+
+        EPS = 1E-2
+        trajlets = []
+        for t_start_i in np.arange(ts, te, length-overlap):
+            t_end_i = t_start_i + length
+            trimmed_data = self.data.loc[(self.data["timestamp"] >= t_start_i) &
+                                         (self.data["timestamp"] < t_end_i - EPS)]
+            if len(trimmed_data) == 0:
+                continue
+            grouped_trajs = trimmed_data.groupby("agent_id")
+            dt = grouped_trajs["timestamp"].diff().dropna().iloc[0]
+            trajlets.append([gr for _, gr in grouped_trajs])
+
+            # todo
+            max_nb_frames = length / dt
+
+        return trajlets
 
 
 def merge_datasets(dataset_list, new_title=[]):
