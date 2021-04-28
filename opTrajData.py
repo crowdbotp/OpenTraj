@@ -1,39 +1,46 @@
 from torch.utils.data import Dataset
 from toolkit.loaders.loader_eth import load_eth
+from toolkit.loaders.loader_crowds import load_crowds
 import numpy as np
 import torch
 import cv2
 from torch.utils.data import DataLoader
-
-def world2image(traj_w, H_inv):
-    # Converts points from Euclidean to homogeneous space, by (x, y) → (x, y, 1)
-    traj_homog = np.hstack((traj_w, np.ones((traj_w.shape[0], 1)))).T
-    # to camera frame
-    traj_cam = np.matmul(H_inv, traj_homog)
-    # to pixel coords
-    traj_uvz = np.transpose(traj_cam/traj_cam[2])
-    return traj_uvz[:, :2].astype(int)
+from torchvision.transforms import Compose, Resize, GaussianBlur
+from utils import world2image
 
 class OpTrajData(Dataset):
-    def __init__(self,dataset='ETH',mode='by_frame'):
+    def __init__(self,dataset='ETH',mode='by_frame', image=None):
         super(OpTrajData,self).__init__()
         self.root='/Users/faith_johnson/GitRepos/OpenTraj/'
         # self.root='/home/faith/GitRepos/OpenTraj'
         self.mode=mode
+        self.image=image
+        self.transforms=Compose([GaussianBlur(5)])
         if dataset=='ETH':
-            self.H=np.loadtxt(self.root+'datasets/ETH/seq_eth/H.txt')
+            self.H = np.loadtxt(self.root + 'datasets/ETH/seq_eth/H.txt')
+            self.H=np.linalg.inv(self.H)
+            video_path = 'datasets/ETH/seq_eth/video.avi'
             self.dataset=load_eth(self.root+'/datasets/ETH/seq_eth/obsmat.txt')
-            if self.mode=='by_human':
-                self.trajectory=self.dataset.get_trajectories()
-                self.groups=self.trajectory.indices
-            self.video=cv2.VideoCapture(self.root+'datasets/ETH/seq_eth/video.avi')
-            # import pdb; pdb.set_trace()
+        elif dataset=='UCY':
+            print('WARNING: MASKS/IMAGES ARE NOT CURRENTLY SUPPORTED FOR THIS DATASET')
+            # hard coding to zara01
+            self.H = np.loadtxt(self.root + 'datasets/UCY/zara01/H.txt')
+            self.dataset = load_crowds('datasets/UCY/zara01/annotation.vsp', use_kalman=False,homog_file='datasets/UCY/zara01/H.txt')
+            video_path = 'datasets/UCY/zara01/video.avi'
+
+
+        if self.mode=='by_human':
+            self.trajectory=self.dataset.get_trajectories()
+            self.groups=self.trajectory.indices
+        self.video=cv2.VideoCapture(self.root+video_path)
+
+
 
     def __len__(self):
         if self.mode=='by_human':
             return len(self.groups)
         elif self.mode=='by_frame':
-            return self.dataset.data['frame_id'].nunique()
+            return self.dataset.data['frame_id'].nunique()-1
 
     def getImages(self,inds):
         frames=[]
@@ -45,39 +52,78 @@ class OpTrajData(Dataset):
 
     def __getitem__(self, item):
         if self.mode=='by_human':
-            pos, frame = self.getOneHumanTraj(item)
+            pos, pos_1, frame = self.getOneHumanTraj(item)
+            return pos, pos_1, frame
         elif self.mode=='by_frame':
-            pos, frame = self.getOneFrame(item)
-        return pos,frame
+            peopleIDs, pos, pos_1, frame = self.getOneFrame(item)
+            return peopleIDs, pos, pos_1, frame
+
+    def getMasks(self,im,locs):
+        # import pdb; pdb.set_trace()
+        frames=[]
+        for ind, i in enumerate(im):
+            fram = np.zeros_like(i)
+            for loc in locs[ind]:
+                pix_loc=world2image(np.array([loc]),self.H)
+                # print(pix_loc)
+                cv2.circle(fram,tuple(pix_loc[0]),5,(255,255,255),-1)
+            frames.append(self.transforms(torch.FloatTensor(fram)))
+            # cv2.imshow('test',frame)
+            # cv2.waitKey()
+        return frames
 
     def getOneFrame(self,item):
-        frameID=[self.dataset.data['frame_id'].unique()[item]]
-        im=self.getImages(frameID)[0]
-        people=self.dataset.get_frames(frameID)[0]
-        frame=np.zeros_like(im)
-        locs=people.filter(['pos_x','pos_y']).to_numpy()
         # import pdb; pdb.set_trace()
-        for loc in locs:
-            pix_loc=world2image(np.array([loc]),np.linalg.inv(self.H))
-            cv2.circle(frame,tuple(pix_loc[0]),5,(255,255,255),-1)
-        # cv2.imshow('test',frame)
-        # cv2.waitKey()
-        # return [torch.FloatTensor(locs), torch.FloatTensor(frame)]
-        return [locs, frame]
+        frameID=[self.dataset.data['frame_id'].unique()[item]]
+        if self.image is not None:
+            frame=self.getImages(frameID)
+        else:
+            frame=[]
+        people=self.dataset.get_frames(frameID)[0]
+        targ_people=[]
+        i=1
+        while len(targ_people)==0:
+            targ_people=self.dataset.get_frames([frameID[0]+i])[0]
+            i+=1
+        inds = targ_people.agent_id.isin(people.agent_id)
+        targ_people=targ_people[inds]
+        targ_locs=targ_people.filter(['pos_x','pos_y']).to_numpy()
+        inds = people.agent_id.isin(targ_people.agent_id)
+        people = people[inds]
+        peopleIDs = people['agent_id'].tolist()
+        locs = people.filter(['pos_x', 'pos_y']).to_numpy()
+        # import pdb; pdb.set_trace()
+        if self.image == 'mask':
+            frame = self.getMasks(frame, np.expand_dims(locs, 0))
+        return [peopleIDs, locs, targ_locs, frame]
 
     def getOneHumanTraj(self,item):
         group=list(self.groups.keys())[item]
         data=self.trajectory.get_group(group)
-        frames=self.getImages(data['frame_id'].tolist())
-        positions=data.filter(['pos_x','pos_y']).to_numpy()
+        if self.image is not None:
+            frames=self.getImages(data['frame_id'].tolist())
+        else:
+            frames=[]
+        positions = data.filter(['pos_x', 'pos_y']).to_numpy()
+        if self.image=='mask':
+            frames=self.getMasks(frames,positions.reshape(len(positions),1,2))
         # return [torch.FloatTensor(positions),torch.FloatTensor(frames)]
-        return [positions, frames]
+        return [positions[:-1,:], positions[1:,:], frames]
 
-# x=OpTrajData()
+# x=OpTrajData(dataset='UCY',image='mask', mode='by_frame')
 # d=DataLoader(x,batch_size=1,shuffle=False)
-# pos, fram=x.__getitem__(3)
+# pos, pos_1, fram=x.__getitem__(3)
 # import pdb; pdb.set_trace()
-# for pos, img in d:
-    # import pdb; pdb.set_trace()
-    # cv2.imshow('',img[0].numpy())
-    # cv2.waitKey(1)
+# for pid, pos, targ, img in d:
+#     try:
+#         # import pdb; pdb.set_trace()
+#         cv2.imshow('',img[0].numpy()[0])
+#         cv2.waitKey(100)
+#         # print(pos)
+#         # print(targ)
+#     except:
+#         import pdb; pdb.set_trace()
+# for f in fram:
+#     import pdb; pdb.set_trace()
+#     cv2.imshow('',f)
+#     cv2.waitKey(1000)
