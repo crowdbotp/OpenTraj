@@ -16,14 +16,14 @@ from utils import world2image, computeGlobalGroups, processGroups
 
 
 def train(epochs, device, loss, dloader):
-    model = CoordLSTM(2)  # SocialTransformer(2)#SocialModel(args)
+    model = CoordLSTM(2,device)  # SocialTransformer(2)#SocialModel(args)
     model = model.to(device)
     model = model.double()
     opt = optim.RMSprop(model.parameters(), lr=5e-4)
+    trackLoss = []
     for e in range(epochs):
         print("Epoch:", e)
         totalLoss = 0
-        trackLoss = []
         totLen = len(dloader)
         for peopleIDs, pos, target, ims in tqdm(dloader):
             # import pdb; pdb.set_trace()
@@ -33,7 +33,7 @@ def train(epochs, device, loss, dloader):
                 for p in pos:
                     gblGroups.append(computeGlobalGroups(world2image(p, np.linalg.inv(data.H)), model.numGrids, model.gridSize))
                 groupedFeatures = processGroups(gblGroups, pos, 'coords')
-                coeffs = model(peopleIDs, pos.double(), torch.stack(groupedFeatures))
+                coeffs = model(torch.tensor(peopleIDs).to(device), pos.double().to(device), torch.stack(groupedFeatures).to(device))
                 outputs, params = model.getCoords(coeffs)
                 l = loss(target,params)
                 # import pdb; pdb.set_trace()
@@ -46,16 +46,21 @@ def train(epochs, device, loss, dloader):
         print('Loss:', totalLoss / totLen, 'totLen:', totLen)
         trackLoss.append(totalLoss / totLen)
     torch.save(model.state_dict(), 'coordLSTMweights.pt')
-    plt.plot(trackLoss)
-    plt.title('Training Loss')
-    plt.xlabel('Epoch')
-    plt.ylabel('Bivariate Gaussian NLL')
-    plt.show()
+    print(trackLoss)
+    try:
+        plt.plot(trackLoss)
+        plt.title('Training Loss')
+        plt.xlabel('Epoch')
+        plt.ylabel('Bivariate Gaussian NLL')
+        plt.show()
+    except Exception as e:
+        print(e)
+        import pdb; pdb.set_trace()
 
 
 def test(device, loss, dloader, save_path):
     # test loop
-    model = CoordLSTM(2)  # SocialTransformer(2)#SocialModel(args)
+    model = CoordLSTM(2,device)  # SocialTransformer(2)#SocialModel(args)
     model.load_state_dict(torch.load(save_path))
     model.eval()
     model = model.to(device)
@@ -81,13 +86,13 @@ def test(device, loss, dloader, save_path):
 
 # args=getArgs()
 data = OpTrajData('ETH', 'by_frame', 'mask')
-dloader = DataLoader(data, batch_size=1, shuffle=True, drop_last=False)
+dloader = DataLoader(data, batch_size=1, shuffle=False, drop_last=False)
 loss = BGNLLLoss()
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-epochs = 10
+epochs = 40
 
 train(epochs, device, loss, dloader)
 
 data = OpTrajData('UCY', 'by_frame', None)
-dloader = DataLoader(data, batch_size=1, shuffle=True, drop_last=False)
-test(device, loss, dloader, 'testTransfWeights.pt')
+dloader = DataLoader(data, batch_size=1, shuffle=False, drop_last=False)
+test(device, loss, dloader, 'coordLSTMweights.pt')

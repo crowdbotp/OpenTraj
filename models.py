@@ -28,7 +28,7 @@ class SocialLSTM(nn.Module):
         pass
 
 class CoordLSTM(nn.Module):
-    def __init__(self, infeats):
+    def __init__(self, infeats, device):
         super(CoordLSTM,self).__init__()
         self.coordEmbed=Linear(infeats,64)
         self.socialEmbed=Linear(64+infeats,64)
@@ -36,7 +36,7 @@ class CoordLSTM(nn.Module):
         self.lstm=LSTM(64,32)
         self.relu=ReLU()
         self.h= {}
-
+        self.device=device
         self.gridSize = (480, 640)
         self.numGrids = (3, 3)
 
@@ -50,7 +50,7 @@ class CoordLSTM(nn.Module):
             h.append(temp[0])
             c.append(temp[1])
         # import pdb;pdb.set_trace()
-        return (torch.stack(h).unsqueeze(0).double(),torch.stack(c).unsqueeze(0).double())
+        return (torch.stack(h).unsqueeze(0).double().to(self.device),torch.stack(c).unsqueeze(0).double().to(self.device))
 
     def updateHidden(self,personIDs,h):
         # import pdb;
@@ -107,7 +107,7 @@ class BGNLLLoss(nn.Module):
 
     def forward(self,targets,params):
         # modified from https://github.com/quancore/social-lstm
-        mux, muy, sx, sy, corr = params[0], params[1], params[2], params[3], params[4]
+        mux, muy, sx, sy, corr = params[0].cpu(), params[1].cpu(), params[2].cpu(), params[3].cpu(), params[4].cpu()
         normx = targets[:, :, 0] - mux
         normy = targets[:, :, 1] - muy
         sxsy = sx * sy
