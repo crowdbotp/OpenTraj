@@ -1,0 +1,16 @@
+{
+	"name":"UCY",
+	"description":"3 scenes (Zara/Arxiepiskopi/University). Zara and University close to top view. Arxiepiskopi more inclined",
+	"num_trajs": "786",
+	"website":"",
+	"paper": "https://onlinelibrary.wiley.com/doi/full/10.1111/j.1467-8659.2007.01089.x",
+	"download_annotation":"https://graphics.cs.ucy.ac.cy/research/downloads/crowd-data",
+	"detail_1":"(ZIP,152 MB)",
+
+	"ref_image":"datasets/UCY/zara01/reference.png",
+	"video":"datasets/UCY/zara01/video.avi",
+	"data_path":"datasets/UCY/zara01/annotation.vsp",
+	"calib_to_world_path":"datasets/UCY/zara01/H.txt",
+	"calib_to_camera_path":"datasets/UCY/zara01/H-cam.txt",
+	"loader":"loader_crowds"
+}
