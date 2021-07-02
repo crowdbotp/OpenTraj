@@ -4,8 +4,11 @@ import numpy as np
 import cv2
 import os
 import argparse
-
+import matplotlib.pyplot as plt
 from toolkit.loaders.loader_metafile import load_metafile
+from toolkit.ui.ui_projectpoint import to_image_frame
+import matplotlib
+matplotlib.use('TkAgg')
 
 
 def error_msg(msg):
@@ -69,13 +72,15 @@ class Play:
             self.set_background_im(ref_im, frame_id)
             if frame_id in frame_ids:
                 xys_t = traj_dataset.data[['pos_x', 'pos_y']].loc[traj_dataset.data["frame_id"] == frame_id].to_numpy()
+                ids_t = traj_dataset.data['agent_id'].loc[traj_dataset.data["frame_id"] == frame_id].to_numpy()
 
-            all_trajs = traj_dataset.data[(traj_dataset.data['agent_id'].isin(ids_t)) &
+            all_trajs = traj_dataset.data[
+                                          (traj_dataset.data['agent_id'].isin(ids_t)) &
                                           (traj_dataset.data['frame_id'] <= frame_id) &
                                           (traj_dataset.data['frame_id'] > frame_id - 50)  # Todo: replace it with timestamp
                                           ].groupby('agent_id')
-            ids_t = [k for k, v in all_trajs]
-            all_trajs = [v[['pos_x', 'pos_y']].to_numpy() for k, v in all_trajs]
+            ids_t = [key for key, value in all_trajs]
+            all_trajs = [value[['pos_x', 'pos_y']].to_numpy() for key, value in all_trajs]
 
             for i, id in enumerate(ids_t):
                 xy_i = np.array(xys_t[i])
@@ -163,17 +168,28 @@ if __name__ == '__main__':
     opentraj_root = args.opentraj_root
     traj_dataset = None
 
-    # #============================ ETH =================================
+    # #============================ ETH & ZARA =================================
     if not args.metafile:
         error_msg('Please Enter a valid dataset metafile (*.json)')
 
     with open(args.metafile) as json_file:
         data = json.load(json_file)
-    traj_dataset = load_metafile(opentraj_root, args.metafile)
-    if 'calib_path' in data:
-        homog_file = os.path.join(opentraj_root, data['calib_path'])
-        Homog = (np.loadtxt(homog_file)) if os.path.exists(homog_file) else np.eye(3)
-        Hinv = np.linalg.inv(Homog)
+    if 'calib_to_world_path' in data:
+        homog_to_world_file = os.path.join(opentraj_root, data['calib_to_world_path'])
+        Homog_to_world = (np.loadtxt(homog_to_world_file)) if os.path.exists(homog_to_world_file) else np.eye(3)
+    else:
+        homog_to_world_file = ""
+
+    if 'calib_to_camera_path' in data:
+        homog_to_camera_file = os.path.join(opentraj_root, data['calib_to_camera_path'])
+        Homog_to_camera = (np.loadtxt(homog_to_camera_file)) if os.path.exists(homog_to_camera_file) else np.eye(3)
+        Hinv = np.linalg.inv(Homog_to_camera)
+    else:
+        homog_to_camera_file = ""
+
+    traj_dataset = load_metafile(opentraj_root, args.metafile, homog_file=homog_to_world_file)
+
+
     if args.background == 'image':
         media_file = os.path.join(opentraj_root, data['ref_image'])
     elif args.background == 'video':

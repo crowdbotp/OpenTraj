@@ -20,7 +20,8 @@ import seaborn as sns
 
 from toolkit.core.trajdataset import TrajDataset
 from toolkit.core.trajlet import split_trajectories
-from toolkit.test.load_all import get_datasets, all_dataset_names
+from toolkit.test.load_all import get_datasets, all_dataset_names, get_trajlets
+
 
 
 def draw_ellipse(position, covariance, ax=None, **kwargs):

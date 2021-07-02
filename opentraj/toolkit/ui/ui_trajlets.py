@@ -4,7 +4,10 @@
 import os
 import cv2
 import numpy as np
-from toolkit.ui.projection import to_image_frame
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use("TkAgg")
+from toolkit.ui.ui_projectpoint import to_image_frame
 from toolkit.ui.ui_constants import RED_COLOR
 
 
@@ -50,10 +53,18 @@ def retrieve_bg_image(ds_name, opentraj_root, timestamp=-1):
         homog = np.linalg.inv(np.loadtxt(homog_file))
 
     elif ds_name == 'UCY-Zara':
-        bg_frame_file = os.path.join(opentraj_root, "datasets/UCY/zara01/bg.png")
-        bg_frame = cv2.imread(bg_frame_file)
-        homog_file = os.path.join(opentraj_root, "datasets/UCY/zara01/H.txt")
-        homog = np.loadtxt(homog_file)
+        # bg_frame_file = os.path.join(opentraj_root, "datasets/UCY/zara01/bg.png")
+        # bg_frame = cv2.imread(bg_frame_file)
+        video_file = os.path.join(opentraj_root, "datasets/UCY/zara01/video.avi")
+        cap = cv2.VideoCapture(video_file)
+        cap.set(cv2.CAP_PROP_POS_FRAMES, int(timestamp * 25))
+        _, bg_frame = cap.read()
+
+
+        homog_file = os.path.join(opentraj_root, "datasets/UCY/zara01/H-cam.txt")
+        homog = np.linalg.inv(np.loadtxt(homog_file))
+
+        dummy = 1
 
     elif ds_name == 'UCY-Univ':
         return None, None
@@ -120,11 +131,22 @@ def retrieve_bg_image(ds_name, opentraj_root, timestamp=-1):
         return None, None
 
     elif ds_name == 'BN-2d-w160':
-        bg_frame_file = os.path.join(opentraj_root, "datasets/HERMES/figs_and_plots/cor-180.jpg")
-        bg_frame = cv2.imread(bg_frame_file)
-        homog = np.array([[100, 0, 250],
-                          [0, 100, 720],
+        # bg_frame_file = os.path.join(opentraj_root, "datasets/HERMES/figs_and_plots/cor-180.jpg")
+        # bg_frame = cv2.imread(bg_frame_file)
+
+        video_file = "/media/cyrus/workspace/Seyfried/bo-videos/bo-360-160-160_cam1_iv5.wmv"
+        cap = cv2.VideoCapture(video_file)
+        cap.set(cv2.CAP_PROP_POS_FRAMES, int(timestamp * 16))
+        _, bg_frame = cap.read()
+
+        homog = np.array([[100, 0, 0],
+                          [0, 100, 0],
                           [0, 0, 1]])
+
+
+        # homog = np.array([[100, 0, 240],
+        #                   [0, 100, 720],
+        #                   [0, 0, 1]])
 
     elif ds_name == 'TownCenter':
         return None, None

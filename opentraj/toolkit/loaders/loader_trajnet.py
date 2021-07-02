@@ -3,7 +3,7 @@
 
 import numpy as np
 import pandas as pd
-from toolkit.core.trajdataset import TrajDataset
+from opentraj.toolkit.core.trajdataset import TrajDataset
 
 
 def load_trajnet(path, **kwargs):
@@ -13,7 +13,7 @@ def load_trajnet(path, **kwargs):
     csv_columns = ["frame_id", "agent_id", "pos_x", "pos_y"]
 
     # read from csv => fill traj
-    raw_dataset = pd.read_csv(path, sep=" ", header=None, names=csv_columns)
+    raw_dataset = pd.read_csv(path, sep="\s+", header=None, names=csv_columns)
     raw_dataset.replace('?', np.nan, inplace=True)
     raw_dataset.dropna(inplace=True)    
 
@@ -24,6 +24,7 @@ def load_trajnet(path, **kwargs):
         raw_dataset[["frame_id", "agent_id", "pos_x", "pos_y"]]
     
     traj_dataset.data["scene_id"] = kwargs.get("scene_id", 0)
+    traj_dataset.data["label"] = "pedestrian"
 
     # calculate velocities + perform some checks
     if 'stanford' in path:

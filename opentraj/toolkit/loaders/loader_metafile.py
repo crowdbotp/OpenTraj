@@ -11,7 +11,7 @@ from toolkit.loaders.loader_crowds import load_crowds
 from toolkit.loaders.loader_gcs import load_gcs
 
 
-def load_metafile(opentraj_root, metafile):
+def load_metafile(opentraj_root, metafile, **kwargs):
     with open(metafile) as json_file:
         data = json.load(json_file)
 
@@ -19,6 +19,9 @@ def load_metafile(opentraj_root, metafile):
 
     if loader_name == "loader_eth":
         traj_dataset = load_eth(os.path.join(opentraj_root, data['data_path']))
+
+    elif loader_name == "loader_crowds":
+        traj_dataset = load_crowds(os.path.join(opentraj_root, data['data_path']), **kwargs)
 
     elif loader_name == "loader_gc":
         traj_dataset = load_gcs(os.path.join(opentraj_root, data['data_path']))
