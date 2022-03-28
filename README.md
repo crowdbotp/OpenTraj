@@ -60,7 +60,7 @@ Using python files in [benchmarking/indicators](toolkit/benchmarking/indicators)
 Using python files in [loaders](toolkit/loaders) dir, you can load a dataset into a dataset object, which uses Pandas data frames to store the data. It would be super easy to retrieve the trajectories, using different queries (by agent_id, timestamp, ...).
 
 #### 3. Visualization
-A simple script is added [play.py](toolkit/ui/play.py), and can be used to visualize a given dataset:
+A simple script is added [play.py](opentraj/toolkit/ui/play.py), and can be used to visualize a given dataset:
 
 <p align='center'>
   <img src='docs/figs/fig-opentraj-ui.gif' width='400px'\>
