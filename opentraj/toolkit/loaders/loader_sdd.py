@@ -1,13 +1,10 @@
-# Author: Javad Amirian
-# Email: amiryan.j@gmail.com
-
-import os
+import os, sys
 import glob
 from math import ceil
 import yaml
 import pandas as pd
-from toolkit.core.trajdataset import TrajDataset
-
+from opentraj.toolkit.core.trajdataset import TrajDataset
+sys.path.append('.')
 
 def load_sdd(path, **kwargs):
     sdd_dataset = TrajDataset()
@@ -23,8 +20,10 @@ def load_sdd(path, **kwargs):
     raw_dataset["pos_y"] = scale * (raw_dataset["y_min"] + raw_dataset["y_max"]) / 2
 
     drop_lost_frames = kwargs.get('drop_lost_frames', False)
+    filter_label = kwargs.get('label', 'Pedestrian')
     if drop_lost_frames:
         raw_dataset = raw_dataset.loc[raw_dataset["lost"] != 1]
+    raw_dataset = raw_dataset.loc[raw_dataset['label'] == filter_label]
 
     # copy columns
     sdd_dataset.data[["frame_id", "agent_id",
