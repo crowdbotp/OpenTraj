@@ -112,8 +112,8 @@ class TrajDataset:
             self.data["vel_x"] = (data_grouped["pos_x"].diff() / dt).astype(float)
             self.data["vel_y"] = (data_grouped["pos_y"].diff() / dt).astype(float)
             nan_inds = np.array(np.nonzero(dt.isnull().to_numpy())).reshape(-1)
-            self.data["vel_x"].iloc[nan_inds] = self.data["vel_x"].iloc[nan_inds + 1].to_numpy()
-            self.data["vel_y"].iloc[nan_inds] = self.data["vel_y"].iloc[nan_inds + 1].to_numpy()
+            self.data.loc[nan_inds]["vel_x"] = self.data["vel_x"].iloc[nan_inds + 1].to_numpy()
+            self.data.loc[nan_inds]["vel_y"] = self.data["vel_y"].iloc[nan_inds + 1].to_numpy()
 
         # ============================================
         if use_kalman:
