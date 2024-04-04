@@ -148,5 +148,5 @@ if __name__ == "__main__":
     trajs = list(traj_dataset.get_trajectories())
     for traj in trajs:
         plt.plot(traj[1]["pos_x"], traj[1]["pos_y"])
-    plt.title("L-CAS dataset")
+    plt.title("Edinburgh Informatics Forum Pedestrian dataset")
     plt.show()
