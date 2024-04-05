@@ -17,7 +17,7 @@ from setuptools import setup
         "sklearn",
         "pandas",
         "tqdm",
-        "pykalman", 
+        "pykalman-bardo", 
         "PyYAML",       
    ],
    extras_require={
